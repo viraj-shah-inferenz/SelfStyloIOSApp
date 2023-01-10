@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="DMSans-Medium.ttf">
+            <string>DMSans-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell tag="3" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SelectPhoneTableViewCell" rowHeight="133" id="Npv-dJ-7Tj" customClass="SelectPhoneTableViewCell" customModule="SelfStyloIOSApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="390" height="133"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Npv-dJ-7Tj" id="CF7-k0-mZj">
+                <rect key="frame" x="0.0" y="0.0" width="390" height="133"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Phone" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LiA-66-TvQ">
+                        <rect key="frame" x="32" y="12" width="60" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="60" id="Gym-8Y-IJZ"/>
+                            <constraint firstAttribute="height" constant="20" id="hZK-h1-IMl"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="14"/>
+                        <color key="textColor" red="0.36862745099999999" green="0.3803921569" blue="0.42745098040000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="q4H-XS-4b6">
+                        <rect key="frame" x="32" y="44" width="326" height="52"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="326" id="EWw-me-bbr"/>
+                            <constraint firstAttribute="height" constant="52" id="fem-dH-5iR"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="DMSans-Medium" family="DM Sans" pointSize="14"/>
+                        <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                        <connections>
+                            <outlet property="delegate" destination="Npv-dJ-7Tj" id="0bp-En-lsO"/>
+                        </connections>
+                    </textField>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SSp-Zo-wm3">
+                        <rect key="frame" x="32" y="101" width="338" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" systemColor="systemRedColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="q4H-XS-4b6" firstAttribute="leading" secondItem="LiA-66-TvQ" secondAttribute="leading" id="Cxe-TK-nPO"/>
+                    <constraint firstItem="q4H-XS-4b6" firstAttribute="top" secondItem="LiA-66-TvQ" secondAttribute="bottom" constant="12" id="RAq-fh-Dl2"/>
+                    <constraint firstAttribute="trailing" secondItem="LiA-66-TvQ" secondAttribute="trailing" constant="298" id="YCI-UF-VxZ"/>
+                    <constraint firstItem="q4H-XS-4b6" firstAttribute="leading" secondItem="CF7-k0-mZj" secondAttribute="leading" constant="32" id="egz-lG-Eri"/>
+                    <constraint firstAttribute="trailing" secondItem="q4H-XS-4b6" secondAttribute="trailing" constant="32" id="f0r-OO-Ya2"/>
+                    <constraint firstItem="LiA-66-TvQ" firstAttribute="top" secondItem="CF7-k0-mZj" secondAttribute="top" constant="12" id="urd-id-c25"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="Pnk-9x-W1P"/>
+            <color key="backgroundColor" red="0.92549019610000005" green="0.93333333330000001" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <connections>
+                <outlet property="lblInvalidPhone" destination="SSp-Zo-wm3" id="Sfe-4x-qpx"/>
+                <outlet property="lblPhone" destination="LiA-66-TvQ" id="bNU-oh-Alo"/>
+                <outlet property="txtPhoneNumber" destination="q4H-XS-4b6" id="vnE-zn-SPU"/>
+            </connections>
+            <point key="canvasLocation" x="61.068702290076331" y="51.056338028169016"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

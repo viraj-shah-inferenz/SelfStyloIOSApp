@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="DMSans-Medium.ttf">
+            <string>DMSans-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell tag="1" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SignInFullNameTableViewCell" rowHeight="133" id="PEX-GM-1Vu" customClass="SignInFullNameTableViewCell" customModule="SelfStyloIOSApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="390" height="133"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PEX-GM-1Vu" id="Pka-vi-kn3">
+                <rect key="frame" x="0.0" y="0.0" width="390" height="133"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Full Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sOg-Ps-TWs">
+                        <rect key="frame" x="32" y="12" width="66" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="66" id="6If-EQ-OU1"/>
+                            <constraint firstAttribute="height" constant="20" id="uVl-xK-tRq"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="DMSans-Medium" family="DM Sans" pointSize="14"/>
+                        <color key="textColor" red="0.36862745099999999" green="0.3803921569" blue="0.42745098040000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uYS-qd-Ql5">
+                        <rect key="frame" x="32" y="44" width="326" height="52"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="52" id="lG6-pi-Qi3"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits" keyboardType="namePhonePad"/>
+                    </textField>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PZa-2R-poW">
+                        <rect key="frame" x="32" y="101" width="338" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" systemColor="systemRedColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" red="0.92549019610000005" green="0.93333333330000001" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <constraints>
+                    <constraint firstItem="uYS-qd-Ql5" firstAttribute="top" secondItem="sOg-Ps-TWs" secondAttribute="bottom" constant="12" id="2o4-Gz-qYY"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="uYS-qd-Ql5" secondAttribute="trailing" constant="12" id="8Zw-oY-nmu"/>
+                    <constraint firstItem="uYS-qd-Ql5" firstAttribute="leading" secondItem="Pka-vi-kn3" secondAttribute="leadingMargin" constant="12" id="AC4-fh-L2d"/>
+                    <constraint firstItem="sOg-Ps-TWs" firstAttribute="leading" secondItem="uYS-qd-Ql5" secondAttribute="leading" id="BUx-HL-vzB"/>
+                    <constraint firstItem="sOg-Ps-TWs" firstAttribute="top" secondItem="Pka-vi-kn3" secondAttribute="top" constant="12" id="L5R-bi-FHp"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="Tpb-KV-96C"/>
+            <connections>
+                <outlet property="lblFullName" destination="sOg-Ps-TWs" id="OZV-hX-ZRm"/>
+                <outlet property="lblInvalidName" destination="PZa-2R-poW" id="JWe-bp-qKD"/>
+                <outlet property="txtFullName" destination="uYS-qd-Ql5" id="bwh-ah-Az7"/>
+            </connections>
+            <point key="canvasLocation" x="61.068702290076331" y="51.056338028169016"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

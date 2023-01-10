@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="DMSans-Medium.ttf">
+            <string>DMSans-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell tag="4" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="SavedPresetsTableViewCell" rowHeight="235" id="WWo-bh-ERQ" customClass="SavedPresetsTableViewCell" customModule="SelfStyloIOSApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="388" height="235"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WWo-bh-ERQ" id="EuS-Rt-ksa">
+                <rect key="frame" x="0.0" y="0.0" width="388" height="235"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sgk-2U-DmC">
+                        <rect key="frame" x="312" y="29" width="56" height="20"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="gray" title="View all" cornerStyle="capsule">
+                            <fontDescription key="titleFontDescription" name="DMSans-Medium" family="DM Sans" pointSize="8"/>
+                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="baseBackgroundColor" red="0.52549019610000003" green="0.54117647059999996" blue="0.60784313729999995" alpha="0.8980392157" colorSpace="calibratedRGB"/>
+                        </buttonConfiguration>
+                    </button>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Ptt-nN-YmP">
+                        <rect key="frame" x="16" y="73" width="352" height="138"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="120" sectionInsetReference="safeArea" id="UUp-VD-QAr">
+                            <size key="itemSize" width="155" height="128"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells/>
+                    </collectionView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Saved presets" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wKS-f0-Rsg">
+                        <rect key="frame" x="16" y="29" width="108" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" name="DMSans-Medium" family="DM Sans" pointSize="16"/>
+                        <color key="textColor" red="0.36862745099999999" green="0.3803921569" blue="0.42745098040000001" alpha="0.8980392157" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" red="0.92549019610000005" green="0.93333333330000001" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="PCq-S8-kXX"/>
+            <connections>
+                <outlet property="btnSave" destination="sgk-2U-DmC" id="do4-Db-Kn5"/>
+                <outlet property="savePresetsCollectionView" destination="Ptt-nN-YmP" id="wUp-pT-cSz"/>
+            </connections>
+            <point key="canvasLocation" x="91.603053435114504" y="85.563380281690144"/>
+        </tableViewCell>
+    </objects>
+</document>

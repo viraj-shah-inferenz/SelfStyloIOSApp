@@ -1,0 +1,71 @@
+//
+//  HomeCardAnnouncementsTableViewCell.swift
+//  SelfStyloIOSApp
+//
+//  Created by Viraj Shah on 03/01/23.
+//
+
+import UIKit
+
+class HomeCardAnnouncementsTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDelegate {
+    
+    
+    @IBOutlet weak var sliderCollectionView: UICollectionView!
+    
+    var imgArr = [UIImage(named: "image_1"),UIImage(named: "image_2"),UIImage(named: "image_3")]
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+        setDelegates()
+        self.sliderCollectionView.register(UINib(nibName: "ImageSliderCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ImageSliderCollectionViewCell")
+        setCardView(toView: sliderCollectionView)
+    
+    }
+    
+    func setCardView(toView: UIView)
+    {
+        toView.layer.shadowColor = UIColor.black.cgColor
+        toView.layer.shadowRadius = 42
+        toView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        toView.layer.cornerRadius = 15
+        toView.layer.borderColor = UIColor.white.cgColor
+        toView.layer.borderWidth = 7
+    }
+
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+
+        // Configure the view for the selected state
+    }
+    
+        func setDelegates() {
+            self.sliderCollectionView.delegate = self
+            self.sliderCollectionView.dataSource = self
+        }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 3
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageSliderCollectionViewCell", for: indexPath) as! ImageSliderCollectionViewCell
+            cell.sliderImageView.image = imgArr[indexPath.row]
+                return cell
+
+    }
+    
+}
+
+extension HomeCardAnnouncementsTableViewCell: UICollectionViewDelegateFlowLayout{
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+            return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+            let size = collectionView.frame.size
+            return CGSize(width: size.width, height: size.height)
+    }
+
+}

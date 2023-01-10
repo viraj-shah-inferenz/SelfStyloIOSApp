@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell tag="5" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SignInCompleteTableViewCell" rowHeight="133" id="pCy-J0-Js0" customClass="SignInCompleteTableViewCell" customModule="SelfStyloIOSApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="390" height="133"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pCy-J0-Js0" id="ANm-FL-ThZ">
+                <rect key="frame" x="0.0" y="0.0" width="390" height="133"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JMc-Km-vGx">
+                        <rect key="frame" x="43" y="12" width="304" height="60"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="60" id="msC-Pr-Yum"/>
+                        </constraints>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="filled" title="Complete" cornerStyle="medium">
+                            <fontDescription key="titleFontDescription" name="DMSans-Medium" family="DM Sans" pointSize="18"/>
+                            <color key="baseBackgroundColor" red="0.094117647060000004" green="0.1019607843" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </buttonConfiguration>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BqT-eA-4cR">
+                        <rect key="frame" x="169" y="80" width="53" height="24"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" title="Skip">
+                            <fontDescription key="titleFontDescription" name="DMSans-Medium" family="DM Sans" pointSize="14"/>
+                            <color key="baseForegroundColor" red="0.36862745099999999" green="0.3803921569" blue="0.42745098040000001" alpha="1" colorSpace="calibratedRGB"/>
+                        </buttonConfiguration>
+                    </button>
+                </subviews>
+                <color key="backgroundColor" red="0.92549019610000005" green="0.93333333330000001" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <constraints>
+                    <constraint firstItem="JMc-Km-vGx" firstAttribute="top" secondItem="ANm-FL-ThZ" secondAttribute="top" constant="12" id="CfH-9E-qwp"/>
+                    <constraint firstItem="JMc-Km-vGx" firstAttribute="centerX" secondItem="ANm-FL-ThZ" secondAttribute="centerX" id="Tbt-H7-abG"/>
+                    <constraint firstItem="JMc-Km-vGx" firstAttribute="leading" secondItem="ANm-FL-ThZ" secondAttribute="leading" constant="43" id="Z3z-rM-f6P"/>
+                    <constraint firstAttribute="trailing" secondItem="JMc-Km-vGx" secondAttribute="trailing" constant="43" id="sc6-3l-n41"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="O0M-kk-x5f"/>
+            <connections>
+                <outlet property="btnComplete" destination="JMc-Km-vGx" id="ZKG-EN-c7q"/>
+            </connections>
+            <point key="canvasLocation" x="61.068702290076331" y="51.056338028169016"/>
+        </tableViewCell>
+    </objects>
+</document>
