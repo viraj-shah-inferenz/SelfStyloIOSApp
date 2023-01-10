@@ -1,0 +1,26 @@
+PODS:
+  - FlagPhoneNumber (0.8.0):
+    - FlagPhoneNumber/libPhoneNumberiOS (= 0.8.0)
+  - FlagPhoneNumber/libPhoneNumberiOS (0.8.0)
+  - IQKeyboardManager (6.5.10)
+  - OTPFieldView (1.0.1)
+
+DEPENDENCIES:
+  - FlagPhoneNumber
+  - IQKeyboardManager
+  - OTPFieldView
+
+SPEC REPOS:
+  trunk:
+    - FlagPhoneNumber
+    - IQKeyboardManager
+    - OTPFieldView
+
+SPEC CHECKSUMS:
+  FlagPhoneNumber: 3712455b95f66cb0f2016fef7d9e34cddf8c7f9a
+  IQKeyboardManager: 45a1fa55c1a5b02c61ac0fd7fd5b62bb4ad20d97
+  OTPFieldView: 700a752fe62c41d1c4914c78aa500fb30d97c255
+
+PODFILE CHECKSUM: 52448391ef0902cb7351e02cc36b882ea07b6a98
+
+COCOAPODS: 1.11.3
