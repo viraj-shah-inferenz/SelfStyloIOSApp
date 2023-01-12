@@ -1,23 +1,22 @@
 //
-//  CustomTabBarControllerViewController.swift
+//  TryOnTabBarViewController.swift
 //  SelfStyloIOSApp
 //
-//  Created by Viraj Shah on 27/12/22.
+//  Created by Viraj Shah on 10/01/23.
 //
 
 import UIKit
 
-class CustomTabBarControllerViewController: UITabBarController, UITabBarControllerDelegate {
+class TryOnTabBarViewController: UITabBarController,UITabBarControllerDelegate {
 
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegates()
         setupMiddleButton()
-    
+        // Do any additional setup after loading the view.
     }
     
+
     func setDelegates() {
         self.delegate = self
     }
@@ -25,7 +24,7 @@ class CustomTabBarControllerViewController: UITabBarController, UITabBarControll
     func setupMiddleButton() {
            let menuButton = UIButton(frame: CGRect(x: 0, y: 0, width: 64, height: 64))
            var menuButtonFrame = menuButton.frame
-           menuButtonFrame.origin.y = view.bounds.height - menuButtonFrame.height - 45
+           menuButtonFrame.origin.y = view.bounds.height - menuButtonFrame.height - 10
            menuButtonFrame.origin.x = view.bounds.width/2 - menuButtonFrame.size.width/2
            menuButton.frame = menuButtonFrame
         
@@ -40,18 +39,11 @@ class CustomTabBarControllerViewController: UITabBarController, UITabBarControll
     
     @objc private func menuButtonAction(sender: UIButton) {
         let detailViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DialogSelectionViewController")
-        let smallId = UISheetPresentationController.Detent.Identifier("small")
-        let smallDetent = UISheetPresentationController.Detent.custom(identifier: smallId) { context in
-            return 250
-        }
-        if let sheet = detailViewController.sheetPresentationController {
-            sheet.detents = [smallDetent,.medium()]
-           sheet.prefersScrollingExpandsWhenScrolledToEdge = true
-           sheet.prefersEdgeAttachedInCompactHeight = true
-           sheet.widthFollowsPreferredContentSizeWhenEdgeAttached = true
-        }
+            if let sheet = detailViewController.sheetPresentationController {
+                sheet.detents = [.medium(), .large()]
+
+            }
         self.present(detailViewController, animated: true, completion: nil)
        }
-
 
 }

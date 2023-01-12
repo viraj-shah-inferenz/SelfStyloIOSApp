@@ -25,11 +25,17 @@ class DialogSelectionViewController: UIViewController {
     @objc func handleTap(_ sender: UITapGestureRecognizer)
     {
         let detailViewController:UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "DialogSelfieCamSelectionViewController") as! DialogSelfieCamSelectionViewController
-        if let sheet = detailViewController.sheetPresentationController {
-            sheet.detents = [.medium(), .large()]
-            
+        let smallId = UISheetPresentationController.Detent.Identifier("small")
+        let smallDetent = UISheetPresentationController.Detent.custom(identifier: smallId) { context in
+            return 250
         }
-        
+        if let sheet = detailViewController.sheetPresentationController {
+            sheet.detents = [smallDetent,.medium()]
+            sheet.largestUndimmedDetentIdentifier = .medium
+           sheet.prefersScrollingExpandsWhenScrolledToEdge = false
+           sheet.prefersEdgeAttachedInCompactHeight = true
+           sheet.widthFollowsPreferredContentSizeWhenEdgeAttached = true
+        }
         self.present(detailViewController, animated: true,completion: nil)
     }
     

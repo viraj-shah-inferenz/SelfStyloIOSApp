@@ -34,17 +34,24 @@
                             <outlet property="delegate" destination="KGk-i7-Jjw" id="ZTP-TX-bV3"/>
                         </connections>
                     </collectionView>
+                    <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="4YE-Fc-arT">
+                        <rect key="frame" x="142" y="125" width="116" height="26"/>
+                    </pageControl>
                 </subviews>
                 <color key="backgroundColor" red="0.92549019610000005" green="0.93333333330000001" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
+                    <constraint firstAttribute="trailing" secondItem="4YE-Fc-arT" secondAttribute="trailing" constant="143" id="52g-b2-DS0"/>
                     <constraint firstItem="617-jT-Yoa" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="947-Aj-25V"/>
                     <constraint firstItem="617-jT-Yoa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="GG0-z9-yle"/>
+                    <constraint firstItem="4YE-Fc-arT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="142" id="RVY-K8-Dgf"/>
                     <constraint firstItem="617-jT-Yoa" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="Rma-OL-H5l"/>
+                    <constraint firstItem="4YE-Fc-arT" firstAttribute="bottom" secondItem="617-jT-Yoa" secondAttribute="bottom" constant="-15" id="TrN-Jl-KPx"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
+                <outlet property="pageView" destination="4YE-Fc-arT" id="jpg-i6-0Wm"/>
                 <outlet property="sliderCollectionView" destination="617-jT-Yoa" id="11f-5B-zm4"/>
             </connections>
             <point key="canvasLocation" x="77.099236641221367" y="45.774647887323944"/>

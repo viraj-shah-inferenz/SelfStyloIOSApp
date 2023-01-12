@@ -28,11 +28,11 @@
                         </buttonConfiguration>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BqT-eA-4cR">
-                        <rect key="frame" x="169" y="80" width="53" height="24"/>
+                        <rect key="frame" x="157" y="85" width="71" height="24"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="plain" title="Skip">
-                            <fontDescription key="titleFontDescription" name="DMSans-Medium" family="DM Sans" pointSize="14"/>
+                            <fontDescription key="titleFontDescription" name="DMSans-Medium" family="DM Sans" pointSize="17"/>
                             <color key="baseForegroundColor" red="0.36862745099999999" green="0.3803921569" blue="0.42745098040000001" alpha="1" colorSpace="calibratedRGB"/>
                         </buttonConfiguration>
                     </button>

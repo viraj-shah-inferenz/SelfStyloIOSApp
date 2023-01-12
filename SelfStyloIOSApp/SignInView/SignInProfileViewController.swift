@@ -72,11 +72,21 @@ extension SignInProfileViewController: UITableViewDelegate, UITableViewDataSourc
             }
         }else if indexPath.row == 5{
             if let cell:SignInCompleteTableViewCell = tableView.dequeueReusableCell(withIdentifier: "SignInCompleteTableViewCell") as? SignInCompleteTableViewCell{
+                cell.btnComplete.addTarget(self, action: #selector(GoToHome), for: .touchUpInside)
                 return cell
             }
         }
 
         return UITableViewCell()
+    }
+    
+   
+    
+    @objc func GoToHome(_ sender: UIButton) {
+        let detailViewController:UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "CustomTabBarControllerViewController") as! CustomTabBarControllerViewController
+        
+        detailViewController.modalPresentationStyle = .fullScreen
+        self.present(detailViewController, animated: false)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

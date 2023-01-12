@@ -12,15 +12,42 @@ class HomeCardAnnouncementsTableViewCell: UITableViewCell, UICollectionViewDataS
     
     @IBOutlet weak var sliderCollectionView: UICollectionView!
     
+    
+    @IBOutlet weak var pageView: UIPageControl!
+    
     var imgArr = [UIImage(named: "image_1"),UIImage(named: "image_2"),UIImage(named: "image_3")]
 
+    var timer = Timer()
+    var counter = 0
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         setDelegates()
         self.sliderCollectionView.register(UINib(nibName: "ImageSliderCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ImageSliderCollectionViewCell")
         setCardView(toView: sliderCollectionView)
+        pageView.numberOfPages = imgArr.count
+        pageView.currentPage = 0
+        DispatchQueue.main.async {
+            self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.changeImage), userInfo: nil, repeats: true)
+        }
+        
+    }
     
+    @objc func changeImage()
+    {
+        if counter < imgArr.count{
+            let index = IndexPath.init(item: counter, section: 0)
+            self.sliderCollectionView.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
+            pageView.currentPage = counter
+            counter += 1
+            
+        }else{
+            counter = 0
+            let index = IndexPath.init(item: counter, section: 0)
+            self.sliderCollectionView.scrollToItem(at: index, at: .centeredHorizontally, animated: false)
+            pageView.currentPage = counter
+        }
     }
     
     func setCardView(toView: UIView)

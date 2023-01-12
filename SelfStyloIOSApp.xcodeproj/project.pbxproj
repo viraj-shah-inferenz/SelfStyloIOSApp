@@ -15,6 +15,7 @@
 		222E1A26296457510094FA0A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222E1A25296457510094FA0A /* Extensions.swift */; };
 		2235F36C295C6D5E0008D3FB /* DialogTryOnSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2235F36B295C6D5E0008D3FB /* DialogTryOnSelectionViewController.swift */; };
 		224650E62967EB0B00BFC8DD /* SignInOtpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224650E52967EB0B00BFC8DD /* SignInOtpViewController.swift */; };
+		226A3E68296D63BC00990849 /* TryOnTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226A3E67296D63BC00990849 /* TryOnTabBarViewController.swift */; };
 		227177852968128300ABEC31 /* SignInProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227177842968128300ABEC31 /* SignInProfileViewController.swift */; };
 		227177892968138E00ABEC31 /* SignInPhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227177872968138E00ABEC31 /* SignInPhotoTableViewCell.swift */; };
 		2271778A2968138E00ABEC31 /* SignInPhotoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 227177882968138E00ABEC31 /* SignInPhotoTableViewCell.xib */; };
@@ -111,6 +112,7 @@
 		222E1A25296457510094FA0A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		2235F36B295C6D5E0008D3FB /* DialogTryOnSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogTryOnSelectionViewController.swift; sourceTree = "<group>"; };
 		224650E52967EB0B00BFC8DD /* SignInOtpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInOtpViewController.swift; sourceTree = "<group>"; };
+		226A3E67296D63BC00990849 /* TryOnTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TryOnTabBarViewController.swift; sourceTree = "<group>"; };
 		227177842968128300ABEC31 /* SignInProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInProfileViewController.swift; sourceTree = "<group>"; };
 		227177872968138E00ABEC31 /* SignInPhotoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPhotoTableViewCell.swift; sourceTree = "<group>"; };
 		227177882968138E00ABEC31 /* SignInPhotoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignInPhotoTableViewCell.xib; sourceTree = "<group>"; };
@@ -380,6 +382,7 @@
 			isa = PBXGroup;
 			children = (
 				22F858E3295B012E00A7D86E /* CustomTabBarControllerViewController.swift */,
+				226A3E67296D63BC00990849 /* TryOnTabBarViewController.swift */,
 			);
 			path = TabView;
 			sourceTree = "<group>";
@@ -775,6 +778,7 @@
 				22E7AE9F295D8DE900F95FE0 /* DialogSelectionViewController.swift in Sources */,
 				22F858B4295AC6A400A7D86E /* SceneDelegate.swift in Sources */,
 				227177952968157F00ABEC31 /* SignInPhoneTableViewCell.swift in Sources */,
+				226A3E68296D63BC00990849 /* TryOnTabBarViewController.swift in Sources */,
 				22AB9F132965B4DA00CB1ECD /* SignInPhoneViewController.swift in Sources */,
 				22F858E6295B047800A7D86E /* FavouriteViewController.swift in Sources */,
 				2271779D296816BB00ABEC31 /* SignInCompleteTableViewCell.swift in Sources */,

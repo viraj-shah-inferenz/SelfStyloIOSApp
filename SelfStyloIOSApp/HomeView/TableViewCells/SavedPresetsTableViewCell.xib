@@ -31,7 +31,7 @@
                             <color key="baseBackgroundColor" red="0.52549019610000003" green="0.54117647059999996" blue="0.60784313729999995" alpha="0.8980392157" colorSpace="calibratedRGB"/>
                         </buttonConfiguration>
                     </button>
-                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Ptt-nN-YmP">
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" bounces="NO" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Ptt-nN-YmP">
                         <rect key="frame" x="16" y="73" width="352" height="138"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

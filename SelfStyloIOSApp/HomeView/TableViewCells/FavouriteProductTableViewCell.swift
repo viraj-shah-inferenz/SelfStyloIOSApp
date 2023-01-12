@@ -52,6 +52,10 @@ class FavouriteProductTableViewCell: UITableViewCell, UICollectionViewDelegate, 
         return 3
     }
     
+    
+    @IBAction func favouriteViewAll(_ sender: UIButton) {
+    }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let favouritecell = collectionView.dequeueReusableCell(withReuseIdentifier: "FavouriteCollectionViewCell", for: indexPath) as! FavouriteCollectionViewCell
 

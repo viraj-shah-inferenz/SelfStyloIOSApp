@@ -37,5 +37,12 @@ class DialogSelfieCamSelectionViewController: UIViewController {
     {
         toView.layer.cornerRadius = 16
     }
-
+    
+    
+    @IBAction func BackHome(_ sender: UIButton) {
+        let detailViewController:UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "CustomTabBarControllerViewController") as! CustomTabBarControllerViewController
+        detailViewController.modalPresentationStyle = .fullScreen
+        self.present(detailViewController, animated: false)
+    }
+    
 }

@@ -25,10 +25,7 @@ class FavouriteViewController: UIViewController {
     }
     
     @objc func BackHome(sender: UIButton){
-        let detailViewController:UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "CustomTabBarControllerViewController") as! CustomTabBarControllerViewController
-        
-        detailViewController.modalPresentationStyle = .fullScreen
-        self.present(detailViewController, animated: false)
+        self.tabBarController?.selectedIndex = 0
     }
     
 }

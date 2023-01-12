@@ -28,7 +28,6 @@ class SignInOtpViewController: UIViewController {
             self.otpTextFieldView.fieldsCount = 5
             self.otpTextFieldView.fieldBorderWidth = 2
             self.otpTextFieldView.filledBorderColor = UIColorFromHex(rgbValue: 0xDDDFEC, alpha: 0.7)
-            self.otpTextFieldView.cursorColor = UIColor.black
             self.otpTextFieldView.displayType = .underlinedBottom
             self.otpTextFieldView.fieldSize = 40
             self.otpTextFieldView.separatorSpace = 8

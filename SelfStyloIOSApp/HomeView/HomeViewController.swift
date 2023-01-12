@@ -57,12 +57,12 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource{
             }
         }else if indexPath.row == 3{
             if let cell = tableView.dequeueReusableCell(withIdentifier: "FavouriteProductTableViewCell") as? FavouriteProductTableViewCell{
-                cell.btnFavouriteDetails.addTarget(self, action: #selector(favouriteviewall(sender: )), for: .touchUpInside)
+                cell.btnFavouriteDetails.addTarget(self, action: #selector(favouriteviewall), for: .touchUpInside)
                 return cell
             }
         }else if indexPath.row == 4{
             if let cell = tableView.dequeueReusableCell(withIdentifier: "SavedPresetsTableViewCell") as? SavedPresetsTableViewCell{
-                cell.btnSave.addTarget(self, action: #selector(savepresetsviewall(sender:)), for: .touchUpInside)
+                cell.btnSave.addTarget(self, action: #selector(savepresetsviewall), for: .touchUpInside)
                 return cell
             }
         }
@@ -86,14 +86,11 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource{
         return 0
     }
     
-    @objc func favouriteviewall(sender: UIButton){
-        let detailViewController:UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "FavouriteViewController") as! FavouriteViewController
-        
-        detailViewController.modalPresentationStyle = .fullScreen
-        self.present(detailViewController, animated: false)
+    @objc func favouriteviewall(){
+        self.tabBarController?.selectedIndex = 1
     }
     
-    @objc func savepresetsviewall(sender: UIButton){
+    @objc func savepresetsviewall(){
         let detailViewController:UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "SavePresetsViewController") as! SavePresetsViewController
         detailViewController.modalPresentationStyle = .fullScreen
         self.present(detailViewController, animated: false)
@@ -101,9 +98,16 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource{
     
     fileprivate func openCamera() {
         let detailViewController:UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "DialogSelfieCamSelectionViewController") as! DialogSelfieCamSelectionViewController
+        let smallId = UISheetPresentationController.Detent.Identifier("small")
+        let smallDetent = UISheetPresentationController.Detent.custom(identifier: smallId) { context in
+            return 250
+        }
         if let sheet = detailViewController.sheetPresentationController {
-            sheet.detents = [.medium(), .large()]
-            
+            sheet.detents = [smallDetent,.medium()]
+            sheet.largestUndimmedDetentIdentifier = .medium
+           sheet.prefersScrollingExpandsWhenScrolledToEdge = false
+           sheet.prefersEdgeAttachedInCompactHeight = true
+           sheet.widthFollowsPreferredContentSizeWhenEdgeAttached = true
         }
         
         self.present(detailViewController, animated: true,completion: nil)
