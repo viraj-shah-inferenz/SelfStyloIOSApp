@@ -4,23 +4,29 @@ PODS:
   - FlagPhoneNumber/libPhoneNumberiOS (0.8.0)
   - IQKeyboardManager (6.5.10)
   - OTPFieldView (1.0.1)
+  - SQLite.swift (0.11.6):
+    - SQLite.swift/standard (= 0.11.6)
+  - SQLite.swift/standard (0.11.6)
 
 DEPENDENCIES:
   - FlagPhoneNumber
   - IQKeyboardManager
   - OTPFieldView
+  - SQLite.swift (~> 0.11.6)
 
 SPEC REPOS:
   trunk:
     - FlagPhoneNumber
     - IQKeyboardManager
     - OTPFieldView
+    - SQLite.swift
 
 SPEC CHECKSUMS:
   FlagPhoneNumber: 3712455b95f66cb0f2016fef7d9e34cddf8c7f9a
   IQKeyboardManager: 45a1fa55c1a5b02c61ac0fd7fd5b62bb4ad20d97
   OTPFieldView: 700a752fe62c41d1c4914c78aa500fb30d97c255
+  SQLite.swift: 46d890be8601964454bd3392527f863d1b802d45
 
-PODFILE CHECKSUM: 52448391ef0902cb7351e02cc36b882ea07b6a98
+PODFILE CHECKSUM: 83bce970b74990ebb9dbe9da206368f060a058c5
 
 COCOAPODS: 1.11.3

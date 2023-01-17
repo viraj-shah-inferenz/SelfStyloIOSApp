@@ -17,10 +17,13 @@ class SignInViewController: UIViewController {
     
     @IBOutlet weak var btnCheckbox: UIButton!
     
+    @IBOutlet weak var btnProceed: UIButton?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
+        let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
+        print(paths[0])
     }
     
     
@@ -35,12 +38,15 @@ class SignInViewController: UIViewController {
         }
     }
     
+    
     @IBAction func btnSelectCheckbox(_ sender: UIButton) {
-        if btnCheckbox.isSelected{
+        if btnCheckbox.isSelected && btnProceed?.isEnabled == true{
             btnCheckbox.setImage(UIImage.init(named: "unchecked"), for: .normal)
+            btnProceed?.isEnabled = false
         }else
         {
             btnCheckbox.setImage(UIImage.init(named: "checked"), for: .normal)
+            btnProceed?.isEnabled = true
         }
         btnCheckbox.isSelected = !btnCheckbox.isSelected
     }

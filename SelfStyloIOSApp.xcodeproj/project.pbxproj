@@ -60,6 +60,8 @@
 		22BA3AAA29642452004AD1F3 /* SavePresetsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22BA3AA829642452004AD1F3 /* SavePresetsCollectionViewCell.xib */; };
 		22BA3AAD29642A36004AD1F3 /* ImageSliderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BA3AAB29642A36004AD1F3 /* ImageSliderCollectionViewCell.swift */; };
 		22BA3AAE29642A36004AD1F3 /* ImageSliderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22BA3AAC29642A36004AD1F3 /* ImageSliderCollectionViewCell.xib */; };
+		22BB026529711E8100F514B0 /* Patron.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BB026429711E8100F514B0 /* Patron.swift */; };
+		22BB02672971231D00F514B0 /* PatronDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BB02662971231D00F514B0 /* PatronDao.swift */; };
 		22C8CA4A295EAB5F00336E03 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C8CA49295EAB5F00336E03 /* EditProfileViewController.swift */; };
 		22C8CA4F295EC1FA00336E03 /* SelectPhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C8CA4D295EC1FA00336E03 /* SelectPhotoTableViewCell.swift */; };
 		22C8CA50295EC1FA00336E03 /* SelectPhotoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22C8CA4E295EC1FA00336E03 /* SelectPhotoTableViewCell.xib */; };
@@ -69,6 +71,10 @@
 		22C8CA5D295F006100336E03 /* SelectEmailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22C8CA5B295F006100336E03 /* SelectEmailTableViewCell.xib */; };
 		22E7AE9F295D8DE900F95FE0 /* DialogSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E7AE9E295D8DE900F95FE0 /* DialogSelectionViewController.swift */; };
 		22E7AEA1295D9F1A00F95FE0 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E7AEA0295D9F1A00F95FE0 /* ProfileViewController.swift */; };
+		22E8E9FC29700B9D00E5BE59 /* IApiCalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E8E9FB29700B9D00E5BE59 /* IApiCalls.swift */; };
+		22E8E9FE29700C4300E5BE59 /* ApiUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E8E9FD29700C4300E5BE59 /* ApiUtils.swift */; };
+		22E8EA022970109400E5BE59 /* FavouriteProductDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E8EA012970109400E5BE59 /* FavouriteProductDao.swift */; };
+		22E8EA042970114200E5BE59 /* FavouriteProducts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E8EA032970114200E5BE59 /* FavouriteProducts.swift */; };
 		22EC1FA62966A615000F86EF /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EC1FA52966A615000F86EF /* CardView.swift */; };
 		22F858B2295AC6A400A7D86E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F858B1295AC6A400A7D86E /* AppDelegate.swift */; };
 		22F858B4295AC6A400A7D86E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F858B3295AC6A400A7D86E /* SceneDelegate.swift */; };
@@ -157,6 +163,8 @@
 		22BA3AA829642452004AD1F3 /* SavePresetsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SavePresetsCollectionViewCell.xib; sourceTree = "<group>"; };
 		22BA3AAB29642A36004AD1F3 /* ImageSliderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSliderCollectionViewCell.swift; sourceTree = "<group>"; };
 		22BA3AAC29642A36004AD1F3 /* ImageSliderCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageSliderCollectionViewCell.xib; sourceTree = "<group>"; };
+		22BB026429711E8100F514B0 /* Patron.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Patron.swift; sourceTree = "<group>"; };
+		22BB02662971231D00F514B0 /* PatronDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatronDao.swift; sourceTree = "<group>"; };
 		22C8CA49295EAB5F00336E03 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		22C8CA4D295EC1FA00336E03 /* SelectPhotoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPhotoTableViewCell.swift; sourceTree = "<group>"; };
 		22C8CA4E295EC1FA00336E03 /* SelectPhotoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectPhotoTableViewCell.xib; sourceTree = "<group>"; };
@@ -166,6 +174,10 @@
 		22C8CA5B295F006100336E03 /* SelectEmailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectEmailTableViewCell.xib; sourceTree = "<group>"; };
 		22E7AE9E295D8DE900F95FE0 /* DialogSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogSelectionViewController.swift; sourceTree = "<group>"; };
 		22E7AEA0295D9F1A00F95FE0 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		22E8E9FB29700B9D00E5BE59 /* IApiCalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IApiCalls.swift; sourceTree = "<group>"; };
+		22E8E9FD29700C4300E5BE59 /* ApiUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiUtils.swift; sourceTree = "<group>"; };
+		22E8EA012970109400E5BE59 /* FavouriteProductDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteProductDao.swift; sourceTree = "<group>"; };
+		22E8EA032970114200E5BE59 /* FavouriteProducts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteProducts.swift; sourceTree = "<group>"; };
 		22EC1FA52966A615000F86EF /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		22F858AE295AC6A400A7D86E /* SelfStyloIOSApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SelfStyloIOSApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22F858B1295AC6A400A7D86E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -404,6 +416,33 @@
 			path = TableViewCells;
 			sourceTree = "<group>";
 		};
+		22E8E9FA29700B7500E5BE59 /* Api */ = {
+			isa = PBXGroup;
+			children = (
+				22E8E9FB29700B9D00E5BE59 /* IApiCalls.swift */,
+				22E8E9FD29700C4300E5BE59 /* ApiUtils.swift */,
+			);
+			path = Api;
+			sourceTree = "<group>";
+		};
+		22E8E9FF2970105200E5BE59 /* Dao */ = {
+			isa = PBXGroup;
+			children = (
+				22E8EA012970109400E5BE59 /* FavouriteProductDao.swift */,
+				22BB02662971231D00F514B0 /* PatronDao.swift */,
+			);
+			path = Dao;
+			sourceTree = "<group>";
+		};
+		22E8EA002970105D00E5BE59 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				22E8EA032970114200E5BE59 /* FavouriteProducts.swift */,
+				22BB026429711E8100F514B0 /* Patron.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		22EC1FA42966A5E2000F86EF /* utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -437,6 +476,9 @@
 		22F858B0295AC6A400A7D86E /* SelfStyloIOSApp */ = {
 			isa = PBXGroup;
 			children = (
+				22E8EA002970105D00E5BE59 /* Model */,
+				22E8E9FF2970105200E5BE59 /* Dao */,
+				22E8E9FA29700B7500E5BE59 /* Api */,
 				22EC1FA42966A5E2000F86EF /* utils */,
 				22A477ED2965A47000523866 /* SignInView */,
 				22A477DE2965878600523866 /* DM_Sans */,
@@ -776,7 +818,9 @@
 				22F858B6295AC6A400A7D86E /* HomeViewController.swift in Sources */,
 				22F858B2295AC6A400A7D86E /* AppDelegate.swift in Sources */,
 				22E7AE9F295D8DE900F95FE0 /* DialogSelectionViewController.swift in Sources */,
+				22E8E9FC29700B9D00E5BE59 /* IApiCalls.swift in Sources */,
 				22F858B4295AC6A400A7D86E /* SceneDelegate.swift in Sources */,
+				22E8E9FE29700C4300E5BE59 /* ApiUtils.swift in Sources */,
 				227177952968157F00ABEC31 /* SignInPhoneTableViewCell.swift in Sources */,
 				226A3E68296D63BC00990849 /* TryOnTabBarViewController.swift in Sources */,
 				22AB9F132965B4DA00CB1ECD /* SignInPhoneViewController.swift in Sources */,
@@ -789,10 +833,14 @@
 				227177852968128300ABEC31 /* SignInProfileViewController.swift in Sources */,
 				22E7AEA1295D9F1A00F95FE0 /* ProfileViewController.swift in Sources */,
 				22F858E4295B012E00A7D86E /* CustomTabBarControllerViewController.swift in Sources */,
+				22BB026529711E8100F514B0 /* Patron.swift in Sources */,
 				22C8CA4F295EC1FA00336E03 /* SelectPhotoTableViewCell.swift in Sources */,
 				22BA3AA5296423CD004AD1F3 /* SavedPresetsTableViewCell.swift in Sources */,
 				22C8CA4A295EAB5F00336E03 /* EditProfileViewController.swift in Sources */,
+				22E8EA022970109400E5BE59 /* FavouriteProductDao.swift in Sources */,
+				22BB02672971231D00F514B0 /* PatronDao.swift in Sources */,
 				227177892968138E00ABEC31 /* SignInPhotoTableViewCell.swift in Sources */,
+				22E8EA042970114200E5BE59 /* FavouriteProducts.swift in Sources */,
 				2278EEA9295D5AED00D1C703 /* DialogSelfieCamSelectionViewController.swift in Sources */,
 				2202B3352964122C000CB816 /* FavouriteProductTableViewCell.swift in Sources */,
 				22EC1FA62966A615000F86EF /* CardView.swift in Sources */,

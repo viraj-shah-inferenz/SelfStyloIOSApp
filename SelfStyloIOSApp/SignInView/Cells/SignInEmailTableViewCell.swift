@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SignInEmailTableViewCell: UITableViewCell {
+class SignInEmailTableViewCell: UITableViewCell,UITextFieldDelegate {
 
     @IBOutlet weak var lblEmail: UILabel!
     
@@ -15,14 +15,21 @@ class SignInEmailTableViewCell: UITableViewCell {
     
     @IBOutlet weak var lblInvalidEmail: UILabel!
     
+    
     let validityType: String.ValidityType = .email
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         settxtEmailView(toView: txtEmailAddress)
+        txtEmailAddress.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         txtEmailAddress.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: txtEmailAddress.frame.height))
         txtEmailAddress.leftViewMode = .always
-        txtEmailAddress.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
+        txtEmailAddress.delegate = self
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        var patron = Patron()
+        patron.email = txtEmailAddress.text!
     }
     
     @objc fileprivate func handleTextChange(){

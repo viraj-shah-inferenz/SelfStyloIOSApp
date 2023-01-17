@@ -39,6 +39,12 @@ class SignInPhoneTableViewCell: UITableViewCell,UITextFieldDelegate {
                txtPhoneNumber.setFlag(countryCode: .IN)
     }
     
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        let patron = Patron()
+        patron.phoneNumber = txtPhoneNumber.text!
+        print(patron.phoneNumber)
+    }
+    
     private func getCustomTextFieldInputAccessoryView(with items: [UIBarButtonItem]) -> UIToolbar {
             let toolbar: UIToolbar = UIToolbar()
 
@@ -90,7 +96,7 @@ class SignInPhoneTableViewCell: UITableViewCell,UITextFieldDelegate {
                    is_check = string == numberFiltered
                    
                    if is_check {
-                       let maxLength = 10
+                       let maxLength = 12
                        let currentString: NSString = textField.text! as NSString
                        let newString: NSString = currentString.replacingCharacters(in: range, with: string) as NSString
                        is_check = newString.length <= maxLength

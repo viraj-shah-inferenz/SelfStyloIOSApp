@@ -9,6 +9,7 @@ target 'SelfStyloIOSApp' do
    pod 'IQKeyboardManager'
    pod 'OTPFieldView'
    pod 'FlagPhoneNumber'
+   pod 'SQLite.swift', '~> 0.11.6'
   
 
   target 'SelfStyloIOSAppTests' do

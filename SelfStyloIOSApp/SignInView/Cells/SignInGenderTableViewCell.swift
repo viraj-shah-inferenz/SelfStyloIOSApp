@@ -23,6 +23,10 @@ class SignInGenderTableViewCell: UITableViewCell {
     @IBOutlet weak var btnFemale: UIButton!
     
     @IBOutlet weak var lblFemale: UILabel!
+    
+    var patron = Patron()
+
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -47,6 +51,7 @@ class SignInGenderTableViewCell: UITableViewCell {
     @IBAction func btnSelectGender(_ sender: UIButton) {
         if sender == btnFemale{
             btnFemale.isSelected = true
+            
         }else
         {
             btnFemale.isSelected = false

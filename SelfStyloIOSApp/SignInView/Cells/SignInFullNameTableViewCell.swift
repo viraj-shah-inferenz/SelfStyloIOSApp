@@ -7,13 +7,14 @@
 
 import UIKit
 
-class SignInFullNameTableViewCell: UITableViewCell,UITextFieldDelegate {
+class SignInFullNameTableViewCell: UITableViewCell {
 
     @IBOutlet weak var lblFullName: UILabel!
     @IBOutlet weak var txtFullName: UITextField!
     
     let validityType: String.ValidityType = .name
     
+    var name: String = ""
     @IBOutlet weak var lblInvalidName: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,10 +23,10 @@ class SignInFullNameTableViewCell: UITableViewCell,UITextFieldDelegate {
         txtFullName.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: txtFullName.frame.height))
         txtFullName.leftViewMode = .always
         txtFullName.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
-        
-        txtFullName.delegate = self
     
     }
+    
+    
     
     @objc fileprivate func handleTextChange(){
         guard let name = txtFullName.text else { return }

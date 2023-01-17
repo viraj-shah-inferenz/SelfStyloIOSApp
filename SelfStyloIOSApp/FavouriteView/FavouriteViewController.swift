@@ -10,6 +10,8 @@ import UIKit
 
 class FavouriteViewController: UIViewController {
 
+    
+
     @IBOutlet weak var btnHomeView: UIButton!
     @IBOutlet weak var FavouriteCollectionView: UICollectionView!
     var brandlogoArr = [UIImage(named: "brandlogo"),UIImage(named: "brandlogo"),UIImage(named: "brandlogo")]
@@ -18,15 +20,22 @@ class FavouriteViewController: UIViewController {
     var color_name:[String] = ["Red Pink","Red Pink","Red Pink"]
     var category_name:[String] = ["Lipstick","Eyeliner","Blush"]
     
+//    var favouriteproducts : [FavouriteProducts] = []
+//    var apiUtils = ApiUtils()
+//
+//    let favouriteproduct = FavouriteProductDao()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+    
         btnHomeView.addTarget(self, action: #selector(BackHome(sender: )), for: .touchUpInside)
     }
     
     @objc func BackHome(sender: UIButton){
         self.tabBarController?.selectedIndex = 0
     }
+    
     
 }
 
@@ -42,7 +51,7 @@ extension FavouriteViewController: UICollectionViewDelegate, UICollectionViewDat
         } else if let vc = cell.viewWithTag(2) as? UILabel{
             vc.text = brand_name[indexPath.row]
         } else if let vc = cell.viewWithTag(3) as? UIImageView{
-            vc.image = brandlogoArr[indexPath.row]
+           vc.image =  brandlogoArr[indexPath.row]
         } else if let vc = cell.viewWithTag(4) as? UILabel{
             vc.text = color_name[indexPath.row]
         }else if let vc = cell.viewWithTag(5) as? UIImageView{
@@ -63,8 +72,32 @@ extension FavouriteViewController: UICollectionViewDelegate, UICollectionViewDat
         return UIColor(red:red, green:green, blue:blue, alpha:CGFloat(alpha))
     }
     
+    func hexStringToUIColor (hex:String) -> UIColor {
+        var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+
+        if (cString.hasPrefix("#")) {
+            cString.remove(at: cString.startIndex)
+        }
+
+        if ((cString.count) != 6) {
+            return UIColor.gray
+        }
+
+        var rgbValue:UInt64 = 0
+        Scanner(string: cString).scanHexInt64(&rgbValue)
+
+        return UIColor(
+            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+            alpha: CGFloat(1.0)
+        )
+    }
+    
 
 }
+
+
 
 
 

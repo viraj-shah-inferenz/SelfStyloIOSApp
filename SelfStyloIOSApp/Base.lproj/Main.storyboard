@@ -896,7 +896,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sh1-rB-7TH">
-                                <rect key="frame" x="121" y="57" width="150" height="150"/>
+                                <rect key="frame" x="121.5" y="57" width="150" height="150"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="StyloCam" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hqa-5l-OsZ">
                                         <rect key="frame" x="33" y="109" width="83.5" height="23.5"/>
@@ -1214,10 +1214,10 @@
                                     <constraint firstAttribute="height" constant="143" id="ld1-W5-gqF"/>
                                 </constraints>
                                 <connections>
-                                    <segue destination="ZVv-Sg-LuM" kind="embed" id="aJN-LQ-KlW"/>
+                                    <segue destination="ZVv-Sg-LuM" kind="embed" identifier="" id="aJN-LQ-KlW"/>
                                 </connections>
                             </containerView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kt8-ev-DGQ">
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kt8-ev-DGQ">
                                 <rect key="frame" x="32" y="322" width="327" height="59"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="59" id="lJS-QH-guP"/>
@@ -1334,7 +1334,6 @@
                                     <color key="baseForegroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="btnSelectCheckbox:" destination="Wxi-k5-ItX" eventType="touchUpInside" id="Ewy-gS-TKJ"/>
                                     <action selector="btnSelectCheckbox:" destination="6bN-X8-n2O" eventType="touchUpInside" id="xrg-zs-QZk"/>
                                 </connections>
                             </button>
@@ -1383,6 +1382,7 @@
                         <outlet property="EmailIdView" destination="Rhe-GW-LnO" id="Kwa-cT-Hha"/>
                         <outlet property="PhoneView" destination="Xm8-uW-y3p" id="aV8-EB-ofD"/>
                         <outlet property="btnCheckbox" destination="vxZ-Eh-Nhh" id="hwm-zR-qhX"/>
+                        <outlet property="btnProceed" destination="kt8-ev-DGQ" id="jrI-Cy-b8F"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bvh-lX-Gam" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1517,7 +1517,7 @@
         <!--Sign In Email View Controller-->
         <scene sceneID="Ish-jE-PdE">
             <objects>
-                <viewController id="ZVv-Sg-LuM" customClass="SignInEmailViewController" customModule="SelfStyloIOSApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignInEmailViewController" id="ZVv-Sg-LuM" customClass="SignInEmailViewController" customModule="SelfStyloIOSApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="YdR-LP-jn9">
                         <rect key="frame" x="0.0" y="0.0" width="358" height="143"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1640,6 +1640,7 @@
                                     <color key="baseBackgroundColor" red="0.094117647060000004" green="0.1019607843" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
                                 </buttonConfiguration>
                                 <connections>
+                                    <action selector="resendOTPBtnClicked:" destination="jTE-Hq-ob7" eventType="touchUpInside" id="Z5c-v2-HHJ"/>
                                     <segue destination="0Fh-Su-nhW" kind="presentation" animates="NO" modalPresentationStyle="fullScreen" id="DWK-Ts-6My"/>
                                 </connections>
                             </button>
@@ -1686,6 +1687,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="otpTextFieldView" destination="vd4-UK-ugE" id="Obx-eJ-8U1"/>
+                        <outlet property="resendOTPBtn" destination="1pp-9w-N4t" id="ESy-rv-ecg"/>
+                        <outlet property="timerLabel" destination="uA1-L8-V9L" id="E1x-un-FhB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b34-9Y-SFq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

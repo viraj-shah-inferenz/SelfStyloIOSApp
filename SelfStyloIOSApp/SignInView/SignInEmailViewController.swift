@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SignInEmailViewController: UIViewController{
+class SignInEmailViewController: UIViewController,UITextFieldDelegate{
     
     @IBOutlet weak var lblEmail: UILabel!
     
@@ -17,40 +17,58 @@ class SignInEmailViewController: UIViewController{
     
     let validityType: String.ValidityType = .email
     
-    @IBOutlet weak var btnCheckbox: UIButton!
+    
+    
+    var vc: SignInViewController!
+    
+    var apiUtils = ApiUtils()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        txtEmailAddress.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: txtEmailAddress.frame.height))
+        // Do any additional setup after loading the view.
+        vc = self.storyboard?.instantiateViewController(withIdentifier: "SignInViewController") as? SignInViewController
+        vc.btnProceed?.addTarget(self, action: #selector(btnproceed), for: .touchUpInside)
+        txtEmailAddress.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: (txtEmailAddress.frame.height)))
         txtEmailAddress.leftViewMode = .always
         txtEmailAddress.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         
-        
-        // Do any additional setup after loading the view.
+        txtEmailAddress.delegate = self
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+            if let email = txtEmailAddress.text {
+                if email != "" {
+                        let patron = Patron(email: txtEmailAddress.text!)
+                        apiUtils.sendEmailOtp(email: patron.email)
+                   
+                    
+                } else {
+                    print("Please enter valid email address")
+                }
+            }
+            
     }
     
     
-
+    @objc fileprivate func btnproceed(){
+//        let patron = Patron(email: txtEmailAddress.text!)
+//        apiUtils.sendEmailOtp(email: patron.email)
+        //handleTextChange()
+//        textFieldDidEndEditing(txtEmailAddress)
+        
+    }
 
     @objc fileprivate func handleTextChange(){
         guard let email = txtEmailAddress.text else { return }
         if email.isValid(validityType) {
             lblInvalidEmail.text = " "
+            
         }else
         {
             lblInvalidEmail.text = "Not a Valid \(validityType)"
         }
     }
     
-    @IBAction func btnSelectCheckbox(_ sender: UIButton) {
-        if btnCheckbox.isSelected{
-            btnCheckbox.setImage(UIImage.init(named: "unchecked"), for: .normal)
-        }else
-        {
-            btnCheckbox.setImage(UIImage.init(named: "checked"), for: .normal)
-        }
-        btnCheckbox.isSelected = !btnCheckbox.isSelected
-    }
 
 
 

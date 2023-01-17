@@ -136,7 +136,7 @@ extension SignInPhoneViewController: FPNTextFieldDelegate {
     }
     
     func fpnDidSelectCountry(name: String, dialCode: String, code: String) {
-        print(name, dialCode, code)
+       // print(name, dialCode, code)
     }
     
 }
