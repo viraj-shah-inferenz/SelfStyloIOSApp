@@ -30,6 +30,9 @@
 		2271779D296816BB00ABEC31 /* SignInCompleteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2271779B296816BB00ABEC31 /* SignInCompleteTableViewCell.swift */; };
 		2271779E296816BB00ABEC31 /* SignInCompleteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2271779C296816BB00ABEC31 /* SignInCompleteTableViewCell.xib */; };
 		2278EEA9295D5AED00D1C703 /* DialogSelfieCamSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2278EEA8295D5AED00D1C703 /* DialogSelfieCamSelectionViewController.swift */; };
+		2289852A297682AC002DD2E8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22898529297682AC002DD2E8 /* GoogleService-Info.plist */; };
+		2289852D2976CDE7002DD2E8 /* Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2289852C2976CDE7002DD2E8 /* Banner.swift */; };
+		2289852F2976CEAC002DD2E8 /* BannerDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2289852E2976CEAC002DD2E8 /* BannerDao.swift */; };
 		228A8E6D2963F0CB004F8208 /* SelectLogoAppTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228A8E6B2963F0CB004F8208 /* SelectLogoAppTableViewCell.swift */; };
 		228A8E6E2963F0CB004F8208 /* SelectLogoAppTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 228A8E6C2963F0CB004F8208 /* SelectLogoAppTableViewCell.xib */; };
 		228A8E712963F69B004F8208 /* HomeCardAnnouncementsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228A8E6F2963F69B004F8208 /* HomeCardAnnouncementsTableViewCell.swift */; };
@@ -133,6 +136,10 @@
 		2271779B296816BB00ABEC31 /* SignInCompleteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInCompleteTableViewCell.swift; sourceTree = "<group>"; };
 		2271779C296816BB00ABEC31 /* SignInCompleteTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignInCompleteTableViewCell.xib; sourceTree = "<group>"; };
 		2278EEA8295D5AED00D1C703 /* DialogSelfieCamSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogSelfieCamSelectionViewController.swift; sourceTree = "<group>"; };
+		22898529297682AC002DD2E8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2289852B2976BDDD002DD2E8 /* SelfStyloIOSApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SelfStyloIOSApp.entitlements; sourceTree = "<group>"; };
+		2289852C2976CDE7002DD2E8 /* Banner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banner.swift; sourceTree = "<group>"; };
+		2289852E2976CEAC002DD2E8 /* BannerDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerDao.swift; sourceTree = "<group>"; };
 		228A8E6B2963F0CB004F8208 /* SelectLogoAppTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLogoAppTableViewCell.swift; sourceTree = "<group>"; };
 		228A8E6C2963F0CB004F8208 /* SelectLogoAppTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectLogoAppTableViewCell.xib; sourceTree = "<group>"; };
 		228A8E6F2963F69B004F8208 /* HomeCardAnnouncementsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCardAnnouncementsTableViewCell.swift; sourceTree = "<group>"; };
@@ -430,6 +437,7 @@
 			children = (
 				22E8EA012970109400E5BE59 /* FavouriteProductDao.swift */,
 				22BB02662971231D00F514B0 /* PatronDao.swift */,
+				2289852E2976CEAC002DD2E8 /* BannerDao.swift */,
 			);
 			path = Dao;
 			sourceTree = "<group>";
@@ -439,6 +447,7 @@
 			children = (
 				22E8EA032970114200E5BE59 /* FavouriteProducts.swift */,
 				22BB026429711E8100F514B0 /* Patron.swift */,
+				2289852C2976CDE7002DD2E8 /* Banner.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -476,6 +485,8 @@
 		22F858B0295AC6A400A7D86E /* SelfStyloIOSApp */ = {
 			isa = PBXGroup;
 			children = (
+				2289852B2976BDDD002DD2E8 /* SelfStyloIOSApp.entitlements */,
+				22898529297682AC002DD2E8 /* GoogleService-Info.plist */,
 				22E8EA002970105D00E5BE59 /* Model */,
 				22E8E9FF2970105200E5BE59 /* Dao */,
 				22E8E9FA29700B7500E5BE59 /* Api */,
@@ -656,6 +667,7 @@
 				22C8CA50295EC1FA00336E03 /* SelectPhotoTableViewCell.xib in Resources */,
 				228A8E722963F69B004F8208 /* HomeCardAnnouncementsTableViewCell.xib in Resources */,
 				2271778E2968141C00ABEC31 /* SignInFullNameTableViewCell.xib in Resources */,
+				2289852A297682AC002DD2E8 /* GoogleService-Info.plist in Resources */,
 				22F858B9295AC6A400A7D86E /* Main.storyboard in Resources */,
 				22A477EA2965878600523866 /* OFL.txt in Resources */,
 				22A477EB2965878600523866 /* DMSans-MediumItalic.ttf in Resources */,
@@ -826,7 +838,9 @@
 				22AB9F132965B4DA00CB1ECD /* SignInPhoneViewController.swift in Sources */,
 				22F858E6295B047800A7D86E /* FavouriteViewController.swift in Sources */,
 				2271779D296816BB00ABEC31 /* SignInCompleteTableViewCell.swift in Sources */,
+				2289852F2976CEAC002DD2E8 /* BannerDao.swift in Sources */,
 				228A8E6D2963F0CB004F8208 /* SelectLogoAppTableViewCell.swift in Sources */,
+				2289852D2976CDE7002DD2E8 /* Banner.swift in Sources */,
 				224650E62967EB0B00BFC8DD /* SignInOtpViewController.swift in Sources */,
 				22A477DD2965791C00523866 /* SavePresetsViewController.swift in Sources */,
 				22BA3AAD29642A36004AD1F3 /* ImageSliderCollectionViewCell.swift in Sources */,
@@ -1020,6 +1034,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SelfStyloIOSApp/SelfStyloIOSApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = TK8CD8QS5B;
@@ -1036,6 +1051,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				NEW_SETTING = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.inferenz.SelfStyloIOSApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1050,6 +1066,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SelfStyloIOSApp/SelfStyloIOSApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = TK8CD8QS5B;
@@ -1066,6 +1083,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				NEW_SETTING = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.inferenz.SelfStyloIOSApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

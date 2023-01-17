@@ -10,6 +10,9 @@ target 'SelfStyloIOSApp' do
    pod 'OTPFieldView'
    pod 'FlagPhoneNumber'
    pod 'SQLite.swift', '~> 0.11.6'
+   pod 'Firebase/Core'
+   pod 'Firebase/Auth'
+   pod 'GoogleSignIn'
   
 
   target 'SelfStyloIOSAppTests' do

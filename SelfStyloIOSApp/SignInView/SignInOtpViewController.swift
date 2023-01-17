@@ -7,17 +7,22 @@
 
 import UIKit
 import OTPFieldView
+import FirebaseAuth
+import GoogleSignIn
 
 class SignInOtpViewController: UIViewController {
 
     @IBOutlet var otpTextFieldView: OTPFieldView!
     var apiUtils = ApiUtils()
     var emailVC = SignInEmailViewController()
+    var phoneVC = SignInPhoneViewController()
     var otpString:String = ""
     
     @IBOutlet weak var timerLabel: UILabel!
     
     @IBOutlet weak var resendOTPBtn: UIButton!
+    
+    let userDefault = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,6 +77,19 @@ class SignInOtpViewController: UIViewController {
                 print("Please enter valid OTP")
             }
         }
+        
+        guard let verificationId = userDefault.string(forKey: "verificationId") else {return}
+        let credential = PhoneAuthProvider.provider().credential(withVerificationID: verificationId, verificationCode: otpString)
+        Auth.auth().signIn(with: credential){ (success, error) in
+            if error == nil{
+                print(success)
+                print("User Signed In...")
+            }else
+            {
+                print("Something went wrong...\(error?.localizedDescription)")
+            }
+        }
+        
     }
     var countdownTimer: Timer!
         var totalTime = 30

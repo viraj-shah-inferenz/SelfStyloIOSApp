@@ -29,10 +29,6 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells/>
-                        <connections>
-                            <outlet property="dataSource" destination="KGk-i7-Jjw" id="CG5-fp-WR8"/>
-                            <outlet property="delegate" destination="KGk-i7-Jjw" id="ZTP-TX-bV3"/>
-                        </connections>
                     </collectionView>
                     <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="4YE-Fc-arT">
                         <rect key="frame" x="142" y="125" width="116" height="26"/>

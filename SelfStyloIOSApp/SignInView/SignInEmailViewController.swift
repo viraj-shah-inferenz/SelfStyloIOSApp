@@ -27,7 +27,6 @@ class SignInEmailViewController: UIViewController,UITextFieldDelegate{
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         vc = self.storyboard?.instantiateViewController(withIdentifier: "SignInViewController") as? SignInViewController
-        vc.btnProceed?.addTarget(self, action: #selector(btnproceed), for: .touchUpInside)
         txtEmailAddress.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: (txtEmailAddress.frame.height)))
         txtEmailAddress.leftViewMode = .always
         txtEmailAddress.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
@@ -40,8 +39,8 @@ class SignInEmailViewController: UIViewController,UITextFieldDelegate{
                 if email != "" {
                         let patron = Patron(email: txtEmailAddress.text!)
                         apiUtils.sendEmailOtp(email: patron.email)
-                   
-                    
+
+
                 } else {
                     print("Please enter valid email address")
                 }
@@ -49,14 +48,7 @@ class SignInEmailViewController: UIViewController,UITextFieldDelegate{
             
     }
     
-    
-    @objc fileprivate func btnproceed(){
-//        let patron = Patron(email: txtEmailAddress.text!)
-//        apiUtils.sendEmailOtp(email: patron.email)
-        //handleTextChange()
-//        textFieldDidEndEditing(txtEmailAddress)
-        
-    }
+
 
     @objc fileprivate func handleTextChange(){
         guard let email = txtEmailAddress.text else { return }

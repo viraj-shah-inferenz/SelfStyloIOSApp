@@ -7,6 +7,8 @@
 
 import UIKit
 import IQKeyboardManager
+import FirebaseCore
+import FirebaseAuth
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,6 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         manager().isEnabled = true
         
         manager().toolbarDoneBarButtonItemText = "Hide"
+        
+        FirebaseApp.configure()
         return true
     }
 
@@ -34,6 +38,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the user discards a scene session.
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+       let firebaseAuth = Auth.auth()
+       firebaseAuth.setAPNSToken(deviceToken, type: AuthAPNSTokenType.prod)
+
+   }
+
+   func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+       let firebaseAuth = Auth.auth()
+       if (firebaseAuth.canHandleNotification(userInfo)){
+           print(userInfo)
+           return
+       }
+   }
+    
+    func application(_ application: UIApplication, open url: URL,
+                     options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
+      if Auth.auth().canHandle(url) {
+        return true
+      }
+      // URL not auth related; it should be handled separately.
+        return true
     }
 
 

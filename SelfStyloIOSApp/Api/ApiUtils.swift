@@ -10,6 +10,7 @@ import UIKit
 
 protocol GetUsersDelegate {
     func refreshFavouriteProductsList(favouriteproductList: [FavouriteProducts])
+    func refreshBannerList(bannerList: [Banner])
 }
 class ApiUtils{
     var getUserDelegate: GetUsersDelegate?
@@ -24,64 +25,64 @@ class ApiUtils{
 
     
     
-    func getFavouriteProductDetail(){
-//           if(isInternetAvailable()){
-               let serviceUrl = DOMAIN_URL + apiCalls.get_favourite_product + "?id="
-           let url = URL(string: serviceUrl)
-           
-           if let url = url {
-               
-               let session = URLSession(configuration: .default)
-               
-               let task = session.dataTask(with: url,completionHandler: {
-                   (data, response, error) in
-                   if error == nil{
-                       self.parseFavouriteProductDataIntoDb(data: data!)
-                   }else{
-                       
-                   }
-               })
-               
-               task.resume()
-            }
-        //   }
-       }
-       
-       func parseFavouriteProductDataIntoDb(data: Data) {
-           var userList: [FavouriteProducts] = []
-           let db1 = FavouriteProductDao()
-           
-           do{
-               let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
-
-              // if let dictionary = json as? [String: Any]
-              if let dictionary = json as? Array<Dictionary<String, Any>>
-               {
-                   for i in dictionary {
-                       let user = FavouriteProducts()
-                           user.product_id = i["id"] as! Int
-                           user.subCategoryName = i["subcategory"] as! String
-                           user.categoryName = i["category"] as! String
-                           user.colorName = i["color_name"] as! String
-                           user.colorCode = i["color_code"] as! String
-                           user.brandName = i["company_name"] as! String
-                           user.brandLogoUrl = i["brand_logo"] as! String
-                           userList.append(user)
-                        //   db1.deleteByID()
-                           db1.insert(userList: user)
-                   }
-                 
-                   print("USERS : ", userList)
-                  DispatchQueue.main.async {
-                      self.getUserDelegate?.refreshFavouriteProductsList(favouriteproductList: userList)
-                      
-                  }
-               }
-
-           }catch{
-               print("Error : ", error.localizedDescription)
-           }
-       }
+//    func getFavouriteProductDetail(){
+////           if(isInternetAvailable()){
+//               let serviceUrl = DOMAIN_URL + apiCalls.get_favourite_product + "?id="
+//           let url = URL(string: serviceUrl)
+//
+//           if let url = url {
+//
+//               let session = URLSession(configuration: .default)
+//
+//               let task = session.dataTask(with: url,completionHandler: {
+//                   (data, response, error) in
+//                   if error == nil{
+//                       self.parseFavouriteProductDataIntoDb(data: data!)
+//                   }else{
+//
+//                   }
+//               })
+//
+//               task.resume()
+//            }
+//        //   }
+//       }
+//
+//       func parseFavouriteProductDataIntoDb(data: Data) {
+//           var userList: [FavouriteProducts] = []
+//           let db1 = FavouriteProductDao()
+//
+//           do{
+//               let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+//
+//              // if let dictionary = json as? [String: Any]
+//              if let dictionary = json as? Array<Dictionary<String, Any>>
+//               {
+//                   for i in dictionary {
+//                       let user = FavouriteProducts()
+//                           user.product_id = i["id"] as! Int
+//                           user.subCategoryName = i["subcategory"] as! String
+//                           user.categoryName = i["category"] as! String
+//                           user.colorName = i["color_name"] as! String
+//                           user.colorCode = i["color_code"] as! String
+//                           user.brandName = i["company_name"] as! String
+//                           user.brandLogoUrl = i["brand_logo"] as! String
+//                           userList.append(user)
+//                        //   db1.deleteByID()
+//                           db1.insert(userList: user)
+//                   }
+//
+//                   print("USERS : ", userList)
+//                  DispatchQueue.main.async {
+//                      self.getUserDelegate?.refreshFavouriteProductsList(favouriteproductList: userList)
+//
+//                  }
+//               }
+//
+//           }catch{
+//               print("Error : ", error.localizedDescription)
+//           }
+//       }
     
     func sendEmailOtp(email:String){
         let serviceUrl = DOMAIN_URL + apiCalls.sendEmailOtp
@@ -189,6 +190,62 @@ class ApiUtils{
                print("Error : ", error.localizedDescription)
            }
        }
+    
+    func getBanner(){
+//           if(isInternetAvailable()){
+               let serviceUrl = DOMAIN_URL + apiCalls.getBanner
+           let url = URL(string: serviceUrl)
+           
+           if let url = url {
+               
+               let session = URLSession(configuration: .default)
+               
+               let task = session.dataTask(with: url,completionHandler: {
+                   (data, response, error) in
+                   if error == nil{
+                       self.parseBannerDataIntoDb(data: data!)
+                   }else{
+                       
+                   }
+               })
+               
+               task.resume()
+            }
+        //   }
+       }
+       
+       func parseBannerDataIntoDb(data: Data) {
+           var userList: [Banner] = []
+           let db1 = BannerDao()
+           
+           do{
+               let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+
+              // if let dictionary = json as? [String: Any]
+              if let dictionary = json as? Array<Dictionary<String, Any>>
+               {
+                   for i in dictionary {
+                       let user = Banner()
+                           user.id = i["id"] as! Int
+                           user.upload_image = i["upload_image"] as! String
+                           user.is_active = i["is_active"] as! Bool
+                           userList.append(user)
+                        //   db1.deleteByID()
+                           db1.insert(userList: user)
+                   }
+                 
+                   print("USERS : ", userList)
+                  DispatchQueue.main.async {
+                      self.getUserDelegate?.refreshBannerList(bannerList: userList)
+                 
+                }
+               }
+
+           }catch{
+               print("Error : ", error.localizedDescription)
+           }
+       }
+    
         
 }
 

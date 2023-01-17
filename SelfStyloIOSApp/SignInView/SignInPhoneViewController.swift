@@ -7,6 +7,7 @@
 
 import UIKit
 import FlagPhoneNumber
+import FirebaseAuth
 
 class SignInPhoneViewController: UIViewController,UITextFieldDelegate  {
     
@@ -24,15 +25,14 @@ class SignInPhoneViewController: UIViewController,UITextFieldDelegate  {
     let padding = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 5)
     
     
-    
+    let userDefault = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        txtPhoneNumber.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
+        phoneNumberTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         
         phoneNumberTextField.displayMode = .list
         phoneNumberTextField.delegate = self
-        txtPhoneNumber.delegate = self
         
         listController.setup(repository: phoneNumberTextField.countryRepository)
         
@@ -67,7 +67,7 @@ class SignInPhoneViewController: UIViewController,UITextFieldDelegate  {
     }
     
     @objc fileprivate func handleTextChange(){
-        guard let phone = txtPhoneNumber.text else { return }
+        guard let phone = phoneNumberTextField.text else { return }
         if phone.isValid(validityType){
             lblInvalidPhone.text = " "
         }else
@@ -91,9 +91,28 @@ class SignInPhoneViewController: UIViewController,UITextFieldDelegate  {
         return UIColor(red:red, green:green, blue:blue, alpha:CGFloat(alpha))
     }
     
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        guard let phoneNumber = phoneNumberTextField.text else {return}
+        Auth.auth().settings?.isAppVerificationDisabledForTesting = false
+        PhoneAuthProvider.provider(auth: Auth.auth())
+        let str  = phoneNumber.components(separatedBy: .whitespaces).joined()
+        PhoneAuthProvider.provider().verifyPhoneNumber(str, uiDelegate: nil){(verificationId, error) in
+            if error == nil{
+                print(verificationId)
+                guard let verifyId = verificationId else {return}
+                self.userDefault.set(verifyId, forKey: "verificationId")
+                self.userDefault.synchronize()
+            }else
+            {
+                print("Unable to get Secret Varification Code from firebase",error?.localizedDescription)
+            }
+            
+        }
+    }
+    
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if textField == txtPhoneNumber {
+        if textField == phoneNumberTextField {
             var is_check : Bool
             let aSet = NSCharacterSet(charactersIn: "0123456789").inverted
             let compSepByCharInSet = string.components(separatedBy: aSet)

@@ -7,7 +7,16 @@
 
 import UIKit
 
-class HomeCardAnnouncementsTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDelegate {
+class HomeCardAnnouncementsTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDelegate,GetUsersDelegate {
+    func refreshFavouriteProductsList(favouriteproductList: [FavouriteProducts]) {
+        
+    }
+    
+    func refreshBannerList(bannerList: [Banner]) {
+        self.imgArr = bannerList
+        self.sliderCollectionView.reloadData()
+    }
+    
     
     
     @IBOutlet weak var sliderCollectionView: UICollectionView!
@@ -15,7 +24,11 @@ class HomeCardAnnouncementsTableViewCell: UITableViewCell, UICollectionViewDataS
     
     @IBOutlet weak var pageView: UIPageControl!
     
-    var imgArr = [UIImage(named: "image_1"),UIImage(named: "image_2"),UIImage(named: "image_3")]
+//    var imgArr = [UIImage(named: "image_1"),UIImage(named: "image_2"),UIImage(named: "image_3")]
+    
+    var imgArr:[Banner] = []
+    
+    var apiUtils = ApiUtils()
 
     var timer = Timer()
     var counter = 0
@@ -27,6 +40,10 @@ class HomeCardAnnouncementsTableViewCell: UITableViewCell, UICollectionViewDataS
         self.sliderCollectionView.register(UINib(nibName: "ImageSliderCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ImageSliderCollectionViewCell")
         setCardView(toView: sliderCollectionView)
         pageView.numberOfPages = imgArr.count
+        apiUtils.getBanner()
+        let db = BannerDao()
+        db.getAll()
+        apiUtils.getBanner()
         pageView.currentPage = 0
         DispatchQueue.main.async {
             self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.changeImage), userInfo: nil, repeats: true)
@@ -73,14 +90,15 @@ class HomeCardAnnouncementsTableViewCell: UITableViewCell, UICollectionViewDataS
         }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return imgArr.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageSliderCollectionViewCell", for: indexPath) as! ImageSliderCollectionViewCell
-            cell.sliderImageView.image = imgArr[indexPath.row]
-                return cell
-
+        let defaultLink = "https://dev.selfstylo.com"
+        let completeLink1 = defaultLink + imgArr[indexPath.row].upload_image
+        cell.sliderImageView?.DownloadedFrom(link: completeLink1)
+       return cell
     }
     
 }
