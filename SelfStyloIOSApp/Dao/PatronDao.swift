@@ -105,6 +105,23 @@ class PatronDao
            return patron
        }
     
+    func update(patron:Patron) -> Bool
+    {
+        let updateStatementString = "UPDATE patron SET gender = '\(patron.gender)' WHERE email = '\(patron.email)' AND contact_number = \(patron.phoneNumber) AND name = '\(patron.name)'"
+         var updateStatement: OpaquePointer? = nil
+         if sqlite3_prepare_v2(db, updateStatementString, -1, &updateStatement, nil) == SQLITE_OK {
+                if sqlite3_step(updateStatement) == SQLITE_DONE {
+                       print("Successfully updated row.")
+                } else {
+                       print("Could not update row.")
+                }
+              } else {
+                    print("UPDATE statement could not be prepared")
+              }
+              sqlite3_finalize(updateStatement)
+        return true
+    }
+    
    
       
     func deleteAll() {

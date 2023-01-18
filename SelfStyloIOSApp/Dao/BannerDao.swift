@@ -39,7 +39,7 @@ class BannerDao
     }
       
     func createTable() {
-            let createTableString = "CREATE TABLE IF NOT EXISTS  banner(id INTEGER NOT NULL,upload_image TEXT,is_active BOOLEAN,PRIMARY KEY(id));"
+            let createTableString = "CREATE TABLE IF NOT EXISTS banner(id INTEGER NOT NULL,upload_image TEXT,is_active BOOLEAN,PRIMARY KEY(id));"
             var createTableStatement: OpaquePointer? = nil
             if sqlite3_prepare_v2(db, createTableString, -1, &createTableStatement, nil) == SQLITE_OK
             {
@@ -60,7 +60,7 @@ class BannerDao
       
     func insert(userList: Banner)
     {
-        let insertStatementString = "INSERT INTO patron (id,upload_image,is_active) VALUES (?,?,?);"
+        let insertStatementString = "INSERT INTO banner(id,upload_image,is_active) VALUES (?,?,?);"
         var insertStatement: OpaquePointer? = nil
         if sqlite3_prepare_v2(db, insertStatementString, -1, &insertStatement, nil) == SQLITE_OK {
             sqlite3_bind_int(insertStatement, 1, Int32(userList.id))

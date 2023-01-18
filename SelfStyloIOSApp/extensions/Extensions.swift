@@ -7,6 +7,10 @@
 
 import Foundation
 import UIKit
+
+
+
+
 extension String{
     
     enum ValidityType {
@@ -42,6 +46,21 @@ extension String{
         return components(separatedBy: .whitespaces).joined()
     }
 
+    
+    func rgbToColor() -> UIColor {
+      var str = self
+      str.removeFirst(4)
+      str.removeLast(1)
+      let sepstr = str.components(separatedBy: ",")
+      var red:Double = 0.0
+      var green:Double = 0.0
+      var blue:Double = 0.0
+      red = Double(sepstr[0]) ?? 0.0
+      green = Double(sepstr[1]) ?? 0.0
+      blue = Double(sepstr[2]) ?? 0.0
+      let color = UIColor(red: red/255.0, green: green/255.0, blue: blue/255.0, alpha: 1.0)
+      return color
+    }
 }
 
 extension UIImageView{

@@ -15,6 +15,19 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var settingsCollectionView: UIView!
     
     @IBOutlet weak var logoutCollectionView: UIView!
+    
+    
+    @IBOutlet weak var lblName: UILabel!
+    @IBOutlet weak var lblEmail: UILabel!
+    @IBOutlet weak var lblPhone: UILabel!
+    
+    @IBOutlet weak var lblGender: UILabel!
+    
+    var patron:[Patron] = []
+    
+    let userDefault = UserDefaults.standard
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -23,6 +36,18 @@ class ProfileViewController: UIViewController {
         seteditprofilecornerRadiusView(toView: editProfile)
         setbuttoncornerRadiusView(toView: settingsCollectionView)
         setbuttoncornerRadiusView(toView: logoutCollectionView)
+        let db = PatronDao()
+        for patron in db.getAll()
+        {
+            
+            lblName.text = patron.name
+            self.userDefault.set(patron.name, forKey: "Name")
+            lblEmail.text = patron.email
+            self.userDefault.set(patron.email, forKey: "Email")
+            lblPhone.text = patron.phoneNumber
+            self.userDefault.set(patron.phoneNumber, forKey: "Phone")
+            lblGender.text = patron.gender
+        }
     }
     
     

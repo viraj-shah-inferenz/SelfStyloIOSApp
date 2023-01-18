@@ -24,66 +24,6 @@ class ApiUtils{
         }
 
     
-    
-//    func getFavouriteProductDetail(){
-////           if(isInternetAvailable()){
-//               let serviceUrl = DOMAIN_URL + apiCalls.get_favourite_product + "?id="
-//           let url = URL(string: serviceUrl)
-//
-//           if let url = url {
-//
-//               let session = URLSession(configuration: .default)
-//
-//               let task = session.dataTask(with: url,completionHandler: {
-//                   (data, response, error) in
-//                   if error == nil{
-//                       self.parseFavouriteProductDataIntoDb(data: data!)
-//                   }else{
-//
-//                   }
-//               })
-//
-//               task.resume()
-//            }
-//        //   }
-//       }
-//
-//       func parseFavouriteProductDataIntoDb(data: Data) {
-//           var userList: [FavouriteProducts] = []
-//           let db1 = FavouriteProductDao()
-//
-//           do{
-//               let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
-//
-//              // if let dictionary = json as? [String: Any]
-//              if let dictionary = json as? Array<Dictionary<String, Any>>
-//               {
-//                   for i in dictionary {
-//                       let user = FavouriteProducts()
-//                           user.product_id = i["id"] as! Int
-//                           user.subCategoryName = i["subcategory"] as! String
-//                           user.categoryName = i["category"] as! String
-//                           user.colorName = i["color_name"] as! String
-//                           user.colorCode = i["color_code"] as! String
-//                           user.brandName = i["company_name"] as! String
-//                           user.brandLogoUrl = i["brand_logo"] as! String
-//                           userList.append(user)
-//                        //   db1.deleteByID()
-//                           db1.insert(userList: user)
-//                   }
-//
-//                   print("USERS : ", userList)
-//                  DispatchQueue.main.async {
-//                      self.getUserDelegate?.refreshFavouriteProductsList(favouriteproductList: userList)
-//
-//                  }
-//               }
-//
-//           }catch{
-//               print("Error : ", error.localizedDescription)
-//           }
-//       }
-    
     func sendEmailOtp(email:String){
         let serviceUrl = DOMAIN_URL + apiCalls.sendEmailOtp
         var request = URLRequest(url: URL(string: serviceUrl)!)
@@ -168,6 +108,7 @@ class ApiUtils{
            do{
                let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
 
+               
               // if let dictionary = json as? [String: Any]
               if let dictionary = json as? Array<Dictionary<String, Any>>
                {
@@ -179,7 +120,7 @@ class ApiUtils{
                            user.phoneNumber = i["contact_number"] as! String
                            user.gender = i["gender"] as! String
                            userList.append(user)
-                        //   db1.deleteByID()
+                           //db1.deleteAll()
                            db1.insert(userList: user)
                    }
                  
@@ -192,7 +133,6 @@ class ApiUtils{
        }
     
     func getBanner(){
-//           if(isInternetAvailable()){
                let serviceUrl = DOMAIN_URL + apiCalls.getBanner
            let url = URL(string: serviceUrl)
            
@@ -211,7 +151,6 @@ class ApiUtils{
                
                task.resume()
             }
-        //   }
        }
        
        func parseBannerDataIntoDb(data: Data) {
@@ -245,6 +184,64 @@ class ApiUtils{
                print("Error : ", error.localizedDescription)
            }
        }
+    
+    
+    func getFavouriteProductDetail(){
+                   let serviceUrl = DOMAIN_URL + apiCalls.get_favourite_product + "?id=4aa6223c-8439-4ed3-8de0-f6a67b1d36bd"
+               let url = URL(string: serviceUrl)
+    
+               if let url = url {
+    
+                   let session = URLSession(configuration: .default)
+    
+                   let task = session.dataTask(with: url,completionHandler: {
+                       (data, response, error) in
+                       if error == nil{
+                           self.parseFavouriteProductDataIntoDb(data: data!)
+                       }else{
+    
+                       }
+                   })
+    
+                   task.resume()
+                }
+            //   }
+           }
+    
+           func parseFavouriteProductDataIntoDb(data: Data) {
+               var userList: [FavouriteProducts] = []
+               let db1 = FavouriteProductDao()
+    
+                   let json = try! JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any]
+    
+                  // if let dictionary = json as? [String: Any]
+                   if let data = json?["data"] as? [Any]
+                   {
+                       for item in data{
+                           if let object = item as? [String:Any]
+                           {
+                               let user = FavouriteProducts()
+                                   user.product_id = object["id"] as! Int
+                                   user.subCategoryName = object["subcategory"] as! String
+                                   user.categoryName = object["category"] as! String
+                                   user.colorName = object["color_name"] as! String
+                                   user.colorCode = object["color_code"] as! String
+                                   user.brandName = object["company_name"] as! String
+                                   user.brandLogoUrl = object["brand_logo"] as! String
+                                   userList.append(user)
+                                   //db1.deleteAll()
+                                   db1.insert(userList: user)
+                               
+                               print("USERS : ", userList)
+                              DispatchQueue.main.async {
+                                  self.getUserDelegate?.refreshFavouriteProductsList(favouriteproductList: userList)
+            
+                              }
+                           }
+                       }
+                   }
+
+           }
     
         
 }

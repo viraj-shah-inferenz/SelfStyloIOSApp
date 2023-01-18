@@ -23,6 +23,8 @@ class HomeViewController: UIViewController {
         self.tblView.register(UINib(nibName: "HomeCardSelfiecamTableViewCell", bundle: nil), forCellReuseIdentifier: "HomeCardSelfiecamTableViewCell")
         self.tblView.register(UINib(nibName: "FavouriteProductTableViewCell", bundle: nil), forCellReuseIdentifier: "FavouriteProductTableViewCell")
         self.tblView.register(UINib(nibName: "SavedPresetsTableViewCell", bundle: nil), forCellReuseIdentifier: "SavedPresetsTableViewCell")
+        let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
+        print(paths[0])
         
         
 

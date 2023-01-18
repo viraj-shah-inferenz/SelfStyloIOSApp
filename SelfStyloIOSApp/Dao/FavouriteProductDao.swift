@@ -92,7 +92,7 @@ class FavouriteProductDao
                    let sub_category_name = String(describing: String(cString: sqlite3_column_text(queryStatement, 1)))
                    let category_name = String(describing: String(cString: sqlite3_column_text(queryStatement!, 2)))
                    let color_name = String(describing: String(cString: sqlite3_column_text(queryStatement!, 3)))
-                   let color_code = String(describing: String(cString: sqlite3_column_text(queryStatement!, 4)))
+                   let color_code =  String(describing: String(cString: sqlite3_column_text(queryStatement!, 4)))
                    let brand_name = String(describing: String(cString: sqlite3_column_text(queryStatement!, 5)))
                    let brand_logo = String(describing: String(cString: sqlite3_column_text(queryStatement!, 6)))
                    favourite_product.append(FavouriteProducts(product_id: Int(id), subCategoryName: sub_category_name, categoryName: category_name, colorName: color_name, colorCode: color_code, brandName: brand_name, brandLogoUrl: brand_logo))
@@ -115,7 +115,7 @@ class FavouriteProductDao
                    let sub_category_name = String(describing: String(cString: sqlite3_column_text(queryStatement, 1)))
                    let category_name = String(describing: String(cString: sqlite3_column_text(queryStatement!, 2)))
                    let color_name = String(describing: String(cString: sqlite3_column_text(queryStatement!, 3)))
-                   let color_code = String(describing: String(cString: sqlite3_column_text(queryStatement!, 4)))
+                   let color_code =  String(describing: String(cString: sqlite3_column_text(queryStatement!, 4)))
                    let brand_name = String(describing: String(cString: sqlite3_column_text(queryStatement!, 5)))
                    let brand_logo = String(describing: String(cString: sqlite3_column_text(queryStatement!, 6)))
                    favourite_product.append(FavouriteProducts(product_id: Int(id), subCategoryName: sub_category_name, categoryName: category_name, colorName: color_name, colorCode: color_code, brandName: brand_name, brandLogoUrl: brand_logo))
@@ -127,7 +127,6 @@ class FavouriteProductDao
            sqlite3_finalize(queryStatement)
            return favourite_product
        }
-    
       
     func deleteAll() {
         let deleteStatementStirng = "DELETE FROM favourite_products;"

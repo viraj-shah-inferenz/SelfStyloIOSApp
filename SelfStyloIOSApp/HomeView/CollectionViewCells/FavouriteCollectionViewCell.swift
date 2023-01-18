@@ -18,7 +18,10 @@ class FavouriteCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var color_name: UILabel!
     
     @IBOutlet weak var color_code: UIImageView!
-
+    
+    
+    @IBOutlet weak var sub_category_name: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

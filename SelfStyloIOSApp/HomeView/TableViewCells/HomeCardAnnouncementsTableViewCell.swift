@@ -36,19 +36,24 @@ class HomeCardAnnouncementsTableViewCell: UITableViewCell, UICollectionViewDataS
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        setDelegates()
+        
         self.sliderCollectionView.register(UINib(nibName: "ImageSliderCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ImageSliderCollectionViewCell")
         setCardView(toView: sliderCollectionView)
-        pageView.numberOfPages = imgArr.count
         apiUtils.getBanner()
         let db = BannerDao()
-        db.getAll()
+        imgArr = db.getAll()
         apiUtils.getBanner()
+        setDelegates()
+        setpageView()
+        
+    }
+    
+    func setpageView(){
         pageView.currentPage = 0
+        pageView.numberOfPages = imgArr.count
         DispatchQueue.main.async {
             self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.changeImage), userInfo: nil, repeats: true)
         }
-        
     }
     
     @objc func changeImage()
@@ -109,8 +114,8 @@ extension HomeCardAnnouncementsTableViewCell: UICollectionViewDelegateFlowLayout
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            let size = collectionView.frame.size
-            return CGSize(width: size.width, height: size.height)
+        let size = collectionView.frame.size
+        return CGSize(width: size.width, height: size.height)
     }
 
 }
