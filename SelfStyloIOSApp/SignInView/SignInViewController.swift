@@ -37,6 +37,12 @@ class SignInViewController: UIViewController {
     }
     
     
+    @IBAction func btnProceed(_ sender: UIButton) {
+        
+        
+    }
+    
+    
     @IBAction func btnSelectCheckbox(_ sender: UIButton) {
         if btnCheckbox.isSelected && btnProceed?.isEnabled == true{
             btnCheckbox.setImage(UIImage.init(named: "unchecked"), for: .normal)

@@ -87,6 +87,7 @@ extension SignInProfileViewController: UITableViewDelegate, UITableViewDataSourc
         }else if indexPath.row == 5{
             if let cell:SignInCompleteTableViewCell = tableView.dequeueReusableCell(withIdentifier: "SignInCompleteTableViewCell") as? SignInCompleteTableViewCell{
                 cell.btnComplete.addTarget(self, action: #selector(GoToHome), for: .touchUpInside)
+                cell.btnSkip.addTarget(self, action: #selector(skip), for: .touchUpInside)
                 return cell
             }
         }
@@ -149,11 +150,25 @@ extension SignInProfileViewController: UITableViewDelegate, UITableViewDataSourc
     
     @objc func GoToHome(_ sender: UIButton) {
       
+        if  apiUtils.updateUserDetails(patron: Patron(email: patron.email, phoneNumber: patron.phoneNumber, name: patron.name, gender: patron.gender))
+        {
             let detailViewController:UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "CustomTabBarControllerViewController") as! CustomTabBarControllerViewController
             
             detailViewController.modalPresentationStyle = .fullScreen
             self.present(detailViewController, animated: false)
-        apiUtils.updateUserDetails(patron: Patron(email: patron.email, phoneNumber: patron.phoneNumber, name: patron.name, gender: patron.gender))
+        }
+    
+    }
+    
+    @objc func skip(_ sender: UIButton) {
+      
+        if apiUtils.getUserDetail(id: patron.name){
+            let detailViewController:UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "CustomTabBarControllerViewController") as! CustomTabBarControllerViewController
+            
+            detailViewController.modalPresentationStyle = .fullScreen
+            self.present(detailViewController, animated: false)
+        }
+        
     
     }
     

@@ -73,7 +73,7 @@ class ApiUtils{
         }
     
     
-    func updateUserDetails(patron:Patron){
+    func updateUserDetails(patron:Patron) -> Bool{
         let serviceUrl = DOMAIN_URL + apiCalls.updateUserData
         var request = URLRequest(url: URL(string: serviceUrl)!)
             request.httpMethod = "POST"
@@ -98,6 +98,7 @@ class ApiUtils{
                }
                
                task.resume()
+        return true
         
        }
        
@@ -240,6 +241,53 @@ class ApiUtils{
                            }
                        }
                    }
+
+           }
+    
+    
+    func getUserDetail(id:String) -> Bool{
+        let serviceUrl = DOMAIN_URL + apiCalls.existingUserData + "?id=\(id)"
+               let url = URL(string: serviceUrl)
+    
+               if let url = url {
+    
+                   let session = URLSession(configuration: .default)
+    
+                   let task = session.dataTask(with: url,completionHandler: {
+                       (data, response, error) in
+                       if error == nil{
+                           self.parseUserDetailIntoDb(data: data!)
+                       }else{
+    
+                       }
+                   })
+    
+                   task.resume()
+                }
+              return true
+            //   }
+           }
+    
+           func parseUserDetailIntoDb(data: Data) {
+               var userList: [Patron] = []
+               let db1 = PatronDao()
+    
+                  if let json = try! JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any]{
+                   let user = Patron()
+                       user.id = json["id"] as? Int ?? 0
+                       user.name = json["name"] as? String ?? "N/A"
+                       user.email = json["email"] as? String ?? "N/A"
+                       user.phoneNumber = json["contact_number"] as? String ?? "N/A"
+                       user.gender = json["gender"] as? String ?? "N/A"
+                       user.profileImage = json["display_picture"] as? String ?? "N/A"
+                       userList.append(user)
+                       //db1.deleteAll()
+                       db1.insert(userList: user)
+                   
+                   print("USERS : ", userList)
+               }
+    
+                 
 
            }
     

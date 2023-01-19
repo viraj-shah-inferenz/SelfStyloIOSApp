@@ -1230,17 +1230,18 @@
                                     <constraint firstAttribute="height" constant="143" id="ld1-W5-gqF"/>
                                 </constraints>
                                 <connections>
-                                    <segue destination="ZVv-Sg-LuM" kind="embed" identifier="" id="aJN-LQ-KlW"/>
+                                    <segue destination="ZVv-Sg-LuM" kind="embed" identifier="SignInEmail" id="aJN-LQ-KlW"/>
                                 </connections>
                             </containerView>
-                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kt8-ev-DGQ">
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kt8-ev-DGQ">
                                 <rect key="frame" x="32" y="322" width="327" height="59"/>
                                 <color key="backgroundColor" red="0.050980392159999999" green="0.058823529409999999" blue="0.090196078430000007" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="59" id="lJS-QH-guP"/>
                                 </constraints>
+                                <color key="tintColor" red="0.92549019610000005" green="0.93333333330000001" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="gray" title="Proceed" cornerStyle="large">
+                                <buttonConfiguration key="configuration" style="gray" title="Proceed" cornerStyle="capsule">
                                     <fontDescription key="titleFontDescription" name="DMSans-Medium" family="DM Sans" pointSize="17"/>
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="baseBackgroundColor" red="0.094117647060000004" green="0.1019607843" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>

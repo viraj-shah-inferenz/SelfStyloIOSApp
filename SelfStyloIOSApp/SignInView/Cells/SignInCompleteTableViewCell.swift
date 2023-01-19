@@ -10,6 +10,8 @@ import UIKit
 class SignInCompleteTableViewCell: UITableViewCell {
 
     @IBOutlet weak var btnComplete: UIButton!
+    
+    @IBOutlet weak var btnSkip: UIButton!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

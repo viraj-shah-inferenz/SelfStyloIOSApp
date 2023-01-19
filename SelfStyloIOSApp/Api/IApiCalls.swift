@@ -11,7 +11,7 @@ import UIKit
 class IApiCalls{
     let updateUserData = "api/user-details/"
     
-    let existingUserData = "api/user-info/"
+    let existingUserData = "api/get-user-details/"
     
     let sendEmailOtp = "api/email-otp/"
     

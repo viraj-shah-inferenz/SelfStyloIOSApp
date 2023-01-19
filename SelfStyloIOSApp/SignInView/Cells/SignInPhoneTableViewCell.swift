@@ -96,7 +96,7 @@ class SignInPhoneTableViewCell: UITableViewCell,UITextFieldDelegate {
                    is_check = string == numberFiltered
                    
                    if is_check {
-                       let maxLength = 12
+                       let maxLength = 11
                        let currentString: NSString = textField.text! as NSString
                        let newString: NSString = currentString.replacingCharacters(in: range, with: string) as NSString
                        is_check = newString.length <= maxLength

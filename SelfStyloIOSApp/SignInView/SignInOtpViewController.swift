@@ -94,9 +94,7 @@ class SignInOtpViewController: UIViewController {
     var countdownTimer: Timer!
         var totalTime = 30
     
-    deinit {
-             countdownTimer.invalidate()
-    }
+    
     
     @objc func updateTimerLabel() {
            totalTime -= 1

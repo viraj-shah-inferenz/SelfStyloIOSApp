@@ -48,6 +48,7 @@
             <viewLayoutGuide key="safeArea" id="O0M-kk-x5f"/>
             <connections>
                 <outlet property="btnComplete" destination="JMc-Km-vGx" id="ZKG-EN-c7q"/>
+                <outlet property="btnSkip" destination="BqT-eA-4cR" id="DXs-w4-K8W"/>
             </connections>
             <point key="canvasLocation" x="61.068702290076331" y="51.056338028169016"/>
         </tableViewCell>
