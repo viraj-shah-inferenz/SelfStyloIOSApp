@@ -30,6 +30,8 @@
 		2271779D296816BB00ABEC31 /* SignInCompleteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2271779B296816BB00ABEC31 /* SignInCompleteTableViewCell.swift */; };
 		2271779E296816BB00ABEC31 /* SignInCompleteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2271779C296816BB00ABEC31 /* SignInCompleteTableViewCell.xib */; };
 		2278EEA9295D5AED00D1C703 /* DialogSelfieCamSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2278EEA8295D5AED00D1C703 /* DialogSelfieCamSelectionViewController.swift */; };
+		227A6E01297FA05600559A3F /* CombosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227A6E00297FA05600559A3F /* CombosViewController.swift */; };
+		227A6E05297FA2A300559A3F /* CombosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227A6E04297FA2A300559A3F /* CombosCollectionViewCell.swift */; };
 		2287323429795D8100659E80 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2287323229795D8100659E80 /* CategoryCollectionViewCell.swift */; };
 		2287323529795D8100659E80 /* CategoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2287323329795D8100659E80 /* CategoryCollectionViewCell.xib */; };
 		2287323729795FF800659E80 /* MakeupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2287323629795FF800659E80 /* MakeupViewController.swift */; };
@@ -149,6 +151,8 @@
 		2271779B296816BB00ABEC31 /* SignInCompleteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInCompleteTableViewCell.swift; sourceTree = "<group>"; };
 		2271779C296816BB00ABEC31 /* SignInCompleteTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignInCompleteTableViewCell.xib; sourceTree = "<group>"; };
 		2278EEA8295D5AED00D1C703 /* DialogSelfieCamSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogSelfieCamSelectionViewController.swift; sourceTree = "<group>"; };
+		227A6E00297FA05600559A3F /* CombosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombosViewController.swift; sourceTree = "<group>"; };
+		227A6E04297FA2A300559A3F /* CombosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombosCollectionViewCell.swift; sourceTree = "<group>"; };
 		2287323229795D8100659E80 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		2287323329795D8100659E80 /* CategoryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryCollectionViewCell.xib; sourceTree = "<group>"; };
 		2287323629795FF800659E80 /* MakeupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeupViewController.swift; sourceTree = "<group>"; };
@@ -315,6 +319,7 @@
 				22B00B74297E84790075FB02 /* EyeshadowViewController.swift */,
 				22B00B76297E8A0D0075FB02 /* FoundationViewController.swift */,
 				229DE357297EBC77001235A8 /* EyelinerStyleViewController.swift */,
+				227A6E00297FA05600559A3F /* CombosViewController.swift */,
 			);
 			path = MakeupView;
 			sourceTree = "<group>";
@@ -327,6 +332,7 @@
 				228959A2297A5942008B72CA /* ColorCodeCollectionViewCell.swift */,
 				228959A6297A626C008B72CA /* ColorNameCollectionViewCell.swift */,
 				22B00B78297E9EAB0075FB02 /* EyelinerStyleCollectionViewCell.swift */,
+				227A6E04297FA2A300559A3F /* CombosCollectionViewCell.swift */,
 			);
 			path = CollectionViewCells;
 			sourceTree = "<group>";
@@ -882,6 +888,7 @@
 				228A8E712963F69B004F8208 /* HomeCardAnnouncementsTableViewCell.swift in Sources */,
 				22111AC229630FFB00539540 /* WalkThroughViewController.swift in Sources */,
 				228959A1297A58FA008B72CA /* LipstickViewController.swift in Sources */,
+				227A6E05297FA2A300559A3F /* CombosCollectionViewCell.swift in Sources */,
 				22C8CA5C295F006100336E03 /* SelectEmailTableViewCell.swift in Sources */,
 				22BA3AA929642452004AD1F3 /* SavePresetsCollectionViewCell.swift in Sources */,
 				22A4DC5D295F08EB0064D006 /* SelectGenderTableViewCell.swift in Sources */,
@@ -925,6 +932,7 @@
 				2202B3352964122C000CB816 /* FavouriteProductTableViewCell.swift in Sources */,
 				228959A4297A5942008B72CA /* ColorCodeCollectionViewCell.swift in Sources */,
 				22B00B71297E75020075FB02 /* MakeupView.swift in Sources */,
+				227A6E01297FA05600559A3F /* CombosViewController.swift in Sources */,
 				22EC1FA62966A615000F86EF /* CardView.swift in Sources */,
 				22A477DA29654F3600523866 /* SettingsViewController.swift in Sources */,
 			);

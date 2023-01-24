@@ -16,12 +16,21 @@
                 <rect key="frame" x="0.0" y="0.0" width="312" height="141"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="111" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h6b-sr-hBG">
-                        <rect key="frame" x="29" y="18" width="255" height="105"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="111" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="h6b-sr-hBG">
+                        <rect key="frame" x="0.0" y="0.0" width="312" height="141"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="141" id="HTI-wM-rc2"/>
+                            <constraint firstAttribute="width" constant="312" id="bBQ-4v-fBW"/>
+                        </constraints>
                     </imageView>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="h6b-sr-hBG" firstAttribute="leading" secondItem="ouZ-ye-3fI" secondAttribute="leading" id="VYM-g1-6oq"/>
+                    <constraint firstAttribute="trailing" secondItem="h6b-sr-hBG" secondAttribute="trailing" id="oa6-pw-Ppe"/>
+                    <constraint firstAttribute="bottom" secondItem="h6b-sr-hBG" secondAttribute="bottom" id="qe4-dh-rFY"/>
+                    <constraint firstItem="h6b-sr-hBG" firstAttribute="top" secondItem="ouZ-ye-3fI" secondAttribute="top" id="tja-fr-JOG"/>
+                </constraints>
             </collectionViewCellContentView>
             <size key="customSize" width="312" height="141"/>
             <connections>

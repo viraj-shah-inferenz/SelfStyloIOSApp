@@ -20,7 +20,10 @@ class MakeupViewController: UIViewController,UICollectionViewDelegate, UICollect
     
     @IBOutlet weak var foundationCV: UIView!
     
-  
+    @IBOutlet weak var comboCV: UIView!
+    
+    @IBOutlet weak var comboView: CardView!
+    
     @IBOutlet weak var makeupView: UIView!
     
     
@@ -32,14 +35,28 @@ class MakeupViewController: UIViewController,UICollectionViewDelegate, UICollect
         setDelegates()
         // Do any additional setup after loading the view.
         self.categoryCollectionView.register(UINib(nibName: "CategoryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "CategoryCollectionViewCell")
+        comboView.target(forAction: #selector(combo), withSender: nil)
+        comboView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(combo)))
     }
     
+    @objc func combo(){
+        comboCV.isHidden = false
+        makeupView.alpha = 0
+    }
     
     
     func setDelegates()
     {
         categoryCollectionView.delegate = self
         categoryCollectionView.dataSource = self
+    }
+    
+    
+    @IBAction func backHome(_ sender: UIButton) {
+        let detailViewController:UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "CustomTabBarControllerViewController") as! CustomTabBarControllerViewController
+        
+        detailViewController.modalPresentationStyle = .fullScreen
+        self.present(detailViewController, animated: false)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

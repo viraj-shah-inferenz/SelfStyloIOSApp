@@ -35,8 +35,8 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stylocam_icon" translatesAutoresizingMaskIntoConstraints="NO" id="3v7-V8-RhF">
                                 <rect key="frame" x="129.33333333333331" y="30" width="68" height="68"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="StyloCam" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gCa-YW-NC7">
-                                <rect key="frame" x="119" y="112" width="89" height="36"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Continue to StyloCam" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gCa-YW-NC7">
+                                <rect key="frame" x="68" y="106" width="191" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="efj-AJ-dIK"/>
                                 </constraints>
@@ -47,15 +47,15 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="gCa-YW-NC7" secondAttribute="bottom" constant="6.6666666666666572" id="1E9-DQ-YGj"/>
+                            <constraint firstAttribute="bottom" secondItem="gCa-YW-NC7" secondAttribute="bottom" constant="12.666666666666657" id="1E9-DQ-YGj"/>
                             <constraint firstItem="9sb-2y-OvA" firstAttribute="centerX" secondItem="SNk-8h-gBa" secondAttribute="centerX" id="5Q4-CH-20u"/>
                             <constraint firstAttribute="width" constant="327" id="7vc-Mp-yxs"/>
-                            <constraint firstItem="gCa-YW-NC7" firstAttribute="leading" secondItem="SNk-8h-gBa" secondAttribute="leading" constant="119" id="MZs-pG-oO3"/>
+                            <constraint firstItem="gCa-YW-NC7" firstAttribute="leading" secondItem="SNk-8h-gBa" secondAttribute="leading" constant="68" id="MZs-pG-oO3"/>
                             <constraint firstItem="gCa-YW-NC7" firstAttribute="centerX" secondItem="3v7-V8-RhF" secondAttribute="centerX" id="Qla-jg-itY"/>
                             <constraint firstItem="9sb-2y-OvA" firstAttribute="centerX" secondItem="3v7-V8-RhF" secondAttribute="centerX" id="fAq-qt-mSq"/>
-                            <constraint firstItem="gCa-YW-NC7" firstAttribute="top" secondItem="3v7-V8-RhF" secondAttribute="bottom" constant="14" id="mCl-FV-xRv"/>
-                            <constraint firstItem="gCa-YW-NC7" firstAttribute="top" secondItem="9sb-2y-OvA" secondAttribute="bottom" constant="8" id="pAY-mn-LOf"/>
-                            <constraint firstItem="gCa-YW-NC7" firstAttribute="top" secondItem="SNk-8h-gBa" secondAttribute="top" constant="112" id="uNg-CV-PAL"/>
+                            <constraint firstItem="gCa-YW-NC7" firstAttribute="top" secondItem="3v7-V8-RhF" secondAttribute="bottom" constant="8" id="mCl-FV-xRv"/>
+                            <constraint firstItem="gCa-YW-NC7" firstAttribute="top" secondItem="9sb-2y-OvA" secondAttribute="bottom" constant="2" id="pAY-mn-LOf"/>
+                            <constraint firstItem="gCa-YW-NC7" firstAttribute="top" secondItem="SNk-8h-gBa" secondAttribute="top" constant="106" id="uNg-CV-PAL"/>
                             <constraint firstItem="9sb-2y-OvA" firstAttribute="top" secondItem="SNk-8h-gBa" secondAttribute="top" constant="21" id="zzI-Gs-8st"/>
                         </constraints>
                     </view>

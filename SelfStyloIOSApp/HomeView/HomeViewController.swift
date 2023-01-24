@@ -99,20 +99,23 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     fileprivate func openCamera() {
-        let detailViewController:UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "DialogSelfieCamSelectionViewController") as! DialogSelfieCamSelectionViewController
-        let smallId = UISheetPresentationController.Detent.Identifier("small")
-        let smallDetent = UISheetPresentationController.Detent.custom(identifier: smallId) { context in
-            return 250
-        }
-        if let sheet = detailViewController.sheetPresentationController {
-            sheet.detents = [smallDetent,.medium()]
-            sheet.largestUndimmedDetentIdentifier = .medium
-           sheet.prefersScrollingExpandsWhenScrolledToEdge = false
-           sheet.prefersEdgeAttachedInCompactHeight = true
-           sheet.widthFollowsPreferredContentSizeWhenEdgeAttached = true
-        }
-        
-        self.present(detailViewController, animated: true,completion: nil)
+//        let detailViewController:UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "DialogSelfieCamSelectionViewController") as! DialogSelfieCamSelectionViewController
+//        let smallId = UISheetPresentationController.Detent.Identifier("small")
+//        let smallDetent = UISheetPresentationController.Detent.custom(identifier: smallId) { context in
+//            return 250
+//        }
+//        if let sheet = detailViewController.sheetPresentationController {
+//            sheet.detents = [smallDetent,.medium()]
+//            sheet.largestUndimmedDetentIdentifier = .medium
+//           sheet.prefersScrollingExpandsWhenScrolledToEdge = false
+//           sheet.prefersEdgeAttachedInCompactHeight = true
+//           sheet.widthFollowsPreferredContentSizeWhenEdgeAttached = true
+//        }
+//
+//        self.present(detailViewController, animated: true,completion: nil)
+        let detailViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MakeupViewController")
+        detailViewController.modalPresentationStyle = .fullScreen
+        self.present(detailViewController, animated: false)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
