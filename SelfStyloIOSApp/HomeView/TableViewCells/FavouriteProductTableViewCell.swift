@@ -26,7 +26,6 @@ class FavouriteProductTableViewCell: UITableViewCell, UICollectionViewDelegate, 
     
     
     @IBOutlet weak var btnFavouriteDetails: UIButton!
-    var apiUtils = ApiUtils()
     
     
     func UIColorFromHex(rgbValue:UInt32, alpha:Double=1.0)->UIColor {
@@ -45,7 +44,6 @@ class FavouriteProductTableViewCell: UITableViewCell, UICollectionViewDelegate, 
         self.favouriteCollectionView.register(UINib(nibName: "FavouriteCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "FavouriteCollectionViewCell")
         let db = FavouriteProductDao()
         favourite_product = db.getAll(limit: 3)
-        apiUtils.getFavouriteProductDetail()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

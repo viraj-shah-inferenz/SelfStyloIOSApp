@@ -22,7 +22,6 @@ class SignInPhoneTableViewCell: UITableViewCell,UITextFieldDelegate {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        settxtPhoneView(toView: txtPhoneNumber)
         txtPhoneNumber.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         
         txtPhoneNumber.displayMode = .picker
@@ -34,9 +33,9 @@ class SignInPhoneTableViewCell: UITableViewCell,UITextFieldDelegate {
                UIBarButtonItem(title: "Item 2", style: .plain, target: self, action: nil)
            ]
                txtPhoneNumber.textFieldInputAccessoryView = getCustomTextFieldInputAccessoryView(with: items)
-               txtPhoneNumber.hasPhoneNumberExample = true
                txtPhoneNumber.placeholder = "Phone Number"
                txtPhoneNumber.setFlag(countryCode: .IN)
+        settxtPhoneView(toView: txtPhoneNumber)
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {

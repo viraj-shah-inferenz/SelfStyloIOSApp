@@ -17,6 +17,7 @@ class LipstickViewController: UIViewController, UICollectionViewDelegate, UIColl
     @IBOutlet weak var btnCheckbox: UIButton!
     
     var color_image:[String] = ["color_code_circle", "color_code_circle","color_code_circle", "color_code_circle","color_code_circle"]
+   
     var color_name:[String] =  ["Pomegranate","RoseWood","RoseWood Gloss","Pomegranate Glitter","Metallic","Bossom"]
     
     override func viewDidLoad() {
@@ -26,6 +27,9 @@ class LipstickViewController: UIViewController, UICollectionViewDelegate, UIColl
         setDelegates()
        reloadCollectionViewData()
         btnCheckbox.setImage(UIImage.init(named: "favourite_unchecked"), for: .normal)
+       
+        let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
+        print(paths[0])
     }
     
     func reloadCollectionViewData() {
@@ -79,6 +83,7 @@ class LipstickViewController: UIViewController, UICollectionViewDelegate, UIColl
         return cell
 
     }
+    
 
 
 

@@ -103,6 +103,10 @@ extension SignInProfileViewController: UITableViewDelegate, UITableViewDataSourc
         {
             patron.gender = "Male"
         }
+        else
+        {
+            patron.gender = ""
+        }
     }
     
     @objc func btnFemale(_ sender: UIButton)
@@ -110,6 +114,9 @@ extension SignInProfileViewController: UITableViewDelegate, UITableViewDataSourc
         if sender.isSelected
         {
             patron.gender = "Female"
+        }else
+        {
+            patron.gender = ""
         }
     }
     
@@ -118,23 +125,32 @@ extension SignInProfileViewController: UITableViewDelegate, UITableViewDataSourc
         if sender.isSelected
         {
             patron.gender = "Others"
+        }else
+        {
+            patron.gender = ""
         }
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         let name = NSIndexPath(row: textField.tag, section: 0)
             if let namecell:SignInFullNameTableViewCell = tblView.cellForRow(at: name as IndexPath) as? SignInFullNameTableViewCell {
-                patron.name = namecell.txtFullName.text!
+                if (namecell.txtFullName.text != ""){
+                    patron.name = namecell.txtFullName.text!
+                }
             }
         
         let email = NSIndexPath(row: textField.tag, section: 0)
             if let emailcell:SignInEmailTableViewCell = tblView.cellForRow(at: email as IndexPath) as? SignInEmailTableViewCell {
-                patron.email = emailcell.txtEmailAddress.text!
+                if (emailcell.txtEmailAddress.text != ""){
+                    patron.email = emailcell.txtEmailAddress.text!
+                }
             }
     
         let phone = NSIndexPath(row: textField.tag, section: 0)
             if let phonecell:SignInPhoneTableViewCell = tblView.cellForRow(at: phone as IndexPath) as? SignInPhoneTableViewCell {
-                patron.phoneNumber = phonecell.txtPhoneNumber.text!
+                if (phonecell.txtPhoneNumber.text != ""){
+                    patron.phoneNumber = phonecell.txtPhoneNumber.text!
+                }
             
             }
       
@@ -149,7 +165,6 @@ extension SignInProfileViewController: UITableViewDelegate, UITableViewDataSourc
    
     
     @objc func GoToHome(_ sender: UIButton) {
-      
         if  apiUtils.updateUserDetails(patron: Patron(email: patron.email, phoneNumber: patron.phoneNumber, name: patron.name, gender: patron.gender))
         {
             let detailViewController:UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "CustomTabBarControllerViewController") as! CustomTabBarControllerViewController
@@ -161,8 +176,7 @@ extension SignInProfileViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     @objc func skip(_ sender: UIButton) {
-      
-        if apiUtils.getUserDetail(id: patron.name){
+        if apiUtils.updateUserDetails(patron: Patron(email: patron.email, phoneNumber: patron.phoneNumber, name: patron.name, gender: patron.gender)){
             let detailViewController:UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "CustomTabBarControllerViewController") as! CustomTabBarControllerViewController
             
             detailViewController.modalPresentationStyle = .fullScreen

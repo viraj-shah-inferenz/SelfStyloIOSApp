@@ -39,7 +39,7 @@ class PatronDao
     }
       
     func createTable() {
-            let createTableString = "CREATE TABLE IF NOT EXISTS patron(id INTEGER NOT NULL,email TEXT,contact_number TEXT,name TEXT,gender TEXT,profile_photo TEXT,uuid TEXT,PRIMARY KEY(id));"
+            let createTableString = "CREATE TABLE IF NOT EXISTS patron(id INTEGER PRIMARY KEY AUTOINCREMENT,email TEXT,contact_number NUMERIC,name TEXT,gender TEXT,profile_photo TEXT,uuid TEXT);"
             var createTableStatement: OpaquePointer? = nil
             if sqlite3_prepare_v2(db, createTableString, -1, &createTableStatement, nil) == SQLITE_OK
             {
@@ -62,8 +62,14 @@ class PatronDao
     {
         let insertStatementString = "INSERT INTO patron (id,email,contact_number,name,gender,profile_photo,uuid) VALUES (?,?,?,?,?,?,?);"
         var insertStatement: OpaquePointer? = nil
+        var isEmpty = false
+                if getAll().isEmpty {
+                    isEmpty = true
+                }
         if sqlite3_prepare_v2(db, insertStatementString, -1, &insertStatement, nil) == SQLITE_OK {
-            sqlite3_bind_int(insertStatement, 1, Int32(userList.id))
+            if isEmpty{
+                sqlite3_bind_int(insertStatement, 1, Int32(userList.id))
+            }
             sqlite3_bind_text(insertStatement, 2, (userList.email as NSString).utf8String, -1, nil)
             sqlite3_bind_text(insertStatement, 3, (userList.phoneNumber as NSString).utf8String, -1, nil)
             sqlite3_bind_text(insertStatement, 4, (userList.name as NSString).utf8String, -1, nil)
@@ -105,9 +111,32 @@ class PatronDao
            return patron
        }
     
+    func getAll(id:Int) -> [Patron] {
+           let queryStatementString = "SELECT * FROM patron WHERE id=\(id);"
+           var queryStatement: OpaquePointer? = nil
+           var patron : [Patron] = []
+           if sqlite3_prepare_v2(db, queryStatementString, -1, &queryStatement, nil) == SQLITE_OK {
+               while sqlite3_step(queryStatement) == SQLITE_ROW {
+                   let id = sqlite3_column_int(queryStatement, 0)
+                   let email = String(describing: String(cString: sqlite3_column_text(queryStatement, 1)))
+                   let phoneNumber = String(describing: String(cString: sqlite3_column_text(queryStatement!, 2)))
+                   let name = String(describing: String(cString: sqlite3_column_text(queryStatement!, 3)))
+                   let gender = String(describing: String(cString: sqlite3_column_text(queryStatement!, 4)))
+                   let profileImage = String(describing: String(cString: sqlite3_column_text(queryStatement!, 5)))
+                   let uuid = String(describing: String(cString: sqlite3_column_text(queryStatement!, 6)))
+                   patron.append(Patron(id: Int(id), email: email, phoneNumber: phoneNumber, name: name, gender: gender, profileImage: profileImage, uuid: uuid))
+                   
+               }
+           } else {
+               print("SELECT statement could not be prepared")
+           }
+           sqlite3_finalize(queryStatement)
+           return patron
+       }
+    
     func update(patron:Patron) -> Bool
     {
-        let updateStatementString = "UPDATE patron SET gender = '\(patron.gender)' WHERE email = '\(patron.email)' AND contact_number = \(patron.phoneNumber) AND name = '\(patron.name)'"
+        let updateStatementString = "UPDATE patron SET gender = '\(patron.gender)',email='\(patron.email)', contact_number=\(patron.phoneNumber),name='\(patron.name)' WHERE id=\(patron.id)"
          var updateStatement: OpaquePointer? = nil
          if sqlite3_prepare_v2(db, updateStatementString, -1, &updateStatement, nil) == SQLITE_OK {
                 if sqlite3_step(updateStatement) == SQLITE_DONE {

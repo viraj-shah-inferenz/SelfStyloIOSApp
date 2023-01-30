@@ -19,11 +19,22 @@ class SignInViewController: UIViewController {
     
     @IBOutlet weak var btnProceed: UIButton?
     
+    var apiUtils = ApiUtils()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
+        print(paths[0])
+        setApiUtils()
+        setbtnProceedView(toView: btnProceed!)
         // Do any additional setup after loading the view.
     }
     
+    func setApiUtils(){
+        apiUtils.getBanner()
+        apiUtils.getFavouriteProductDetail()
+    }
     
     @IBAction func switchViewAction(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0{
@@ -37,9 +48,9 @@ class SignInViewController: UIViewController {
     }
     
     
-    @IBAction func btnProceed(_ sender: UIButton) {
-        
-        
+    func setbtnProceedView(toView: UIButton)
+    {
+        toView.layer.cornerRadius = 20
     }
     
     

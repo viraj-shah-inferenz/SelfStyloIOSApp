@@ -7,16 +7,96 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "1966954B-0845-4818-964E-F6EAF80393CF"
+            uuid = "02EB941B-1BAD-4E68-9086-79A6CCBF54A3"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SelfStyloIOSApp/HomeView/TableViewCells/HomeCardAnnouncementsTableViewCell.swift"
+            filePath = "SelfStyloIOSApp/Dao/PatronDao.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "16"
-            endingLineNumber = "16"
-            landmarkName = "refreshBannerList(bannerList:)"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
+            landmarkName = "update(patron:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A8CBEA23-D551-4A4C-A49B-23AC0D2B8F30"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SelfStyloIOSApp/Dao/PatronDao.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
+            landmarkName = "update(patron:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2A096D94-C7B4-43A4-BD35-6114C96C78E3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SelfStyloIOSApp/EditView/Cells/SelectPhoneTableViewCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "handleTextChange()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "2A096D94-C7B4-43A4-BD35-6114C96C78E3 - e920d849b3616a5e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SelfStyloIOSApp.SelectPhoneTableViewCell.handleTextChange() -&gt; ()"
+                  moduleName = "SelfStyloIOSApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/virajshah/Desktop/Inferenz/Xcode/SelfStyloIOSApp/SelfStyloIOSApp/EditView/Cells/SelectPhoneTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "69">
+               </Location>
+               <Location
+                  uuid = "2A096D94-C7B4-43A4-BD35-6114C96C78E3 - e920d849b3616a5e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SelfStyloIOSApp.SelectPhoneTableViewCell.handleTextChange() -&gt; ()"
+                  moduleName = "SelfStyloIOSApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/virajshah/Desktop/Inferenz/Xcode/SelfStyloIOSApp/SelfStyloIOSApp/EditView/Cells/SelectPhoneTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "255">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "23257F8B-2778-44EA-A4E9-4B14974DFDC9"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SelfStyloIOSApp/Dao/PatronDao.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
+            landmarkName = "update(patron:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

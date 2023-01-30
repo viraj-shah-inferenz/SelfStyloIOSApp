@@ -27,8 +27,7 @@ class HomeCardAnnouncementsTableViewCell: UITableViewCell, UICollectionViewDataS
 //    var imgArr = [UIImage(named: "image_1"),UIImage(named: "image_2"),UIImage(named: "image_3")]
     
     var imgArr:[Banner] = []
-    
-    var apiUtils = ApiUtils()
+
 
     var timer = Timer()
     var counter = 0
@@ -36,17 +35,16 @@ class HomeCardAnnouncementsTableViewCell: UITableViewCell, UICollectionViewDataS
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        
         self.sliderCollectionView.register(UINib(nibName: "ImageSliderCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ImageSliderCollectionViewCell")
         setCardView(toView: sliderCollectionView)
-        apiUtils.getBanner()
         let db = BannerDao()
         imgArr = db.getAll()
-        apiUtils.getBanner()
         setDelegates()
         setpageView()
         
     }
+    
+    
     
     func setpageView(){
         pageView.currentPage = 0
@@ -69,8 +67,10 @@ class HomeCardAnnouncementsTableViewCell: UITableViewCell, UICollectionViewDataS
             let index = IndexPath.init(item: counter, section: 0)
             self.sliderCollectionView.scrollToItem(at: index, at: .centeredHorizontally, animated: false)
             pageView.currentPage = counter
+            counter = 1
         }
     }
+    
     
     func setCardView(toView: UIView)
     {
@@ -93,6 +93,9 @@ class HomeCardAnnouncementsTableViewCell: UITableViewCell, UICollectionViewDataS
             self.sliderCollectionView.delegate = self
             self.sliderCollectionView.dataSource = self
         }
+    
+
+    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return imgArr.count

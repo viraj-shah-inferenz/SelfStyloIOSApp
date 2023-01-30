@@ -100,7 +100,7 @@ class SignInOtpViewController: UIViewController {
            totalTime -= 1
            timerLabel.text = "\(timeFormatted(totalTime))"
           if totalTime == 0 {
-              timerLabel.text = ""
+              timerLabel.text = "Resend"
               countdownTimer.invalidate()
               resendOTPBtn.isEnabled = true
 

@@ -11,13 +11,10 @@ class HomeViewController: UIViewController {
 
     @IBOutlet weak var tblView: UITableView!
     
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         setDelegates()
-        
         self.tblView.register(UINib(nibName: "SelectLogoAppTableViewCell", bundle: nil), forCellReuseIdentifier: "SelectLogoAppTableViewCell")
         self.tblView.register(UINib(nibName: "HomeCardAnnouncementsTableViewCell", bundle: nil), forCellReuseIdentifier: "HomeCardAnnouncementsTableViewCell")
         self.tblView.register(UINib(nibName: "HomeCardSelfiecamTableViewCell", bundle: nil), forCellReuseIdentifier: "HomeCardSelfiecamTableViewCell")
@@ -34,7 +31,6 @@ class HomeViewController: UIViewController {
         self.tblView.delegate = self
         self.tblView.dataSource = self
     }
-    
     
 }
 

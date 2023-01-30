@@ -12,8 +12,8 @@ class EditProfileViewController: UIViewController {
     @IBOutlet weak var tblView: UITableView!
     let userDefault = UserDefaults.standard
     let db = PatronDao()
-    var patron = Patron()
-    
+   // var patron = Patron()
+    var patron:[Patron] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +25,7 @@ class EditProfileViewController: UIViewController {
         self.tblView.register(UINib(nibName: "SelectPhoneTableViewCell", bundle: nil), forCellReuseIdentifier: "SelectPhoneTableViewCell")
         self.tblView.register(UINib(nibName: "SelectGenderTableViewCell", bundle: nil), forCellReuseIdentifier: "SelectGenderTableViewCell")
         self.tblView.register(UINib(nibName: "CompleteTableViewCell", bundle: nil), forCellReuseIdentifier: "CompleteTableViewCell")
+        patron = db.getAll()
     }
     
     func setDelegates() {
@@ -32,7 +33,7 @@ class EditProfileViewController: UIViewController {
         self.tblView.dataSource = self
     }
 }
-extension EditProfileViewController: UITableViewDelegate, UITableViewDataSource {
+extension EditProfileViewController: UITableViewDelegate, UITableViewDataSource,UITextFieldDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 6
     }
@@ -47,9 +48,10 @@ extension EditProfileViewController: UITableViewDelegate, UITableViewDataSource 
         else if indexPath.row == 1{
             // Nsme
             if let namecell:SelectFullNameTableViewCell = tableView.dequeueReusableCell(withIdentifier: "SelectFullNameTableViewCell") as? SelectFullNameTableViewCell{
-                let name = userDefault.string(forKey: "Name")
-                namecell.txtFullName.text = name
-                patron.name = namecell.txtFullName.text!
+                    let name = userDefault.string(forKey: "Name")
+                    namecell.txtFullName.text = name
+                    namecell.txtFullName.tag = indexPath.row
+                    namecell.txtFullName.delegate = self
                 return namecell
             }
         }
@@ -58,14 +60,16 @@ extension EditProfileViewController: UITableViewDelegate, UITableViewDataSource 
             if let emailcell:SelectEmailTableViewCell = tableView.dequeueReusableCell(withIdentifier: "SelectEmailTableViewCell") as? SelectEmailTableViewCell{
                 let email = userDefault.string(forKey: "Email")
                 emailcell.txtEmailAddress.text = email
-                patron.email = emailcell.txtEmailAddress.text!
+                emailcell.txtEmailAddress.tag = indexPath.row
+                emailcell.txtEmailAddress.delegate = self
                 return emailcell
             }
         } else if indexPath.row == 3 {
             if let phonecell:SelectPhoneTableViewCell = tableView.dequeueReusableCell(withIdentifier: "SelectPhoneTableViewCell") as? SelectPhoneTableViewCell{
                 let phone = userDefault.string(forKey: "Phone")
                 phonecell.txtPhoneNumber.text = phone
-                patron.phoneNumber = phonecell.txtPhoneNumber.text!
+                phonecell.txtPhoneNumber.tag = indexPath.row
+                phonecell.txtPhoneNumber.delegate = self
                 return phonecell
             }
         }else if indexPath.row == 4{
@@ -89,7 +93,7 @@ extension EditProfileViewController: UITableViewDelegate, UITableViewDataSource 
     {
         if sender.isSelected
         {
-            patron.gender = "Male"
+            patron[0].gender = "Male"
         }
     }
     
@@ -97,7 +101,7 @@ extension EditProfileViewController: UITableViewDelegate, UITableViewDataSource 
     {
         if sender.isSelected
         {
-            patron.gender = "Female"
+            patron[0].gender = "Female"
         }
     }
     
@@ -105,8 +109,31 @@ extension EditProfileViewController: UITableViewDelegate, UITableViewDataSource 
     {
         if sender.isSelected
         {
-            patron.gender = "Others"
+            patron[0].gender = "Others"
         }
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {   //delegate method
+        
+        
+        let name = NSIndexPath(row: textField.tag, section: 0)
+            if let namecell:SelectFullNameTableViewCell = tblView.cellForRow(at: name as IndexPath) as? SelectFullNameTableViewCell {
+                    patron[0].name = namecell.txtFullName.text!
+            }
+        
+        let email = NSIndexPath(row: textField.tag, section: 0)
+            if let emailcell:SelectEmailTableViewCell = tblView.cellForRow(at: email as IndexPath) as? SelectEmailTableViewCell{
+                    patron[0].email = emailcell.txtEmailAddress.text!
+            }
+        
+        
+        let phone = NSIndexPath(row: textField.tag, section: 0)
+            if let phonecell:SelectPhoneTableViewCell = tblView.cellForRow(at: phone as IndexPath) as? SelectPhoneTableViewCell {
+                    patron[0].phoneNumber = phonecell.txtPhoneNumber.text!
+                    print(patron[0].phoneNumber)
+            
+            }
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -135,9 +162,12 @@ extension EditProfileViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     @objc func updateUserDetails(){
-        if db.update(patron: patron)
+        if db.update(patron: patron[0])
         {
-            self.tabBarController?.selectedIndex = 4
+            let detailViewController:UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "CustomTabBarControllerViewController") as! CustomTabBarControllerViewController
+            
+            detailViewController.modalPresentationStyle = .fullScreen
+            self.present(detailViewController, animated: false)
         }
     }
     
