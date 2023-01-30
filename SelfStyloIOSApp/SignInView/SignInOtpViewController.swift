@@ -107,6 +107,7 @@ class SignInOtpViewController: UIViewController {
           }
 
         }
+
     
     func sendOTPCode() {
               self.countdownTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateTimerLabel), userInfo: nil, repeats: true)
@@ -124,7 +125,13 @@ class SignInOtpViewController: UIViewController {
 
 extension SignInOtpViewController: OTPFieldViewDelegate {
     func hasEnteredAllOTP(hasEnteredAll hasEntered: Bool) -> Bool {
-        print("Has entered all OTP? \(hasEntered)")
+      //  print("Has entered all OTP? \(hasEntered)")
+        if hasEntered{
+            resendOTPBtn.isEnabled = true
+        }else
+        {
+            resendOTPBtn.isEnabled = false
+        }
         return false
     }
     

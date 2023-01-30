@@ -1889,7 +1889,6 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1pp-9w-N4t">
                                 <rect key="frame" x="41" y="432" width="298" height="59"/>
-                                <color key="backgroundColor" red="0.094117647060000004" green="0.1019607843" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="59" id="1Z0-di-bZ8"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="298" id="l40-a1-cT7"/>
