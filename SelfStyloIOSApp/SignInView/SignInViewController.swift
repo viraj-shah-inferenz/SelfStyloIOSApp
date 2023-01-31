@@ -62,6 +62,8 @@ class SignInViewController: UIViewController {
         {
             btnCheckbox.setImage(UIImage.init(named: "checked"), for: .normal)
             btnProceed?.isEnabled = true
+            btnProceed?.backgroundColor = UIColor.black
+            btnProceed?.setTitleColor(UIColor.white, for: .normal)
         }
         btnCheckbox.isSelected = !btnCheckbox.isSelected
     }

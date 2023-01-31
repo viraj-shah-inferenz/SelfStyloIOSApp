@@ -13,6 +13,8 @@ import GoogleSignIn
 class SignInOtpViewController: UIViewController {
 
     @IBOutlet var otpTextFieldView: OTPFieldView!
+    
+    @IBOutlet weak var LblEmailPhone: UILabel!
     var apiUtils = ApiUtils()
     var emailVC = SignInEmailViewController()
     var phoneVC = SignInPhoneViewController()
@@ -29,7 +31,10 @@ class SignInOtpViewController: UIViewController {
         timerLabel.text = ""
         sendOTPCode()
         setupOtpView()
+        let email = userDefault.string(forKey: "Email")
+        LblEmailPhone.text = email!
     
+        setbtnProceedView(toView: resendOTPBtn)
         // Do any additional setup after loading the view.
     }
     
@@ -119,6 +124,11 @@ class SignInOtpViewController: UIViewController {
                //     let hours: Int = totalSeconds / 3600
                return String(format: "%02d:%02d", minutes, seconds)
     }
+    
+    func setbtnProceedView(toView: UIButton)
+    {
+        toView.layer.cornerRadius = 20
+    }
 }
 
 
@@ -128,9 +138,12 @@ extension SignInOtpViewController: OTPFieldViewDelegate {
       //  print("Has entered all OTP? \(hasEntered)")
         if hasEntered{
             resendOTPBtn.isEnabled = true
+            resendOTPBtn.backgroundColor = UIColorFromHex(rgbValue: 0x181A24)
+            resendOTPBtn.setTitleColor(UIColor.white, for: .normal)
         }else
         {
             resendOTPBtn.isEnabled = false
+            resendOTPBtn.backgroundColor = UIColor.darkGray
         }
         return false
     }

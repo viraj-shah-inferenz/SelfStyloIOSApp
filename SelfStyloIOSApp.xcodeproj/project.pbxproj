@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -29,6 +29,7 @@
 		2271779A2968162E00ABEC31 /* SignInGenderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 227177982968162E00ABEC31 /* SignInGenderTableViewCell.xib */; };
 		2271779D296816BB00ABEC31 /* SignInCompleteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2271779B296816BB00ABEC31 /* SignInCompleteTableViewCell.swift */; };
 		2271779E296816BB00ABEC31 /* SignInCompleteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2271779C296816BB00ABEC31 /* SignInCompleteTableViewCell.xib */; };
+		2273A7712988EC28007FE6F3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2273A7702988EC28007FE6F3 /* GoogleService-Info.plist */; };
 		2278B3C62980FAD800BB2D8A /* Makeup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2278B3C52980FAD800BB2D8A /* Makeup.swift */; };
 		2278EEA9295D5AED00D1C703 /* DialogSelfieCamSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2278EEA8295D5AED00D1C703 /* DialogSelfieCamSelectionViewController.swift */; };
 		227A6E01297FA05600559A3F /* CombosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227A6E00297FA05600559A3F /* CombosViewController.swift */; };
@@ -39,7 +40,6 @@
 		228959A1297A58FA008B72CA /* LipstickViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228959A0297A58FA008B72CA /* LipstickViewController.swift */; };
 		228959A4297A5942008B72CA /* ColorCodeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228959A2297A5942008B72CA /* ColorCodeCollectionViewCell.swift */; };
 		228959A8297A626C008B72CA /* ColorNameCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228959A6297A626C008B72CA /* ColorNameCollectionViewCell.swift */; };
-		2289852A297682AC002DD2E8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22898529297682AC002DD2E8 /* GoogleService-Info.plist */; };
 		2289852D2976CDE7002DD2E8 /* Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2289852C2976CDE7002DD2E8 /* Banner.swift */; };
 		2289852F2976CEAC002DD2E8 /* BannerDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2289852E2976CEAC002DD2E8 /* BannerDao.swift */; };
 		228A8E6D2963F0CB004F8208 /* SelectLogoAppTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228A8E6B2963F0CB004F8208 /* SelectLogoAppTableViewCell.swift */; };
@@ -150,6 +150,7 @@
 		227177982968162E00ABEC31 /* SignInGenderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignInGenderTableViewCell.xib; sourceTree = "<group>"; };
 		2271779B296816BB00ABEC31 /* SignInCompleteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInCompleteTableViewCell.swift; sourceTree = "<group>"; };
 		2271779C296816BB00ABEC31 /* SignInCompleteTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignInCompleteTableViewCell.xib; sourceTree = "<group>"; };
+		2273A7702988EC28007FE6F3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2278B3C52980FAD800BB2D8A /* Makeup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Makeup.swift; sourceTree = "<group>"; };
 		2278EEA8295D5AED00D1C703 /* DialogSelfieCamSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogSelfieCamSelectionViewController.swift; sourceTree = "<group>"; };
 		227A6E00297FA05600559A3F /* CombosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombosViewController.swift; sourceTree = "<group>"; };
@@ -160,7 +161,6 @@
 		228959A0297A58FA008B72CA /* LipstickViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LipstickViewController.swift; sourceTree = "<group>"; };
 		228959A2297A5942008B72CA /* ColorCodeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCodeCollectionViewCell.swift; sourceTree = "<group>"; };
 		228959A6297A626C008B72CA /* ColorNameCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorNameCollectionViewCell.swift; sourceTree = "<group>"; };
-		22898529297682AC002DD2E8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2289852B2976BDDD002DD2E8 /* SelfStyloIOSApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SelfStyloIOSApp.entitlements; sourceTree = "<group>"; };
 		2289852C2976CDE7002DD2E8 /* Banner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banner.swift; sourceTree = "<group>"; };
 		2289852E2976CEAC002DD2E8 /* BannerDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerDao.swift; sourceTree = "<group>"; };
@@ -547,7 +547,7 @@
 			children = (
 				2287323029795C6000659E80 /* MakeupView */,
 				2289852B2976BDDD002DD2E8 /* SelfStyloIOSApp.entitlements */,
-				22898529297682AC002DD2E8 /* GoogleService-Info.plist */,
+				2273A7702988EC28007FE6F3 /* GoogleService-Info.plist */,
 				22E8EA002970105D00E5BE59 /* Model */,
 				22E8E9FF2970105200E5BE59 /* Dao */,
 				22E8E9FA29700B7500E5BE59 /* Api */,
@@ -689,7 +689,7 @@
 				};
 			};
 			buildConfigurationList = 22F858A9295AC6A400A7D86E /* Build configuration list for PBXProject "SelfStyloIOSApp" */;
-			compatibilityVersion = "Xcode 13.0";
+			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -728,7 +728,6 @@
 				22C8CA50295EC1FA00336E03 /* SelectPhotoTableViewCell.xib in Resources */,
 				228A8E722963F69B004F8208 /* HomeCardAnnouncementsTableViewCell.xib in Resources */,
 				2271778E2968141C00ABEC31 /* SignInFullNameTableViewCell.xib in Resources */,
-				2289852A297682AC002DD2E8 /* GoogleService-Info.plist in Resources */,
 				22F858B9295AC6A400A7D86E /* Main.storyboard in Resources */,
 				22A477EA2965878600523866 /* OFL.txt in Resources */,
 				22A477EB2965878600523866 /* DMSans-MediumItalic.ttf in Resources */,
@@ -739,6 +738,7 @@
 				228A8E6E2963F0CB004F8208 /* SelectLogoAppTableViewCell.xib in Resources */,
 				2271778A2968138E00ABEC31 /* SignInPhotoTableViewCell.xib in Resources */,
 				22BA3AA6296423CD004AD1F3 /* SavedPresetsTableViewCell.xib in Resources */,
+				2273A7712988EC28007FE6F3 /* GoogleService-Info.plist in Resources */,
 				2202B3322964013D000CB816 /* HomeCardSelfiecamTableViewCell.xib in Resources */,
 				22A4DC5A295F03D50064D006 /* SelectPhoneTableViewCell.xib in Resources */,
 				22A477E72965878600523866 /* DMSans-Medium.ttf in Resources */,
@@ -1111,6 +1111,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = SelfStyloIOSApp/SelfStyloIOSApp.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = TK8CD8QS5B;
@@ -1130,6 +1131,7 @@
 				NEW_SETTING = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.inferenz.SelfStyloIOSApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1143,6 +1145,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = SelfStyloIOSApp/SelfStyloIOSApp.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = TK8CD8QS5B;
@@ -1162,6 +1165,7 @@
 				NEW_SETTING = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.inferenz.SelfStyloIOSApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

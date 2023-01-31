@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:SelfStyloIOSApp.xcodeproj">
+      location = "group:/Users/virajshah/Desktop/Inferenz/Xcode/SelfStyloIOSApp/SelfStyloIOSApp.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

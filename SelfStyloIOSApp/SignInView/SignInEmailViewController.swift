@@ -22,6 +22,8 @@ class SignInEmailViewController: UIViewController,UITextFieldDelegate{
     var vc: SignInViewController!
     
     var apiUtils = ApiUtils()
+    
+    let userDefault = UserDefaults.standard
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +41,7 @@ class SignInEmailViewController: UIViewController,UITextFieldDelegate{
                 if email != "" {
                         let patron = Patron(email: txtEmailAddress.text!)
                         apiUtils.sendEmailOtp(email: patron.email)
-
+                        self.userDefault.set(patron.email, forKey: "Email")
 
                 } else {
                     print("Please enter valid email address")
