@@ -30,12 +30,16 @@
 		2271779D296816BB00ABEC31 /* SignInCompleteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2271779B296816BB00ABEC31 /* SignInCompleteTableViewCell.swift */; };
 		2271779E296816BB00ABEC31 /* SignInCompleteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2271779C296816BB00ABEC31 /* SignInCompleteTableViewCell.xib */; };
 		2273A7712988EC28007FE6F3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2273A7702988EC28007FE6F3 /* GoogleService-Info.plist */; };
+		2273A7732989116A007FE6F3 /* TryOnViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2273A7722989116A007FE6F3 /* TryOnViewController.swift */; };
+		2273A77529891618007FE6F3 /* LipstickView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2273A77429891618007FE6F3 /* LipstickView.swift */; };
+		2273A77729891640007FE6F3 /* LipstickView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2273A77629891640007FE6F3 /* LipstickView.xib */; };
+		2273A77B298932DF007FE6F3 /* ColorCodeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2273A77A298932DF007FE6F3 /* ColorCodeCollectionViewCell.xib */; };
+		2273A77D2989367F007FE6F3 /* ColorNameCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2273A77C2989367F007FE6F3 /* ColorNameCollectionViewCell.xib */; };
 		2278B3C62980FAD800BB2D8A /* Makeup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2278B3C52980FAD800BB2D8A /* Makeup.swift */; };
 		2278EEA9295D5AED00D1C703 /* DialogSelfieCamSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2278EEA8295D5AED00D1C703 /* DialogSelfieCamSelectionViewController.swift */; };
 		227A6E01297FA05600559A3F /* CombosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227A6E00297FA05600559A3F /* CombosViewController.swift */; };
 		227A6E05297FA2A300559A3F /* CombosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227A6E04297FA2A300559A3F /* CombosCollectionViewCell.swift */; };
 		2287323429795D8100659E80 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2287323229795D8100659E80 /* CategoryCollectionViewCell.swift */; };
-		2287323529795D8100659E80 /* CategoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2287323329795D8100659E80 /* CategoryCollectionViewCell.xib */; };
 		2287323729795FF800659E80 /* MakeupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2287323629795FF800659E80 /* MakeupViewController.swift */; };
 		228959A1297A58FA008B72CA /* LipstickViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228959A0297A58FA008B72CA /* LipstickViewController.swift */; };
 		228959A4297A5942008B72CA /* ColorCodeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228959A2297A5942008B72CA /* ColorCodeCollectionViewCell.swift */; };
@@ -105,6 +109,7 @@
 		22F858D5295AC6A600A7D86E /* SelfStyloIOSAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F858D4295AC6A600A7D86E /* SelfStyloIOSAppUITestsLaunchTests.swift */; };
 		22F858E4295B012E00A7D86E /* CustomTabBarControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F858E3295B012E00A7D86E /* CustomTabBarControllerViewController.swift */; };
 		22F858E6295B047800A7D86E /* FavouriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F858E5295B047800A7D86E /* FavouriteViewController.swift */; };
+		22FAE56D298A290F0019EE81 /* CategoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22FAE56C298A290F0019EE81 /* CategoryCollectionViewCell.xib */; };
 		52E8E3BEA92B023BE2D8FDAF /* Pods_SelfStyloIOSApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B332B815068FE8B9EBCCB1C5 /* Pods_SelfStyloIOSApp.framework */; };
 		6F8A6A7FB46FB7581DDD9581 /* Pods_SelfStyloIOSApp_SelfStyloIOSAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92302873C826183761795D41 /* Pods_SelfStyloIOSApp_SelfStyloIOSAppUITests.framework */; };
 		8ADDAE51008FD4208ED1B0DD /* Pods_SelfStyloIOSAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C80721B2EDCFF1AC6EBDE6E8 /* Pods_SelfStyloIOSAppTests.framework */; };
@@ -151,12 +156,16 @@
 		2271779B296816BB00ABEC31 /* SignInCompleteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInCompleteTableViewCell.swift; sourceTree = "<group>"; };
 		2271779C296816BB00ABEC31 /* SignInCompleteTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignInCompleteTableViewCell.xib; sourceTree = "<group>"; };
 		2273A7702988EC28007FE6F3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2273A7722989116A007FE6F3 /* TryOnViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TryOnViewController.swift; sourceTree = "<group>"; };
+		2273A77429891618007FE6F3 /* LipstickView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LipstickView.swift; sourceTree = "<group>"; };
+		2273A77629891640007FE6F3 /* LipstickView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LipstickView.xib; sourceTree = "<group>"; };
+		2273A77A298932DF007FE6F3 /* ColorCodeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorCodeCollectionViewCell.xib; sourceTree = "<group>"; };
+		2273A77C2989367F007FE6F3 /* ColorNameCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorNameCollectionViewCell.xib; sourceTree = "<group>"; };
 		2278B3C52980FAD800BB2D8A /* Makeup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Makeup.swift; sourceTree = "<group>"; };
 		2278EEA8295D5AED00D1C703 /* DialogSelfieCamSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogSelfieCamSelectionViewController.swift; sourceTree = "<group>"; };
 		227A6E00297FA05600559A3F /* CombosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombosViewController.swift; sourceTree = "<group>"; };
 		227A6E04297FA2A300559A3F /* CombosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombosCollectionViewCell.swift; sourceTree = "<group>"; };
 		2287323229795D8100659E80 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
-		2287323329795D8100659E80 /* CategoryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryCollectionViewCell.xib; sourceTree = "<group>"; };
 		2287323629795FF800659E80 /* MakeupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeupViewController.swift; sourceTree = "<group>"; };
 		228959A0297A58FA008B72CA /* LipstickViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LipstickViewController.swift; sourceTree = "<group>"; };
 		228959A2297A5942008B72CA /* ColorCodeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCodeCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -231,6 +240,7 @@
 		22F858D4295AC6A600A7D86E /* SelfStyloIOSAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfStyloIOSAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		22F858E3295B012E00A7D86E /* CustomTabBarControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarControllerViewController.swift; sourceTree = "<group>"; };
 		22F858E5295B047800A7D86E /* FavouriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteViewController.swift; sourceTree = "<group>"; };
+		22FAE56C298A290F0019EE81 /* CategoryCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CategoryCollectionViewCell.xib; path = ../../../../../../../Downloads/CategoryCollectionViewCell.xib; sourceTree = "<group>"; };
 		26880CABF6AFBA3C41D5E32F /* Pods-SelfStyloIOSAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SelfStyloIOSAppTests.release.xcconfig"; path = "Target Support Files/Pods-SelfStyloIOSAppTests/Pods-SelfStyloIOSAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		400969E1C350C193153BDECA /* Pods-SelfStyloIOSApp-SelfStyloIOSAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SelfStyloIOSApp-SelfStyloIOSAppUITests.release.xcconfig"; path = "Target Support Files/Pods-SelfStyloIOSApp-SelfStyloIOSAppUITests/Pods-SelfStyloIOSApp-SelfStyloIOSAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		836D4F58F6822572143071FA /* Pods-SelfStyloIOSApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SelfStyloIOSApp.release.xcconfig"; path = "Target Support Files/Pods-SelfStyloIOSApp/Pods-SelfStyloIOSApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -319,6 +329,7 @@
 				22B00B76297E8A0D0075FB02 /* FoundationViewController.swift */,
 				229DE357297EBC77001235A8 /* EyelinerStyleViewController.swift */,
 				227A6E00297FA05600559A3F /* CombosViewController.swift */,
+				2273A7722989116A007FE6F3 /* TryOnViewController.swift */,
 			);
 			path = MakeupView;
 			sourceTree = "<group>";
@@ -327,11 +338,15 @@
 			isa = PBXGroup;
 			children = (
 				2287323229795D8100659E80 /* CategoryCollectionViewCell.swift */,
-				2287323329795D8100659E80 /* CategoryCollectionViewCell.xib */,
+				22FAE56C298A290F0019EE81 /* CategoryCollectionViewCell.xib */,
 				228959A2297A5942008B72CA /* ColorCodeCollectionViewCell.swift */,
+				2273A77A298932DF007FE6F3 /* ColorCodeCollectionViewCell.xib */,
 				228959A6297A626C008B72CA /* ColorNameCollectionViewCell.swift */,
+				2273A77C2989367F007FE6F3 /* ColorNameCollectionViewCell.xib */,
 				22B00B78297E9EAB0075FB02 /* EyelinerStyleCollectionViewCell.swift */,
 				227A6E04297FA2A300559A3F /* CombosCollectionViewCell.swift */,
+				2273A77429891618007FE6F3 /* LipstickView.swift */,
+				2273A77629891640007FE6F3 /* LipstickView.xib */,
 			);
 			path = CollectionViewCells;
 			sourceTree = "<group>";
@@ -714,6 +729,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2271779A2968162E00ABEC31 /* SignInGenderTableViewCell.xib in Resources */,
+				22FAE56D298A290F0019EE81 /* CategoryCollectionViewCell.xib in Resources */,
 				22A4DC62295F0B1F0064D006 /* CompleteTableViewCell.xib in Resources */,
 				22C8CA5D295F006100336E03 /* SelectEmailTableViewCell.xib in Resources */,
 				22A477E92965878600523866 /* DMSans-BoldItalic.ttf in Resources */,
@@ -722,17 +738,19 @@
 				22F858BB295AC6A600A7D86E /* Assets.xcassets in Resources */,
 				227177962968157F00ABEC31 /* SignInPhoneTableViewCell.xib in Resources */,
 				2271779E296816BB00ABEC31 /* SignInCompleteTableViewCell.xib in Resources */,
+				2273A77D2989367F007FE6F3 /* ColorNameCollectionViewCell.xib in Resources */,
 				22BA3AA129642105004AD1F3 /* FavouriteCollectionViewCell.xib in Resources */,
 				22BA3AAE29642A36004AD1F3 /* ImageSliderCollectionViewCell.xib in Resources */,
 				22C8CA59295EDA1200336E03 /* SelectFullNameTableViewCell.xib in Resources */,
 				22C8CA50295EC1FA00336E03 /* SelectPhotoTableViewCell.xib in Resources */,
 				228A8E722963F69B004F8208 /* HomeCardAnnouncementsTableViewCell.xib in Resources */,
+				2273A77B298932DF007FE6F3 /* ColorCodeCollectionViewCell.xib in Resources */,
+				2273A77729891640007FE6F3 /* LipstickView.xib in Resources */,
 				2271778E2968141C00ABEC31 /* SignInFullNameTableViewCell.xib in Resources */,
 				22F858B9295AC6A400A7D86E /* Main.storyboard in Resources */,
 				22A477EA2965878600523866 /* OFL.txt in Resources */,
 				22A477EB2965878600523866 /* DMSans-MediumItalic.ttf in Resources */,
 				22A477E82965878600523866 /* DMSans-Bold.ttf in Resources */,
-				2287323529795D8100659E80 /* CategoryCollectionViewCell.xib in Resources */,
 				22A4DC5E295F08EB0064D006 /* SelectGenderTableViewCell.xib in Resources */,
 				22BA3AAA29642452004AD1F3 /* SavePresetsCollectionViewCell.xib in Resources */,
 				228A8E6E2963F0CB004F8208 /* SelectLogoAppTableViewCell.xib in Resources */,
@@ -904,6 +922,7 @@
 				2287323429795D8100659E80 /* CategoryCollectionViewCell.swift in Sources */,
 				22F858E6295B047800A7D86E /* FavouriteViewController.swift in Sources */,
 				2271779D296816BB00ABEC31 /* SignInCompleteTableViewCell.swift in Sources */,
+				2273A77529891618007FE6F3 /* LipstickView.swift in Sources */,
 				22B00B7A297E9EAB0075FB02 /* EyelinerStyleCollectionViewCell.swift in Sources */,
 				2289852F2976CEAC002DD2E8 /* BannerDao.swift in Sources */,
 				228A8E6D2963F0CB004F8208 /* SelectLogoAppTableViewCell.swift in Sources */,
@@ -919,6 +938,7 @@
 				227177852968128300ABEC31 /* SignInProfileViewController.swift in Sources */,
 				22E7AEA1295D9F1A00F95FE0 /* ProfileViewController.swift in Sources */,
 				22B00B77297E8A0D0075FB02 /* FoundationViewController.swift in Sources */,
+				2273A7732989116A007FE6F3 /* TryOnViewController.swift in Sources */,
 				22F858E4295B012E00A7D86E /* CustomTabBarControllerViewController.swift in Sources */,
 				22B00B73297E826C0075FB02 /* BlushViewController.swift in Sources */,
 				22BB026529711E8100F514B0 /* Patron.swift in Sources */,

@@ -22,9 +22,17 @@ class SignInOtpViewController: UIViewController {
     
     @IBOutlet weak var timerLabel: UILabel!
     
+    
+  
+    @IBOutlet weak var resendBtn: UIButton!
+    
+    
+    
     @IBOutlet weak var resendOTPBtn: UIButton!
     
     let userDefault = UserDefaults.standard
+    var patron = Patron()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,8 +44,23 @@ class SignInOtpViewController: UIViewController {
     
         setbtnProceedView(toView: resendOTPBtn)
         // Do any additional setup after loading the view.
+      
     }
     
+    
+    @IBAction func resendOTPCode(_ sender: UIButton) {
+                let email = userDefault.string(forKey: "Email")
+        if email != "" {
+            let patron = Patron(email: email!)
+            apiUtils.sendEmailOtp(email: patron.email)
+            timerLabel.text = ""
+            totalTime = 31
+            resendOTPBtn.isEnabled = false
+            resendBtn.isHidden = true
+            sendOTPCode()
+        }
+            
+    }
     
     func setupOtpView(){
             self.otpTextFieldView.layer.cornerRadius = 18
@@ -52,7 +75,11 @@ class SignInOtpViewController: UIViewController {
             self.otpTextFieldView.shouldAllowIntermediateEditing = false
             self.otpTextFieldView.delegate = self
             self.otpTextFieldView.initializeUI()
+            
         }
+
+    
+    
     
     func UIColorFromHex(rgbValue:UInt32, alpha:Double=1.0)->UIColor {
         let red = CGFloat((rgbValue & 0xFF0000) >> 16)/256.0
@@ -105,14 +132,15 @@ class SignInOtpViewController: UIViewController {
            totalTime -= 1
            timerLabel.text = "\(timeFormatted(totalTime))"
           if totalTime == 0 {
-              timerLabel.text = "Resend"
+              timerLabel.text = ""
+              resendBtn.isHidden = false
               countdownTimer.invalidate()
               resendOTPBtn.isEnabled = true
 
           }
 
         }
-
+    
     
     func sendOTPCode() {
               self.countdownTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateTimerLabel), userInfo: nil, repeats: true)
@@ -148,12 +176,14 @@ extension SignInOtpViewController: OTPFieldViewDelegate {
         return false
     }
     
+   
+    
     func shouldBecomeFirstResponderForOTP(otpTextFieldIndex index: Int) -> Bool {
         return true
+        
     }
     
     func enteredOTP(otp otpString: String) {
-        print("OTPString: \(otpString)")
-        self.otpString = otpString
+      self.otpString = otpString
     }
 }

@@ -16,6 +16,14 @@ import UIKit
     }
 }
 
+@IBDesignable class ImageView : UIImageView{
+    @IBInspectable var cornerRadius : CGFloat = 5
+    
+    override func layoutSubviews() {
+        layer.cornerRadius = self.cornerRadius
+    }
+}
+
 @IBDesignable class TextFieldView : UITextField{
     @IBInspectable var cornerRadius : CGFloat = 5
     var borderWidth : CGFloat = 1

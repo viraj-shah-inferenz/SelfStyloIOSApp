@@ -118,19 +118,18 @@ extension EditProfileViewController: UITableViewDelegate, UITableViewDataSource,
         
         let name = NSIndexPath(row: textField.tag, section: 0)
             if let namecell:SelectFullNameTableViewCell = tblView.cellForRow(at: name as IndexPath) as? SelectFullNameTableViewCell {
-                    patron[0].name = namecell.txtFullName.text!
+                    patron[0].name = namecell.txtFullName.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             }
         
         let email = NSIndexPath(row: textField.tag, section: 0)
             if let emailcell:SelectEmailTableViewCell = tblView.cellForRow(at: email as IndexPath) as? SelectEmailTableViewCell{
-                    patron[0].email = emailcell.txtEmailAddress.text!
+                    patron[0].email = emailcell.txtEmailAddress.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             }
         
         
         let phone = NSIndexPath(row: textField.tag, section: 0)
             if let phonecell:SelectPhoneTableViewCell = tblView.cellForRow(at: phone as IndexPath) as? SelectPhoneTableViewCell {
                     patron[0].phoneNumber = phonecell.txtPhoneNumber.text!
-                    print(patron[0].phoneNumber)
             
             }
         

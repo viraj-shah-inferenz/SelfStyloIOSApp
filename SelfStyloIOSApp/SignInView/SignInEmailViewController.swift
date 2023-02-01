@@ -40,8 +40,9 @@ class SignInEmailViewController: UIViewController,UITextFieldDelegate{
             if let email = txtEmailAddress.text {
                 if email != "" {
                         let patron = Patron(email: txtEmailAddress.text!)
-                        apiUtils.sendEmailOtp(email: patron.email)
-                        self.userDefault.set(patron.email, forKey: "Email")
+                    let trimmed = patron.email.trimmingCharacters(in: .whitespacesAndNewlines)
+                        apiUtils.sendEmailOtp(email: trimmed)
+                        self.userDefault.set(trimmed, forKey: "Email")
 
                 } else {
                     print("Please enter valid email address")

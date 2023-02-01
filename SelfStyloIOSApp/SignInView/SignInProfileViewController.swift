@@ -135,31 +135,25 @@ extension SignInProfileViewController: UITableViewDelegate, UITableViewDataSourc
         let name = NSIndexPath(row: textField.tag, section: 0)
             if let namecell:SignInFullNameTableViewCell = tblView.cellForRow(at: name as IndexPath) as? SignInFullNameTableViewCell {
                 if (namecell.txtFullName.text != ""){
-                    patron.name = namecell.txtFullName.text!
+                    patron.name = namecell.txtFullName.text!.trimmingCharacters(in: .whitespacesAndNewlines)
                 }
             }
         
         let email = NSIndexPath(row: textField.tag, section: 0)
             if let emailcell:SignInEmailTableViewCell = tblView.cellForRow(at: email as IndexPath) as? SignInEmailTableViewCell {
                 if (emailcell.txtEmailAddress.text != ""){
-                    patron.email = emailcell.txtEmailAddress.text!
+                    patron.email = emailcell.txtEmailAddress.text!.trimmingCharacters(in: .whitespacesAndNewlines)
                 }
             }
     
         let phone = NSIndexPath(row: textField.tag, section: 0)
             if let phonecell:SignInPhoneTableViewCell = tblView.cellForRow(at: phone as IndexPath) as? SignInPhoneTableViewCell {
                 if (phonecell.txtPhoneNumber.text != ""){
-                    patron.phoneNumber = phonecell.txtPhoneNumber.text!
+                    patron.phoneNumber = phonecell.txtPhoneNumber.text!.components(separatedBy: .whitespaces).joined()
                 }
             
             }
       
-    }
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        patron.phoneNumber = string.components(separatedBy: .whitespaces).joined()
-        return true
-        
     }
     
    

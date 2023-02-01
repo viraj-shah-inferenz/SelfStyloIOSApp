@@ -21,6 +21,10 @@ class SignInViewController: UIViewController {
     
     var apiUtils = ApiUtils()
     
+    var emailVC = SignInEmailViewController()
+    
+    let userDefault = UserDefaults.standard
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -36,14 +40,15 @@ class SignInViewController: UIViewController {
         apiUtils.getFavouriteProductDetail()
     }
     
+    
     @IBAction func switchViewAction(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0{
-            EmailIdView.alpha = 1
-            PhoneView.alpha = 0
+            EmailIdView.isHidden = false
+            PhoneView.isHidden = true
         }else
         {
-            PhoneView.alpha = 1
-            EmailIdView.alpha = 0
+            PhoneView.isHidden = false
+            EmailIdView.isHidden = true
         }
     }
     

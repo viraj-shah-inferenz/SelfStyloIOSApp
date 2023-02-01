@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="DMSans-Bold.ttf">
+            <string>DMSans-Bold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ColorNameCollectionViewCell" id="pf1-aj-VJF" customClass="ColorNameCollectionViewCell" customModule="SelfStyloIOSApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="102" height="32"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="2rB-go-kcS">
+                <rect key="frame" x="0.0" y="0.0" width="102" height="32"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ONX-e7-xbQ">
+                        <rect key="frame" x="8" y="6.6666666666666661" width="86" height="18.666666666666671"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="18.5" id="Uob-BA-zk0"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="DMSans-Bold" family="DM Sans" pointSize="14"/>
+                        <color key="textColor" red="0.36862745099999999" green="0.3803921569" blue="0.42745098040000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="ONX-e7-xbQ" firstAttribute="centerY" secondItem="2rB-go-kcS" secondAttribute="centerY" id="CKy-sY-GG2"/>
+                    <constraint firstItem="ONX-e7-xbQ" firstAttribute="leading" secondItem="2rB-go-kcS" secondAttribute="leading" constant="8" id="Df8-mD-OVv"/>
+                    <constraint firstItem="ONX-e7-xbQ" firstAttribute="centerX" secondItem="2rB-go-kcS" secondAttribute="centerX" id="p5X-Ae-ci1"/>
+                    <constraint firstAttribute="trailing" secondItem="ONX-e7-xbQ" secondAttribute="trailing" constant="8" id="rrG-Mp-bvb"/>
+                </constraints>
+            </collectionViewCellContentView>
+            <size key="customSize" width="102" height="32"/>
+            <connections>
+                <outlet property="lblcolor_name" destination="ONX-e7-xbQ" id="vrx-Hu-RtU"/>
+            </connections>
+            <point key="canvasLocation" x="17" y="-11"/>
+        </collectionViewCell>
+    </objects>
+</document>
