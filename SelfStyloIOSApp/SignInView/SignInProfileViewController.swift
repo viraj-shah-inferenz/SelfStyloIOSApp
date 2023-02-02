@@ -13,8 +13,8 @@ class SignInProfileViewController: UIViewController {
     
     var apiUtils = ApiUtils()
     var patron = Patron()
-    
-    
+   
+    let userDefault = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,6 +66,9 @@ extension SignInProfileViewController: UITableViewDelegate, UITableViewDataSourc
         else if indexPath.row == 2 {
              //Gender
             if let emailcell:SignInEmailTableViewCell = tableView.dequeueReusableCell(withIdentifier: "SignInEmailTableViewCell") as? SignInEmailTableViewCell{
+                    let email = userDefault.string(forKey: "Email")
+                    patron.email = email!
+                    emailcell.txtEmailAddress.text! = patron.email
                 emailcell.txtEmailAddress.tag = indexPath.row
                 emailcell.txtEmailAddress.delegate = self
                 return emailcell
@@ -73,6 +76,9 @@ extension SignInProfileViewController: UITableViewDelegate, UITableViewDataSourc
         }
         else if indexPath.row == 3 {
             if let phonecell:SignInPhoneTableViewCell = tableView.dequeueReusableCell(withIdentifier: "SignInPhoneTableViewCell") as? SignInPhoneTableViewCell{
+                    let phone = userDefault.string(forKey: "Phone")
+                    patron.phoneNumber = phone!
+                    phonecell.txtPhoneNumber.text! = patron.phoneNumber
                 phonecell.txtPhoneNumber.tag = indexPath.row
                 phonecell.txtPhoneNumber.delegate = self
                 return phonecell
@@ -135,15 +141,19 @@ extension SignInProfileViewController: UITableViewDelegate, UITableViewDataSourc
         let name = NSIndexPath(row: textField.tag, section: 0)
             if let namecell:SignInFullNameTableViewCell = tblView.cellForRow(at: name as IndexPath) as? SignInFullNameTableViewCell {
                 if (namecell.txtFullName.text != ""){
+                    
                     patron.name = namecell.txtFullName.text!.trimmingCharacters(in: .whitespacesAndNewlines)
                 }
             }
         
         let email = NSIndexPath(row: textField.tag, section: 0)
             if let emailcell:SignInEmailTableViewCell = tblView.cellForRow(at: email as IndexPath) as? SignInEmailTableViewCell {
-                if (emailcell.txtEmailAddress.text != ""){
+                if (emailcell.txtEmailAddress.text == ""){
+    
                     patron.email = emailcell.txtEmailAddress.text!.trimmingCharacters(in: .whitespacesAndNewlines)
                 }
+                
+                
             }
     
         let phone = NSIndexPath(row: textField.tag, section: 0)
@@ -159,7 +169,7 @@ extension SignInProfileViewController: UITableViewDelegate, UITableViewDataSourc
    
     
     @objc func GoToHome(_ sender: UIButton) {
-        if  apiUtils.updateUserDetails(patron: Patron(email: patron.email, phoneNumber: patron.phoneNumber, name: patron.name, gender: patron.gender))
+        if  apiUtils.updateUserDetails(patron: Patron(email: patron.email, phoneNumber: patron.phoneNumber, name: patron.name, gender: patron.gender,profileImage: patron.profileImage))
         {
             let detailViewController:UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "CustomTabBarControllerViewController") as! CustomTabBarControllerViewController
             
@@ -170,7 +180,7 @@ extension SignInProfileViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     @objc func skip(_ sender: UIButton) {
-        if apiUtils.updateUserDetails(patron: Patron(email: patron.email, phoneNumber: patron.phoneNumber, name: patron.name, gender: patron.gender)){
+        if apiUtils.updateUserDetails(patron: Patron(email: patron.email, phoneNumber: patron.phoneNumber, name: patron.name, gender: patron.gender,profileImage: patron.profileImage)){
             let detailViewController:UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "CustomTabBarControllerViewController") as! CustomTabBarControllerViewController
             
             detailViewController.modalPresentationStyle = .fullScreen

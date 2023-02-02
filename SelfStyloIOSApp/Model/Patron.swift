@@ -30,11 +30,12 @@ class Patron:Decodable{
            self.uuid = uuid
        }
     
-    init(email:String, phoneNumber: String, name:String,gender:String) {
+    init(email:String, phoneNumber: String, name:String,gender:String,profileImage:String) {
            self.email = email
            self.phoneNumber = phoneNumber
            self.name = name
            self.gender = gender
+           self.profileImage = profileImage
        }
 
     init(email:String) {

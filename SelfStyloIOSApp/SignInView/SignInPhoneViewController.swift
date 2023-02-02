@@ -26,6 +26,8 @@ class SignInPhoneViewController: UIViewController,UITextFieldDelegate  {
     
     
     let userDefault = UserDefaults.standard
+    var selectedTFTag = 0
+    weak var delegate: ChildToParentProtocol? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +35,8 @@ class SignInPhoneViewController: UIViewController,UITextFieldDelegate  {
         
         phoneNumberTextField.displayMode = .list
         phoneNumberTextField.delegate = self
+        
+        phoneNumberTextField.tag = 2
         
         listController.setup(repository: phoneNumberTextField.countryRepository)
         
@@ -108,6 +112,9 @@ class SignInPhoneViewController: UIViewController,UITextFieldDelegate  {
             }
             
         }
+        selectedTFTag = phoneNumberTextField.tag
+                //Pass tag to parent view
+                delegate?.setFocusedElement(with: selectedTFTag)
     }
     
     

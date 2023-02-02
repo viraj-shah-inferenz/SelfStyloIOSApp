@@ -41,9 +41,10 @@ class SignInOtpViewController: UIViewController {
         setupOtpView()
         let email = userDefault.string(forKey: "Email")
         LblEmailPhone.text = email!
+        let phone = userDefault.string(forKey: "Phone")
+        LblEmailPhone.text = phone!
     
         setbtnProceedView(toView: resendOTPBtn)
-        // Do any additional setup after loading the view.
       
     }
     
