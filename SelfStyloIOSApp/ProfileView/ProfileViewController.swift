@@ -10,12 +10,12 @@ import UIKit
 class ProfileViewController: UIViewController {
 
     @IBOutlet weak var editProfile: UIView!
-    @IBOutlet weak var circleImageView: UIView!
     
     @IBOutlet weak var settingsCollectionView: UIView!
     
     @IBOutlet weak var logoutCollectionView: UIView!
     
+    @IBOutlet weak var profileImageView: UIImageView!
     
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblEmail: UILabel!
@@ -32,7 +32,7 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        setcornerRadiusView(toView: circleImageView)
+        setProfileImageView(toView: profileImageView)
         seteditprofilecornerRadiusView(toView: editProfile)
         setbuttoncornerRadiusView(toView: settingsCollectionView)
         setbuttoncornerRadiusView(toView: logoutCollectionView)
@@ -40,9 +40,13 @@ class ProfileViewController: UIViewController {
     }
     
     
+    @IBAction func BackHome(_ sender: UIButton) {
+        self.tabBarController?.selectedIndex = 0
+    }
     
     func getDataFromDB() {
         for patron in db.getAll(){
+            profileImageView.image = patron.profileImage.imageFromBase64()
             lblName.text = patron.name
             self.userDefault.set(patron.name, forKey: "Name")
             lblEmail.text = patron.email
@@ -62,9 +66,10 @@ class ProfileViewController: UIViewController {
         self.present(detailViewController, animated: false)
     }
     
-    func setcornerRadiusView(toView: UIView)
+    func setProfileImageView(toView: UIImageView)
     {
-        toView.layer.cornerRadius = 120 / 2
+        toView.layer.cornerRadius = (toView.frame.size.width) / 2;
+        toView.clipsToBounds = true
     }
     
     func seteditprofilecornerRadiusView(toView: UIView)

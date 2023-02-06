@@ -27,7 +27,6 @@ class ApiUtils{
     
     func sendEmailOtp(email:String){
         let serviceUrl = DOMAIN_URL + apiCalls.sendEmailOtp
-        let db1 = PatronDao()
         var request = URLRequest(url: URL(string: serviceUrl)!)
         request.httpMethod = "POST"
         let postString = "email=\(email)"
@@ -78,7 +77,7 @@ class ApiUtils{
     func updateUserDetails(patron:Patron) -> Bool{
         let serviceUrl = DOMAIN_URL + apiCalls.updateUserData
         let db1 = PatronDao()
-     //   db1.deleteAll()
+        db1.deleteAll()
         var request = URLRequest(url: URL(string: serviceUrl)!)
         request.httpMethod = "POST"
         let postString1 = "name=\(patron.name)&email=\(patron.email)&contact_number=\(patron.phoneNumber)&gender=\(patron.gender)"
@@ -98,8 +97,8 @@ class ApiUtils{
             
             let responseString = String(data: data, encoding: .utf8)
             print("responseString = \(String(describing: responseString))")
-          //  db1.insert(userList: patron)
-            self.parseUserDataIntoDb(data: data)
+            db1.insert(userList: patron)
+            //self.parseUserDataIntoDb(data: data)
         }
         
         task.resume()

@@ -101,7 +101,7 @@ extension FavouriteViewController: UICollectionViewDelegateFlowLayout{
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let bounds = FavouriteCollectionView.bounds
-        return CGSize(width: bounds.width/2 - 20, height: bounds.height/4)
+        return CGSize(width: bounds.width/2 - 20, height: bounds.height/3)
     }
 
 }

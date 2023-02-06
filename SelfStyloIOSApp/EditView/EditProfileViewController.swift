@@ -7,7 +7,7 @@
 
 import UIKit
 
-class EditProfileViewController: UIViewController {
+class EditProfileViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
 
     @IBOutlet weak var tblView: UITableView!
     let userDefault = UserDefaults.standard
@@ -42,6 +42,7 @@ extension EditProfileViewController: UITableViewDelegate, UITableViewDataSource,
 
         if indexPath.row == 0 {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "SelectPhotoTableViewCell") as? SelectPhotoTableViewCell {
+                cell.edtProfile.addTarget(self, action: #selector(editProfile), for: .touchUpInside)
                 return cell
             }
         }
@@ -111,6 +112,25 @@ extension EditProfileViewController: UITableViewDelegate, UITableViewDataSource,
         {
             patron[0].gender = "Others"
         }
+    }
+    
+    @objc func editProfile(){
+        let myPickerController = UIImagePickerController()
+        myPickerController.delegate = self
+        myPickerController.sourceType = UIImagePickerController.SourceType.photoLibrary
+        self.present(myPickerController, animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let indexpath = IndexPath(row: 0, section: 0)
+        guard let cell: SelectPhotoTableViewCell = tblView.cellForRow(at: indexpath) as? SelectPhotoTableViewCell else { return }
+        cell.profileImageView.image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+        if let img = cell.profileImageView.image {
+            guard let base64img = img.base64(format: .jpeg(1.0)) else { return }
+            patron[0].profileImage = base64img
+        }
+        cell.profileImageView.image = patron[0].profileImage.imageFromBase64()
+        self.dismiss(animated: true,completion: nil)
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {   //delegate method

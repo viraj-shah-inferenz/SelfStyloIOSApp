@@ -23,26 +23,27 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Full Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sOg-Ps-TWs">
-                        <rect key="frame" x="32" y="12" width="66" height="20"/>
+                        <rect key="frame" x="28" y="12" width="66" height="20"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="66" id="6If-EQ-OU1"/>
-                            <constraint firstAttribute="height" constant="20" id="uVl-xK-tRq"/>
+                            <constraint firstAttribute="height" constant="20" id="jwN-Fn-qIR"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="DMSans-Medium" family="DM Sans" pointSize="14"/>
                         <color key="textColor" red="0.36862745099999999" green="0.3803921569" blue="0.42745098040000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uYS-qd-Ql5">
-                        <rect key="frame" x="32" y="44" width="326" height="52"/>
+                        <rect key="frame" x="28" y="44" width="334" height="52"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="52" id="lG6-pi-Qi3"/>
+                            <constraint firstAttribute="height" constant="52" id="iQI-7v-3Ll"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits" keyboardType="namePhonePad"/>
                     </textField>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PZa-2R-poW">
-                        <rect key="frame" x="32" y="101" width="338" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PZa-2R-poW">
+                        <rect key="frame" x="32" y="101" width="350" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="pOW-7T-lgP"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" systemColor="systemRedColor"/>
                         <nil key="highlightedColor"/>
@@ -50,11 +51,15 @@
                 </subviews>
                 <color key="backgroundColor" red="0.92549019610000005" green="0.93333333330000001" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
-                    <constraint firstItem="uYS-qd-Ql5" firstAttribute="top" secondItem="sOg-Ps-TWs" secondAttribute="bottom" constant="12" id="2o4-Gz-qYY"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="uYS-qd-Ql5" secondAttribute="trailing" constant="12" id="8Zw-oY-nmu"/>
-                    <constraint firstItem="uYS-qd-Ql5" firstAttribute="leading" secondItem="Pka-vi-kn3" secondAttribute="leadingMargin" constant="12" id="AC4-fh-L2d"/>
-                    <constraint firstItem="sOg-Ps-TWs" firstAttribute="leading" secondItem="uYS-qd-Ql5" secondAttribute="leading" id="BUx-HL-vzB"/>
-                    <constraint firstItem="sOg-Ps-TWs" firstAttribute="top" secondItem="Pka-vi-kn3" secondAttribute="top" constant="12" id="L5R-bi-FHp"/>
+                    <constraint firstItem="sOg-Ps-TWs" firstAttribute="leading" secondItem="Pka-vi-kn3" secondAttribute="leading" constant="28" id="3n1-It-B4v"/>
+                    <constraint firstItem="sOg-Ps-TWs" firstAttribute="top" secondItem="Pka-vi-kn3" secondAttribute="top" constant="12" id="5KA-T2-r9B"/>
+                    <constraint firstAttribute="trailing" secondItem="sOg-Ps-TWs" secondAttribute="trailing" constant="296" id="Aew-I9-vvv"/>
+                    <constraint firstItem="uYS-qd-Ql5" firstAttribute="leading" secondItem="Pka-vi-kn3" secondAttribute="leading" constant="28" id="Gv8-pW-iwn"/>
+                    <constraint firstAttribute="trailing" secondItem="uYS-qd-Ql5" secondAttribute="trailing" constant="28" id="Tmw-Uu-jsk"/>
+                    <constraint firstItem="uYS-qd-Ql5" firstAttribute="top" secondItem="sOg-Ps-TWs" secondAttribute="bottom" constant="12" id="YAP-8M-jtb"/>
+                    <constraint firstItem="PZa-2R-poW" firstAttribute="trailing" secondItem="Pka-vi-kn3" secondAttribute="trailingMargin" constant="12" id="c8k-of-gZe"/>
+                    <constraint firstItem="PZa-2R-poW" firstAttribute="leading" secondItem="Pka-vi-kn3" secondAttribute="leadingMargin" constant="12" id="eEc-Hq-hl7"/>
+                    <constraint firstItem="PZa-2R-poW" firstAttribute="top" secondItem="uYS-qd-Ql5" secondAttribute="bottom" constant="5" id="g3d-Jg-QxV"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="Tpb-KV-96C"/>

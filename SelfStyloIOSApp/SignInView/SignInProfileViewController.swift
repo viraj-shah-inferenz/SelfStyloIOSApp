@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SignInProfileViewController: UIViewController {
+class SignInProfileViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
 
     @IBOutlet weak var tblView: UITableView!
     
@@ -15,7 +15,6 @@ class SignInProfileViewController: UIViewController {
     var patron = Patron()
    
     let userDefault = UserDefaults.standard
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -53,6 +52,7 @@ extension SignInProfileViewController: UITableViewDelegate, UITableViewDataSourc
 
         if indexPath.row == 0 {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "SignInPhotoTableViewCell") as? SignInPhotoTableViewCell {
+                cell.edtProfile.addTarget(self, action: #selector(editProfile), for: .touchUpInside)
                 return cell
             }
         }
@@ -137,6 +137,8 @@ extension SignInProfileViewController: UITableViewDelegate, UITableViewDataSourc
         }
     }
     
+    
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
         let name = NSIndexPath(row: textField.tag, section: 0)
             if let namecell:SignInFullNameTableViewCell = tblView.cellForRow(at: name as IndexPath) as? SignInFullNameTableViewCell {
@@ -166,13 +168,30 @@ extension SignInProfileViewController: UITableViewDelegate, UITableViewDataSourc
       
     }
     
+    @objc func editProfile(){
+        let myPickerController = UIImagePickerController()
+        myPickerController.delegate = self
+        myPickerController.sourceType = UIImagePickerController.SourceType.photoLibrary
+        self.present(myPickerController, animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let indexpath = IndexPath(row: 0, section: 0)
+        guard let cell: SignInPhotoTableViewCell = tblView.cellForRow(at: indexpath) as? SignInPhotoTableViewCell else { return }
+        cell.profileImageView.image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+        if let img = cell.profileImageView.image {
+            guard let base64img = img.base64(format: .jpeg(1.0)) else { return }
+            patron.profileImage = base64img
+        }
+        cell.profileImageView.image = patron.profileImage.imageFromBase64()
+        self.dismiss(animated: true,completion: nil)
+    }
    
     
     @objc func GoToHome(_ sender: UIButton) {
         if  apiUtils.updateUserDetails(patron: Patron(email: patron.email, phoneNumber: patron.phoneNumber, name: patron.name, gender: patron.gender,profileImage: patron.profileImage))
         {
             let detailViewController:UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "CustomTabBarControllerViewController") as! CustomTabBarControllerViewController
-            
             detailViewController.modalPresentationStyle = .fullScreen
             self.present(detailViewController, animated: false)
         }
@@ -205,7 +224,7 @@ extension SignInProfileViewController: UITableViewDelegate, UITableViewDataSourc
         }
         else if indexPath.row == 4 {
            
-           return 100.0
+           return 120.0
        }
         else if indexPath.row == 5 {
            

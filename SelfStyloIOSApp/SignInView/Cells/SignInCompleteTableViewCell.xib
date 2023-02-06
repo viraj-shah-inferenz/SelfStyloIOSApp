@@ -27,9 +27,11 @@
                             <color key="baseBackgroundColor" red="0.094117647060000004" green="0.1019607843" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </buttonConfiguration>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BqT-eA-4cR">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BqT-eA-4cR">
                         <rect key="frame" x="157" y="85" width="71" height="24"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="71" id="XK2-HC-wpa"/>
+                        </constraints>
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="plain" title="Skip">
                             <fontDescription key="titleFontDescription" name="DMSans-Medium" family="DM Sans" pointSize="17"/>
@@ -40,9 +42,12 @@
                 <color key="backgroundColor" red="0.92549019610000005" green="0.93333333330000001" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstItem="JMc-Km-vGx" firstAttribute="top" secondItem="ANm-FL-ThZ" secondAttribute="top" constant="12" id="CfH-9E-qwp"/>
+                    <constraint firstItem="BqT-eA-4cR" firstAttribute="top" secondItem="JMc-Km-vGx" secondAttribute="bottom" constant="13" id="G1k-n9-ama"/>
                     <constraint firstItem="JMc-Km-vGx" firstAttribute="centerX" secondItem="ANm-FL-ThZ" secondAttribute="centerX" id="Tbt-H7-abG"/>
                     <constraint firstItem="JMc-Km-vGx" firstAttribute="leading" secondItem="ANm-FL-ThZ" secondAttribute="leading" constant="43" id="Z3z-rM-f6P"/>
+                    <constraint firstItem="BqT-eA-4cR" firstAttribute="leading" secondItem="ANm-FL-ThZ" secondAttribute="leading" constant="157" id="b1G-tU-TSH"/>
                     <constraint firstAttribute="trailing" secondItem="JMc-Km-vGx" secondAttribute="trailing" constant="43" id="sc6-3l-n41"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="BqT-eA-4cR" secondAttribute="bottom" constant="13" id="yvW-KF-VM2"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="O0M-kk-x5f"/>

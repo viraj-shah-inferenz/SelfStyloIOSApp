@@ -13,6 +13,11 @@ class SignInPhotoTableViewCell: UITableViewCell,UIImagePickerControllerDelegate,
     @IBOutlet weak var profileImageView: UIImageView!
     
     @IBOutlet weak var AddProfile: UILabel!
+    
+    @IBOutlet weak var edtProfile: UIButton!
+    
+    var patron = Patron()
+    let db = PatronDao()
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -26,17 +31,17 @@ class SignInPhotoTableViewCell: UITableViewCell,UIImagePickerControllerDelegate,
         // Configure the view for the selected state
     }
     
-    @IBAction func editProfile(_ sender: UIButton) {
-        let myPickerController = UIImagePickerController()
-        myPickerController.delegate = self
-        myPickerController.sourceType = UIImagePickerController.SourceType.photoLibrary
-        self.parentContainerViewController?.present(myPickerController, animated: true)
-    }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        profileImageView.image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
-        self.parentContainerViewController?.dismiss(animated: true, completion: nil)
-    }
+//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+//        profileImageView.image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+//        if let img = profileImageView.image {
+//            guard let base64img = img.base64(format: .jpeg(1.0)) else { return }
+//            patron.profileImage = base64img
+//        }
+//        profileImageView.image = patron.profileImage.imageFromBase64()
+//        db.insert(userList: patron)
+//        self.parentContainerViewController?.dismiss(animated: true, completion: nil)
+//    }
     
    
     func setProfileImageView(toView: UIImageView)

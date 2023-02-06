@@ -61,6 +61,14 @@ extension String{
       let color = UIColor(red: red/255.0, green: green/255.0, blue: blue/255.0, alpha: 1.0)
       return color
     }
+    
+    func imageFromBase64() -> UIImage? {
+      guard let data = Data(base64Encoded: self) else { return nil }
+      return UIImage(data: data)
+    }
+    func isEqualToString(find: String) -> Bool {
+      return String(format: self) == find
+    }
 }
 
 extension UIImageView{
@@ -100,14 +108,6 @@ extension UIImage {
     return imageData?.base64EncodedString()
   }
 }
-extension String {
-  func imageFromBase64() -> UIImage? {
-    guard let data = Data(base64Encoded: self) else { return nil }
-    return UIImage(data: data)
-  }
-  func isEqualToString(find: String) -> Bool {
-    return String(format: self) == find
-  }
-}
+
 
 

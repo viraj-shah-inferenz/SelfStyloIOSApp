@@ -44,20 +44,23 @@
                             <outlet property="delegate" destination="sET-58-KHn" id="fgb-Uf-lMy"/>
                         </connections>
                     </textField>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kGn-Kv-JNw">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kGn-Kv-JNw">
                         <rect key="frame" x="32" y="101" width="338" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" systemColor="systemRedColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="kGn-Kv-JNw" firstAttribute="trailing" secondItem="BBR-pn-b7u" secondAttribute="trailingMargin" id="Anb-mx-NMa"/>
+                    <constraint firstItem="kGn-Kv-JNw" firstAttribute="bottom" secondItem="BBR-pn-b7u" secondAttribute="bottomMargin" id="EoW-dB-U0q"/>
                     <constraint firstAttribute="trailing" secondItem="mEG-dP-t7m" secondAttribute="trailing" constant="298" id="HLK-sA-z6m"/>
                     <constraint firstAttribute="trailing" secondItem="Nlw-GL-3UJ" secondAttribute="trailing" constant="32" id="OZY-Hx-UTi"/>
                     <constraint firstItem="mEG-dP-t7m" firstAttribute="top" secondItem="BBR-pn-b7u" secondAttribute="top" constant="12" id="ahU-jS-PSQ"/>
                     <constraint firstItem="Nlw-GL-3UJ" firstAttribute="leading" secondItem="BBR-pn-b7u" secondAttribute="leading" constant="32" id="i2k-yO-XWU"/>
                     <constraint firstItem="Nlw-GL-3UJ" firstAttribute="top" secondItem="mEG-dP-t7m" secondAttribute="bottom" constant="12" id="kah-od-f2c"/>
+                    <constraint firstItem="kGn-Kv-JNw" firstAttribute="top" secondItem="Nlw-GL-3UJ" secondAttribute="bottom" constant="5" id="knK-dt-8zd"/>
+                    <constraint firstItem="kGn-Kv-JNw" firstAttribute="leading" secondItem="Nlw-GL-3UJ" secondAttribute="leading" id="kqU-eJ-a0W"/>
                     <constraint firstItem="Nlw-GL-3UJ" firstAttribute="leading" secondItem="mEG-dP-t7m" secondAttribute="leading" id="oaQ-Ka-mym"/>
                 </constraints>
             </tableViewCellContentView>

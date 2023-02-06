@@ -7,12 +7,13 @@
 
 import UIKit
 
-class SelectPhotoTableViewCell: UITableViewCell,UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class SelectPhotoTableViewCell: UITableViewCell{
     
     
     @IBOutlet weak var circleView: UIView!
     @IBOutlet weak var profileImageView: UIImageView!
     
+    @IBOutlet weak var edtProfile: UIButton!
     @IBOutlet weak var AddProfile: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,21 +28,6 @@ class SelectPhotoTableViewCell: UITableViewCell,UIImagePickerControllerDelegate,
         // Configure the view for the selected state
     }
     
-    
-    
-    
-    @IBAction func editProfile(_ sender: UIButton) {
-        let myPickerController = UIImagePickerController()
-        myPickerController.delegate = self
-        myPickerController.sourceType = UIImagePickerController.SourceType.photoLibrary
-        self.parentContainerViewController?.present(myPickerController, animated: true)
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        profileImageView.image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
-        
-        self.parentContainerViewController?.dismiss(animated: true, completion: nil)
-    }
     
    
     func setProfileImageView(toView: UIImageView)

@@ -41,21 +41,24 @@
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                     </textField>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qau-Es-lsb">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qau-Es-lsb">
                         <rect key="frame" x="32" y="101" width="338" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" systemColor="systemRedColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="Qau-Es-lsb" firstAttribute="top" secondItem="II1-5j-xRN" secondAttribute="bottom" constant="5" id="9kw-9q-GTq"/>
+                    <constraint firstItem="Qau-Es-lsb" firstAttribute="bottom" secondItem="UMK-UK-xjG" secondAttribute="bottomMargin" id="Dcj-wT-IpL"/>
                     <constraint firstItem="A0c-6a-Orz" firstAttribute="top" secondItem="UMK-UK-xjG" secondAttribute="top" constant="12" id="IMe-8x-oya"/>
                     <constraint firstItem="II1-5j-xRN" firstAttribute="leading" secondItem="A0c-6a-Orz" secondAttribute="leading" id="UXI-VV-UI1"/>
                     <constraint firstItem="II1-5j-xRN" firstAttribute="top" secondItem="A0c-6a-Orz" secondAttribute="bottom" constant="12" id="UiW-Qm-ncr"/>
+                    <constraint firstItem="Qau-Es-lsb" firstAttribute="trailing" secondItem="UMK-UK-xjG" secondAttribute="trailingMargin" id="aEw-YV-Yi4"/>
                     <constraint firstAttribute="trailing" secondItem="II1-5j-xRN" secondAttribute="trailing" constant="32" id="dhP-mS-8uV"/>
                     <constraint firstAttribute="trailing" secondItem="A0c-6a-Orz" secondAttribute="trailing" constant="298" id="iue-wF-dyI"/>
                     <constraint firstItem="II1-5j-xRN" firstAttribute="leading" secondItem="UMK-UK-xjG" secondAttribute="leading" constant="32" id="jJn-NG-LXT"/>
+                    <constraint firstItem="Qau-Es-lsb" firstAttribute="leading" secondItem="II1-5j-xRN" secondAttribute="leading" id="pYm-uG-099"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="FeX-u6-KvE"/>

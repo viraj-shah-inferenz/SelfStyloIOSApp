@@ -28,7 +28,7 @@ class SignInEmailTableViewCell: UITableViewCell,UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        var patron = Patron()
+        let patron = Patron()
         patron.email = txtEmailAddress.text!
     }
     

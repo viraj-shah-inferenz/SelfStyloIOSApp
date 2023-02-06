@@ -164,35 +164,29 @@ class SignInViewController: UIViewController,UITextFieldDelegate {
                 lblInvalidEmail.text = "Please enter valid email address"
                 lblInvalidPhone.text = "Please enter valid phone number"
           } else {
-              let patron = Patron(email: txtEmailAddress.text!,phoneNumber: phoneNumberTextField.text!)
+              let patron = Patron(email: txtEmailAddress.text!)
           let trimmed = patron.email.trimmingCharacters(in: .whitespacesAndNewlines)
               apiUtils.sendEmailOtp(email: trimmed)
               self.userDefault.set(trimmed, forKey: "Email")
-          let phonetrimmed = patron.phoneNumber.trimmingCharacters(in: .whitespacesAndNewlines)
-              self.userDefault.set(phonetrimmed, forKey: "Phone")
+              guard let phoneNumber = phoneNumberTextField.text else {return}
+              Auth.auth().settings?.isAppVerificationDisabledForTesting = false
+              PhoneAuthProvider.provider(auth: Auth.auth())
+              self.userDefault.set(phoneNumber, forKey: "Phone")
+              let str  = phoneNumber.components(separatedBy: .whitespaces).joined()
+              PhoneAuthProvider.provider().verifyPhoneNumber(str, uiDelegate: nil){(verificationId, error) in
+                  if error == nil{
+                      print(verificationId)
+                      guard let verifyId = verificationId else {return}
+                      self.userDefault.set(verifyId, forKey: "verificationId")
+                      self.userDefault.synchronize()
+                  }else
+                  {
+                      print("Unable to get Secret Varification Code from firebase",error?.localizedDescription)
+                  }
+                  
+              }
               performSegue(withIdentifier: "moveToOtp", sender: self)
           }
-
-       
-        
-//        else if let phoneNumber = phoneNumberTextField.text {
-//            Auth.auth().settings?.isAppVerificationDisabledForTesting = false
-//            PhoneAuthProvider.provider(auth: Auth.auth())
-//            let str  = phoneNumber.components(separatedBy: .whitespaces).joined()
-//            PhoneAuthProvider.provider().verifyPhoneNumber(str, uiDelegate: nil){(verificationId, error) in
-//                if error == nil{
-//                    print(verificationId)
-//                    guard let verifyId = verificationId else {return}
-//                    self.userDefault.set(verifyId, forKey: "verificationId")
-//                    self.userDefault.synchronize()
-//                }else
-//                {
-//                    print("Unable to get Secret Varification Code from firebase",error?.localizedDescription)
-//                }
-//
-//            }
-//        }
-        
         
     }
     
