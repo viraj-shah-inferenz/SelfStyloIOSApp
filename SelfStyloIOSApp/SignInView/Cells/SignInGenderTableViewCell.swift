@@ -25,7 +25,12 @@ class SignInGenderTableViewCell: UITableViewCell {
     @IBOutlet weak var lblFemale: UILabel!
     
     var patron = Patron()
-
+    
+    
+    @IBOutlet weak var lblInvalidGender: UILabel!
+    var selectedButton = UIButton()
+    var gender: String  = ""
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -49,27 +54,18 @@ class SignInGenderTableViewCell: UITableViewCell {
     
     
     @IBAction func btnSelectGender(_ sender: UIButton) {
-        if sender == btnFemale{
-            btnFemale.isSelected = true
-            
-        }else
-        {
-            btnFemale.isSelected = false
-        }
-        
-        if sender == btnMale{
-            btnMale.isSelected = true
-        }else
-        {
-            btnMale.isSelected = false
-        }
-        
-        if sender == btnOthers{
-            btnOthers.isSelected = true
-        }else
-        {
-            btnOthers.isSelected = false
-        }
+        self.selectedButton.isSelected = false
+               self.selectedButton = sender
+        self.selectedButton.isSelected = true
+               if sender == btnFemale {
+                   gender = "Female"
+               }
+               else  if sender == btnMale {
+
+                   gender = "Male"
+               }else if sender == btnOthers{
+                   gender = "Others"
+               }
     }
     
 }

@@ -26,6 +26,7 @@ class ProfileViewController: UIViewController {
     let db = PatronDao()
     let userDefault = UserDefaults.standard
     var apiUtils = ApiUtils()
+    var window: UIWindow?
     
     
     override func viewDidLoad() {
@@ -33,10 +34,15 @@ class ProfileViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         setProfileImageView(toView: profileImageView)
-        seteditprofilecornerRadiusView(toView: editProfile)
+//        seteditprofilecornerRadiusView(toView: editProfile)
         setbuttoncornerRadiusView(toView: settingsCollectionView)
         setbuttoncornerRadiusView(toView: logoutCollectionView)
         getDataFromDB()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     
     
@@ -47,6 +53,7 @@ class ProfileViewController: UIViewController {
     func getDataFromDB() {
         for patron in db.getAll(){
             profileImageView.image = patron.profileImage.imageFromBase64()
+            self.userDefault.set(patron.profileImage, forKey: "ProfileImage")
             lblName.text = patron.name
             self.userDefault.set(patron.name, forKey: "Name")
             lblEmail.text = patron.email
@@ -59,11 +66,13 @@ class ProfileViewController: UIViewController {
     
     
     @IBAction func btnlogout(_ sender: UIButton) {
-        db.deleteAll()
-        let detailViewController:UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "SignInViewController") as! SignInViewController
+        self.userDefault.removeObject(forKey: APP.IS_LOGIN)
+        self.userDefault.synchronize()
         
-        detailViewController.modalPresentationStyle = .fullScreen
-        self.present(detailViewController, animated: false)
+        let loginNavController = self.storyboard!.instantiateViewController(identifier: "SignInViewController")
+//        navigationController?.pushViewController(loginNavController, animated: true)
+        loginNavController.modalPresentationStyle = .fullScreen
+        self.present(loginNavController, animated: true)
     }
     
     func setProfileImageView(toView: UIImageView)

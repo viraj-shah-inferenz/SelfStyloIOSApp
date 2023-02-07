@@ -4,11 +4,15 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
         <array key="DMSans-Medium.ttf">
             <string>DMSans-Medium</string>
+        </array>
+        <array key="DMSans-Regular.ttf">
+            <string>DMSans-Regular</string>
         </array>
     </customFonts>
     <objects>
@@ -31,67 +35,56 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pD0-Bb-NxR">
-                        <rect key="frame" x="32" y="42" width="14" height="14"/>
+                        <rect key="frame" x="32" y="43" width="87" height="30"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="14" id="LDP-Dk-Ycl"/>
-                            <constraint firstAttribute="height" constant="14" id="lLg-4u-b7J"/>
+                            <constraint firstAttribute="height" constant="30" id="1AU-yv-tdf"/>
                         </constraints>
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <state key="normal" title="Button"/>
-                        <buttonConfiguration key="configuration" style="plain"/>
+                        <buttonConfiguration key="configuration" style="plain" image="radiobutton_unchecked" title="Female" imagePadding="10">
+                            <fontDescription key="titleFontDescription" name="DMSans-Medium" family="DM Sans" pointSize="12"/>
+                            <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </buttonConfiguration>
                         <connections>
                             <action selector="btnSelectGender:" destination="da3-4o-NYo" eventType="touchUpInside" id="PJz-Xe-nOz"/>
                         </connections>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Female" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h2C-24-BDK">
-                        <rect key="frame" x="54" y="42" width="47.666666666666657" height="16.333333333333329"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="16.329999999999998" id="7hQ-ca-1FA"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" name="DMSans-Medium" family="DM Sans" pointSize="14"/>
-                        <color key="textColor" red="0.36862745099999999" green="0.3803921569" blue="0.42745098040000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VWd-Sp-4Cq">
-                        <rect key="frame" x="113" y="42" width="14" height="14"/>
+                        <rect key="frame" x="131" y="43" width="73" height="30"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="14" id="AtV-Eb-aPW"/>
-                            <constraint firstAttribute="height" constant="14" id="yw9-cR-8eM"/>
+                            <constraint firstAttribute="height" constant="30" id="Egp-j1-7xu"/>
                         </constraints>
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <state key="normal" title="Button"/>
-                        <buttonConfiguration key="configuration" style="plain"/>
+                        <buttonConfiguration key="configuration" style="plain" image="radiobutton_unchecked" title="Male" imagePadding="10">
+                            <fontDescription key="titleFontDescription" name="DMSans-Medium" family="DM Sans" pointSize="12"/>
+                            <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </buttonConfiguration>
                         <connections>
                             <action selector="btnSelectGender:" destination="da3-4o-NYo" eventType="touchUpInside" id="fJA-BG-DDX"/>
                         </connections>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Male" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Yz-b8-kAx">
-                        <rect key="frame" x="135" y="42" width="31.666666666666657" height="16.333333333333329"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nyb-Pb-apN">
+                        <rect key="frame" x="32" y="91" width="346" height="21"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="16.329999999999998" id="CC5-5o-LRL"/>
+                            <constraint firstAttribute="height" constant="21" id="21p-qG-VWh"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="FjH-ZB-7lo"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="DMSans-Medium" family="DM Sans" pointSize="14"/>
-                        <color key="textColor" red="0.36862745099999999" green="0.3803921569" blue="0.42745098040000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Others" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vig-Pj-6bV">
-                        <rect key="frame" x="209" y="42" width="45.666666666666657" height="16.333333333333329"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="16.329999999999998" id="R0p-L9-vg2"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" name="DMSans-Medium" family="DM Sans" pointSize="14"/>
-                        <color key="textColor" red="0.36862745099999999" green="0.3803921569" blue="0.42745098040000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <fontDescription key="fontDescription" name="DMSans-Regular" family="DM Sans" pointSize="17"/>
+                        <color key="textColor" systemColor="systemRedColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kFC-kz-AR1">
-                        <rect key="frame" x="187" y="43" width="14" height="14"/>
+                        <rect key="frame" x="212" y="43" width="85.333333333333314" height="30"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="14" id="bSE-Ry-vwT"/>
-                            <constraint firstAttribute="height" constant="14" id="ver-aD-VGl"/>
+                            <constraint firstAttribute="height" constant="30" id="rxW-0O-af6"/>
                         </constraints>
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <state key="normal" title="Button"/>
-                        <buttonConfiguration key="configuration" style="plain"/>
+                        <buttonConfiguration key="configuration" style="plain" image="radiobutton_unchecked" title="Others" imagePadding="10">
+                            <fontDescription key="titleFontDescription" name="DMSans-Medium" family="DM Sans" pointSize="12"/>
+                            <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </buttonConfiguration>
                         <connections>
                             <action selector="btnSelectGender:" destination="da3-4o-NYo" eventType="touchUpInside" id="T2N-F8-DEJ"/>
                         </connections>
@@ -99,21 +92,18 @@
                 </subviews>
                 <color key="backgroundColor" red="0.92549019610000005" green="0.93333333330000001" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
-                    <constraint firstItem="kFC-kz-AR1" firstAttribute="leading" secondItem="0Yz-b8-kAx" secondAttribute="trailing" constant="20.333333333333343" id="9a3-rA-2o7"/>
+                    <constraint firstItem="kFC-kz-AR1" firstAttribute="baseline" secondItem="pD0-Bb-NxR" secondAttribute="baseline" id="26e-QU-QbV"/>
+                    <constraint firstItem="nyb-Pb-apN" firstAttribute="leading" secondItem="pD0-Bb-NxR" secondAttribute="leading" id="3bp-nG-p8q"/>
+                    <constraint firstItem="nyb-Pb-apN" firstAttribute="top" secondItem="pD0-Bb-NxR" secondAttribute="bottom" constant="18" id="5f0-Rz-EUU"/>
+                    <constraint firstItem="kFC-kz-AR1" firstAttribute="leading" secondItem="VWd-Sp-4Cq" secondAttribute="trailing" constant="8" id="HtF-mV-2xK"/>
                     <constraint firstItem="7W8-Zr-Urs" firstAttribute="leading" secondItem="Tvq-fW-YX0" secondAttribute="leading" constant="32" id="QUv-ig-ssS"/>
-                    <constraint firstItem="h2C-24-BDK" firstAttribute="top" secondItem="7W8-Zr-Urs" secondAttribute="bottom" constant="10" id="RhO-QY-z7G"/>
-                    <constraint firstItem="pD0-Bb-NxR" firstAttribute="leading" secondItem="Tvq-fW-YX0" secondAttribute="leading" constant="32" id="RvB-pV-31H"/>
-                    <constraint firstItem="0Yz-b8-kAx" firstAttribute="top" secondItem="7W8-Zr-Urs" secondAttribute="bottom" constant="10" id="VXu-o6-gQv"/>
-                    <constraint firstItem="kFC-kz-AR1" firstAttribute="top" secondItem="7W8-Zr-Urs" secondAttribute="bottom" constant="11" id="Y4f-MR-H40"/>
-                    <constraint firstItem="pD0-Bb-NxR" firstAttribute="top" secondItem="h2C-24-BDK" secondAttribute="top" id="b1M-uE-dIb"/>
                     <constraint firstAttribute="trailing" secondItem="7W8-Zr-Urs" secondAttribute="trailing" constant="298" id="cCN-ip-DGk"/>
-                    <constraint firstItem="VWd-Sp-4Cq" firstAttribute="top" secondItem="7W8-Zr-Urs" secondAttribute="bottom" constant="10" id="cih-fj-kuH"/>
+                    <constraint firstItem="VWd-Sp-4Cq" firstAttribute="leading" secondItem="pD0-Bb-NxR" secondAttribute="trailing" constant="12" id="dfq-H7-fyO"/>
                     <constraint firstItem="7W8-Zr-Urs" firstAttribute="top" secondItem="Tvq-fW-YX0" secondAttribute="top" constant="12" id="duI-hV-2sj"/>
-                    <constraint firstItem="0Yz-b8-kAx" firstAttribute="leading" secondItem="VWd-Sp-4Cq" secondAttribute="trailing" constant="8" symbolic="YES" id="fm3-j9-52O"/>
-                    <constraint firstItem="h2C-24-BDK" firstAttribute="leading" secondItem="pD0-Bb-NxR" secondAttribute="trailing" constant="8" symbolic="YES" id="kmn-FZ-fRh"/>
-                    <constraint firstItem="VWd-Sp-4Cq" firstAttribute="leading" secondItem="h2C-24-BDK" secondAttribute="trailing" constant="11.333333333333343" id="owm-RP-25w"/>
-                    <constraint firstItem="vig-Pj-6bV" firstAttribute="leading" secondItem="kFC-kz-AR1" secondAttribute="trailing" constant="8" symbolic="YES" id="r8X-zm-XSC"/>
-                    <constraint firstItem="vig-Pj-6bV" firstAttribute="top" secondItem="7W8-Zr-Urs" secondAttribute="bottom" constant="10" id="sDg-ea-ZrE"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="nyb-Pb-apN" secondAttribute="trailing" constant="-8" id="gJL-lQ-auI"/>
+                    <constraint firstItem="pD0-Bb-NxR" firstAttribute="leading" secondItem="Tvq-fW-YX0" secondAttribute="leading" constant="32" id="k9B-Z7-YQs"/>
+                    <constraint firstItem="pD0-Bb-NxR" firstAttribute="top" secondItem="7W8-Zr-Urs" secondAttribute="bottom" constant="11" id="lxQ-uK-vTT"/>
+                    <constraint firstItem="kFC-kz-AR1" firstAttribute="baseline" secondItem="VWd-Sp-4Cq" secondAttribute="baseline" id="o8j-7b-LJy"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="k6V-vU-Ifj"/>
@@ -121,12 +111,16 @@
                 <outlet property="btnFemale" destination="pD0-Bb-NxR" id="RQf-kA-xDY"/>
                 <outlet property="btnMale" destination="VWd-Sp-4Cq" id="46X-oq-fYD"/>
                 <outlet property="btnOthers" destination="kFC-kz-AR1" id="mgb-Xq-LZZ"/>
-                <outlet property="lblFemale" destination="h2C-24-BDK" id="ue2-Uo-lST"/>
                 <outlet property="lblGender" destination="7W8-Zr-Urs" id="Lmr-Mv-c9n"/>
-                <outlet property="lblMale" destination="0Yz-b8-kAx" id="GDu-PB-Bx1"/>
-                <outlet property="lblOthers" destination="vig-Pj-6bV" id="Lh7-Os-DRd"/>
+                <outlet property="lblInvalidGender" destination="nyb-Pb-apN" id="I6D-Gx-HNk"/>
             </connections>
             <point key="canvasLocation" x="61.068702290076331" y="51.056338028169016"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="radiobutton_unchecked" width="12" height="12"/>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>

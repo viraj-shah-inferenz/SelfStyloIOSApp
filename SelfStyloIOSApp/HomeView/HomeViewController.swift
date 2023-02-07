@@ -27,6 +27,7 @@ class HomeViewController: UIViewController {
 
     }
     
+    
     func setDelegates() {
         self.tblView.delegate = self
         self.tblView.dataSource = self

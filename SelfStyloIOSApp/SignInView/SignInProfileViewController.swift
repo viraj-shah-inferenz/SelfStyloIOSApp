@@ -85,9 +85,6 @@ extension SignInProfileViewController: UITableViewDelegate, UITableViewDataSourc
             }
         }else if indexPath.row == 4{
             if let gendercell:SignInGenderTableViewCell = tableView.dequeueReusableCell(withIdentifier: "SignInGenderTableViewCell") as? SignInGenderTableViewCell{
-                gendercell.btnMale.addTarget(self, action: #selector(btnMale), for: .touchUpInside)
-                gendercell.btnFemale.addTarget(self, action: #selector(btnFemale), for: .touchUpInside)
-                gendercell.btnOthers.addTarget(self, action: #selector(btnOthers), for: .touchUpInside)
                 return gendercell
             }
         }else if indexPath.row == 5{
@@ -103,70 +100,9 @@ extension SignInProfileViewController: UITableViewDelegate, UITableViewDataSourc
         return UITableViewCell()
     }
     
-    @objc func btnMale(_ sender: UIButton)
-    {
-        if sender.isSelected
-        {
-            patron.gender = "Male"
-        }
-        else
-        {
-            patron.gender = ""
-        }
-    }
-    
-    @objc func btnFemale(_ sender: UIButton)
-    {
-        if sender.isSelected
-        {
-            patron.gender = "Female"
-        }else
-        {
-            patron.gender = ""
-        }
-    }
-    
-    @objc func btnOthers(_ sender: UIButton)
-    {
-        if sender.isSelected
-        {
-            patron.gender = "Others"
-        }else
-        {
-            patron.gender = ""
-        }
-    }
     
     
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        let name = NSIndexPath(row: textField.tag, section: 0)
-            if let namecell:SignInFullNameTableViewCell = tblView.cellForRow(at: name as IndexPath) as? SignInFullNameTableViewCell {
-                if (namecell.txtFullName.text != ""){
-                    
-                    patron.name = namecell.txtFullName.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-                }
-            }
-        
-        let email = NSIndexPath(row: textField.tag, section: 0)
-            if let emailcell:SignInEmailTableViewCell = tblView.cellForRow(at: email as IndexPath) as? SignInEmailTableViewCell {
-                if (emailcell.txtEmailAddress.text == ""){
-    
-                    patron.email = emailcell.txtEmailAddress.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-                }
-                
-                
-            }
-    
-        let phone = NSIndexPath(row: textField.tag, section: 0)
-            if let phonecell:SignInPhoneTableViewCell = tblView.cellForRow(at: phone as IndexPath) as? SignInPhoneTableViewCell {
-                if (phonecell.txtPhoneNumber.text != ""){
-                    patron.phoneNumber = phonecell.txtPhoneNumber.text!.components(separatedBy: .whitespaces).joined()
-                }
-            
-            }
-      
-    }
     
     @objc func editProfile(){
         let myPickerController = UIImagePickerController()
@@ -189,6 +125,65 @@ extension SignInProfileViewController: UITableViewDelegate, UITableViewDataSourc
    
     
     @objc func GoToHome(_ sender: UIButton) {
+        let nameIndex:IndexPath = IndexPath(row: 1, section: 0)
+        let nameCell:SignInFullNameTableViewCell = tblView.cellForRow(at: nameIndex) as! SignInFullNameTableViewCell
+        let emailIndex:IndexPath = IndexPath(row: 2, section: 0)
+        let emailCell:SignInEmailTableViewCell = tblView.cellForRow(at: emailIndex) as! SignInEmailTableViewCell
+        let mobileNumIndex = IndexPath(row: 3, section: 0)
+        let mobileNumCell: SignInPhoneTableViewCell = tblView.cellForRow(at: mobileNumIndex) as! SignInPhoneTableViewCell
+        let genderIndex = IndexPath(row: 4, section: 0)
+        let genderCell: SignInGenderTableViewCell = tblView.cellForRow(at: genderIndex) as! SignInGenderTableViewCell
+        
+        // Empty check
+        if let name = nameCell.txtFullName.text {
+            if name == "" {
+                nameCell.lblInvalidName.text = "Please enter valid name"
+                return
+            } else {
+                patron.name = name.trimmingCharacters(in: .whitespacesAndNewlines)
+            }
+        }
+        
+        if let email = emailCell.txtEmailAddress.text {
+            if email == "" {
+                emailCell.lblInvalidEmail.text = "Please enter valid email address"
+                return
+            } else  {
+                patron.email = email.trimmingCharacters(in: .whitespacesAndNewlines)
+            }
+        }
+        
+        if let mobileNo = mobileNumCell.txtPhoneNumber.text {
+            if mobileNo == "" {
+                mobileNumCell.lblInvalidPhone.text = "Please enter valid mobile number"
+                return
+            } else {
+                patron.phoneNumber = mobileNo
+            }
+        }
+        
+        if genderCell.gender.isEmpty {
+            genderCell.lblInvalidGender.text = "Please select gender"
+            return
+        }else{
+            
+
+                    if genderCell.gender == "Male"
+                    {
+                        genderCell.selectedButton = genderCell.btnMale
+                    }
+                    else if genderCell.gender == "Female"
+                    {
+                        genderCell.selectedButton = genderCell.btnFemale
+                    }else if genderCell.gender == "Others"
+                    {
+                        genderCell.selectedButton = genderCell.btnOthers
+                    }
+            patron.gender = genderCell.gender
+            genderCell.selectedButton.isSelected = true
+
+                }
+        
         if  apiUtils.updateUserDetails(patron: Patron(email: patron.email, phoneNumber: patron.phoneNumber, name: patron.name, gender: patron.gender,profileImage: patron.profileImage))
         {
             let detailViewController:UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "CustomTabBarControllerViewController") as! CustomTabBarControllerViewController
@@ -199,6 +194,50 @@ extension SignInProfileViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     @objc func skip(_ sender: UIButton) {
+        let nameIndex:IndexPath = IndexPath(row: 1, section: 0)
+        let nameCell:SignInFullNameTableViewCell = tblView.cellForRow(at: nameIndex) as! SignInFullNameTableViewCell
+        let emailIndex:IndexPath = IndexPath(row: 2, section: 0)
+        let emailCell:SignInEmailTableViewCell = tblView.cellForRow(at: emailIndex) as! SignInEmailTableViewCell
+        let mobileNumIndex = IndexPath(row: 3, section: 0)
+        let mobileNumCell: SignInPhoneTableViewCell = tblView.cellForRow(at: mobileNumIndex) as! SignInPhoneTableViewCell
+        let genderIndex = IndexPath(row: 4, section: 0)
+        let genderCell: SignInGenderTableViewCell = tblView.cellForRow(at: genderIndex) as! SignInGenderTableViewCell
+        
+        // Empty check
+        if let name = nameCell.txtFullName.text {
+            if name == "" {
+                patron.name = name.trimmingCharacters(in: .whitespacesAndNewlines)
+            }
+        }
+        
+        if let email = emailCell.txtEmailAddress.text {
+            if email == "" {
+                patron.email = email.trimmingCharacters(in: .whitespacesAndNewlines)
+            }
+        }
+        
+        if let mobileNo = mobileNumCell.txtPhoneNumber.text {
+            if mobileNo == "" {
+                patron.phoneNumber = mobileNo
+            }
+        }
+        
+        if genderCell.gender.isEmpty {
+                    if genderCell.gender == "Male"
+                    {
+                        genderCell.selectedButton = genderCell.btnMale
+                    }
+                    else if genderCell.gender == "Female"
+                    {
+                        genderCell.selectedButton = genderCell.btnFemale
+                    }else if genderCell.gender == "Others"
+                    {
+                        genderCell.selectedButton = genderCell.btnOthers
+                    }
+            patron.gender = genderCell.gender
+            genderCell.selectedButton.isSelected = true
+
+                }
         if apiUtils.updateUserDetails(patron: Patron(email: patron.email, phoneNumber: patron.phoneNumber, name: patron.name, gender: patron.gender,profileImage: patron.profileImage)){
             let detailViewController:UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "CustomTabBarControllerViewController") as! CustomTabBarControllerViewController
             
@@ -233,6 +272,7 @@ extension SignInProfileViewController: UITableViewDelegate, UITableViewDataSourc
         
         return 0
     }
+
     
     
 }

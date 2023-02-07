@@ -4,11 +4,15 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
         <array key="DMSans-Medium.ttf">
             <string>DMSans-Medium</string>
+        </array>
+        <array key="DMSans-Regular.ttf">
+            <string>DMSans-Regular</string>
         </array>
     </customFonts>
     <objects>
@@ -31,62 +35,74 @@
                         <color key="textColor" red="0.36862745099999999" green="0.3803921569" blue="0.42745098040000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="riI-rp-Pd6">
-                        <rect key="frame" x="32" y="42" width="14" height="14"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="riI-rp-Pd6">
+                        <rect key="frame" x="32" y="40" width="87" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="Pwr-fV-cT6"/>
+                        </constraints>
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <state key="normal" title="Button"/>
-                        <buttonConfiguration key="configuration" style="plain"/>
+                        <buttonConfiguration key="configuration" style="plain" image="radiobutton_unchecked" title="Female" imagePadding="10">
+                            <fontDescription key="titleFontDescription" name="DMSans-Medium" family="DM Sans" pointSize="12"/>
+                            <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </buttonConfiguration>
                         <connections>
                             <action selector="btnSelectGender:" destination="47L-AL-lEK" eventType="touchUpInside" id="LcR-yL-SF3"/>
                         </connections>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" fixedFrame="YES" text="Female" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PHK-0P-du3">
-                        <rect key="frame" x="54" y="42" width="51" height="16.333333333333329"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" name="DMSans-Medium" family="DM Sans" pointSize="14"/>
-                        <color key="textColor" red="0.36862745099999999" green="0.3803921569" blue="0.42745098040000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X5L-m0-lWt">
-                        <rect key="frame" x="113" y="43" width="24" height="14"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X5L-m0-lWt">
+                        <rect key="frame" x="131" y="40" width="73" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="Kvr-VD-Y4Q"/>
+                        </constraints>
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <state key="normal" title="Button"/>
-                        <buttonConfiguration key="configuration" style="plain"/>
+                        <buttonConfiguration key="configuration" style="plain" image="radiobutton_unchecked" title="Male" imagePadding="10">
+                            <fontDescription key="titleFontDescription" name="DMSans-Medium" family="DM Sans" pointSize="12"/>
+                            <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </buttonConfiguration>
                         <connections>
                             <action selector="btnSelectGender:" destination="47L-AL-lEK" eventType="touchUpInside" id="ha7-VT-P4Y"/>
                         </connections>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Male" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="le6-oD-iUL">
-                        <rect key="frame" x="145" y="42" width="34" height="16.333333333333329"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" name="DMSans-Medium" family="DM Sans" pointSize="14"/>
-                        <color key="textColor" red="0.36862745099999999" green="0.3803921569" blue="0.42745098040000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TBr-nW-FfN">
+                        <rect key="frame" x="32" y="101" width="350" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="Wl8-83-Dt9"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="DMSans-Regular" family="DM Sans" pointSize="17"/>
+                        <color key="textColor" systemColor="systemRedColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fMx-Ua-cVM">
-                        <rect key="frame" x="187" y="44" width="24" height="14"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fMx-Ua-cVM">
+                        <rect key="frame" x="216" y="40" width="86" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="GpJ-Le-fYy"/>
+                        </constraints>
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <state key="normal" title="Button"/>
-                        <buttonConfiguration key="configuration" style="plain"/>
+                        <buttonConfiguration key="configuration" style="plain" image="radiobutton_unchecked" title="Others" imagePadding="10">
+                            <fontDescription key="titleFontDescription" name="DMSans-Medium" family="DM Sans" pointSize="12"/>
+                            <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </buttonConfiguration>
                         <connections>
                             <action selector="btnSelectGender:" destination="47L-AL-lEK" eventType="touchUpInside" id="Bs7-5U-mvN"/>
                         </connections>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Others" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="85L-8i-BQl">
-                        <rect key="frame" x="219" y="42" width="47" height="16.333333333333329"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" name="DMSans-Medium" family="DM Sans" pointSize="14"/>
-                        <color key="textColor" red="0.36862745099999999" green="0.3803921569" blue="0.42745098040000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                 </subviews>
                 <color key="backgroundColor" red="0.92549019610000005" green="0.93333333330000001" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstItem="Qcd-Tn-pBS" firstAttribute="top" secondItem="yJH-wN-nK7" secondAttribute="top" constant="12" id="7EG-oG-bnQ"/>
+                    <constraint firstItem="TBr-nW-FfN" firstAttribute="leading" secondItem="yJH-wN-nK7" secondAttribute="leadingMargin" constant="12" id="8VX-Wy-Fkf"/>
+                    <constraint firstItem="riI-rp-Pd6" firstAttribute="top" secondItem="Qcd-Tn-pBS" secondAttribute="bottom" constant="8" symbolic="YES" id="ITf-7i-15L"/>
+                    <constraint firstItem="TBr-nW-FfN" firstAttribute="bottom" secondItem="yJH-wN-nK7" secondAttribute="bottomMargin" id="ctV-CH-b8A"/>
+                    <constraint firstItem="TBr-nW-FfN" firstAttribute="trailing" secondItem="yJH-wN-nK7" secondAttribute="trailingMargin" constant="12" id="eEq-8d-uEO"/>
+                    <constraint firstItem="X5L-m0-lWt" firstAttribute="baseline" secondItem="fMx-Ua-cVM" secondAttribute="baseline" id="enj-jn-pKt"/>
+                    <constraint firstItem="fMx-Ua-cVM" firstAttribute="leading" secondItem="X5L-m0-lWt" secondAttribute="trailing" constant="12" id="j9X-7G-WxZ"/>
+                    <constraint firstItem="riI-rp-Pd6" firstAttribute="leading" secondItem="yJH-wN-nK7" secondAttribute="leading" constant="32" id="jHq-gG-WKH"/>
                     <constraint firstItem="Qcd-Tn-pBS" firstAttribute="leading" secondItem="yJH-wN-nK7" secondAttribute="leadingMargin" constant="12" id="kt2-46-L8m"/>
+                    <constraint firstItem="X5L-m0-lWt" firstAttribute="leading" secondItem="riI-rp-Pd6" secondAttribute="trailing" constant="12" id="lrk-PU-x57"/>
+                    <constraint firstItem="X5L-m0-lWt" firstAttribute="baseline" secondItem="riI-rp-Pd6" secondAttribute="baseline" id="x7Q-E2-EqE"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="MYn-jr-E5L"/>
@@ -94,12 +110,16 @@
                 <outlet property="btnFemale" destination="riI-rp-Pd6" id="imN-cH-Vj4"/>
                 <outlet property="btnMale" destination="X5L-m0-lWt" id="CUI-L7-Ic5"/>
                 <outlet property="btnOthers" destination="fMx-Ua-cVM" id="gaw-mv-JW3"/>
-                <outlet property="lblFemale" destination="PHK-0P-du3" id="lpx-Xp-ps7"/>
                 <outlet property="lblGender" destination="Qcd-Tn-pBS" id="RGH-hR-7bO"/>
-                <outlet property="lblMale" destination="le6-oD-iUL" id="Xt3-IL-quJ"/>
-                <outlet property="lblOthers" destination="85L-8i-BQl" id="COV-bq-WJB"/>
+                <outlet property="lblInvalidGender" destination="TBr-nW-FfN" id="wzV-qA-GPn"/>
             </connections>
             <point key="canvasLocation" x="61.068702290076331" y="51.056338028169016"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="radiobutton_unchecked" width="12" height="12"/>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>

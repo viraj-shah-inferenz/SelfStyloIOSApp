@@ -59,8 +59,13 @@ class SignInViewController: UIViewController,UITextFieldDelegate {
         btnProceed?.addTarget(self, action: #selector(btnproceed), for: .touchUpInside)
         setTextFieldEmail()
         setTextFieldPhone()
-        
     }
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        self.navigationController?.isNavigationBarHidden = true
+//        self.tabBarController?.tabBar.isHidden = true
+//        // hide here
+//    }
     
     func setTextFieldEmail(){
         self.EmailIdView.isHidden = false
@@ -126,24 +131,7 @@ class SignInViewController: UIViewController,UITextFieldDelegate {
             lblInvalidPhone.text = "Not a Valid \(validityType)"
         }
     }
-    
-//
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "moveToOtp"
-//        {
-//            if let email = txtEmailAddress.text, email.isEmpty {
-//                if email == ""{
-//                      let patron = Patron(email: txtEmailAddress.text!)
-//                  let trimmed = patron.email.trimmingCharacters(in: .whitespacesAndNewlines)
-//                      apiUtils.sendEmailOtp(email: trimmed)
-//                      self.userDefault.set(trimmed, forKey: "Email")
-//                    emailAlert.show()
-//              } else {
-//                  lblInvalidEmail.text = "Please enter valid email address"
-//              }
-//            }
-//        }
-//    }
+  
 
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool{
         guard let email = txtEmailAddress.text, !email.isEmpty, email.count > 0  else {
@@ -183,10 +171,13 @@ class SignInViewController: UIViewController,UITextFieldDelegate {
                   {
                       print("Unable to get Secret Varification Code from firebase",error?.localizedDescription)
                   }
-                  
+
               }
+
               performSegue(withIdentifier: "moveToOtp", sender: self)
+
           }
+     
         
     }
     

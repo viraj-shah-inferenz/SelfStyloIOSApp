@@ -136,7 +136,7 @@ class PatronDao
     
     func update(patron:Patron) -> Bool
     {
-        let updateStatementString = "UPDATE patron SET gender = '\(patron.gender)',email='\(patron.email)', contact_number=\(patron.phoneNumber),name='\(patron.name)',profile_photo = '\(patron.profileImage)' WHERE id=\(patron.id)"
+        let updateStatementString = "UPDATE patron SET gender='\(patron.gender)',email='\(patron.email)', contact_number='\(patron.phoneNumber)',name='\(patron.name)',profile_photo='\(patron.profileImage)' WHERE id=\(patron.id)"
          var updateStatement: OpaquePointer? = nil
          if sqlite3_prepare_v2(db, updateStatementString, -1, &updateStatement, nil) == SQLITE_OK {
                 if sqlite3_step(updateStatement) == SQLITE_DONE {

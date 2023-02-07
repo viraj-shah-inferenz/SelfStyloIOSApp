@@ -23,11 +23,7 @@ class FavouriteViewController: UIViewController,GetUsersDelegate {
 
     @IBOutlet weak var btnHomeView: UIButton!
     @IBOutlet weak var FavouriteCollectionView: UICollectionView!
-//    var brandlogoArr = [UIImage(named: "brandlogo"),UIImage(named: "brandlogo"),UIImage(named: "brandlogo")]
-//    var brand_name:[String] = ["Inferenz","Inferenz","Inferenz"]
-//    var color_code = [UIImage(named: "color_code"),UIImage(named: "color_code"),UIImage(named: "color_code")]
-//    var color_name:[String] = ["Red Pink","Red Pink","Red Pink"]
-//    var category_name:[String] = ["Lipstick","Eyeliner","Blush"]
+
     
     var favourite_product : [FavouriteProducts] = []
     var apiUtils = ApiUtils()
@@ -101,7 +97,7 @@ extension FavouriteViewController: UICollectionViewDelegateFlowLayout{
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let bounds = FavouriteCollectionView.bounds
-        return CGSize(width: bounds.width/2 - 20, height: bounds.height/3)
+        return CGSize(width: bounds.width/2 - 20, height: bounds.height/4)
     }
 
 }

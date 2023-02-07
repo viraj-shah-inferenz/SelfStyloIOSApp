@@ -100,7 +100,6 @@
 		22E8EA042970114200E5BE59 /* FavouriteProducts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E8EA032970114200E5BE59 /* FavouriteProducts.swift */; };
 		22EC1FA62966A615000F86EF /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EC1FA52966A615000F86EF /* CardView.swift */; };
 		22F858B2295AC6A400A7D86E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F858B1295AC6A400A7D86E /* AppDelegate.swift */; };
-		22F858B4295AC6A400A7D86E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F858B3295AC6A400A7D86E /* SceneDelegate.swift */; };
 		22F858B6295AC6A400A7D86E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F858B5295AC6A400A7D86E /* HomeViewController.swift */; };
 		22F858B9295AC6A400A7D86E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22F858B7295AC6A400A7D86E /* Main.storyboard */; };
 		22F858BB295AC6A600A7D86E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22F858BA295AC6A600A7D86E /* Assets.xcassets */; };
@@ -229,7 +228,6 @@
 		22EC1FA52966A615000F86EF /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		22F858AE295AC6A400A7D86E /* SelfStyloIOSApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SelfStyloIOSApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22F858B1295AC6A400A7D86E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		22F858B3295AC6A400A7D86E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		22F858B5295AC6A400A7D86E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		22F858B8295AC6A400A7D86E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		22F858BA295AC6A600A7D86E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -584,7 +582,6 @@
 				22A477D829654EF900523866 /* SettingsView */,
 				222E1A2729645D9B0094FA0A /* extensions */,
 				22F858B1295AC6A400A7D86E /* AppDelegate.swift */,
-				22F858B3295AC6A400A7D86E /* SceneDelegate.swift */,
 				22C8CA52295ED63D00336E03 /* HomeView */,
 				22F858B7295AC6A400A7D86E /* Main.storyboard */,
 				22F858BA295AC6A600A7D86E /* Assets.xcassets */,
@@ -925,7 +922,6 @@
 				22F858B2295AC6A400A7D86E /* AppDelegate.swift in Sources */,
 				22E7AE9F295D8DE900F95FE0 /* DialogSelectionViewController.swift in Sources */,
 				22E8E9FC29700B9D00E5BE59 /* IApiCalls.swift in Sources */,
-				22F858B4295AC6A400A7D86E /* SceneDelegate.swift in Sources */,
 				22E8E9FE29700C4300E5BE59 /* ApiUtils.swift in Sources */,
 				227177952968157F00ABEC31 /* SignInPhoneTableViewCell.swift in Sources */,
 				226A3E68296D63BC00990849 /* TryOnTabBarViewController.swift in Sources */,

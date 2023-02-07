@@ -42,6 +42,8 @@ extension EditProfileViewController: UITableViewDelegate, UITableViewDataSource,
 
         if indexPath.row == 0 {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "SelectPhotoTableViewCell") as? SelectPhotoTableViewCell {
+                let image = userDefault.string(forKey: "ProfileImage")
+                cell.profileImageView.image = image?.imageFromBase64()
                 cell.edtProfile.addTarget(self, action: #selector(editProfile), for: .touchUpInside)
                 return cell
             }
@@ -62,7 +64,6 @@ extension EditProfileViewController: UITableViewDelegate, UITableViewDataSource,
                 let email = userDefault.string(forKey: "Email")
                 emailcell.txtEmailAddress.text = email
                 emailcell.txtEmailAddress.tag = indexPath.row
-                emailcell.txtEmailAddress.delegate = self
                 return emailcell
             }
         } else if indexPath.row == 3 {
@@ -70,14 +71,10 @@ extension EditProfileViewController: UITableViewDelegate, UITableViewDataSource,
                 let phone = userDefault.string(forKey: "Phone")
                 phonecell.txtPhoneNumber.text = phone
                 phonecell.txtPhoneNumber.tag = indexPath.row
-                phonecell.txtPhoneNumber.delegate = self
                 return phonecell
             }
         }else if indexPath.row == 4{
             if let gendercell:SelectGenderTableViewCell = tableView.dequeueReusableCell(withIdentifier: "SelectGenderTableViewCell") as? SelectGenderTableViewCell{
-                gendercell.btnMale.addTarget(self, action: #selector(btnMale), for: .touchUpInside)
-                gendercell.btnFemale.addTarget(self, action: #selector(btnFemale), for: .touchUpInside)
-                gendercell.btnOthers.addTarget(self, action: #selector(btnOthers), for: .touchUpInside)
                 return gendercell
             }
         }else if indexPath.row == 5{
@@ -88,30 +85,6 @@ extension EditProfileViewController: UITableViewDelegate, UITableViewDataSource,
         }
 
         return UITableViewCell()
-    }
-    
-    @objc func btnMale(_ sender: UIButton)
-    {
-        if sender.isSelected
-        {
-            patron[0].gender = "Male"
-        }
-    }
-    
-    @objc func btnFemale(_ sender: UIButton)
-    {
-        if sender.isSelected
-        {
-            patron[0].gender = "Female"
-        }
-    }
-    
-    @objc func btnOthers(_ sender: UIButton)
-    {
-        if sender.isSelected
-        {
-            patron[0].gender = "Others"
-        }
     }
     
     @objc func editProfile(){
@@ -132,28 +105,7 @@ extension EditProfileViewController: UITableViewDelegate, UITableViewDataSource,
         cell.profileImageView.image = patron[0].profileImage.imageFromBase64()
         self.dismiss(animated: true,completion: nil)
     }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {   //delegate method
-        
-        
-        let name = NSIndexPath(row: textField.tag, section: 0)
-            if let namecell:SelectFullNameTableViewCell = tblView.cellForRow(at: name as IndexPath) as? SelectFullNameTableViewCell {
-                    patron[0].name = namecell.txtFullName.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            }
-        
-        let email = NSIndexPath(row: textField.tag, section: 0)
-            if let emailcell:SelectEmailTableViewCell = tblView.cellForRow(at: email as IndexPath) as? SelectEmailTableViewCell{
-                    patron[0].email = emailcell.txtEmailAddress.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            }
-        
-        
-        let phone = NSIndexPath(row: textField.tag, section: 0)
-            if let phonecell:SelectPhoneTableViewCell = tblView.cellForRow(at: phone as IndexPath) as? SelectPhoneTableViewCell {
-                    patron[0].phoneNumber = phonecell.txtPhoneNumber.text!
-            
-            }
-        
-    }
+
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 0 {
@@ -181,13 +133,70 @@ extension EditProfileViewController: UITableViewDelegate, UITableViewDataSource,
     }
     
     @objc func updateUserDetails(){
-        if db.update(patron: patron[0])
-        {
-            let detailViewController:UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "CustomTabBarControllerViewController") as! CustomTabBarControllerViewController
+        let nameIndex:IndexPath = IndexPath(row: 1, section: 0)
+        let nameCell:SelectFullNameTableViewCell = tblView.cellForRow(at: nameIndex) as! SelectFullNameTableViewCell
+        let emailIndex:IndexPath = IndexPath(row: 2, section: 0)
+        let emailCell:SelectEmailTableViewCell = tblView.cellForRow(at: emailIndex) as! SelectEmailTableViewCell
+        let mobileNumIndex = IndexPath(row: 3, section: 0)
+        let mobileNumCell: SelectPhoneTableViewCell = tblView.cellForRow(at: mobileNumIndex) as! SelectPhoneTableViewCell
+        let genderIndex = IndexPath(row: 4, section: 0)
+        let genderCell: SelectGenderTableViewCell = tblView.cellForRow(at: genderIndex) as! SelectGenderTableViewCell
+        
+        // Empty check
+        if let name = nameCell.txtFullName.text {
+            if name == "" {
+                nameCell.lblInvalidName.text = "Please enter valid name"
+                return
+            } else {
+                patron[0].name = name.trimmingCharacters(in: .whitespacesAndNewlines)
+            }
+        }
+        
+        if let email = emailCell.txtEmailAddress.text {
+            if email == "" {
+                emailCell.lblInvalidEmail.text = "Please enter valid email address"
+                return
+            } else  {
+                patron[0].email = email.trimmingCharacters(in: .whitespacesAndNewlines)
+            }
+        }
+        
+        if let mobileNo = mobileNumCell.txtPhoneNumber.text {
+            if mobileNo == "" {
+                mobileNumCell.lblInvalidPhone.text = "Please enter valid mobile number"
+                return
+            } else {
+                patron[0].phoneNumber = mobileNo
+            }
+        }
+        
+        if genderCell.gender.isEmpty {
+            genderCell.lblInvalidGender.text = "Please select gender"
+            return
+        }else{
             
+
+                    if genderCell.gender == "Male"
+                    {
+                        genderCell.selectedButton = genderCell.btnMale
+                    }
+                    else if genderCell.gender == "Female"
+                    {
+                        genderCell.selectedButton = genderCell.btnFemale
+                    }else if genderCell.gender == "Others"
+                    {
+                        genderCell.selectedButton = genderCell.btnOthers
+                    }
+            patron[0].gender = genderCell.gender
+            genderCell.selectedButton.isSelected = true
+
+                }
+        
+        if db.update(patron: patron[0]) {
+            let detailViewController:UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "CustomTabBarControllerViewController") as! CustomTabBarControllerViewController
+
             detailViewController.modalPresentationStyle = .fullScreen
             self.present(detailViewController, animated: false)
         }
     }
-    
 }

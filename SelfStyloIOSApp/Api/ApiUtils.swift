@@ -8,6 +8,10 @@
 import Foundation
 import UIKit
 
+struct APP {
+    static let IS_LOGIN = "isLogin"
+}
+
 protocol GetUsersDelegate {
     func refreshFavouriteProductsList(favouriteproductList: [FavouriteProducts])
     func refreshBannerList(bannerList: [Banner])
@@ -66,6 +70,8 @@ class ApiUtils{
                 print("response = \(String(describing: response))")
                 
             }
+            
+            
             
             let responseString = String(data: data, encoding: .utf8)
             print("responseString = \(String(describing: responseString))")

@@ -14,7 +14,10 @@ class SignInOtpViewController: UIViewController {
 
     @IBOutlet var otpTextFieldView: OTPFieldView!
     
-    @IBOutlet weak var LblEmailPhone: UILabel!
+    @IBOutlet weak var LblEmail: UILabel!
+    
+    @IBOutlet weak var LblPhone: UILabel!
+    
     var apiUtils = ApiUtils()
     var emailVC = SignInEmailViewController()
     var phoneVC = SignInPhoneViewController()
@@ -39,19 +42,21 @@ class SignInOtpViewController: UIViewController {
         timerLabel.text = ""
         sendOTPCode()
         setupOtpView()
-        let email = userDefault.string(forKey: "Email")
-        LblEmailPhone.text = email!
-        let phone = userDefault.string(forKey: "Phone")
-        LblEmailPhone.text = phone!
-    
+        getUserData()
         setbtnProceedView(toView: resendOTPBtn)
       
+    }
+    func getUserData(){
+        let email = userDefault.string(forKey: "Email")
+        LblEmail.text = email
+        let phone = userDefault.string(forKey: "Phone")
+        LblPhone.text = phone
     }
     
     
     @IBAction func resendOTPCode(_ sender: UIButton) {
-                let email = userDefault.string(forKey: "Email")
-        if email != "" {
+        let email = userDefault.string(forKey: "Email")
+        if email == "" {
             let patron = Patron(email: email!)
             apiUtils.sendEmailOtp(email: patron.email)
             timerLabel.text = ""
@@ -60,7 +65,7 @@ class SignInOtpViewController: UIViewController {
             resendBtn.isHidden = true
             sendOTPCode()
         }
-            
+        
     }
     
     func setupOtpView(){
@@ -110,6 +115,9 @@ class SignInOtpViewController: UIViewController {
                 print("Please enter valid OTP")
             }
         }
+        
+        UserDefaults.standard.set("true", forKey: APP.IS_LOGIN)
+        UserDefaults.standard.synchronize()
         
         guard let verificationId = userDefault.string(forKey: "verificationId") else {return}
         let credential = PhoneAuthProvider.provider().credential(withVerificationID: verificationId, verificationCode: otpString)
