@@ -66,13 +66,13 @@ class ProfileViewController: UIViewController {
     
     
     @IBAction func btnlogout(_ sender: UIButton) {
-        self.userDefault.removeObject(forKey: APP.IS_LOGIN)
-        self.userDefault.synchronize()
+        UserDefaults.standard.removeObject(forKey: APP.IS_LOGIN)
+        UserDefaults.standard.synchronize()
         
         let loginNavController = self.storyboard!.instantiateViewController(identifier: "SignInViewController")
 //        navigationController?.pushViewController(loginNavController, animated: true)
         loginNavController.modalPresentationStyle = .fullScreen
-        self.present(loginNavController, animated: true)
+        self.present(loginNavController, animated: false)
     }
     
     func setProfileImageView(toView: UIImageView)
