@@ -7,25 +7,85 @@
 
 import UIKit
 
-class EyeshadowViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-
+class EyeshadowViewController: UIViewController {
+    
     @IBOutlet weak var productListCollectionView: UICollectionView!
     
     @IBOutlet weak var colorNameCollectionView: UICollectionView!
     
     @IBOutlet weak var btnCheckbox: UIButton!
     
-    var color_image:[String] = ["color_code_circle", "color_code_circle","color_code_circle", "color_code_circle","color_code_circle"]
-    var color_name:[String] =  ["Mulberry","Pecan","Sandstone","Pecan Micro","Sandstone Metallic"]
+//    var color_image:[String] = ["color_code_circle", "color_code_circle","color_code_circle", "color_code_circle","color_code_circle"]
+//    var color_name:[String] =  ["Mulberry","Pecan","Sandstone","Pecan Micro","Sandstone Metallic"]
+    
+    var makeup = MakeDetails()
+    
+    var apiUtils = ApiUtils()
+    
+    var arrCategory = [Category]()
+    var arrProduct = [Product]()
+    
+    var backToCategory : (()-> Void)?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setDelegates()
-       reloadCollectionViewData()
+        //        setDelegates()
+        reloadCollectionViewData()
         btnCheckbox.setImage(UIImage.init(named: "favourite_unchecked"), for: .normal)
+        DispatchQueue.global(qos: .background).async {
+            self.apiUtils.fetchMakeupDetails { makeupDetails in
+                DispatchQueue.main.sync {
+                    if let mkup = makeupDetails {
+                        self.makeup = mkup
+                        if self.makeup.data?.makeup?.count ?? 0 > 0 {
+                            self.setEyeshadowData()
+                        }
+                    }
+                }
+            }
+        }
         
     }
     
-
+    func setEyeshadowData() {
+        arrCategory.removeAll()
+        arrProduct.removeAll()
+        
+        if let makeup = self.makeup.data?.makeup{
+            for makeUp in makeup {
+                if makeUp.makeupName == "Eyeshadow" {
+                    if let category = makeUp.category {
+                        for cat in category {
+                            arrCategory.append(cat)
+                        }
+                    }
+                }
+            }
+        }
+        reloadCollections()
+    }
+    func reloadCollections() {
+        arrProduct.removeAll()
+        if let product = arrCategory[0].products {
+            for p in product {
+                arrProduct.append(p)
+            }
+        }
+        setDelegates()
+        self.colorNameCollectionView.reloadData()
+        self.productListCollectionView.reloadData()
+    }
+    func setCategory(categoryIndex: Int) {
+        arrProduct.removeAll()
+        if let product = arrCategory[categoryIndex].products {
+            for p in product {
+                arrProduct.append(p)
+            }
+        }
+        self.productListCollectionView.reloadData()
+    }
+    
+    
     func reloadCollectionViewData() {
         self.productListCollectionView.reloadData()
         self.colorNameCollectionView.reloadData()
@@ -33,9 +93,7 @@ class EyeshadowViewController: UIViewController, UICollectionViewDelegate, UICol
     
     
     @IBAction func btnBack(_ sender: UIButton) {
-        let detailViewController:UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "MakeupViewController") as! MakeupViewController
-        detailViewController.modalPresentationStyle = .fullScreen
-        self.present(detailViewController, animated: false)
+        backToCategory?()
     }
     
     func setDelegates()
@@ -50,44 +108,86 @@ class EyeshadowViewController: UIViewController, UICollectionViewDelegate, UICol
     @IBAction func btnSelectCheckbox(_ sender: UIButton) {
         if btnCheckbox.isSelected{
             btnCheckbox.setImage(UIImage.init(named: "favourite_unchecked"), for: .normal)
-        }else
+        } else
         {
             btnCheckbox.setImage(UIImage.init(named: "favourite_checked"), for: .normal)
         }
         btnCheckbox.isSelected = !btnCheckbox.isSelected
     }
+}
+
+extension EyeshadowViewController:UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView == colorNameCollectionView{
-            return color_name.count
+        if collectionView.tag == 0 {
+            if arrProduct.count > 0 {
+                return arrProduct.count
+            } else {
+                return 0
+            }
+        } else if collectionView.tag == 1 {
+            if arrCategory.count > 0 {
+                return arrCategory.count
+            } else {
+                return 0
+            }
+        } else {
+            return 0
         }
-        return 10
     }
-
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         let cell = productListCollectionView.dequeueReusableCell(withReuseIdentifier: "ColorCodeCollectionViewCell", for: indexPath) as! ColorCodeCollectionViewCell
-        cell.colorImage.backgroundColor = UIColor.blue
-        cell.colorImage.layer.cornerRadius = 15
-        if collectionView == colorNameCollectionView{
-            let colornamecell = colorNameCollectionView.dequeueReusableCell(withReuseIdentifier: "ColorNameCollectionViewCell", for: indexPath) as! ColorNameCollectionViewCell
-            colornamecell.lblcolor_name.text = color_name[indexPath.row]
-            return colornamecell
+        
+        cell.colorImage.clipsToBounds = true
+        cell.colorImage.layer.cornerRadius = cell.colorImage.frame.width / 2
+        
+        let colornameCell = colorNameCollectionView.dequeueReusableCell(withReuseIdentifier: "ColorNameCollectionViewCell", for: indexPath) as! ColorNameCollectionViewCell
+        
+        if collectionView.tag == 0 {
+            if arrProduct.count > 0 {
+                let data = arrProduct[indexPath.item]
+                print(data.colorCode)
+                cell.colorImage.backgroundColor = data.colorCode?.rgbToColor()
+            }
+            return cell
+        } else if collectionView.tag == 1 {
+            if arrCategory.count > 0 {
+                let data = arrCategory[indexPath.item]
+                colornameCell.lblcolor_name.text = data.categoryName
+            }
+            return colornameCell
+        } else {
+            return UICollectionViewCell()
         }
-        return cell
-
     }
-
-
-
-
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        if collectionView.tag == 0 {
+            // product color
+            NotificationCenter.default.post(name: NSNotification.Name("applyEyeshadow"), object: arrProduct[indexPath.item])
+            
+            
+            
+        } else if collectionView.tag == 1 {
+            // Category name
+            let data = arrCategory[indexPath.item]
+            setCategory(categoryIndex: indexPath.item)
+        } else {
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-
+        
         let bounds = collectionView.bounds
         return CGSize(width: bounds.width/2 - 25, height: bounds.height)
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-            return 25.0
+        return 25.0
     }
+    
+    
 }

@@ -9,7 +9,23 @@ import Foundation
 import UIKit
 
 
+enum ImageFormat {
+    case png
+    case jpeg(CGFloat)
+}
 
+extension UIImage {
+    func base64(format: ImageFormat) -> String? {
+        var imageData: Data?
+        
+        switch format {
+        case .png: imageData = self.pngData()
+        case .jpeg(let compression): imageData = self.jpegData(compressionQuality: compression)
+        }
+        
+        return imageData?.base64EncodedString()
+    }
+}
 
 extension String{
     
@@ -63,11 +79,21 @@ extension String{
     }
     
     func imageFromBase64() -> UIImage? {
+<<<<<<< HEAD
       guard let data = Data(base64Encoded: self) else { return nil }
       return UIImage(data: data)
     }
     func isEqualToString(find: String) -> Bool {
       return String(format: self) == find
+=======
+        guard let data = Data(base64Encoded: self) else { return nil }
+        
+        return UIImage(data: data)
+    }
+    
+    func isEqualToString(find: String) -> Bool {
+        return String(format: self) == find
+>>>>>>> 1d86fa1 (add makeup feature like:- Lipstick, Eyeshadow, Blush)
     }
 }
 

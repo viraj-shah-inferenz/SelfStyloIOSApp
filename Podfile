@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '14.2'
+# platform :ios, '9.0'
 
 target 'SelfStyloIOSApp' do
   # Comment the next line if you don't want to use dynamic frameworks
@@ -13,7 +13,6 @@ target 'SelfStyloIOSApp' do
    pod 'Firebase/Core'
    pod 'Firebase/Auth'
    pod 'GoogleSignIn'
-  
 
   target 'SelfStyloIOSAppTests' do
     inherit! :search_paths

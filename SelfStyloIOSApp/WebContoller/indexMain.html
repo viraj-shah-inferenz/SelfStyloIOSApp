@@ -1,0 +1,2752 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script
+      src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gl-matrix/3.4.2/gl-matrix.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/numjs/0.14.2/numjs.min.js"
+      integrity="sha512-axTneBd8Ij3w/QXJ8FUuYEjJnOCdYpR49Kb31yL71nCjMrBu8wn4aynslTH/sJMcJXih7zVyUjPtcVHRy1J/wQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="https://docs.opencv.org/4.5.3/opencv.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/nicolaspanel/numjs@0.15.1/dist/numjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
+    <script src="Js/coordinates.js"></script>
+    <script src="Js/b-spline.js"></script>
+    <style>
+     body{
+      margin: auto;
+     }
+    </style>
+  </head>
+
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <!-- Canvas -->
+    <div class="containerMain">
+      <canvas
+        id="canvas_mask"
+        style="transform: rotateY(180deg); display: none"
+        class="canvasElem"
+      ></canvas>
+      <canvas
+        class="videoRenderer canvasElem"
+        id="canvas_output"
+        width="375"
+        height="705"
+        style="transform: rotateY(180deg); position: absolute"
+      ></canvas>
+      <canvas
+        class="glCanvas canvasElem"
+        id="glCanvas"
+        width="375px"
+        height="705px"
+        style="transform: rotateY(0deg); position: absolute"
+      ></canvas>
+
+      <!-- Video Element -->
+      <video
+        class="video"
+        id="video"
+        width="375px"
+        height="705px"
+        style="transform: rotateY(180deg); display: none"
+        muted="muted"
+        autoplay
+        playsinline
+        loop
+        disabled="true"
+      ></video>
+    </div>
+    <!-- Lipstick Module -->
+    <script type="text/javascript">
+      /**
+       * JSON to store all the applied makeup effects by the user. Will update regularly.
+       * @type{makeup_type : {color : Array<number> , product_type : number , style : number}}
+       */
+      
+
+      /**
+       * JSON to store the images of all the available eyeliner styles.
+       * @type{ id : base64string }
+       */
+      var eyelinerStyleBase64Strings = {};
+      var effectData={};
+
+      /**
+       * An Int variable to store the last used eyeliner style so no extra image loading takes place.
+       * @type{number}
+       */
+      var eyelinerStyleInUse = null;
+
+      //Get All Canvas Tags
+      const getAllCanvas = document.getElementsByTagName("canvas");
+
+      //Video DOM ELement
+      const videoElement = document.getElementsByClassName("video")[0];
+
+      //Canvas DOM Element
+      var canvasElement = document.getElementsByClassName("videoRenderer")[0];
+      var canvasElement_1 = document.getElementById("canvas_mask");
+      const glCanvas = document.getElementById("glCanvas");
+
+      //Canvas Context
+      var canvasCtx = canvasElement.getContext("2d");
+      var canvasCtx_1 = canvasElement_1.getContext("2d");
+
+      //Texture Image
+      const imgTagGloss = document.createElement("img");
+      const imgTagGlitter = document.createElement("img");
+      const imgTagMetallic = document.createElement("img");
+      const eyeshadowBaseTexture = document.createElement("img");
+      const eyeshadowMetallicTexture = document.createElement("img");
+      const eyeshadowMicroTexture = document.createElement("img");
+      const eyeshadowNanoTexture = document.createElement("img");
+      const eyelinerStyleTexture = document.createElement("img");
+      const blushHeartFaceTexture = document.createElement("img");
+      const blushLongFaceTexture = document.createElement("img");
+      const blushOvalFaceTexture = document.createElement("img");
+      const blushRoundFaceTexture = document.createElement("img");
+      const blushSquareFaceTexture = document.createElement("img");
+      const blushTriangleFaceTexture = document.createElement("img");
+
+      imgTagGloss.setAttribute("width", 100);
+      imgTagGloss.setAttribute("height", 100);
+
+      imgTagGlitter.setAttribute("width", 100);
+      imgTagGlitter.setAttribute("height", 100);
+
+      imgTagMetallic.setAttribute("width", 100);
+      imgTagMetallic.setAttribute("height", 100);
+
+      eyeshadowBaseTexture.setAttribute("width", 100);
+      eyeshadowBaseTexture.setAttribute("height", 100);
+
+      eyeshadowMetallicTexture.setAttribute("width", 100);
+      eyeshadowMetallicTexture.setAttribute("height", 100);
+
+      eyeshadowMicroTexture.setAttribute("width", 100);
+      eyeshadowMicroTexture.setAttribute("height", 100);
+
+      eyeshadowNanoTexture.setAttribute("width", 100);
+      eyeshadowNanoTexture.setAttribute("height", 100);
+
+      eyelinerStyleTexture.setAttribute("width", 100);
+      eyelinerStyleTexture.setAttribute("height", 100);
+
+      blushHeartFaceTexture.setAttribute("width", 100);
+      blushHeartFaceTexture.setAttribute("height", 100);
+
+      blushLongFaceTexture.setAttribute("width", 100);
+      blushLongFaceTexture.setAttribute("height", 100);
+
+      blushOvalFaceTexture.setAttribute("width", 100);
+      blushOvalFaceTexture.setAttribute("height", 100);
+
+      blushRoundFaceTexture.setAttribute("width", 100);
+      blushRoundFaceTexture.setAttribute("height", 100);
+
+      blushSquareFaceTexture.setAttribute("width", 100);
+      blushSquareFaceTexture.setAttribute("height", 100);
+
+      blushTriangleFaceTexture.setAttribute("width", 100);
+      blushTriangleFaceTexture.setAttribute("height", 100);
+
+      /**
+       * Method to pass all available eyeliner style textures
+       * @param{_eyelinerStyles} See {@link eyelinerStyleBase64Strings}
+       */
+      const loadEyelinerStyleImages = function (_eyelinerStyles) {
+        eyelinerStyleBase64Strings = Json.parse(_eyelinerStyles);
+      };
+
+      /**
+       * Method to be called form client side to load effect textures for lipstick and eyeshadow
+       * @param{_glossBase} Texture for gloss lipstick
+       * @param{_glossBase} Texture for gloss lipstick
+       * @param{_glossBase} Texture for gloss lipstick
+       * @param{_glossBase} Texture for gloss lipstick
+       * @param{_glossBase} Texture for gloss lipstick
+       * @param{_glossBase} Texture for gloss lipstick
+       * @param{_glossBase} Texture for gloss lipstick
+       */
+      const loadImages = function (
+        _glossBase,
+        _glitterBase,
+        _metallicBase,
+        _eyeshadowBase,
+        _eyeshadowMetallic,
+        _eyeshadowMirco,
+        _eyeshadowNano,
+        _blushBase
+      ) {
+        imgTagGloss.setAttribute("src", "data:image/png;base64," + _glossBase);
+        imgTagGlitter.setAttribute(
+          "src",
+          "data:image/png;base64," + _glitterBase
+        );
+        imgTagMetallic.setAttribute(
+          "src",
+          "data:image/png;base64," + _metallicBase
+        );
+        eyeshadowBaseTexture.setAttribute(
+          "src",
+          "data:image/png;base64," + _eyeshadowBase
+        );
+        eyeshadowMetallicTexture.setAttribute(
+          "src",
+          "data:image/png;base64," + _eyeshadowMetallic
+        );
+        eyeshadowMicroTexture.setAttribute(
+          "src",
+          "data:image/png;base64," + _eyeshadowMirco
+        );
+        eyeshadowNanoTexture.setAttribute(
+          "src",
+          "data:image/png;base64," + _eyeshadowNano
+        );
+        blushSquareFaceTexture.setAttribute(
+          "src",
+          "data:image/png;base64," + _blushBase
+        )
+      };
+
+
+      //Set Canvas Height Width
+      const setCanvasAttributes = function (_canvasWidth, _canvasHeight) {
+        for (let i = 0; i < getAllCanvas.length; i++) {
+          const element = getAllCanvas[i];
+          element.setAttribute("width", _canvasWidth);
+          element.setAttribute("height", _canvasHeight);
+        }
+      };
+
+      //Variables
+      var camera;
+      var glGloss,
+        eyeshadowBase,
+        eyeshadowMetallic,
+        eyeshadowMicro,
+        eyeshadowNano;
+
+      var gl2 = glCanvas.getContext("webgl2", {
+        preserveDrawingBuffer: true,
+        premultipliedAlpha: true,
+      });
+
+      const faceMesh = new FaceMesh({
+        locateFile: (file) => {
+          return `https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/${file}`;
+        },
+      });
+
+      //Set Options for Face mesh
+      faceMesh.setOptions({
+        maxNumFaces: 1,
+        refineLandmarks: true,
+        minDetectionConfidence: 0.5,
+        minTrackingConfidence: 0.5,
+      });
+
+      const init = function () {
+        camera = new Camera(videoElement, {
+          onFrame: async () => {
+            await faceMesh.send({ image: videoElement });
+          },
+
+          width: 1280,
+          height: 720,
+        });
+        camera.start();
+      };
+      init();
+
+      /**
+       * Method to be called from Client Side.
+       * @param{makeupList} See {@link effectData}
+       * @returns {void}
+       */
+      const updateEffectList = function (makeupList) {
+        if (makeupList == null || makeupList == "null" || makeupList == "") {
+          effectData = {};
+          return;
+        }
+        effectData = JSON.parse(makeupList);
+      };
+
+      class WebGLShaderProgram {
+        mat4 = glMatrix.mat4;
+        gl = null;
+        constructor(webGlContext) {
+          if (!webGlContext) {
+            alert(
+              "Unable to initialize WebGL. Your browser or machine may not support it."
+            );
+          }
+          this.gl = webGlContext;
+          this.initProgram();
+        }
+
+        vsSource = `
+        attribute vec3 aVertexPosition;
+        attribute vec3 aColor;
+        attribute vec2 aTexCoords;
+
+        uniform mat4 uModelViewMatrix;
+        uniform mat4 uProjectionMatrix;
+
+        varying vec3 vColor;        
+        varying vec2 vTexCoords;
+
+        void main() {
+            gl_Position = uProjectionMatrix * uModelViewMatrix * vec4(aVertexPosition.xyz,1.0);
+            
+            vColor = aColor;
+            vTexCoords = aTexCoords;
+        }
+      `;
+
+        // Fragment shader program
+        fsSource = `
+        precision highp float;
+        uniform sampler2D uSampler;
+        uniform  float uOpacity;
+        uniform vec3 appliedColor;
+        varying vec3 vColor;
+        varying vec2 vTexCoords;
+        void main() {
+            vec4 color = vec4(1.0,1.0,1.0,uOpacity);
+            vec4 lum = vec4(0.0,0.0,0.0,6.5);
+            float brightness = 0.4;
+            float contrast = 0.4;
+
+          vec4 texColor = texture2D(uSampler,vTexCoords);
+          
+          vec3 newColor = texColor.rgb + appliedColor;
+                  
+          gl_FragColor = vec4(newColor.rgb,texColor.a) *color ;        
+        }
+      `;
+
+        loadShader(type, source) {
+          let shader = this.gl.createShader(type);
+
+          // Send the source to the shader object
+
+          this.gl.shaderSource(shader, source);
+
+          // Compile the shader program
+
+          this.gl.compileShader(shader);
+
+          // See if it compiled successfully
+
+          if (!this.gl.getShaderParameter(shader, this.gl.COMPILE_STATUS)) {
+            alert(
+              "An error occurred compiling the shaders: " +
+                this.gl.getShaderInfoLog(shader)
+            );
+            this.gl.deleteShader(shader);
+            return null;
+          }
+
+          return shader;
+        }
+
+        createProgram() {
+          this.vertexShader = this.loadShader(
+            this.gl.VERTEX_SHADER,
+            this.vsSource
+          );
+          this.fragmentShader = this.loadShader(
+            this.gl.FRAGMENT_SHADER,
+            this.fsSource
+          );
+          // Create the shader program
+          this.shaderProgram = this.gl.createProgram();
+          this.gl.attachShader(this.shaderProgram, this.vertexShader);
+          this.gl.attachShader(this.shaderProgram, this.fragmentShader);
+          this.gl.linkProgram(this.shaderProgram);
+        }
+
+        setVariableReferences() {
+          this.programInfoMakeup = {
+            program: this.shaderProgram,
+            attribLocations: {
+              vertexPosition: this.gl.getAttribLocation(
+                this.shaderProgram,
+                "aVertexPosition"
+              ),
+
+              colorPosition: this.gl.getAttribLocation(
+                this.shaderProgram,
+                "aColor"
+              ),
+              texCoords: this.gl.getAttribLocation(
+                this.shaderProgram,
+                "aTexCoords"
+              ),
+            },
+            uniformLocations: {
+              appliedColorPositon: this.gl.getUniformLocation(
+                this.shaderProgram,
+                "appliedColor"
+              ),
+              projectionMatrix: this.gl.getUniformLocation(
+                this.shaderProgram,
+                "uProjectionMatrix"
+              ),
+              modelViewMatrix: this.gl.getUniformLocation(
+                this.shaderProgram,
+                "uModelViewMatrix"
+              ),
+              sampler: this.gl.getUniformLocation(
+                this.shaderProgram,
+                "uSampler"
+              ),
+              opacity: this.gl.getUniformLocation(
+                this.shaderProgram,
+                "uOpacity"
+              ),
+            },
+          };
+        }
+
+        initProgram() {
+          this.createProgram();
+          // If creating the shader program failed, alert
+          if (
+            !this.gl.getProgramParameter(
+              this.shaderProgram,
+              this.gl.LINK_STATUS
+            )
+          ) {
+            alert(
+              "Unable to initialize the shader program: " +
+                this.gl.getProgramInfoLog(shaderProgram)
+            );
+            return;
+          }
+
+          this.setVariableReferences();
+        }
+
+        initBuffers() {
+          this.positionBuffer = this.gl.createBuffer();
+
+          this.indexBuffer = this.gl.createBuffer();
+
+          let vertices = [];
+          let texels = [];
+          for (let i = 0; i < this.landmarks.length; i++) {
+            vertices.push(this.landmarks[i].x);
+            vertices.push(this.landmarks[i].y);
+            vertices.push(this.landmarks[i].z);
+          }
+
+          let drawOrder = [];
+          {
+            drawOrder = [
+              173, 155, 133, 246, 33, 7, 382, 398, 362, 263, 466, 249, 308, 415,
+              324, 78, 95, 191, 356, 389, 264, 127, 34, 162, 368, 264, 389, 139,
+              162, 34, 267, 0, 302, 37, 72, 0, 11, 302, 0, 11, 0, 72, 349, 451,
+              350, 120, 121, 231, 452, 350, 451, 232, 231, 121, 267, 302, 269,
+              37, 39, 72, 303, 269, 302, 73, 72, 39, 357, 343, 350, 128, 121,
+              114, 277, 350, 343, 47, 114, 121, 350, 452, 357, 121, 128, 232,
+              453, 357, 452, 233, 232, 128, 299, 333, 297, 69, 67, 104, 332,
+              297, 333, 103, 104, 67, 175, 152, 396, 175, 171, 152, 377, 396,
+              152, 148, 152, 171, 381, 384, 382, 154, 155, 157, 398, 382, 384,
+              173, 157, 155, 280, 347, 330, 50, 101, 118, 348, 330, 347, 119,
+              118, 101, 269, 303, 270, 39, 40, 73, 304, 270, 303, 74, 73, 40, 9,
+              336, 151, 9, 151, 107, 337, 151, 336, 108, 107, 151, 344, 278,
+              360, 115, 131, 48, 279, 360, 278, 49, 48, 131, 262, 431, 418, 32,
+              194, 211, 424, 418, 431, 204, 211, 194, 304, 408, 270, 74, 40,
+              184, 409, 270, 408, 185, 184, 40, 272, 310, 407, 42, 183, 80, 415,
+              407, 310, 191, 80, 183, 322, 270, 410, 92, 186, 40, 409, 410, 270,
+              185, 40, 186, 347, 449, 348, 118, 119, 229, 450, 348, 449, 230,
+              229, 119, 434, 432, 430, 214, 210, 212, 422, 430, 432, 202, 212,
+              210, 313, 314, 18, 83, 18, 84, 17, 18, 314, 17, 84, 18, 307, 375,
+              306, 77, 76, 146, 291, 306, 375, 61, 146, 76, 259, 387, 260, 29,
+              30, 160, 388, 260, 387, 161, 160, 30, 286, 414, 384, 56, 157, 190,
+              398, 384, 414, 173, 190, 157, 418, 424, 406, 194, 182, 204, 335,
+              406, 424, 106, 204, 182, 367, 416, 364, 138, 135, 192, 434, 364,
+              416, 214, 192, 135, 391, 423, 327, 165, 98, 203, 358, 327, 423,
+              129, 203, 98, 298, 301, 284, 68, 54, 71, 251, 284, 301, 21, 71,
+              54, 4, 275, 5, 4, 5, 45, 281, 5, 275, 51, 45, 5, 254, 373, 253,
+              24, 23, 144, 374, 253, 373, 145, 144, 23, 320, 321, 307, 90, 77,
+              91, 375, 307, 321, 146, 91, 77, 280, 425, 411, 50, 187, 205, 427,
+              411, 425, 207, 205, 187, 421, 313, 200, 201, 200, 83, 18, 200,
+              313, 18, 83, 200, 335, 321, 406, 106, 182, 91, 405, 406, 321, 181,
+              91, 182, 405, 321, 404, 181, 180, 91, 320, 404, 321, 90, 91, 180,
+              17, 314, 16, 17, 16, 84, 315, 16, 314, 85, 84, 16, 425, 266, 426,
+              205, 206, 36, 423, 426, 266, 203, 36, 206, 369, 396, 400, 140,
+              176, 171, 377, 400, 396, 148, 171, 176, 391, 269, 322, 165, 92,
+              39, 270, 322, 269, 40, 39, 92, 417, 465, 413, 193, 189, 245, 464,
+              413, 465, 244, 245, 189, 257, 258, 386, 27, 159, 28, 385, 386,
+              258, 158, 28, 159, 260, 388, 467, 30, 247, 161, 466, 467, 388,
+              246, 161, 247, 248, 456, 419, 3, 196, 236, 399, 419, 456, 174,
+              236, 196, 333, 298, 332, 104, 103, 68, 284, 332, 298, 54, 68, 103,
+              285, 8, 417, 55, 193, 8, 168, 417, 8, 168, 8, 193, 340, 261, 346,
+              111, 117, 31, 448, 346, 261, 228, 31, 117, 285, 417, 441, 55, 221,
+              193, 413, 441, 417, 189, 193, 221, 327, 460, 326, 98, 97, 240,
+              328, 326, 460, 99, 240, 97, 277, 355, 329, 47, 100, 126, 371, 329,
+              355, 142, 126, 100, 309, 392, 438, 79, 218, 166, 439, 438, 392,
+              219, 166, 218, 381, 382, 256, 154, 26, 155, 341, 256, 382, 112,
+              155, 26, 360, 279, 420, 131, 198, 49, 429, 420, 279, 209, 49, 198,
+              365, 364, 379, 136, 150, 135, 394, 379, 364, 169, 135, 150, 355,
+              277, 437, 126, 217, 47, 343, 437, 277, 114, 47, 217, 443, 444,
+              282, 223, 52, 224, 283, 282, 444, 53, 224, 52, 281, 275, 363, 51,
+              134, 45, 440, 363, 275, 220, 45, 134, 431, 262, 395, 211, 170, 32,
+              369, 395, 262, 140, 32, 170, 337, 299, 338, 108, 109, 69, 297,
+              338, 299, 67, 69, 109, 335, 273, 321, 106, 91, 43, 375, 321, 273,
+              146, 43, 91, 348, 450, 349, 119, 120, 230, 451, 349, 450, 231,
+              230, 120, 467, 359, 342, 247, 113, 130, 446, 342, 359, 226, 130,
+              113, 282, 283, 334, 52, 105, 53, 293, 334, 283, 63, 53, 105, 250,
+              458, 462, 20, 242, 238, 461, 462, 458, 241, 238, 242, 276, 353,
+              300, 46, 70, 124, 383, 300, 353, 156, 124, 70, 325, 292, 324, 96,
+              95, 62, 308, 324, 292, 78, 62, 95, 283, 276, 293, 53, 63, 46, 300,
+              293, 276, 70, 46, 63, 447, 264, 345, 227, 116, 34, 372, 345, 264,
+              143, 34, 116, 352, 345, 346, 123, 117, 116, 340, 346, 345, 111,
+              116, 117, 1, 19, 274, 1, 44, 19, 354, 274, 19, 125, 19, 44, 248,
+              281, 456, 3, 236, 51, 363, 456, 281, 134, 51, 236, 425, 426, 427,
+              205, 207, 206, 436, 427, 426, 216, 206, 207, 380, 381, 252, 153,
+              22, 154, 256, 252, 381, 26, 154, 22, 391, 393, 269, 165, 39, 167,
+              267, 269, 393, 37, 167, 39, 199, 428, 200, 199, 200, 208, 421,
+              200, 428, 201, 208, 200, 330, 329, 266, 101, 36, 100, 371, 266,
+              329, 142, 100, 36, 422, 432, 273, 202, 43, 212, 287, 273, 432, 57,
+              212, 43, 290, 250, 328, 60, 99, 20, 462, 328, 250, 242, 20, 99,
+              258, 286, 385, 28, 158, 56, 384, 385, 286, 157, 56, 158, 342, 446,
+              353, 113, 124, 226, 265, 353, 446, 35, 226, 124, 257, 386, 259,
+              27, 29, 159, 387, 259, 386, 160, 159, 29, 430, 422, 431, 210, 211,
+              202, 424, 431, 422, 204, 202, 211, 445, 342, 276, 225, 46, 113,
+              353, 276, 342, 124, 113, 46, 424, 422, 335, 204, 106, 202, 273,
+              335, 422, 43, 202, 106, 306, 292, 307, 76, 77, 62, 325, 307, 292,
+              96, 62, 77, 366, 447, 352, 137, 123, 227, 345, 352, 447, 116, 227,
+              123, 302, 268, 303, 72, 73, 38, 271, 303, 268, 41, 38, 73, 371,
+              358, 266, 142, 36, 129, 423, 266, 358, 203, 129, 36, 327, 294,
+              460, 98, 240, 64, 455, 460, 294, 235, 64, 240, 294, 331, 278, 64,
+              48, 102, 279, 278, 331, 49, 102, 48, 303, 271, 304, 73, 74, 41,
+              272, 304, 271, 42, 41, 74, 427, 436, 434, 207, 214, 216, 432, 434,
+              436, 212, 216, 214, 304, 272, 408, 74, 184, 42, 407, 408, 272,
+              183, 42, 184, 394, 430, 395, 169, 170, 210, 431, 395, 430, 211,
+              210, 170, 395, 369, 378, 170, 149, 140, 400, 378, 369, 176, 140,
+              149, 296, 334, 299, 66, 69, 105, 333, 299, 334, 104, 105, 69, 417,
+              168, 351, 193, 122, 168, 6, 351, 168, 6, 168, 122, 280, 411, 352,
+              50, 123, 187, 376, 352, 411, 147, 187, 123, 319, 320, 325, 89, 96,
+              90, 307, 325, 320, 77, 90, 96, 285, 295, 336, 55, 107, 65, 296,
+              336, 295, 66, 65, 107, 404, 320, 403, 180, 179, 90, 319, 403, 320,
+              89, 90, 179, 330, 348, 329, 101, 100, 119, 349, 329, 348, 120,
+              119, 100, 334, 293, 333, 105, 104, 63, 298, 333, 293, 68, 63, 104,
+              323, 454, 366, 93, 137, 234, 447, 366, 454, 227, 234, 137, 16,
+              315, 15, 16, 15, 85, 316, 15, 315, 86, 85, 15, 429, 279, 358, 209,
+              129, 49, 331, 358, 279, 102, 49, 129, 15, 316, 14, 15, 14, 86,
+              317, 14, 316, 87, 86, 14, 8, 285, 9, 8, 9, 55, 336, 9, 285, 107,
+              55, 9, 329, 349, 277, 100, 47, 120, 350, 277, 349, 121, 120, 47,
+              252, 253, 380, 22, 153, 23, 374, 380, 253, 145, 23, 153, 402, 403,
+              318, 178, 88, 179, 319, 318, 403, 89, 179, 88, 351, 6, 419, 122,
+              196, 6, 197, 419, 6, 197, 6, 196, 324, 318, 325, 95, 96, 88, 319,
+              325, 318, 89, 88, 96, 397, 367, 365, 172, 136, 138, 364, 365, 367,
+              135, 138, 136, 288, 435, 397, 58, 172, 215, 367, 397, 435, 138,
+              215, 172, 438, 439, 344, 218, 115, 219, 278, 344, 439, 48, 219,
+              115, 271, 311, 272, 41, 42, 81, 310, 272, 311, 80, 81, 42, 5, 281,
+              195, 5, 195, 51, 248, 195, 281, 3, 51, 195, 273, 287, 375, 43,
+              146, 57, 291, 375, 287, 61, 57, 146, 396, 428, 175, 171, 175, 208,
+              199, 175, 428, 199, 208, 175, 268, 312, 271, 38, 41, 82, 311, 271,
+              312, 81, 82, 41, 444, 445, 283, 224, 53, 225, 276, 283, 445, 46,
+              225, 53, 254, 339, 373, 24, 144, 110, 390, 373, 339, 163, 110,
+              144, 295, 282, 296, 65, 66, 52, 334, 296, 282, 105, 52, 66, 346,
+              448, 347, 117, 118, 228, 449, 347, 448, 229, 228, 118, 454, 356,
+              447, 234, 227, 127, 264, 447, 356, 34, 127, 227, 336, 296, 337,
+              107, 108, 66, 299, 337, 296, 69, 66, 108, 151, 337, 10, 151, 10,
+              108, 338, 10, 337, 109, 108, 10, 278, 439, 294, 48, 64, 219, 455,
+              294, 439, 235, 219, 64, 407, 415, 292, 183, 62, 191, 308, 292,
+              415, 78, 191, 62, 358, 371, 429, 129, 209, 142, 355, 429, 371,
+              126, 142, 209, 345, 372, 340, 116, 111, 143, 265, 340, 372, 35,
+              143, 111, 388, 390, 466, 161, 246, 163, 249, 466, 390, 7, 163,
+              246, 352, 346, 280, 123, 50, 117, 347, 280, 346, 118, 117, 50,
+              295, 442, 282, 65, 52, 222, 443, 282, 442, 223, 222, 52, 19, 94,
+              354, 19, 125, 94, 370, 354, 94, 141, 94, 125, 295, 285, 442, 65,
+              222, 55, 441, 442, 285, 221, 55, 222, 419, 197, 248, 196, 3, 197,
+              195, 248, 197, 195, 197, 3, 359, 263, 255, 130, 25, 33, 249, 255,
+              263, 7, 33, 25, 275, 274, 440, 45, 220, 44, 457, 440, 274, 237,
+              44, 220, 300, 383, 301, 70, 71, 156, 368, 301, 383, 139, 156, 71,
+              417, 351, 465, 193, 245, 122, 412, 465, 351, 188, 122, 245, 466,
+              263, 467, 246, 247, 33, 359, 467, 263, 130, 33, 247, 389, 251,
+              368, 162, 139, 21, 301, 368, 251, 71, 21, 139, 374, 386, 380, 145,
+              153, 159, 385, 380, 386, 158, 159, 153, 379, 394, 378, 150, 149,
+              169, 395, 378, 394, 170, 169, 149, 351, 419, 412, 122, 188, 196,
+              399, 412, 419, 174, 196, 188, 426, 322, 436, 206, 216, 92, 410,
+              436, 322, 186, 92, 216, 387, 373, 388, 160, 161, 144, 390, 388,
+              373, 163, 144, 161, 393, 326, 164, 167, 164, 97, 2, 164, 326, 2,
+              97, 164, 354, 370, 461, 125, 241, 141, 462, 461, 370, 242, 141,
+              241, 0, 267, 164, 0, 164, 37, 393, 164, 267, 167, 37, 164, 11, 12,
+              302, 11, 72, 12, 268, 302, 12, 38, 12, 72, 386, 374, 387, 159,
+              160, 145, 373, 387, 374, 144, 145, 160, 12, 13, 268, 12, 38, 13,
+              312, 268, 13, 82, 13, 38, 293, 300, 298, 63, 68, 70, 301, 298,
+              300, 71, 70, 68, 340, 265, 261, 111, 31, 35, 446, 261, 265, 226,
+              35, 31, 380, 385, 381, 153, 154, 158, 384, 381, 385, 157, 158,
+              154, 280, 330, 425, 50, 205, 101, 266, 425, 330, 36, 101, 205,
+              423, 391, 426, 203, 206, 165, 322, 426, 391, 92, 165, 206, 429,
+              355, 420, 209, 198, 126, 437, 420, 355, 217, 126, 198, 391, 327,
+              393, 165, 167, 98, 326, 393, 327, 97, 98, 167, 457, 438, 440, 237,
+              220, 218, 344, 440, 438, 115, 218, 220, 382, 362, 341, 155, 112,
+              133, 463, 341, 362, 243, 133, 112, 457, 461, 459, 237, 239, 241,
+              458, 459, 461, 238, 241, 239, 434, 430, 364, 214, 135, 210, 394,
+              364, 430, 169, 210, 135, 414, 463, 398, 190, 173, 243, 362, 398,
+              463, 133, 243, 173, 262, 428, 369, 32, 140, 208, 396, 369, 428,
+              171, 208, 140, 457, 274, 461, 237, 241, 44, 354, 461, 274, 125,
+              44, 241, 316, 403, 317, 86, 87, 179, 402, 317, 403, 178, 179, 87,
+              315, 404, 316, 85, 86, 180, 403, 316, 404, 179, 180, 86, 314, 405,
+              315, 84, 85, 181, 404, 315, 405, 180, 181, 85, 313, 406, 314, 83,
+              84, 182, 405, 314, 406, 181, 182, 84, 418, 406, 421, 194, 201,
+              182, 313, 421, 406, 83, 182, 201, 366, 401, 323, 137, 93, 177,
+              361, 323, 401, 132, 177, 93, 408, 407, 306, 184, 76, 183, 292,
+              306, 407, 62, 183, 76, 408, 306, 409, 184, 185, 76, 291, 409, 306,
+              61, 76, 185, 410, 409, 287, 186, 57, 185, 291, 287, 409, 61, 185,
+              57, 436, 410, 432, 216, 212, 186, 287, 432, 410, 57, 186, 212,
+              434, 416, 427, 214, 207, 192, 411, 427, 416, 187, 192, 207, 264,
+              368, 372, 34, 143, 139, 383, 372, 368, 156, 139, 143, 457, 459,
+              438, 237, 218, 239, 309, 438, 459, 79, 239, 218, 352, 376, 366,
+              123, 137, 147, 401, 366, 376, 177, 147, 137, 4, 1, 275, 4, 45, 1,
+              274, 275, 1, 44, 1, 45, 428, 262, 421, 208, 201, 32, 418, 421,
+              262, 194, 32, 201, 327, 358, 294, 98, 64, 129, 331, 294, 358, 102,
+              129, 64, 367, 435, 416, 138, 192, 215, 433, 416, 435, 213, 215,
+              192, 455, 439, 289, 235, 59, 219, 392, 289, 439, 166, 219, 59,
+              328, 462, 326, 99, 97, 242, 370, 326, 462, 141, 242, 97, 326, 370,
+              2, 97, 2, 141, 94, 2, 370, 94, 141, 2, 460, 455, 305, 240, 75,
+              235, 289, 305, 455, 59, 235, 75, 448, 339, 449, 228, 229, 110,
+              254, 449, 339, 24, 110, 229, 261, 446, 255, 31, 25, 226, 359, 255,
+              446, 130, 226, 25, 449, 254, 450, 229, 230, 24, 253, 450, 254, 23,
+              24, 230, 450, 253, 451, 230, 231, 23, 252, 451, 253, 22, 23, 231,
+              451, 252, 452, 231, 232, 22, 256, 452, 252, 26, 22, 232, 256, 341,
+              452, 26, 232, 112, 453, 452, 341, 233, 112, 232, 413, 464, 414,
+              189, 190, 244, 463, 414, 464, 243, 244, 190, 441, 413, 286, 221,
+              56, 189, 414, 286, 413, 190, 189, 56, 441, 286, 442, 221, 222, 56,
+              258, 442, 286, 28, 56, 222, 442, 258, 443, 222, 223, 28, 257, 443,
+              258, 27, 28, 223, 444, 443, 259, 224, 29, 223, 257, 259, 443, 27,
+              223, 29, 259, 260, 444, 29, 224, 30, 445, 444, 260, 225, 30, 224,
+              260, 467, 445, 30, 225, 247, 342, 445, 467, 113, 247, 225, 250,
+              309, 458, 20, 238, 79, 459, 458, 309, 239, 79, 238, 290, 305, 392,
+              60, 166, 75, 289, 392, 305, 59, 75, 166, 460, 305, 328, 240, 99,
+              75, 290, 328, 305, 60, 75, 99, 376, 433, 401, 147, 177, 213, 435,
+              401, 433, 215, 213, 177, 250, 290, 309, 20, 79, 60, 392, 309, 290,
+              166, 60, 79, 411, 416, 376, 187, 147, 192, 433, 376, 416, 213,
+              192, 147, 341, 463, 453, 112, 233, 243, 464, 453, 463, 244, 243,
+              233, 453, 464, 357, 233, 128, 244, 465, 357, 464, 245, 244, 128,
+              412, 343, 465, 188, 245, 114, 357, 465, 343, 128, 114, 245, 437,
+              343, 399, 217, 174, 114, 412, 399, 343, 188, 114, 174, 363, 440,
+              360, 134, 131, 220, 344, 360, 440, 115, 220, 131, 456, 420, 399,
+              236, 174, 198, 437, 399, 420, 217, 198, 174, 456, 363, 420, 236,
+              198, 134, 360, 420, 363, 131, 134, 198, 361, 401, 288, 132, 58,
+              177, 435, 288, 401, 215, 177, 58, 353, 265, 383, 124, 156, 35,
+              372, 383, 265, 143, 35, 156, 255, 249, 339, 25, 110, 7, 390, 339,
+              249, 163, 7, 110, 261, 255, 448, 31, 228, 25, 339, 448, 255, 110,
+              25, 228, 14, 317, 13, 14, 13, 87, 312, 13, 317, 82, 87, 13, 317,
+              402, 312, 87, 82, 178, 311, 312, 402, 81, 178, 82, 402, 318, 311,
+              178, 81, 88, 310, 311, 318, 80, 88, 81, 318, 324, 310, 88, 80, 95,
+              415, 310, 324, 191, 95, 80,
+            ];
+
+            texels = [
+              0.499977, 0.347466, 0.500026, 0.452513, 0.499974, 0.397628,
+              0.482113, 0.528021, 0.500151, 0.472844, 0.49991, 0.501747,
+              0.499523, 0.598938, 0.289712, 0.619236, 0.499955, 0.687602,
+              0.499987, 0.730081, 0.500023, 0.89295, 0.500023, 0.333766,
+              0.500016, 0.320776, 0.500023, 0.307652, 0.499977, 0.304722,
+              0.499977, 0.294066, 0.499977, 0.280615, 0.499977, 0.262981,
+              0.499968, 0.218629, 0.499816, 0.437019, 0.473773, 0.42609,
+              0.104907, 0.745859, 0.36593, 0.590424, 0.338758, 0.586975,
+              0.31112, 0.59054, 0.274658, 0.610869, 0.393362, 0.596294,
+              0.345234, 0.655989, 0.370094, 0.653924, 0.319322, 0.652735,
+              0.297903, 0.646409, 0.247792, 0.58919, 0.396889, 0.157245,
+              0.280098, 0.6244, 0.10631, 0.600044, 0.209925, 0.608647, 0.355808,
+              0.465594, 0.471751, 0.349596, 0.474155, 0.319808, 0.439785,
+              0.342771, 0.414617, 0.333459, 0.450374, 0.319139, 0.428771,
+              0.317309, 0.374971, 0.272195, 0.486717, 0.452371, 0.485301,
+              0.472605, 0.257765, 0.68551, 0.401223, 0.544828, 0.429819,
+              0.451385, 0.421352, 0.466259, 0.276896, 0.467943, 0.48337,
+              0.500413, 0.337212, 0.717117, 0.296392, 0.706757, 0.169295,
+              0.806186, 0.44758, 0.69739, 0.39239, 0.646112, 0.35449, 0.303216,
+              0.067305, 0.269895, 0.442739, 0.427174, 0.457098, 0.415208,
+              0.381974, 0.305289, 0.392389, 0.305797, 0.277076, 0.728068,
+              0.422552, 0.436767, 0.385919, 0.718636, 0.383103, 0.74416,
+              0.331431, 0.880286, 0.229924, 0.767997, 0.364501, 0.810886,
+              0.229622, 0.700459, 0.173287, 0.721252, 0.472879, 0.333802,
+              0.446828, 0.331473, 0.422762, 0.32611, 0.445308, 0.419934,
+              0.388103, 0.306039, 0.403039, 0.29346, 0.403629, 0.306047,
+              0.460042, 0.442861, 0.431158, 0.307634, 0.452182, 0.307634,
+              0.475387, 0.307634, 0.465828, 0.22081, 0.472329, 0.263774,
+              0.473087, 0.282143, 0.473122, 0.295374, 0.473033, 0.304722,
+              0.427942, 0.304722, 0.426479, 0.29646, 0.423162, 0.288154,
+              0.418309, 0.279937, 0.390095, 0.360427, 0.013954, 0.439966,
+              0.499914, 0.419853, 0.4132, 0.3046, 0.409626, 0.298177, 0.46808,
+              0.398465, 0.422729, 0.414015, 0.46308, 0.406216, 0.37212,
+              0.526586, 0.334562, 0.503927, 0.411671, 0.453035, 0.242176,
+              0.852324, 0.290777, 0.798554, 0.327338, 0.743473, 0.39951,
+              0.251079, 0.441728, 0.738324, 0.429765, 0.812166, 0.412198,
+              0.891099, 0.288955, 0.601048, 0.218937, 0.564589, 0.412782,
+              0.60103, 0.257135, 0.64456, 0.427685, 0.562039, 0.44834, 0.463064,
+              0.17856, 0.542446, 0.247308, 0.542806, 0.286267, 0.532325,
+              0.332828, 0.539288, 0.368756, 0.552793, 0.398964, 0.567345,
+              0.47641, 0.594194, 0.189241, 0.476076, 0.228962, 0.651049,
+              0.490726, 0.437599, 0.40467, 0.514867, 0.019469, 0.598436,
+              0.426243, 0.579569, 0.396993, 0.451203, 0.26647, 0.623023,
+              0.439121, 0.481042, 0.032314, 0.355643, 0.419054, 0.612845,
+              0.462783, 0.494253, 0.238979, 0.220255, 0.198221, 0.168062,
+              0.10755, 0.459245, 0.18361, 0.259743, 0.13441, 0.666317, 0.385764,
+              0.116846, 0.490967, 0.420622, 0.382385, 0.491427, 0.174399,
+              0.602329, 0.318785, 0.603765, 0.343364, 0.599403, 0.3961,
+              0.289783, 0.187885, 0.411462, 0.430987, 0.055935, 0.318993,
+              0.101715, 0.266248, 0.130299, 0.500023, 0.809424, 0.499977,
+              0.045547, 0.36617, 0.601178, 0.393207, 0.604463, 0.410373,
+              0.60892, 0.194993, 0.657898, 0.388665, 0.637716, 0.365962,
+              0.644029, 0.343364, 0.644643, 0.318785, 0.64166, 0.301415,
+              0.636844, 0.058133, 0.680924, 0.301415, 0.612551, 0.499988,
+              0.381566, 0.415838, 0.375804, 0.445682, 0.433923, 0.465844,
+              0.379359, 0.499923, 0.648476, 0.288719, 0.180054, 0.335279,
+              0.14718, 0.440512, 0.097581, 0.128294, 0.208059, 0.408772,
+              0.626106, 0.455607, 0.548199, 0.499877, 0.09101, 0.375437,
+              0.075808, 0.11421, 0.384978, 0.448662, 0.304722, 0.44802,
+              0.295368, 0.447112, 0.284192, 0.444832, 0.269206, 0.430012,
+              0.233191, 0.406787, 0.314327, 0.400738, 0.318931, 0.3924,
+              0.322297, 0.367856, 0.336081, 0.247923, 0.398667, 0.45277,
+              0.57915, 0.436392, 0.640113, 0.416164, 0.631286, 0.413386,
+              0.307634, 0.228018, 0.316428, 0.468268, 0.647329, 0.411362,
+              0.195673, 0.499989, 0.530175, 0.479154, 0.557346, 0.499974,
+              0.560363, 0.432112, 0.506411, 0.499886, 0.133083, 0.499913,
+              0.178271, 0.456549, 0.180799, 0.344549, 0.254561, 0.378909,
+              0.42599, 0.374293, 0.219815, 0.319688, 0.429262, 0.357155,
+              0.39573, 0.295284, 0.378419, 0.44775, 0.137523, 0.410986,
+              0.491277, 0.313951, 0.224692, 0.354128, 0.187447, 0.324548,
+              0.296007, 0.189096, 0.3537, 0.279777, 0.285342, 0.133823,
+              0.317299, 0.336768, 0.355267, 0.429884, 0.533478, 0.455528,
+              0.451377, 0.437114, 0.441104, 0.467288, 0.470075, 0.414712,
+              0.66478, 0.377046, 0.677222, 0.344108, 0.679849, 0.312876,
+              0.677668, 0.283526, 0.66681, 0.241246, 0.617214, 0.102986,
+              0.531237, 0.267612, 0.57544, 0.297879, 0.566824, 0.333434,
+              0.566122, 0.366427, 0.573884, 0.396012, 0.583304, 0.420121,
+              0.589772, 0.007561, 0.519223, 0.432949, 0.430482, 0.458639,
+              0.520911, 0.473466, 0.454256, 0.476088, 0.43617, 0.468472,
+              0.444943, 0.433991, 0.417638, 0.483518, 0.437016, 0.482483,
+              0.422151, 0.42645, 0.610201, 0.438999, 0.603505, 0.450067,
+              0.599566, 0.289712, 0.631747, 0.27667, 0.636627, 0.517862,
+              0.528052, 0.710288, 0.619236, 0.526227, 0.42609, 0.895093,
+              0.745859, 0.63407, 0.590424, 0.661242, 0.586975, 0.68888, 0.59054,
+              0.725342, 0.610869, 0.60663, 0.596295, 0.654766, 0.655989,
+              0.629906, 0.653924, 0.680678, 0.652735, 0.702097, 0.646409,
+              0.752212, 0.589195, 0.602918, 0.157137, 0.719902, 0.6244,
+              0.893693, 0.60004, 0.790082, 0.608646, 0.643998, 0.465512,
+              0.528249, 0.349596, 0.52585, 0.319809, 0.560215, 0.342771,
+              0.585384, 0.333459, 0.549626, 0.319139, 0.571228, 0.317308,
+              0.624852, 0.271901, 0.51305, 0.452718, 0.515097, 0.472748,
+              0.742247, 0.685493, 0.598631, 0.545021, 0.570338, 0.451425,
+              0.578632, 0.466377, 0.723087, 0.467946, 0.516446, 0.500361,
+              0.662801, 0.717082, 0.703624, 0.706729, 0.830705, 0.806186,
+              0.552386, 0.697432, 0.60761, 0.646112, 0.645429, 0.303293,
+              0.932695, 0.269895, 0.557261, 0.427174, 0.542902, 0.415208,
+              0.618026, 0.305289, 0.607591, 0.305797, 0.722943, 0.728037,
+              0.577414, 0.436833, 0.614083, 0.718613, 0.616907, 0.744114,
+              0.668509, 0.880086, 0.770092, 0.767979, 0.635536, 0.810751,
+              0.770391, 0.700444, 0.826722, 0.721245, 0.527121, 0.333802,
+              0.553172, 0.331473, 0.577238, 0.32611, 0.554692, 0.419934,
+              0.611897, 0.306039, 0.596961, 0.29346, 0.596371, 0.306047,
+              0.539958, 0.442861, 0.568842, 0.307634, 0.547818, 0.307634,
+              0.524613, 0.307634, 0.53409, 0.220859, 0.527671, 0.263774,
+              0.526913, 0.282143, 0.526878, 0.295374, 0.526967, 0.304722,
+              0.572058, 0.304722, 0.573521, 0.29646, 0.576838, 0.288154,
+              0.581691, 0.279937, 0.609945, 0.36009, 0.986046, 0.439966, 0.5868,
+              0.3046, 0.590372, 0.298177, 0.531915, 0.398463, 0.577268,
+              0.414065, 0.536915, 0.406214, 0.627543, 0.526648, 0.665586,
+              0.504049, 0.588354, 0.453138, 0.757824, 0.852324, 0.70925,
+              0.798492, 0.672684, 0.743419, 0.600409, 0.250995, 0.558266,
+              0.738328, 0.570304, 0.812129, 0.588166, 0.890956, 0.711045,
+              0.601048, 0.78107, 0.564595, 0.587247, 0.601068, 0.74287,
+              0.644554, 0.572156, 0.562348, 0.551868, 0.46343, 0.821442,
+              0.542444, 0.752702, 0.542818, 0.713757, 0.532373, 0.667113,
+              0.539327, 0.631101, 0.552846, 0.600862, 0.567527, 0.523481,
+              0.594373, 0.810748, 0.476074, 0.771046, 0.651041, 0.509127,
+              0.437282, 0.595293, 0.514976, 0.980531, 0.598436, 0.5735, 0.58,
+              0.602995, 0.451312, 0.73353, 0.623023, 0.560611, 0.480983,
+              0.967686, 0.355643, 0.580985, 0.61284, 0.537728, 0.494615,
+              0.760966, 0.220247, 0.801779, 0.168062, 0.892441, 0.459239,
+              0.816351, 0.25974, 0.865595, 0.666313, 0.614074, 0.116754,
+              0.508953, 0.420562, 0.617942, 0.491684, 0.825608, 0.602325,
+              0.681215, 0.603765, 0.656636, 0.599403, 0.6039, 0.289783,
+              0.812086, 0.411461, 0.568013, 0.055435, 0.681008, 0.101715,
+              0.733752, 0.130299, 0.63383, 0.601178, 0.606793, 0.604463,
+              0.58966, 0.608938, 0.805016, 0.657892, 0.611335, 0.637716,
+              0.634038, 0.644029, 0.656636, 0.644643, 0.681215, 0.64166,
+              0.698585, 0.636844, 0.941867, 0.680924, 0.698585, 0.612551,
+              0.584177, 0.375893, 0.554318, 0.433923, 0.534154, 0.37936,
+              0.711218, 0.180025, 0.66463, 0.147129, 0.5591, 0.097368, 0.871706,
+              0.208059, 0.591234, 0.626106, 0.544341, 0.548416, 0.624563,
+              0.075808, 0.88577, 0.384971, 0.551338, 0.304722, 0.55198,
+              0.295368, 0.552888, 0.284192, 0.555168, 0.269206, 0.569944,
+              0.232965, 0.593203, 0.314324, 0.599262, 0.318931, 0.6076,
+              0.322297, 0.631938, 0.3365, 0.752033, 0.398685, 0.547226,
+              0.579605, 0.563544, 0.640172, 0.583841, 0.631286, 0.586614,
+              0.307634, 0.771915, 0.316422, 0.531597, 0.647517, 0.588371,
+              0.195559, 0.520797, 0.557435, 0.567985, 0.506521, 0.543283,
+              0.180745, 0.655317, 0.254485, 0.621009, 0.425982, 0.62556,
+              0.219688, 0.680198, 0.429281, 0.642764, 0.395662, 0.704663,
+              0.37847, 0.552012, 0.137408, 0.589072, 0.491363, 0.685945,
+              0.224643, 0.645735, 0.18736, 0.675343, 0.296022, 0.810858,
+              0.353695, 0.720122, 0.285333, 0.866152, 0.317295, 0.663187,
+              0.355403, 0.570082, 0.533674, 0.544562, 0.451624, 0.562759,
+              0.441215, 0.531987, 0.46986, 0.585271, 0.664823, 0.622953,
+              0.677221, 0.655896, 0.679837, 0.687132, 0.677654, 0.716482,
+              0.666799, 0.758757, 0.617213, 0.897013, 0.531231, 0.732392,
+              0.575453, 0.702114, 0.566837, 0.666525, 0.566134, 0.633505,
+              0.573912, 0.603876, 0.583413, 0.579658, 0.590055, 0.99244,
+              0.519223, 0.567192, 0.43058, 0.541366, 0.521101, 0.526564,
+              0.453882, 0.523913, 0.43617, 0.531529, 0.444943, 0.566036,
+              0.417671, 0.516311, 0.436946, 0.517472, 0.422123, 0.573595,
+              0.610193, 0.560698, 0.604668, 0.549756, 0.600249, 0.710288,
+              0.631747, 0.72333, 0.636627,
+            ];
+          }
+
+          this.gl.bindBuffer(this.gl.ELEMENT_ARRAY_BUFFER, this.indexBuffer);
+          this.gl.bufferData(
+            this.gl.ELEMENT_ARRAY_BUFFER,
+            new Uint16Array(drawOrder),
+            this.gl.STATIC_DRAW
+          );
+
+          this.gl.bindBuffer(this.gl.ARRAY_BUFFER, this.positionBuffer);
+          this.gl.bufferData(
+            this.gl.ARRAY_BUFFER,
+            new Float32Array(vertices),
+            this.gl.DYNAMIC_DRAW
+          );
+
+          this.textureBuffer = this.gl.createBuffer();
+          this.gl.bindBuffer(this.gl.ARRAY_BUFFER, this.textureBuffer);
+          this.gl.bufferData(
+            this.gl.ARRAY_BUFFER,
+            new Float32Array(texels),
+            this.gl.STATIC_DRAW
+          );
+
+          this.vertexCount = drawOrder.length;
+          this.count = vertices.length / 3;
+        }
+
+        isPowerOf2(value) {
+          return (value & (value - 1)) == 0;
+        }
+
+        loadTexture() {
+          this.texture = this.gl.createTexture();
+          this.gl.bindTexture(this.gl.TEXTURE_2D, this.texture);
+
+          let level = 0;
+          let internalFormat = this.gl.RGBA;
+          let width = 1;
+          let height = 1;
+          let border = 0;
+          let srcFormat = this.gl.RGBA;
+          let srcType = this.gl.UNSIGNED_BYTE;
+          let pixel = new Uint8Array([0, 0, 0, 0]); // opaque blue
+          this.gl.texImage2D(
+            this.gl.TEXTURE_2D,
+            level,
+            internalFormat,
+            width,
+            height,
+            border,
+            srcFormat,
+            srcType,
+            pixel
+          );
+
+          this.gl.bindTexture(this.gl.TEXTURE_2D, this.texture);
+          this.gl.texImage2D(
+            this.gl.TEXTURE_2D,
+            level,
+            internalFormat,
+            srcFormat,
+            srcType,
+            this.textureImage
+          );
+
+          // WebGL1 has different requirements for power of 2 images
+          // vs non power of 2 images so check if the image is a
+          // power of 2 in both dimensions.
+          if (
+            this.isPowerOf2(this.textureImage.width) &&
+            this.isPowerOf2(this.textureImage.height)
+          ) {
+            // Yes, it's a power of 2. Generate mips.
+            // gl.generateMipmap(gl.TEXTURE_2D);
+          } else {
+            // No, it's not a power of 2. Turn of mips and set
+            // wrapping to clamp to edge
+            this.gl.texParameteri(
+              this.gl.TEXTURE_2D,
+              this.gl.TEXTURE_WRAP_S,
+              this.gl.CLAMP_TO_EDGE
+            );
+            this.gl.texParameteri(
+              this.gl.TEXTURE_2D,
+              this.gl.TEXTURE_WRAP_T,
+              this.gl.CLAMP_TO_EDGE
+            );
+            this.gl.texParameteri(
+              this.gl.TEXTURE_2D,
+              this.gl.TEXTURE_MIN_FILTER,
+              this.gl.LINEAR
+            );
+            this.gl.texParameteri(
+              this.gl.TEXTURE_2D,
+              this.gl.TEXTURE_MAG_FILTER,
+              this.gl.LINEAR
+            );
+          }
+        }
+
+        draw() {
+          this.gl.disable(this.gl.DEPTH_TEST);
+          this.gl.enable(this.gl.BLEND);
+          this.gl.blendFunc(this.gl.SRC_ALPHA, this.gl.ONE_MINUS_SRC_ALPHA);
+
+          let fieldOfView = (45 * Math.PI) / 180; // in radians
+          let aspect = this.gl.canvas.clientWidth / this.gl.canvas.clientHeight;
+          let zNear = 1.0;
+          let zFar = 1000.0;
+          let projectionMatrix = this.mat4.create();
+
+          // note: js always has the first argument
+          // as the destination to receive the result.
+          // mat4.perspective(projectionMatrix,
+          //     fieldOfView,
+          //     aspect,
+          //     zNear,
+          //     zFar);
+
+          // Set the drawing position to the "identity" point, which is
+          // the center of the scene.
+          let modelViewMatrix = this.mat4.create();
+
+          this.mat4.scale(modelViewMatrix, modelViewMatrix, [2.0, 2.0, 2.0]);
+          this.mat4.rotate(
+            modelViewMatrix,
+            modelViewMatrix,
+            (180 * Math.PI) / 180,
+            [0, 0, 1]
+          );
+          this.mat4.translate(
+            modelViewMatrix,
+            modelViewMatrix,
+            [-0.5, -0.5, 0]
+          );
+
+          {
+            let numComponents = 3; // pull out 2 values per iteration
+            let type = this.gl.FLOAT; // the data in the buffer is 32bit floats
+            let normalize = false; // don't normalize
+            let stride = 0; // how many bytes to get from one set of values to the next
+            // 0 = use type and numComponents above
+            let offset = 0; // how many bytes inside the buffer to start from
+            /**
+             * BINDING VERTEX ARRAY
+             */
+
+            this.gl.bindBuffer(this.gl.ARRAY_BUFFER, this.positionBuffer);
+            this.gl.vertexAttribPointer(
+              this.programInfoMakeup.attribLocations.vertexPosition,
+              numComponents,
+              type,
+              normalize,
+              stride,
+              offset
+            );
+            this.gl.enableVertexAttribArray(
+              this.programInfoMakeup.attribLocations.vertexPosition
+            );
+
+            /***
+             * BINDING TEXTURE COORDINATES
+             */
+            this.gl.bindBuffer(this.gl.ARRAY_BUFFER, this.textureBuffer);
+            this.gl.vertexAttribPointer(
+              this.programInfoMakeup.attribLocations.texCoords,
+              2,
+              type,
+              normalize,
+              stride,
+              offset
+            );
+            this.gl.enableVertexAttribArray(
+              this.programInfoMakeup.attribLocations.texCoords
+            );
+          }
+
+          // Tell WebGL to use our program when drawing
+          //gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, buffersMakeup.indices);
+          this.gl.useProgram(this.programInfoMakeup.program);
+
+          // Set the shader uniforms
+
+          this.gl.uniformMatrix4fv(
+            this.programInfoMakeup.uniformLocations.projectionMatrix,
+            false,
+            projectionMatrix
+          );
+          this.gl.uniformMatrix4fv(
+            this.programInfoMakeup.uniformLocations.modelViewMatrix,
+            false,
+            modelViewMatrix
+          );
+          this.gl.uniform1f(
+            this.programInfoMakeup.uniformLocations.opacity,
+            this.opacity
+          );
+          this.gl.uniform3fv(
+            this.programInfoMakeup.uniformLocations.appliedColorPositon,
+            new Float32Array(this.color)
+          );
+
+          this.gl.activeTexture(this.gl.TEXTURE0);
+          this.gl.bindTexture(this.gl.TEXTURE_2D, this.texture);
+          this.gl.uniform1i(this.programInfoMakeup.uniformLocations.sampler, 0);
+          {
+            let vertexCount = this.vertexCount;
+            let type = this.gl.UNSIGNED_SHORT;
+            let offset = 0;
+            this.gl.drawElements(
+              this.gl.TRIANGLES,
+              this.vertexCount,
+              type,
+              offset
+            );
+          }
+        }
+
+        drawScene(_textureImage, _landmarks, _color, _opacity = 0.7) {
+          this.landmarks = _landmarks;
+          this.textureImage = _textureImage;
+          this.color = _color;
+          this.opacity = _opacity;
+
+          this.initBuffers();
+          this.loadTexture();
+          this.draw();
+        }
+      }
+
+      class OpenCVMakuep {
+        /**
+         * @property {Function} lipstick Renders lipstick through Opencv onto canvas_output.
+         * @param{ra} R from RGB
+         * @param{ga} G from RGB
+         * @param{ba} B from RGB
+         * @param{landmarks} The landmark list from mediapipe.
+         * @param{canvasCtx_1} The 2d context from canvas_mask
+         * @param{canvasCtx} The 2d context from canvas_output
+         * @param{canvasElement} The object of canvas_output
+         * @param{canvasElement_1} The object of canvas_mask
+         * @returns {void}
+         */
+        lipstick(
+          ra,
+          ga,
+          ba,
+          landmarks,
+          canvasCtx_1,
+          canvasCtx,
+          canvasElement,
+          canvasElement_1
+        ) {
+          try {
+            canvasElement_1.width = canvasElement.width;
+            canvasElement_1.height = canvasElement.height;
+
+            canvasCtx.linewidth = 1;
+
+            canvasCtx_1.fillStyle = "black";
+            canvasCtx_1.fillRect(
+              0,
+              0,
+              canvasElement.width,
+              canvasElement.height
+            );
+            canvasCtx_1.beginPath();
+            canvasCtx_1.stroke();
+
+            let imgData = canvasCtx.getImageData(
+              0,
+              0,
+              canvasElement.width,
+              canvasElement.height
+            );
+
+            let mat = cv.matFromImageData(imgData);
+
+            cv.cvtColor(mat, mat, cv.COLOR_RGBA2RGB);
+
+            let points = [
+              [
+                landmarks[61].x * canvasElement.width,
+                landmarks[61].y * canvasElement.height,
+              ],
+              [
+                landmarks[76].x * canvasElement.width,
+                landmarks[76].y * canvasElement.height,
+              ],
+              [
+                landmarks[95].x * canvasElement.width,
+                landmarks[95].y * canvasElement.height,
+              ],
+              [
+                landmarks[88].x * canvasElement.width,
+                landmarks[88].y * canvasElement.height,
+              ],
+              [
+                landmarks[178].x * canvasElement.width,
+                landmarks[178].y * canvasElement.height,
+              ],
+              [
+                landmarks[87].x * canvasElement.width,
+                landmarks[87].y * canvasElement.height,
+              ],
+              [
+                landmarks[14].x * canvasElement.width,
+                landmarks[14].y * canvasElement.height,
+              ],
+              [
+                landmarks[317].x * canvasElement.width,
+                landmarks[317].y * canvasElement.height,
+              ],
+              [
+                landmarks[402].x * canvasElement.width,
+                landmarks[402].y * canvasElement.height,
+              ],
+              [
+                landmarks[318].x * canvasElement.width,
+                landmarks[318].y * canvasElement.height,
+              ],
+              [
+                landmarks[324].x * canvasElement.width,
+                landmarks[324].y * canvasElement.height,
+              ],
+              [
+                landmarks[292].x * canvasElement.width,
+                landmarks[292].y * canvasElement.height,
+              ],
+              [
+                landmarks[306].x * canvasElement.width,
+                landmarks[306].y * canvasElement.height,
+              ],
+              [
+                landmarks[375].x * canvasElement.width,
+                landmarks[375].y * canvasElement.height,
+              ],
+              [
+                landmarks[321].x * canvasElement.width,
+                landmarks[321].y * canvasElement.height,
+              ],
+              [
+                landmarks[405].x * canvasElement.width,
+                landmarks[405].y * canvasElement.height,
+              ],
+              [
+                landmarks[314].x * canvasElement.width,
+                landmarks[314].y * canvasElement.height,
+              ],
+              [
+                landmarks[17].x * canvasElement.width,
+                landmarks[17].y * canvasElement.height,
+              ],
+              [
+                landmarks[84].x * canvasElement.width,
+                landmarks[84].y * canvasElement.height,
+              ],
+              [
+                landmarks[181].x * canvasElement.width,
+                landmarks[181].y * canvasElement.height,
+              ],
+              [
+                landmarks[91].x * canvasElement.width,
+                landmarks[91].y * canvasElement.height,
+              ],
+              [
+                landmarks[146].x * canvasElement.width,
+                landmarks[146].y * canvasElement.height,
+              ],
+              [
+                landmarks[61].x * canvasElement.width,
+                landmarks[61].y * canvasElement.height,
+              ],
+            ];
+
+            canvasCtx_1.beginPath();
+            canvasCtx_1.moveTo(points[0][0], points[0][1]);
+
+            for (let i = 1; i < points.length - 1; i++) {
+              canvasCtx_1.lineTo(points[i][0], points[i][1]);
+            }
+            canvasCtx_1.strokeStyle = "white";
+            canvasCtx_1.stroke();
+            canvasCtx_1.fillStyle = "white";
+            canvasCtx_1.fill();
+
+            let points1 = [
+              [
+                landmarks[61].x * canvasElement.width,
+                landmarks[61].y * canvasElement.height,
+              ],
+              [
+                landmarks[185].x * canvasElement.width,
+                landmarks[185].y * canvasElement.height,
+              ],
+              [
+                landmarks[40].x * canvasElement.width,
+                landmarks[40].y * canvasElement.height,
+              ],
+              [
+                landmarks[39].x * canvasElement.width,
+                landmarks[39].y * canvasElement.height,
+              ],
+              [
+                landmarks[37].x * canvasElement.width,
+                landmarks[37].y * canvasElement.height,
+              ],
+              [
+                landmarks[0].x * canvasElement.width,
+                landmarks[0].y * canvasElement.height,
+              ],
+              [
+                landmarks[267].x * canvasElement.width,
+                landmarks[267].y * canvasElement.height,
+              ],
+              [
+                landmarks[269].x * canvasElement.width,
+                landmarks[269].y * canvasElement.height,
+              ],
+              [
+                landmarks[270].x * canvasElement.width,
+                landmarks[270].y * canvasElement.height,
+              ],
+              [
+                landmarks[409].x * canvasElement.width,
+                landmarks[409].y * canvasElement.height,
+              ],
+              [
+                landmarks[306].x * canvasElement.width,
+                landmarks[306].y * canvasElement.height,
+              ],
+              [
+                landmarks[292].x * canvasElement.width,
+                landmarks[292].y * canvasElement.height,
+              ],
+              [
+                landmarks[308].x * canvasElement.width,
+                landmarks[308].y * canvasElement.height,
+              ],
+              [
+                landmarks[272].x * canvasElement.width,
+                landmarks[272].y * canvasElement.height,
+              ],
+              [
+                landmarks[415].x * canvasElement.width,
+                landmarks[415].y * canvasElement.height,
+              ],
+              [
+                landmarks[310].x * canvasElement.width,
+                landmarks[310].y * canvasElement.height,
+              ],
+              [
+                landmarks[311].x * canvasElement.width,
+                landmarks[311].y * canvasElement.height,
+              ],
+              [
+                landmarks[312].x * canvasElement.width,
+                landmarks[312].y * canvasElement.height,
+              ],
+              [
+                landmarks[13].x * canvasElement.width,
+                landmarks[13].y * canvasElement.height,
+              ],
+              [
+                landmarks[82].x * canvasElement.width,
+                landmarks[82].y * canvasElement.height,
+              ],
+              [
+                landmarks[81].x * canvasElement.width,
+                landmarks[81].y * canvasElement.height,
+              ],
+              [
+                landmarks[80].x * canvasElement.width,
+                landmarks[80].y * canvasElement.height,
+              ],
+              [
+                landmarks[62].x * canvasElement.width,
+                landmarks[62].y * canvasElement.height,
+              ],
+              [
+                landmarks[76].x * canvasElement.width,
+                landmarks[76].y * canvasElement.height,
+              ],
+              [
+                landmarks[61].x * canvasElement.width,
+                landmarks[61].y * canvasElement.height,
+              ],
+            ];
+
+            canvasCtx_1.beginPath();
+            canvasCtx_1.moveTo(points1[0][0], points1[0][1]);
+
+            for (let i = 1; i < points1.length; i++) {
+              canvasCtx_1.lineTo(points1[i][0], points1[i][1]);
+            }
+            canvasCtx_1.strokeStyle = "white";
+
+            canvasCtx_1.stroke();
+
+            canvasCtx_1.fillStyle = "white";
+            canvasCtx_1.fill();
+
+            canvasCtx.restore();
+
+            let imgData_1 = canvasCtx_1.getImageData(
+              0,
+              0,
+              canvasElement.width,
+              canvasElement.height
+            );
+
+            let coords = [];
+
+            coords = [
+              landmarks[206].x * canvasElement.width,
+              landmarks[206].y * canvasElement.height,
+              landmarks[391].x * canvasElement.width,
+              landmarks[391].y * canvasElement.height,
+              landmarks[426].x * canvasElement.width,
+              landmarks[426].y * canvasElement.height,
+              landmarks[424].x * canvasElement.width,
+              landmarks[262].y * canvasElement.height,
+              landmarks[182].x * canvasElement.width,
+              landmarks[182].y * canvasElement.height,
+              landmarks[204].x * canvasElement.width,
+              landmarks[208].y * canvasElement.height,
+              landmarks[132].x * canvasElement.width,
+              landmarks[132].y * canvasElement.height,
+              landmarks[206].x * canvasElement.width,
+              landmarks[206].y * canvasElement.height,
+            ];
+
+            function mask_thresh(num) {
+              if (num <= 0) {
+                num = 0;
+              }
+
+              if (num > 0) {
+                num = 1;
+              }
+              return num;
+            }
+            let mat_mask = cv.matFromImageData(imgData_1);
+            cv.cvtColor(mat_mask, mat_mask, cv.COLOR_RGBA2GRAY);
+
+            let mat_mask_array = mat_mask.data.map(mask_thresh);
+            let mat_mask_mat = cv.matFromArray(
+              mat_mask.rows,
+              mat_mask.cols,
+              cv.CV_64F,
+              mat_mask_array
+            );
+
+            //
+            try {
+              var maskEye = new cv.Mat();
+              var imgEye = new cv.Mat();
+              var tmp_mat = cv.matFromArray(8, 2, cv.CV_32F, coords);
+              var rect = cv.minAreaRect(tmp_mat);
+
+              var box = cv.RotatedRect.points(rect);
+              var newBox = [];
+              for (let i = 0; i < box.length; i++) {
+                newBox.push(parseInt(box[i].x));
+                newBox.push(parseInt(box[i].y));
+              }
+              tmp_mat = cv.matFromArray(4, 2, cv.CV_32F, newBox);
+              var fourVars = cv.boundingRect(tmp_mat);
+
+              //CREATE MASK_EYE FROM EXISTING MASK
+              maskEye = mat_mask_mat.roi(fourVars);
+              imgEye = mat.roi(fourVars);
+              //
+            } catch (e) {
+              mat.delete();
+              mat_mask.delete();
+              mat_mask_mat.delete();
+              tmp_mat.delete();
+              maskEye.delete();
+              imgEye.delete();
+              console.log("============Lipstick hsv v2 ROI exception : ", e);
+              return;
+            }
+
+            let imgOrg = imgEye.clone();
+
+            let alpha = 1;
+            let beta = 30;
+            let mask = new cv.Mat.zeros(
+              imgEye.rows,
+              imgEye.cols,
+              imgEye.type()
+            );
+
+            let gamma = 0;
+            let opencvImage = new cv.Mat(
+              imgEye.rows,
+              imgEye.cols,
+              imgEye.type()
+            );
+            let image_hsv = new cv.Mat(imgEye.rows, imgEye.cols, imgEye.type());
+
+            cv.addWeighted(imgEye, alpha, mask, beta, gamma, opencvImage);
+
+            let tar_color = nj.empty([imgEye.rows, imgEye.cols, 3]);
+            let r = ra;
+            let g = ga;
+            let b = ba;
+
+            tar_color.slice(null, null, -1).assign(r, false); //r
+            tar_color.slice(null, null, [1, 2]).assign(g, false); //g
+            tar_color.slice(null, null, [1]).assign(b, false); //b
+
+            let tar_color_canvas = document.getElementById("canvas_output");
+
+            nj.images.save(tar_color, tar_color_canvas);
+
+            let tar_color_canvas_image = tar_color_canvas.getContext("2d");
+            let tar_image_data = tar_color_canvas_image.getImageData(
+              0,
+              0,
+              imgEye.cols,
+              imgEye.rows
+            );
+            let tar_image_opencv = cv.matFromImageData(tar_image_data);
+
+            cv.cvtColor(tar_image_opencv, tar_image_opencv, cv.COLOR_RGB2HSV);
+            cv.cvtColor(opencvImage, image_hsv, cv.COLOR_RGB2HSV);
+
+            let image_hsv_planes = new cv.MatVector();
+            let tar_image_opencv_planes = new cv.MatVector();
+
+            cv.split(image_hsv, image_hsv_planes);
+            cv.split(tar_image_opencv, tar_image_opencv_planes);
+
+            let image_hsv_r = image_hsv_planes.get(0);
+            let image_hsv_g = image_hsv_planes.get(1);
+
+            function giveIntensity(num) {
+              let inten = 0.5;
+
+              return num * inten;
+            }
+
+            function giveIntensity1(num) {
+              let inten = 0.2;
+
+              return num * inten;
+            }
+
+            let image_hsv_b;
+            if (r <= 10 && g <= 10 && b <= 10) {
+              let image_hsv_b_inten = image_hsv_planes
+                .get(2)
+                .data.map(giveIntensity1); //map(mask)
+              image_hsv_b = cv.matFromArray(
+                image_hsv_g.rows,
+                image_hsv_g.cols,
+                image_hsv_g.type(),
+                image_hsv_b_inten
+              );
+            } else if (
+              g > 10 &&
+              g < 50 &&
+              b > 10 &&
+              b < 50 &&
+              r > 10 &&
+              r < 100
+            ) {
+              let image_hsv_b_inten = image_hsv_planes
+                .get(2)
+                .data.map(giveIntensity); //map(mask)
+              image_hsv_b = cv.matFromArray(
+                image_hsv_g.rows,
+                image_hsv_g.cols,
+                image_hsv_g.type(),
+                image_hsv_b_inten
+              );
+            } else {
+              image_hsv_b = image_hsv_planes.get(2);
+            }
+
+            let tar_image_opencv_r = tar_image_opencv_planes.get(0);
+            let tar_image_opencv_g = tar_image_opencv_planes.get(1);
+            let tar_image_opencv_b = tar_image_opencv_planes.get(2);
+
+            let mergedPlanes = new cv.MatVector();
+            mergedPlanes.push_back(tar_image_opencv_r);
+            mergedPlanes.push_back(tar_image_opencv_g);
+            mergedPlanes.push_back(image_hsv_b);
+
+            cv.merge(mergedPlanes, image_hsv);
+
+            let changed = new cv.Mat(imgEye.rows, imgEye.cols, imgEye.type());
+
+            cv.cvtColor(image_hsv, changed, cv.COLOR_HSV2BGR);
+
+            // //BLURING
+            let ksize = new cv.Size(5, 5);
+            // You can try more different parameters
+            cv.GaussianBlur(
+              maskEye,
+              mat_mask_mat,
+              ksize,
+              0,
+              0,
+              cv.BORDER_DEFAULT
+            );
+
+            let imgBlur3D = new cv.Mat(
+              mat_mask_mat.rows,
+              mat_mask_mat.cols,
+              16
+            );
+
+            let imgBlur3D_planes = new cv.MatVector();
+
+            imgBlur3D_planes.push_back(mat_mask_mat);
+            imgBlur3D_planes.push_back(mat_mask_mat);
+            imgBlur3D_planes.push_back(mat_mask_mat);
+
+            cv.merge(imgBlur3D_planes, imgBlur3D);
+
+            let output_mul_1 = new cv.Mat();
+
+            imgBlur3D.convertTo(imgBlur3D, cv.CV_64F);
+            changed.convertTo(changed, cv.CV_64F);
+
+            cv.multiply(imgBlur3D, changed, output_mul_1);
+
+            let image_ones = new cv.Mat.ones(
+              imgEye.rows,
+              imgEye.cols,
+              cv.CV_8UC1
+            );
+
+            cv.cvtColor(image_ones, image_ones, cv.COLOR_RGBA2RGB);
+            image_ones.convertTo(image_ones, cv.CV_64F);
+
+            let output_sub = new cv.Mat();
+            cv.subtract(image_ones, imgBlur3D, output_sub);
+
+            let output_mul_2 = new cv.Mat();
+            imgOrg.convertTo(imgOrg, cv.CV_64F);
+            cv.multiply(output_sub, imgOrg, output_mul_2);
+
+            let final_image = new cv.Mat();
+
+            cv.add(output_mul_1, output_mul_2, final_image);
+            final_image.convertTo(final_image, cv.CV_8U);
+            // cv.imshow("canvas_output", final_image);
+
+            // //BLURRING OVER
+
+            //NEW CODE
+            let maskOrg = new cv.Mat.zeros(mat.rows, mat.cols, mat.type());
+            let maskOrg1 = new cv.Mat.ones(
+              final_image.rows,
+              final_image.cols,
+              mat.type()
+            );
+
+            let x = maskOrg.roi(fourVars);
+
+            final_image.copyTo(x);
+            x.convertTo(x, cv.CV_8U);
+
+            let y = mat.roi(fourVars);
+            maskOrg1.copyTo(y);
+            y.convertTo(y, cv.CV_8U);
+
+            let latest = new cv.Mat();
+            cv.add(maskOrg, mat, latest);
+
+            cv.imshow("canvas_output", latest);
+
+            x.delete();
+            y.delete();
+            tmp_mat.delete();
+            maskOrg.delete();
+            maskOrg1.delete();
+            latest.delete();
+            maskEye.delete();
+            imgEye.delete();
+
+            mat.delete();
+            mat_mask.delete();
+            mat_mask_mat.delete();
+            imgBlur3D.delete();
+            imgBlur3D_planes.delete();
+            mask.delete();
+            opencvImage.delete();
+            image_hsv.delete();
+            tar_image_opencv.delete();
+            mergedPlanes.delete();
+            image_hsv_planes.delete();
+            tar_image_opencv_planes.delete();
+            image_hsv_r.delete();
+            image_hsv_g.delete();
+            image_hsv_b.delete();
+            tar_image_opencv_r.delete();
+            tar_image_opencv_g.delete();
+            tar_image_opencv_b.delete();
+            changed.delete();
+            output_mul_1.delete();
+            image_ones.delete();
+            output_sub.delete();
+            output_mul_2.delete();
+            final_image.delete();
+            imgOrg.delete();
+          } catch (e) {
+            console.log("------------EXCEPTION IN LIPSTICK_HSV : ", e);
+          }
+        }
+
+        foundation(
+          ra,
+          ga,
+          ba,
+          landmarks,
+          canvasCtx_1,
+          canvasCtx,
+          canvasElement,
+          canvasElement_1
+        ) {
+          try {
+            canvasCtx_1.fillStyle = "black";
+            canvasCtx_1.fillRect(
+              0,
+              0,
+              canvasElement.width,
+              canvasElement.height
+            );
+
+            canvasCtx.beginPath();
+            canvasCtx.stroke();
+
+            canvasCtx_1.beginPath();
+            canvasCtx_1.stroke();
+
+            let points = [
+              [
+                landmarks[10].x * canvasElement.width,
+                landmarks[10].y * canvasElement.height - 20,
+              ],
+              [
+                landmarks[338].x * canvasElement.width,
+                landmarks[338].y * canvasElement.height,
+              ],
+              [
+                landmarks[297].x * canvasElement.width,
+                landmarks[297].y * canvasElement.height,
+              ],
+              [
+                landmarks[332].x * canvasElement.width,
+                landmarks[332].y * canvasElement.height - 100,
+              ],
+              [
+                landmarks[284].x * canvasElement.width,
+                landmarks[284].y * canvasElement.height,
+              ],
+              [
+                landmarks[251].x * canvasElement.width,
+                landmarks[251].y * canvasElement.height,
+              ],
+              [
+                landmarks[389].x * canvasElement.width,
+                landmarks[389].y * canvasElement.height,
+              ],
+              [
+                landmarks[356].x * canvasElement.width,
+                landmarks[356].y * canvasElement.height,
+              ],
+              [
+                landmarks[454].x * canvasElement.width,
+                landmarks[454].y * canvasElement.height,
+              ],
+              [
+                landmarks[323].x * canvasElement.width,
+                landmarks[323].y * canvasElement.height,
+              ],
+              [
+                landmarks[361].x * canvasElement.width,
+                landmarks[361].y * canvasElement.height,
+              ],
+              [
+                landmarks[288].x * canvasElement.width,
+                landmarks[288].y * canvasElement.height,
+              ],
+              [
+                landmarks[397].x * canvasElement.width,
+                landmarks[397].y * canvasElement.height,
+              ],
+              [
+                landmarks[365].x * canvasElement.width,
+                landmarks[365].y * canvasElement.height,
+              ],
+              [
+                landmarks[379].x * canvasElement.width,
+                landmarks[379].y * canvasElement.height,
+              ],
+              [
+                landmarks[378].x * canvasElement.width,
+                landmarks[378].y * canvasElement.height,
+              ],
+              [
+                landmarks[400].x * canvasElement.width,
+                landmarks[400].y * canvasElement.height,
+              ],
+              [
+                landmarks[377].x * canvasElement.width,
+                landmarks[377].y * canvasElement.height,
+              ],
+              [
+                landmarks[152].x * canvasElement.width,
+                landmarks[152].y * canvasElement.height,
+              ],
+              [
+                landmarks[148].x * canvasElement.width,
+                landmarks[148].y * canvasElement.height,
+              ],
+              [
+                landmarks[176].x * canvasElement.width,
+                landmarks[176].y * canvasElement.height,
+              ],
+              [
+                landmarks[149].x * canvasElement.width,
+                landmarks[149].y * canvasElement.height,
+              ],
+              [
+                landmarks[150].x * canvasElement.width,
+                landmarks[150].y * canvasElement.height,
+              ],
+              [
+                landmarks[136].x * canvasElement.width,
+                landmarks[136].y * canvasElement.height,
+              ],
+              [
+                landmarks[172].x * canvasElement.width,
+                landmarks[172].y * canvasElement.height,
+              ],
+              [
+                landmarks[58].x * canvasElement.width,
+                landmarks[58].y * canvasElement.height,
+              ],
+              [
+                landmarks[132].x * canvasElement.width,
+                landmarks[132].y * canvasElement.height,
+              ],
+              [
+                landmarks[93].x * canvasElement.width,
+                landmarks[93].y * canvasElement.height,
+              ],
+              [
+                landmarks[234].x * canvasElement.width,
+                landmarks[234].y * canvasElement.height,
+              ],
+              [
+                landmarks[127].x * canvasElement.width,
+                landmarks[127].y * canvasElement.height,
+              ],
+              [
+                landmarks[162].x * canvasElement.width,
+                landmarks[162].y * canvasElement.height,
+              ],
+              [
+                landmarks[21].x * canvasElement.width,
+                landmarks[21].y * canvasElement.height,
+              ],
+              [
+                landmarks[54].x * canvasElement.width,
+                landmarks[54].y * canvasElement.height,
+              ],
+              [
+                landmarks[103].x * canvasElement.width,
+                landmarks[103].y * canvasElement.height - 100,
+              ],
+              [
+                landmarks[67].x * canvasElement.width,
+                landmarks[67].y * canvasElement.height,
+              ],
+              [
+                landmarks[109].x * canvasElement.width,
+                landmarks[109].y * canvasElement.height,
+              ],
+              [
+                landmarks[10].x * canvasElement.width,
+                landmarks[10].y * canvasElement.height - 20,
+              ],
+            ];
+            // [[101,147],[147,213],[213,192],[192,216],[216,205],[205,101]]
+
+            var degree = 1;
+            let points_x = [];
+            let points_y = [];
+
+            //0,1/0.01
+            for (var t = 0; t <= 1; t += 0.1) {
+              var point = interpolate(t, degree, points);
+
+              points_x.push(Math.floor(point[0]));
+              points_y.push(Math.floor(point[1]));
+            }
+
+            canvasCtx_1.beginPath();
+            canvasCtx_1.moveTo(points_x[0], points_y[0]);
+
+            for (let i = 0; i < points_y.length - 1; i++) {
+              canvasCtx_1.lineTo(points_x[i], points_y[i]);
+            }
+            canvasCtx_1.strokeStyle = "white";
+            canvasCtx_1.stroke();
+            canvasCtx_1.fillStyle = "white";
+            canvasCtx_1.fill();
+            ////////////////////////////////////////left eye////////////////////////////
+
+            let left_eyes_x = [
+              landmarks[133].x * canvasElement.width,
+              landmarks[173].x * canvasElement.width,
+              landmarks[157].x * canvasElement.width,
+              landmarks[158].x * canvasElement.width,
+              landmarks[159].x * canvasElement.width,
+              landmarks[160].x * canvasElement.width,
+              landmarks[161].x * canvasElement.width, //added
+              landmarks[246].x * canvasElement.width,
+              landmarks[33].x * canvasElement.width,
+              landmarks[7].x * canvasElement.width,
+              landmarks[163].x * canvasElement.width,
+              landmarks[144].x * canvasElement.width, //added
+              landmarks[145].x * canvasElement.width,
+              landmarks[153].x * canvasElement.width,
+              landmarks[154].x * canvasElement.width,
+              landmarks[155].x * canvasElement.width,
+              landmarks[133].x * canvasElement.width,
+            ];
+            let left_eyes_y = [
+              landmarks[133].y * canvasElement.height,
+              landmarks[173].y * canvasElement.height,
+              landmarks[157].y * canvasElement.height,
+              landmarks[158].y * canvasElement.height,
+              landmarks[159].y * canvasElement.height,
+              landmarks[160].y * canvasElement.height,
+              landmarks[161].y * canvasElement.height, //added
+              landmarks[246].y * canvasElement.height,
+              landmarks[33].y * canvasElement.height,
+              landmarks[7].y * canvasElement.height,
+              landmarks[163].y * canvasElement.height,
+              landmarks[144].y * canvasElement.height, //added
+              landmarks[145].y * canvasElement.height,
+              landmarks[153].y * canvasElement.height,
+              landmarks[154].y * canvasElement.height,
+              landmarks[155].y * canvasElement.height,
+              landmarks[133].y * canvasElement.height,
+            ];
+
+            canvasCtx_1.beginPath();
+            canvasCtx_1.moveTo(left_eyes_x[0], left_eyes_y[0]);
+
+            for (let i = 0; i < left_eyes_x.length - 1; i++) {
+              canvasCtx_1.lineTo(left_eyes_x[i], left_eyes_y[i]);
+            }
+            canvasCtx_1.strokeStyle = "black";
+            canvasCtx_1.stroke();
+            canvasCtx_1.fillStyle = "black";
+            canvasCtx_1.fill();
+            ////////////////////////////////////////right eye////////////////////////////
+            let right_eyes_x = [
+              landmarks[263].x * canvasElement.width,
+              landmarks[249].x * canvasElement.width,
+              landmarks[390].x * canvasElement.width,
+              landmarks[373].x * canvasElement.width,
+              landmarks[374].x * canvasElement.width,
+              landmarks[380].x * canvasElement.width,
+              landmarks[381].x * canvasElement.width, //added
+              landmarks[382].x * canvasElement.width,
+              landmarks[362].x * canvasElement.width,
+              landmarks[398].x * canvasElement.width,
+              landmarks[384].x * canvasElement.width,
+              landmarks[385].x * canvasElement.width, //added
+              landmarks[386].x * canvasElement.width,
+              landmarks[386].x * canvasElement.width,
+              landmarks[387].x * canvasElement.width,
+              landmarks[388].x * canvasElement.width,
+              landmarks[466].x * canvasElement.width,
+              landmarks[263].x * canvasElement.width,
+            ];
+            let right_eyes_y = [
+              landmarks[263].y * canvasElement.height,
+              landmarks[249].y * canvasElement.height,
+              landmarks[390].y * canvasElement.height,
+              landmarks[373].y * canvasElement.height,
+              landmarks[374].y * canvasElement.height,
+              landmarks[380].y * canvasElement.height,
+              landmarks[381].y * canvasElement.height, //added
+              landmarks[382].y * canvasElement.height,
+              landmarks[362].y * canvasElement.height,
+              landmarks[398].y * canvasElement.height,
+              landmarks[384].y * canvasElement.height,
+              landmarks[385].y * canvasElement.height, //added
+              landmarks[386].y * canvasElement.height,
+              landmarks[386].y * canvasElement.height,
+              landmarks[387].y * canvasElement.height,
+              landmarks[388].y * canvasElement.height,
+              landmarks[466].y * canvasElement.height,
+              landmarks[263].y * canvasElement.height,
+            ];
+
+            canvasCtx_1.beginPath();
+            canvasCtx_1.moveTo(right_eyes_x[0], right_eyes_y[0]);
+
+            for (let i = 0; i < right_eyes_x.length - 1; i++) {
+              canvasCtx_1.lineTo(right_eyes_x[i], right_eyes_y[i]);
+            }
+            canvasCtx_1.strokeStyle = "black";
+            canvasCtx_1.stroke();
+            canvasCtx_1.fillStyle = "black";
+            canvasCtx_1.fill();
+
+            ////////////////////////////////////////Lips////////////////////////////
+
+            let lips_x = [
+              landmarks[61].x * canvasElement.width,
+              landmarks[146].x * canvasElement.width,
+              landmarks[91].x * canvasElement.width,
+              landmarks[181].x * canvasElement.width,
+              landmarks[84].x * canvasElement.width,
+              landmarks[17].x * canvasElement.width,
+              landmarks[314].x * canvasElement.width,
+              landmarks[405].x * canvasElement.width,
+              landmarks[321].x * canvasElement.width, //added
+              landmarks[375].x * canvasElement.width,
+              landmarks[291].x * canvasElement.width,
+              landmarks[409].x * canvasElement.width,
+              landmarks[270].x * canvasElement.width,
+              landmarks[269].x * canvasElement.width, //added
+              landmarks[267].x * canvasElement.width,
+              landmarks[0].x * canvasElement.width,
+              landmarks[37].x * canvasElement.width,
+              landmarks[39].x * canvasElement.width,
+              landmarks[40].x * canvasElement.width,
+              landmarks[185].x * canvasElement.width,
+              landmarks[61].x * canvasElement.width,
+            ];
+
+            let lips_y = [
+              landmarks[61].y * canvasElement.height,
+              landmarks[146].y * canvasElement.height,
+              landmarks[91].y * canvasElement.height,
+              landmarks[181].y * canvasElement.height,
+              landmarks[84].y * canvasElement.height,
+              landmarks[17].y * canvasElement.height,
+              landmarks[314].y * canvasElement.height,
+              landmarks[405].y * canvasElement.height,
+              landmarks[321].y * canvasElement.height, //added
+              landmarks[375].y * canvasElement.height,
+              landmarks[291].y * canvasElement.height,
+              landmarks[409].y * canvasElement.height,
+              landmarks[270].y * canvasElement.height,
+              landmarks[269].y * canvasElement.height, //added
+              landmarks[267].y * canvasElement.height,
+              landmarks[0].y * canvasElement.height,
+              landmarks[37].y * canvasElement.height,
+              landmarks[39].y * canvasElement.height,
+              landmarks[40].y * canvasElement.height,
+              landmarks[185].y * canvasElement.height,
+              landmarks[61].x * canvasElement.height,
+            ];
+            canvasCtx_1.beginPath();
+            canvasCtx_1.moveTo(lips_x[0], lips_y[0]);
+
+            for (let i = 0; i < lips_x.length - 1; i++) {
+              canvasCtx_1.lineTo(lips_x[i], lips_y[i]);
+            }
+            canvasCtx_1.strokeStyle = "black";
+            canvasCtx_1.stroke();
+            canvasCtx_1.fillStyle = "black";
+            canvasCtx_1.fill();
+
+            ////////////////////////////////////////right eyebrow////////////////////////////
+            let right_eyebrow_x = [
+              landmarks[285].x * canvasElement.width,
+              landmarks[295].x * canvasElement.width,
+              landmarks[282].x * canvasElement.width,
+              landmarks[283].x * canvasElement.width,
+              landmarks[276].x * canvasElement.width,
+              landmarks[300].x * canvasElement.width,
+              landmarks[293].x * canvasElement.width,
+              landmarks[334].x * canvasElement.width,
+              landmarks[296].x * canvasElement.width, //added
+              landmarks[336].x * canvasElement.width,
+              landmarks[285].x * canvasElement.width,
+            ];
+
+            let right_eyebrow_y = [
+              landmarks[285].y * canvasElement.height,
+              landmarks[295].y * canvasElement.height,
+              landmarks[282].y * canvasElement.height,
+              landmarks[283].y * canvasElement.height,
+              landmarks[276].y * canvasElement.height,
+              landmarks[300].y * canvasElement.height,
+              landmarks[293].y * canvasElement.height,
+              landmarks[334].y * canvasElement.height,
+              landmarks[296].y * canvasElement.height, //added
+              landmarks[336].y * canvasElement.height,
+              landmarks[336].y * canvasElement.height,
+            ];
+
+            canvasCtx_1.beginPath();
+            canvasCtx_1.moveTo(right_eyebrow_x[0], right_eyebrow_y[0]);
+
+            for (let i = 0; i < right_eyebrow_y.length - 1; i++) {
+              canvasCtx_1.lineTo(right_eyebrow_x[i], right_eyebrow_y[i]);
+            }
+            canvasCtx_1.strokeStyle = "black";
+            canvasCtx_1.stroke();
+            canvasCtx_1.fillStyle = "black";
+            canvasCtx_1.fill();
+
+            ////////////////////////////////////////left eyebrow////////////////////////////
+            let left_eyebrow_x = [
+              landmarks[46].x * canvasElement.width,
+              landmarks[53].x * canvasElement.width,
+              landmarks[52].x * canvasElement.width,
+              landmarks[65].x * canvasElement.width,
+              landmarks[55].x * canvasElement.width,
+              landmarks[107].x * canvasElement.width,
+              landmarks[66].x * canvasElement.width,
+              landmarks[105].x * canvasElement.width, //added
+              landmarks[63].x * canvasElement.width,
+              landmarks[70].x * canvasElement.width,
+            ];
+
+            let left_eyebrow_y = [
+              landmarks[46].y * canvasElement.height,
+              landmarks[53].y * canvasElement.height,
+              landmarks[52].y * canvasElement.height,
+              landmarks[65].y * canvasElement.height,
+              landmarks[55].y * canvasElement.height,
+              landmarks[107].y * canvasElement.height,
+              landmarks[66].y * canvasElement.height,
+              landmarks[105].y * canvasElement.height, //added
+              landmarks[63].y * canvasElement.height,
+              landmarks[70].y * canvasElement.height,
+            ];
+
+            canvasCtx_1.beginPath();
+            canvasCtx_1.moveTo(left_eyebrow_x[0], left_eyebrow_y[0]);
+
+            for (let i = 0; i < left_eyebrow_y.length - 1; i++) {
+              canvasCtx_1.lineTo(left_eyebrow_x[i], left_eyebrow_y[i]);
+            }
+
+            canvasCtx_1.strokeStyle = "black";
+            canvasCtx_1.stroke();
+            canvasCtx_1.fillStyle = "black";
+            canvasCtx_1.fill();
+
+            canvasCtx.restore();
+
+            let imgData = canvasCtx.getImageData(
+              0,
+              0,
+              canvasElement.width,
+              canvasElement.height
+            );
+
+            let imgData_1 = canvasCtx_1.getImageData(
+              0,
+              0,
+              canvasElement.width,
+              canvasElement.height
+            );
+
+            let mat = cv.matFromImageData(imgData);
+            cv.cvtColor(mat, mat, cv.COLOR_RGBA2RGB);
+
+            let coords = [];
+
+            coords = [
+              landmarks[10].x * canvasElement.width,
+              landmarks[10].y * canvasElement.height - 50,
+              landmarks[338].x * canvasElement.width,
+              landmarks[338].y * canvasElement.height - 50,
+              landmarks[297].x * canvasElement.width,
+              landmarks[297].y * canvasElement.height - 50,
+              landmarks[332].x * canvasElement.width,
+              landmarks[332].y * canvasElement.height - 50,
+              landmarks[284].x * canvasElement.width,
+              landmarks[284].y * canvasElement.height - 50,
+              landmarks[251].x * canvasElement.width,
+              landmarks[251].y * canvasElement.height - 50,
+              landmarks[389].x * canvasElement.width,
+              landmarks[389].y * canvasElement.height,
+              landmarks[356].x * canvasElement.width,
+              landmarks[356].y * canvasElement.height,
+              landmarks[454].x * canvasElement.width,
+              landmarks[454].y * canvasElement.height,
+              landmarks[323].x * canvasElement.width,
+              landmarks[323].y * canvasElement.height,
+              landmarks[361].x * canvasElement.width,
+              landmarks[361].y * canvasElement.height,
+              landmarks[288].x * canvasElement.width,
+              landmarks[288].y * canvasElement.height,
+              landmarks[397].x * canvasElement.width,
+              landmarks[397].y * canvasElement.height,
+              landmarks[365].x * canvasElement.width,
+              landmarks[365].y * canvasElement.height,
+              landmarks[379].x * canvasElement.width,
+              landmarks[379].y * canvasElement.height,
+              landmarks[378].x * canvasElement.width,
+              landmarks[378].y * canvasElement.height,
+              landmarks[400].x * canvasElement.width,
+              landmarks[400].y * canvasElement.height,
+              landmarks[377].x * canvasElement.width,
+              landmarks[377].y * canvasElement.height,
+              landmarks[152].x * canvasElement.width,
+              landmarks[152].y * canvasElement.height,
+              landmarks[148].x * canvasElement.width,
+              landmarks[148].y * canvasElement.height,
+              landmarks[176].x * canvasElement.width,
+              landmarks[176].y * canvasElement.height,
+              landmarks[149].x * canvasElement.width,
+              landmarks[149].y * canvasElement.height,
+              landmarks[150].x * canvasElement.width,
+              landmarks[150].y * canvasElement.height,
+              landmarks[136].x * canvasElement.width,
+              landmarks[136].y * canvasElement.height,
+              landmarks[172].x * canvasElement.width,
+              landmarks[172].y * canvasElement.height,
+              landmarks[58].x * canvasElement.width,
+              landmarks[58].y * canvasElement.height,
+              landmarks[132].x * canvasElement.width,
+              landmarks[132].y * canvasElement.height,
+              landmarks[93].x * canvasElement.width,
+              landmarks[93].y * canvasElement.height,
+              landmarks[234].x * canvasElement.width,
+              landmarks[234].y * canvasElement.height,
+              landmarks[127].x * canvasElement.width,
+              landmarks[127].y * canvasElement.height,
+              landmarks[162].x * canvasElement.width,
+              landmarks[162].y * canvasElement.height,
+              landmarks[21].x * canvasElement.width,
+              landmarks[21].y * canvasElement.height - 50,
+              landmarks[54].x * canvasElement.width,
+              landmarks[54].y * canvasElement.height - 50,
+              landmarks[103].x * canvasElement.width,
+              landmarks[103].y * canvasElement.height - 50,
+              landmarks[67].x * canvasElement.width,
+              landmarks[67].y * canvasElement.height - 50,
+              landmarks[109].x * canvasElement.width,
+              landmarks[109].y * canvasElement.height - 50,
+              landmarks[10].x * canvasElement.width,
+              landmarks[10].y * canvasElement.height - 50,
+            ];
+
+            function mask(num) {
+              if (num <= 0) {
+                num = 0;
+              }
+
+              if (num > 0) {
+                num = 1;
+              }
+              return num;
+            }
+
+            let mat_mask = cv.matFromImageData(imgData_1);
+            cv.cvtColor(mat_mask, mat_mask, cv.COLOR_RGBA2GRAY);
+
+            let mat_mask_array = mat_mask.data.map(mask);
+            let mat_mask_mat = cv.matFromArray(
+              mat_mask.rows,
+              mat_mask.cols,
+              cv.CV_64F,
+              mat_mask_array
+            );
+
+            //Extract ROI BEGIN:
+
+            try {
+              var maskEye = new cv.Mat();
+              var imgEye = new cv.Mat();
+              var tmp_mat = cv.matFromArray(37, 2, cv.CV_32F, coords);
+              var rect = cv.minAreaRect(tmp_mat);
+
+              var box = cv.RotatedRect.points(rect);
+              var newBox = [];
+
+              for (let i = 0; i < box.length; i++) {
+                newBox.push(parseInt(box[i].x));
+                newBox.push(parseInt(box[i].y));
+              }
+
+              tmp_mat = cv.matFromArray(4, 2, cv.CV_32F, newBox);
+              var fourVars = cv.boundingRect(tmp_mat);
+
+              //CREATE MASK_EYE FROM EXISTING MASK
+
+              maskEye = mat_mask_mat.roi(fourVars);
+              imgEye = mat.roi(fourVars);
+            } catch (e) {
+              mat.delete();
+              mat_mask.delete();
+              mat_mask_mat.delete();
+              tmp_mat.delete();
+              maskEye.delete();
+              imgEye.delete();
+              console.log("============foundation v2 ROI exception : ", e);
+              return;
+            }
+
+            // Extract ROI END
+
+            let imgOrg = imgEye.clone();
+
+            let val = new cv.Mat(); //cv.CV_32
+
+            let pil_image = new cv.Mat();
+
+            imgEye.convertTo(pil_image, cv.CV_32F, 1 / 255);
+
+            cv.cvtColor(pil_image, val, cv.COLOR_RGB2Lab, 0);
+
+            // let width = imgEye.rows
+            // let height = imgEye.cols
+
+            let average = cv.mean(val);
+
+            let L = average[0];
+            let A = average[1];
+            let B = average[2];
+
+            let r_color = ra;
+            let g_color = ga;
+            let b_color = ba;
+
+            let r = cv.matFromArray(1, 1, cv.CV_32F, [r_color / 255]);
+            let g = cv.matFromArray(1, 1, cv.CV_32F, [g_color / 255]);
+            let Bl = cv.matFromArray(1, 1, cv.CV_32F, [b_color / 255]);
+
+            let rgbaPlanes = new cv.MatVector();
+
+            rgbaPlanes.push_back(r);
+            rgbaPlanes.push_back(g);
+            rgbaPlanes.push_back(Bl);
+
+            let temp_lab = new cv.Mat();
+            cv.merge(rgbaPlanes, temp_lab);
+            cv.cvtColor(temp_lab, temp_lab, cv.COLOR_RGBA2RGB);
+            cv.cvtColor(temp_lab, temp_lab, cv.COLOR_RGB2Lab);
+
+            let LabPlanes = new cv.MatVector();
+
+            cv.split(temp_lab, LabPlanes);
+
+            let L1 = LabPlanes.get(0);
+            let A1 = LabPlanes.get(1);
+            let B1 = LabPlanes.get(2);
+
+            L1 = L1.data32F[0];
+            A1 = A1.data32F[0];
+            B1 = B1.data32F[0];
+
+            let intensity = 0.38;
+
+            let ll = (L1 - L) * intensity; //check these values again
+            let aa = (A1 - A) * intensity;
+            let bb = (B1 - B) * intensity;
+
+            function myFunction_l(num) {
+              num = num + ll;
+              if (num < 0) {
+                num = 0;
+              }
+
+              if (num > 100) {
+                num = 100;
+              }
+              return num;
+            }
+
+            function myFunction_a(num) {
+              num = num + aa;
+
+              if (num < -127) {
+                num = -127;
+              }
+
+              if (num > 128) {
+                num = 128;
+              }
+              return num;
+            }
+
+            function myFunction_b(num) {
+              num = num + bb;
+
+              if (num < -127) {
+                num = -127;
+              }
+
+              if (num > 128) {
+                num = 128;
+              }
+              return num;
+            }
+
+            let val1Planes = new cv.MatVector();
+
+            cv.split(val, val1Planes);
+
+            let v_0 = val1Planes.get(0);
+            let v_1 = val1Planes.get(1);
+            let v_2 = val1Planes.get(2);
+
+            let v_0_l = v_0.data32F.map(myFunction_l);
+            let v_0_l_mat = cv.matFromArray(
+              v_0.rows,
+              v_0.cols,
+              cv.CV_32F,
+              v_0_l
+            );
+
+            let v_1_a = v_1.data32F.map(myFunction_a);
+            let v_1_a_mat = cv.matFromArray(
+              v_1.rows,
+              v_1.cols,
+              cv.CV_32F,
+              v_1_a
+            );
+
+            let v_2_b = v_2.data32F.map(myFunction_b);
+            let v_2_b_mat = cv.matFromArray(
+              v_2.rows,
+              v_2.cols,
+              cv.CV_32F,
+              v_2_b
+            );
+
+            let labPlanes = new cv.MatVector();
+            labPlanes.push_back(v_0_l_mat);
+            labPlanes.push_back(v_1_a_mat);
+            labPlanes.push_back(v_2_b_mat);
+
+            let val2 = new cv.Mat();
+
+            cv.merge(labPlanes, val2);
+
+            cv.cvtColor(val2, val2, cv.COLOR_Lab2RGB);
+
+            val2.convertTo(val2, cv.CV_64F, 255);
+
+            // imgMask = cv2.GaussianBlur(imgBase,(51,51),0)  #51
+
+            let ksize = new cv.Size(51, 51);
+            // You can try more different parameters
+            cv.GaussianBlur(
+              maskEye,
+              mat_mask_mat,
+              ksize,
+              0,
+              0,
+              cv.BORDER_DEFAULT
+            );
+
+            let imgBlur3D = new cv.Mat(
+              mat_mask_mat.rows,
+              mat_mask_mat.cols,
+              val2.type()
+            );
+
+            let imgBlur3D_planes = new cv.MatVector();
+
+            let imgBlur3D_r = mat_mask_mat;
+            let imgBlur3D_g = mat_mask_mat;
+            let imgBlur3D_b = mat_mask_mat;
+
+            imgBlur3D_planes.push_back(imgBlur3D_r);
+            imgBlur3D_planes.push_back(imgBlur3D_g);
+            imgBlur3D_planes.push_back(imgBlur3D_b);
+
+            cv.merge(imgBlur3D_planes, imgBlur3D);
+
+            let output_mul_1 = new cv.Mat();
+
+            imgBlur3D.convertTo(imgBlur3D, cv.CV_64F);
+
+            cv.multiply(imgBlur3D, val2, output_mul_1);
+
+            let image_ones = new cv.Mat.ones(
+              imgEye.rows,
+              imgEye.cols,
+              cv.CV_8UC1
+            );
+            // cv.imshow("canvas_output", image_ones)
+            cv.cvtColor(image_ones, image_ones, cv.COLOR_RGBA2RGB);
+            image_ones.convertTo(image_ones, cv.CV_64F);
+
+            let output_sub = new cv.Mat();
+            cv.subtract(image_ones, imgBlur3D, output_sub);
+
+            let output_mul_2 = new cv.Mat();
+            imgOrg.convertTo(imgOrg, cv.CV_64F);
+            cv.multiply(output_sub, imgOrg, output_mul_2);
+
+            let final_image = new cv.Mat();
+
+            cv.add(output_mul_1, output_mul_2, final_image);
+
+            final_image.convertTo(final_image, cv.CV_8U);
+
+            //
+
+            let maskOrg = new cv.Mat.zeros(mat.rows, mat.cols, mat.type());
+            let maskOrg1 = new cv.Mat.ones(
+              final_image.rows,
+              final_image.cols,
+              mat.type()
+            );
+
+            let x = maskOrg.roi(fourVars);
+
+            final_image.copyTo(x);
+            x.convertTo(x, cv.CV_8U);
+
+            let y = mat.roi(fourVars);
+            maskOrg1.copyTo(y);
+            y.convertTo(y, cv.CV_8U);
+            let latest = new cv.Mat();
+            cv.add(maskOrg, mat, latest);
+
+            //
+
+            cv.imshow("canvas_output", latest);
+
+            x.delete();
+            y.delete();
+            tmp_mat.delete();
+            maskOrg.delete();
+            maskOrg1.delete();
+            latest.delete();
+            maskEye.delete();
+            imgEye.delete();
+
+            mat.delete();
+            val.delete();
+            pil_image.delete();
+            r.delete();
+            g.delete();
+            Bl.delete();
+            rgbaPlanes.delete();
+
+            temp_lab.delete();
+            LabPlanes.delete();
+            val1Planes.delete();
+            v_0.delete();
+            v_1.delete();
+            v_2.delete();
+
+            v_0_l_mat.delete();
+            v_1_a_mat.delete();
+            v_2_b_mat.delete();
+            labPlanes.delete();
+            val2.delete();
+            mat_mask.delete();
+            mat_mask_mat.delete();
+            imgOrg.delete();
+            imgBlur3D.delete();
+            imgBlur3D_planes.delete();
+            output_mul_1.delete();
+            image_ones.delete();
+            output_sub.delete();
+            output_mul_2.delete();
+            final_image.delete();
+          } catch (e) {
+            console.log("---------EXCEPTION IN FOUNDATION V2 : ", e);
+          }
+        }
+      }
+
+      const opencvMakeup = new OpenCVMakuep();
+
+      const lipstickShaderProgram = new WebGLShaderProgram(gl2);
+      const eyeshadowShaderProgram = new WebGLShaderProgram(gl2);
+      const blushShaderProgram = new WebGLShaderProgram(gl2);
+
+      /**
+       * Method to clear the glCanvas with black transparent color.
+       * @param{gl} The gl context bound to the canvas in use.
+       * @returns {void}
+       */
+      const clearGlCanvas = function (gl) {
+        gl.clearColor(0.0, 0.0, 0.0, 0.0); // Clear to black, fully opaque
+        //gl.clearDepth(1.0);                 // Clear everything
+        gl.disable(gl.DEPTH_TEST);
+        gl.enable(gl.BLEND);
+        gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+        // Enable depth testing
+        //gl.depthFunc(gl.LEQUAL);            // Near things obscure far things
+
+        gl.clear(gl.COLOR_BUFFER_BIT);
+      };
+
+      faceMesh.onResults((results) => {
+        canvasCtx.save();
+        canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
+        canvasCtx.drawImage(
+          results.image,
+          0,
+          0,
+          canvasElement.width,
+          canvasElement.height
+        );
+        if (results.multiFaceLandmarks) {
+          for (let landmarks of results.multiFaceLandmarks) {
+            //Loop to iterate over all the applied items received from client side.
+            clearGlCanvas(gl2);
+            for (let item of Object.keys(effectData)) {
+              let color = effectData[item]["color"];
+              //A Switch case to check for individual makeup type
+              switch (item) {
+                case "Lipstick":
+                  //A switch case to check for the type of product applied for this makeup type.
+                  opencvMakeup.lipstick(
+                    color[0],
+                    color[1],
+                    color[2],
+                    landmarks,
+                    canvasCtx_1,
+                    canvasCtx,
+                    canvasElement,
+                    canvasElement_1
+                  );
+                  switch (effectData[item]["product_type"]) {
+                    // 1 -> Gloss
+                    case 1:
+                      lipstickShaderProgram.drawScene(
+                        imgTagGloss,
+                        landmarks,
+                        color,
+                        0.35
+                      );
+                      break;
+                    // 5 -> Glitter(with gloss)
+                    case 5:
+                      console.log("CALLED");
+                      lipstickShaderProgram.drawScene(
+                        imgTagGlitter,
+                        landmarks,
+                        color,
+                        0.35
+                      );
+                      break;
+                    // 8 and 10 -> metallic
+                    case 8:
+                    case 9:
+                    case 10:
+                      lipstickShaderProgram.drawScene(
+                        imgTagMetallic,
+                        landmarks,
+                        color,
+                        0.3
+                      );
+                      break;
+                  }
+                  break;
+                case "Eyeshadow":
+                  let changeEyeshadowColor = [];
+                  changeEyeshadowColor.push(
+                    color[0] / 255,
+                    color[1] / 255,
+                    color[2] / 255
+                  );
+                  eyeshadowShaderProgram.drawScene(
+                    eyeshadowBaseTexture,
+                    landmarks,
+                    changeEyeshadowColor,
+                    0.7
+                  );
+                  switch (effectData[item]["product_type"]) {
+                    // 6 -> Micro
+                    case 6:
+                      eyeshadowShaderProgram.drawScene(
+                        eyeshadowMicroTexture,
+                        landmarks,
+                        color,
+                        0.9
+                      );
+                      break;
+                    // 7 -> Nano
+                    case 7:
+                      eyeshadowShaderProgram.drawScene(
+                        eyeshadowNanoTexture,
+                        landmarks,
+                        color,
+                        0.9
+                      );
+                      break;
+                    // 11 -> metallic nano
+                    case 11:
+                      eyeshadowShaderProgram.drawScene(
+                        eyeshadowMetallicTexture,
+                        landmarks,
+                        color,
+                        0.45
+                      );
+                      break;
+                    // 12 -> metallic micro
+                    case 12:
+                      break;
+                  }
+                  break;
+                case "Eyeliner":
+                  let styleId = effectData[item]["style"];
+                  if (styleId != eyelinerStyleInUse) {
+                    eyelinerStyleInUse = styleId;
+                    eyelinerStyleTexture.setAttribute(
+                      "src",
+                      "data:image/png;base64," +
+                        eyelinerStyleBase64Strings[styleId]
+                    );
+                  }
+                  //use eyelinerStyleTexture img tag.
+
+                  let changeEyelinerColor = [];
+                  changeEyelinerColor.push(
+                    color[0] / 255,
+                    color[1] / 255,
+                    color[2] / 255
+                  );
+                  eyeshadowShaderProgram.drawScene(
+                    eyelinerStyleTexture,
+                    landmarks,
+                    changeEyelinerColor,
+                    0.87
+                  );
+                  break;
+                case "Blush":
+                let changeBlushColor = [];
+                changeBlushColor.push(
+                    color[0] / 255,
+                    color[1] / 255,
+                    color[2] / 255
+                  );
+                  switch (effectData[item]["product_type"]) {
+                    case 0:
+                      blushShaderProgram.drawScene(
+                        blushHeartFaceTexture,
+                        landmarks,
+                        changeBlushColor,
+                        0.28
+                      );
+                      break;
+
+                    case 1:
+                      blushShaderProgram.drawScene(
+                        blushLongFaceTexture,
+                        landmarks,
+                        changeBlushColor,
+                        0.28
+                      );
+                      break;
+                    case 2:
+                      blushShaderProgram.drawScene(
+                        blushOvalFaceTexture,
+                        landmarks,
+                        changeBlushColor,
+                        0.28
+                      );
+                      break;
+                    case 3:
+                      blushShaderProgram.drawScene(
+                        blushRoundFaceTexture,
+                        landmarks,
+                        changeBlushColor,
+                        0.28
+                      );
+                      break;
+                    case 4:
+                      blushShaderProgram.drawScene(
+                        blushSquareFaceTexture,
+                        landmarks,
+                        changeBlushColor,
+                        0.30
+                      );
+                      break;
+                    case 5:
+                      blushShaderProgram.drawScene(
+                        blushTriangleFaceTexture,
+                        landmarks,
+                        changeBlushColor,
+                        0.28
+                      );
+                      break;
+                  }
+                  break;
+                case "Eyebrows":
+                  break;
+                case "Kajal":
+                  break;
+                case "Foundation":
+                  opencvMakeup.foundation(
+                    color[0],
+                    color[1],
+                    color[2],
+                    landmarks,
+                    canvasCtx_1,
+                    canvasCtx,
+                    canvasElement,
+                    canvasElement_1
+                  );
+                  break;
+              }
+            }
+          }
+        } else {
+          clearGlCanvas(gl2);
+          console.log("FACE NOT FOUND");
+        }
+        canvasCtx.restore();
+      });
+    </script>
+  </body>
+</html>

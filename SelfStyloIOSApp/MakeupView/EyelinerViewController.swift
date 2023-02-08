@@ -21,6 +21,8 @@ class EyelinerViewController: UIViewController,UICollectionViewDelegate,UICollec
     var eyeliner_image:[String] = ["color_code_circle", "color_code_circle","color_code_circle", "color_code_circle","color_code_circle","color_code_circle","color_code_circle"]
     var eyeliner_name:[String] =  ["Default","Basic","Feline","Pin-up","Double-take","Triple-take","High-wing"]
     
+    var backToCategory : (()-> Void)?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -30,9 +32,10 @@ class EyelinerViewController: UIViewController,UICollectionViewDelegate,UICollec
     }
     
     @IBAction func btnBack(_ sender: UIButton) {
-        let detailViewController:UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "MakeupViewController") as! MakeupViewController
-        detailViewController.modalPresentationStyle = .fullScreen
-        self.present(detailViewController, animated: false)
+        backToCategory?()
+//        let detailViewController:UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "MakeupViewController") as! MakeupViewController
+//        detailViewController.modalPresentationStyle = .fullScreen
+//        self.present(detailViewController, animated: false)
     }
     
     func reloadCollectionViewData() {

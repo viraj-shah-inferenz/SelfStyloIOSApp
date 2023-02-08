@@ -9,17 +9,18 @@ import UIKit
 
 class FoundationViewController: UIViewController {
 
+    var backToCategory : (()-> Void)?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
        
     }
-    
 
     @IBAction func btnBack(_ sender: UIButton) {
-        let detailViewController:UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "MakeupViewController") as! MakeupViewController
-        detailViewController.modalPresentationStyle = .fullScreen
-        self.present(detailViewController, animated: false)
+        backToCategory?()
+//        let detailViewController:UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "MakeupViewController") as! MakeupViewController
+//        detailViewController.modalPresentationStyle = .fullScreen
+//        self.present(detailViewController, animated: false)
     }
    
 

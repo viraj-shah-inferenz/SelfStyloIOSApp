@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -111,6 +111,16 @@
 		22F858E6295B047800A7D86E /* FavouriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F858E5295B047800A7D86E /* FavouriteViewController.swift */; };
 		22FAE56D298A290F0019EE81 /* CategoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22FAE56C298A290F0019EE81 /* CategoryCollectionViewCell.xib */; };
 		52E8E3BEA92B023BE2D8FDAF /* Pods_SelfStyloIOSApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B332B815068FE8B9EBCCB1C5 /* Pods_SelfStyloIOSApp.framework */; };
+		5325AF1D298A5291004F385D /* MakeupLoaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5325AF1C298A5291004F385D /* MakeupLoaderViewController.swift */; };
+		53829450298CD939002D7671 /* EffectData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5382944F298CD939002D7671 /* EffectData.swift */; };
+		53829454298D2EB4002D7671 /* Js in Resources */ = {isa = PBXBuildFile; fileRef = 53829453298D2EB4002D7671 /* Js */; };
+		5382945A29912FF3002D7671 /* indexMain.html in Resources */ = {isa = PBXBuildFile; fileRef = 5382945929912FF3002D7671 /* indexMain.html */; };
+		53BAC713297FDDAE00FD0BD5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 53BAC712297FDDAE00FD0BD5 /* GoogleService-Info.plist */; };
+		53BD4986298007B200B1D53B /* MakeDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53BD4985298007B200B1D53B /* MakeDetails.swift */; };
+		53BD49882980117C00B1D53B /* APIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53BD49872980117C00B1D53B /* APIHandler.swift */; };
+		53BD498A298017A600B1D53B /* NewMakeupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53BD4989298017A600B1D53B /* NewMakeupViewController.swift */; };
+		53BD49912983E72F00B1D53B /* LipstickView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53BD49902983E72F00B1D53B /* LipstickView.swift */; };
+		53BD49932983E73700B1D53B /* LipstickView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53BD49922983E73700B1D53B /* LipstickView.xib */; };
 		6F8A6A7FB46FB7581DDD9581 /* Pods_SelfStyloIOSApp_SelfStyloIOSAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92302873C826183761795D41 /* Pods_SelfStyloIOSApp_SelfStyloIOSAppUITests.framework */; };
 		8ADDAE51008FD4208ED1B0DD /* Pods_SelfStyloIOSAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C80721B2EDCFF1AC6EBDE6E8 /* Pods_SelfStyloIOSAppTests.framework */; };
 /* End PBXBuildFile section */
@@ -243,6 +253,16 @@
 		22FAE56C298A290F0019EE81 /* CategoryCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CategoryCollectionViewCell.xib; path = ../../../../../../../Downloads/CategoryCollectionViewCell.xib; sourceTree = "<group>"; };
 		26880CABF6AFBA3C41D5E32F /* Pods-SelfStyloIOSAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SelfStyloIOSAppTests.release.xcconfig"; path = "Target Support Files/Pods-SelfStyloIOSAppTests/Pods-SelfStyloIOSAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		400969E1C350C193153BDECA /* Pods-SelfStyloIOSApp-SelfStyloIOSAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SelfStyloIOSApp-SelfStyloIOSAppUITests.release.xcconfig"; path = "Target Support Files/Pods-SelfStyloIOSApp-SelfStyloIOSAppUITests/Pods-SelfStyloIOSApp-SelfStyloIOSAppUITests.release.xcconfig"; sourceTree = "<group>"; };
+		5325AF1C298A5291004F385D /* MakeupLoaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeupLoaderViewController.swift; sourceTree = "<group>"; };
+		5382944F298CD939002D7671 /* EffectData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectData.swift; sourceTree = "<group>"; };
+		53829453298D2EB4002D7671 /* Js */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Js; sourceTree = "<group>"; };
+		5382945929912FF3002D7671 /* indexMain.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = indexMain.html; sourceTree = "<group>"; };
+		53BAC712297FDDAE00FD0BD5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		53BD4985298007B200B1D53B /* MakeDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeDetails.swift; sourceTree = "<group>"; };
+		53BD49872980117C00B1D53B /* APIHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHandler.swift; sourceTree = "<group>"; };
+		53BD4989298017A600B1D53B /* NewMakeupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMakeupViewController.swift; sourceTree = "<group>"; };
+		53BD49902983E72F00B1D53B /* LipstickView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LipstickView.swift; sourceTree = "<group>"; };
+		53BD49922983E73700B1D53B /* LipstickView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LipstickView.xib; sourceTree = "<group>"; };
 		836D4F58F6822572143071FA /* Pods-SelfStyloIOSApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SelfStyloIOSApp.release.xcconfig"; path = "Target Support Files/Pods-SelfStyloIOSApp/Pods-SelfStyloIOSApp.release.xcconfig"; sourceTree = "<group>"; };
 		92302873C826183761795D41 /* Pods_SelfStyloIOSApp_SelfStyloIOSAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SelfStyloIOSApp_SelfStyloIOSAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B332B815068FE8B9EBCCB1C5 /* Pods_SelfStyloIOSApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SelfStyloIOSApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -320,6 +340,7 @@
 		2287323029795C6000659E80 /* MakeupView */ = {
 			isa = PBXGroup;
 			children = (
+				53BD498D2983E6A300B1D53B /* MakeupView */,
 				2287323129795D2100659E80 /* CollectionViewCells */,
 				2287323629795FF800659E80 /* MakeupViewController.swift */,
 				22B00B7C297EA0460075FB02 /* EyelinerViewController.swift */,
@@ -329,7 +350,12 @@
 				22B00B76297E8A0D0075FB02 /* FoundationViewController.swift */,
 				229DE357297EBC77001235A8 /* EyelinerStyleViewController.swift */,
 				227A6E00297FA05600559A3F /* CombosViewController.swift */,
+<<<<<<< HEAD
 				2273A7722989116A007FE6F3 /* TryOnViewController.swift */,
+=======
+				53BD4989298017A600B1D53B /* NewMakeupViewController.swift */,
+				5325AF1C298A5291004F385D /* MakeupLoaderViewController.swift */,
+>>>>>>> 1d86fa1 (add makeup feature like:- Lipstick, Eyeshadow, Blush)
 			);
 			path = MakeupView;
 			sourceTree = "<group>";
@@ -510,6 +536,7 @@
 			children = (
 				22E8E9FB29700B9D00E5BE59 /* IApiCalls.swift */,
 				22E8E9FD29700C4300E5BE59 /* ApiUtils.swift */,
+				53BD49872980117C00B1D53B /* APIHandler.swift */,
 			);
 			path = Api;
 			sourceTree = "<group>";
@@ -530,7 +557,12 @@
 				22E8EA032970114200E5BE59 /* FavouriteProducts.swift */,
 				22BB026429711E8100F514B0 /* Patron.swift */,
 				2289852C2976CDE7002DD2E8 /* Banner.swift */,
+<<<<<<< HEAD
 				2278B3C52980FAD800BB2D8A /* Makeup.swift */,
+=======
+				53BD4985298007B200B1D53B /* MakeDetails.swift */,
+				5382944F298CD939002D7671 /* EffectData.swift */,
+>>>>>>> 1d86fa1 (add makeup feature like:- Lipstick, Eyeshadow, Blush)
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -568,10 +600,17 @@
 		22F858B0295AC6A400A7D86E /* SelfStyloIOSApp */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
 				22E6FA28298D416B00361954 /* NotificationView */,
 				2287323029795C6000659E80 /* MakeupView */,
 				2289852B2976BDDD002DD2E8 /* SelfStyloIOSApp.entitlements */,
 				2273A7702988EC28007FE6F3 /* GoogleService-Info.plist */,
+=======
+				530278D5297FF8F70037F46E /* WebContoller */,
+				2287323029795C6000659E80 /* MakeupView */,
+				2289852B2976BDDD002DD2E8 /* SelfStyloIOSApp.entitlements */,
+				53BAC712297FDDAE00FD0BD5 /* GoogleService-Info.plist */,
+>>>>>>> 1d86fa1 (add makeup feature like:- Lipstick, Eyeshadow, Blush)
 				22E8EA002970105D00E5BE59 /* Model */,
 				22E8E9FF2970105200E5BE59 /* Dao */,
 				22E8E9FA29700B7500E5BE59 /* Api */,
@@ -612,6 +651,24 @@
 				22F858D4295AC6A600A7D86E /* SelfStyloIOSAppUITestsLaunchTests.swift */,
 			);
 			path = SelfStyloIOSAppUITests;
+			sourceTree = "<group>";
+		};
+		530278D5297FF8F70037F46E /* WebContoller */ = {
+			isa = PBXGroup;
+			children = (
+				5382945929912FF3002D7671 /* indexMain.html */,
+				53829453298D2EB4002D7671 /* Js */,
+			);
+			path = WebContoller;
+			sourceTree = "<group>";
+		};
+		53BD498D2983E6A300B1D53B /* MakeupView */ = {
+			isa = PBXGroup;
+			children = (
+				53BD49902983E72F00B1D53B /* LipstickView.swift */,
+				53BD49922983E73700B1D53B /* LipstickView.xib */,
+			);
+			path = MakeupView;
 			sourceTree = "<group>";
 		};
 		55454C57A99C1490B322FCF0 /* Pods */ = {
@@ -712,7 +769,7 @@
 				};
 			};
 			buildConfigurationList = 22F858A9295AC6A400A7D86E /* Build configuration list for PBXProject "SelfStyloIOSApp" */;
-			compatibilityVersion = "Xcode 14.0";
+			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -759,12 +816,23 @@
 				22A477EA2965878600523866 /* OFL.txt in Resources */,
 				22A477EB2965878600523866 /* DMSans-MediumItalic.ttf in Resources */,
 				22A477E82965878600523866 /* DMSans-Bold.ttf in Resources */,
+<<<<<<< HEAD
+=======
+				53BD49932983E73700B1D53B /* LipstickView.xib in Resources */,
+				2287323529795D8100659E80 /* CategoryCollectionViewCell.xib in Resources */,
+				53829454298D2EB4002D7671 /* Js in Resources */,
+>>>>>>> 1d86fa1 (add makeup feature like:- Lipstick, Eyeshadow, Blush)
 				22A4DC5E295F08EB0064D006 /* SelectGenderTableViewCell.xib in Resources */,
 				22BA3AAA29642452004AD1F3 /* SavePresetsCollectionViewCell.xib in Resources */,
 				228A8E6E2963F0CB004F8208 /* SelectLogoAppTableViewCell.xib in Resources */,
 				2271778A2968138E00ABEC31 /* SignInPhotoTableViewCell.xib in Resources */,
 				22BA3AA6296423CD004AD1F3 /* SavedPresetsTableViewCell.xib in Resources */,
+<<<<<<< HEAD
 				2273A7712988EC28007FE6F3 /* GoogleService-Info.plist in Resources */,
+=======
+				5382945A29912FF3002D7671 /* indexMain.html in Resources */,
+				53BAC713297FDDAE00FD0BD5 /* GoogleService-Info.plist in Resources */,
+>>>>>>> 1d86fa1 (add makeup feature like:- Lipstick, Eyeshadow, Blush)
 				2202B3322964013D000CB816 /* HomeCardSelfiecamTableViewCell.xib in Resources */,
 				22A4DC5A295F03D50064D006 /* SelectPhoneTableViewCell.xib in Resources */,
 				22A477E72965878600523866 /* DMSans-Medium.ttf in Resources */,
@@ -899,6 +967,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22717791296814A500ABEC31 /* SignInEmailTableViewCell.swift in Sources */,
+				53BD49912983E72F00B1D53B /* LipstickView.swift in Sources */,
 				227177992968162E00ABEC31 /* SignInGenderTableViewCell.swift in Sources */,
 				22A4DC59295F03D50064D006 /* SelectPhoneTableViewCell.swift in Sources */,
 				2271778D2968141C00ABEC31 /* SignInFullNameTableViewCell.swift in Sources */,
@@ -906,7 +975,9 @@
 				222E1A26296457510094FA0A /* Extensions.swift in Sources */,
 				2202B3312964013D000CB816 /* HomeCardSelfiecamTableViewCell.swift in Sources */,
 				22BA3AA029642105004AD1F3 /* FavouriteCollectionViewCell.swift in Sources */,
+				53BD498A298017A600B1D53B /* NewMakeupViewController.swift in Sources */,
 				2235F36C295C6D5E0008D3FB /* DialogTryOnSelectionViewController.swift in Sources */,
+				53829450298CD939002D7671 /* EffectData.swift in Sources */,
 				22A4DC61295F0B1F0064D006 /* CompleteTableViewCell.swift in Sources */,
 				22A477FF2965B35D00523866 /* SignInEmailViewController.swift in Sources */,
 				22C8CA58295EDA1200336E03 /* SelectFullNameTableViewCell.swift in Sources */,
@@ -948,9 +1019,11 @@
 				2273A7732989116A007FE6F3 /* TryOnViewController.swift in Sources */,
 				22F858E4295B012E00A7D86E /* CustomTabBarControllerViewController.swift in Sources */,
 				22B00B73297E826C0075FB02 /* BlushViewController.swift in Sources */,
+				53BD4986298007B200B1D53B /* MakeDetails.swift in Sources */,
 				22BB026529711E8100F514B0 /* Patron.swift in Sources */,
 				22C8CA4F295EC1FA00336E03 /* SelectPhotoTableViewCell.swift in Sources */,
 				22BA3AA5296423CD004AD1F3 /* SavedPresetsTableViewCell.swift in Sources */,
+				53BD49882980117C00B1D53B /* APIHandler.swift in Sources */,
 				22C8CA4A295EAB5F00336E03 /* EditProfileViewController.swift in Sources */,
 				22E8EA022970109400E5BE59 /* FavouriteProductDao.swift in Sources */,
 				22E6FA2A298D419800361954 /* NotificationViewController.swift in Sources */,
@@ -960,6 +1033,11 @@
 				2278EEA9295D5AED00D1C703 /* DialogSelfieCamSelectionViewController.swift in Sources */,
 				2202B3352964122C000CB816 /* FavouriteProductTableViewCell.swift in Sources */,
 				228959A4297A5942008B72CA /* ColorCodeCollectionViewCell.swift in Sources */,
+<<<<<<< HEAD
+=======
+				22B00B71297E75020075FB02 /* MakeupView.swift in Sources */,
+				5325AF1D298A5291004F385D /* MakeupLoaderViewController.swift in Sources */,
+>>>>>>> 1d86fa1 (add makeup feature like:- Lipstick, Eyeshadow, Blush)
 				227A6E01297FA05600559A3F /* CombosViewController.swift in Sources */,
 				22EC1FA62966A615000F86EF /* CardView.swift in Sources */,
 				22A477DA29654F3600523866 /* SettingsViewController.swift in Sources */,
@@ -1145,9 +1223,11 @@
 				DEVELOPMENT_TEAM = TK8CD8QS5B;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SelfStyloIOSApp/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app needs camera permision for makeup try-on";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
@@ -1157,7 +1237,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				NEW_SETTING = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.inferenz.SelfStyloIOSApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.inferenz.SelfStyloApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1179,9 +1259,11 @@
 				DEVELOPMENT_TEAM = TK8CD8QS5B;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SelfStyloIOSApp/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app needs camera permision for makeup try-on";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
@@ -1191,7 +1273,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				NEW_SETTING = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.inferenz.SelfStyloIOSApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.inferenz.SelfStyloApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;

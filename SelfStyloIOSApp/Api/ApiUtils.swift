@@ -16,7 +16,8 @@ protocol GetUsersDelegate {
     func refreshFavouriteProductsList(favouriteproductList: [FavouriteProducts])
     func refreshBannerList(bannerList: [Banner])
 }
-class ApiUtils{
+
+class ApiUtils {
     var getUserDelegate: GetUsersDelegate?
     var apiCalls = IApiCalls()
     
@@ -71,8 +72,11 @@ class ApiUtils{
                 
             }
             
+<<<<<<< HEAD
             
             
+=======
+>>>>>>> 1d86fa1 (add makeup feature like:- Lipstick, Eyeshadow, Blush)
             let responseString = String(data: data, encoding: .utf8)
             print("responseString = \(String(describing: responseString))")
         }
@@ -103,8 +107,12 @@ class ApiUtils{
             
             let responseString = String(data: data, encoding: .utf8)
             print("responseString = \(String(describing: responseString))")
+<<<<<<< HEAD
             db1.insert(userList: patron)
             //self.parseUserDataIntoDb(data: data)
+=======
+            self.parseUserDataIntoDb(data: data)
+>>>>>>> 1d86fa1 (add makeup feature like:- Lipstick, Eyeshadow, Blush)
         }
         
         task.resume()
@@ -118,8 +126,11 @@ class ApiUtils{
         
         do{
             let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+<<<<<<< HEAD
             
             
+=======
+>>>>>>> 1d86fa1 (add makeup feature like:- Lipstick, Eyeshadow, Blush)
             // if let dictionary = json as? [String: Any]
             if let dictionary = json as? Array<Dictionary<String, Any>>
             {
@@ -180,7 +191,10 @@ class ApiUtils{
                     user.upload_image = i["upload_image"] as! String
                     user.is_active = i["is_active"] as! Bool
                     userList.append(user)
+<<<<<<< HEAD
                     //   db1.deleteByID()
+=======
+>>>>>>> 1d86fa1 (add makeup feature like:- Lipstick, Eyeshadow, Blush)
                     db1.insert(userList: user)
                 }
                 
@@ -216,7 +230,45 @@ class ApiUtils{
             
             task.resume()
         }
+<<<<<<< HEAD
         //   }
+    }
+    
+    func parseFavouriteProductDataIntoDb(data: Data) {
+        var userList: [FavouriteProducts] = []
+        let db1 = FavouriteProductDao()
+        
+        let json = try! JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any]
+        
+        // if let dictionary = json as? [String: Any]
+        if let data = json?["data"] as? [Any]
+        {
+            for item in data{
+                if let object = item as? [String:Any]
+                {
+                    let user = FavouriteProducts()
+                    user.product_id = object["id"] as! Int
+                    user.subCategoryName = object["subcategory"] as! String
+                    user.categoryName = object["category"] as! String
+                    user.colorName = object["color_name"] as! String
+                    user.colorCode = object["color_code"] as! String
+                    user.brandName = object["company_name"] as! String
+                    user.brandLogoUrl = object["brand_logo"] as! String
+                    userList.append(user)
+                    //db1.deleteAll()
+                    db1.insert(userList: user)
+                    
+                    print("USERS : ", userList)
+                    DispatchQueue.main.async {
+                        self.getUserDelegate?.refreshFavouriteProductsList(favouriteproductList: userList)
+                        
+                    }
+                }
+            }
+        }
+        
+=======
+>>>>>>> 1d86fa1 (add makeup feature like:- Lipstick, Eyeshadow, Blush)
     }
     
     func parseFavouriteProductDataIntoDb(data: Data) {
@@ -254,7 +306,6 @@ class ApiUtils{
         
     }
     
-    
     func getUserDetail(id:String) -> Bool{
         let serviceUrl = DOMAIN_URL + apiCalls.existingUserData + "?id=\(id)"
         let url = URL(string: serviceUrl)
@@ -275,12 +326,19 @@ class ApiUtils{
             task.resume()
         }
         return true
+<<<<<<< HEAD
         //   }
+=======
+>>>>>>> 1d86fa1 (add makeup feature like:- Lipstick, Eyeshadow, Blush)
     }
     
     func parseUserDetailIntoDb(data: Data) {
         var userList: [Patron] = []
         let db1 = PatronDao()
+<<<<<<< HEAD
+=======
+        
+>>>>>>> 1d86fa1 (add makeup feature like:- Lipstick, Eyeshadow, Blush)
         if let json = try! JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any]{
             let user = Patron()
             user.id = json["id"] as? Int ?? 0
@@ -300,6 +358,28 @@ class ApiUtils{
         
     }
     
+<<<<<<< HEAD
+=======
+    func fetchMakeupDetails(sc: @escaping (MakeDetails?)->Void) {
+        let serviceUrl = DOMAIN_URL + apiCalls.makeupDetails // + "?uuid=\(10)"
+        
+        var request = URLRequest(url: URL(string: serviceUrl)!)
+        request.httpMethod = "GET"
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let data = data {
+                if let makeupDetails = try? JSONDecoder().decode(MakeDetails.self, from: data) {
+                    sc(makeupDetails)
+                    //print(makeupDetails.data?.makeup?[0].makeupName)
+                } else {
+                    print("Invalid Response")
+                }
+            } else if let error = error {
+                print("HTTP Request Failed \(error)")
+            }
+        }.resume()
+
+    }
+>>>>>>> 1d86fa1 (add makeup feature like:- Lipstick, Eyeshadow, Blush)
     
     
 }

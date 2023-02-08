@@ -15,6 +15,8 @@ class EyelinerStyleViewController: UIViewController, UICollectionViewDelegate, U
     
     @IBOutlet weak var btnCheckbox: UIButton!
     
+    var backToCategory : (()-> Void)?
+    
     var color_image:[String] = ["color_code_circle", "color_code_circle","color_code_circle", "color_code_circle","color_code_circle"]
     var color_name:[String] =  ["Lucky"]
     
@@ -33,9 +35,10 @@ class EyelinerStyleViewController: UIViewController, UICollectionViewDelegate, U
     
     
     @IBAction func btnBack(_ sender: UIButton) {
-        let detailViewController:UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "MakeupViewController") as! MakeupViewController
-        detailViewController.modalPresentationStyle = .fullScreen
-        self.present(detailViewController, animated: false)
+        backToCategory?()
+//        let detailViewController:UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "MakeupViewController") as! MakeupViewController
+//        detailViewController.modalPresentationStyle = .fullScreen
+//        self.present(detailViewController, animated: false)
     }
     
     

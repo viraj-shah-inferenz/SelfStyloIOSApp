@@ -16,6 +16,7 @@ class CombosViewController: UIViewController,UICollectionViewDelegate,UICollecti
     var combos_image:[String] = ["combos", "combos","combos", "combos","combos"]
     var combo_name:[String] =  ["Glow","Pop Of","Psych","Russet","Dull Mate"]
     
+    var backToCategory : (()-> Void)?
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegates()
@@ -24,9 +25,11 @@ class CombosViewController: UIViewController,UICollectionViewDelegate,UICollecti
     }
     
     @IBAction func btnBack(_ sender: UIButton) {
-        let detailViewController:UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "MakeupViewController") as! MakeupViewController
-        detailViewController.modalPresentationStyle = .fullScreen
-        self.present(detailViewController, animated: false)
+        backToCategory?()
+//        let detailViewController:MakeupViewController = self.storyboard!.instantiateViewController(withIdentifier: "MakeupViewController") as! MakeupViewController
+//        detailViewController.strOpenView = "second"
+//        detailViewController.modalPresentationStyle = .fullScreen
+//        self.present(detailViewController, animated: false)
     }
     
     func reloadCollectionViewData() {
