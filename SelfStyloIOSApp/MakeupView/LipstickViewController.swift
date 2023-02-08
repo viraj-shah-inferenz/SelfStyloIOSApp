@@ -16,30 +16,22 @@ class LipstickViewController: UIViewController {
     
     @IBOutlet weak var btnCheckbox: UIButton!
     var backToCategory : (()-> Void)?
-    
-<<<<<<< HEAD
-    var color_image:[String] = ["color_code_circle", "color_code_circle","color_code_circle", "color_code_circle","color_code_circle"]
-   
-    var color_name:[String] =  ["Pomegranate","RoseWood","RoseWood Gloss","Pomegranate Glitter","Metallic","Bossom"]
-=======
+
     var apiUtils = ApiUtils()
     
     var makeup = MakeDetails()
     
     var arrCategory = [Category]()
     var arrProduct = [Product]()
->>>>>>> 1d86fa1 (add makeup feature like:- Lipstick, Eyeshadow, Blush)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         reloadCollectionViewData()
         btnCheckbox.setImage(UIImage.init(named: "favourite_unchecked"), for: .normal)
-<<<<<<< HEAD
+
        
-        let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
-        print(paths[0])
-=======
+      
         DispatchQueue.global(qos: .background).async {
             self.apiUtils.fetchMakeupDetails { makeupDetails in
                 DispatchQueue.main.sync {
@@ -70,7 +62,6 @@ class LipstickViewController: UIViewController {
             }
         }
         reloadCollections()
->>>>>>> 1d86fa1 (add makeup feature like:- Lipstick, Eyeshadow, Blush)
     }
     
     func reloadCollectionViewData() {
@@ -169,22 +160,12 @@ extension LipstickViewController:UICollectionViewDelegate, UICollectionViewDataS
             return UICollectionViewCell()
         }
     }
-    
-<<<<<<< HEAD
 
-
-
-
-=======
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        
         
         if collectionView.tag == 0 {
             // product color
             NotificationCenter.default.post(name: NSNotification.Name("applyLipstick"), object: arrProduct[indexPath.item])
-            
-            
             
         } else if collectionView.tag == 1 {
             // Category name
@@ -194,7 +175,6 @@ extension LipstickViewController:UICollectionViewDelegate, UICollectionViewDataS
         }
     }
     
->>>>>>> 1d86fa1 (add makeup feature like:- Lipstick, Eyeshadow, Blush)
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let bounds = collectionView.bounds

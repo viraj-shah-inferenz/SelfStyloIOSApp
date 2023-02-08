@@ -96,9 +96,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     fileprivate func openCamera() {
-<<<<<<< HEAD
-        let detailViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MakeupViewController")
-=======
 //        let detailViewController:UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "DialogSelfieCamSelectionViewController") as! DialogSelfieCamSelectionViewController
 //        let smallId = UISheetPresentationController.Detent.Identifier("small")
 //        let smallDetent = UISheetPresentationController.Detent.custom(identifier: smallId) { context in
@@ -115,7 +112,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource{
 //        self.present(detailViewController, animated: true,completion: nil)
         let detailViewController:MakeupLoaderViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MakeupLoaderViewController") as! MakeupLoaderViewController
 //        detailViewController.strOpenView = "firstTime"
->>>>>>> 1d86fa1 (add makeup feature like:- Lipstick, Eyeshadow, Blush)
         detailViewController.modalPresentationStyle = .fullScreen
         self.present(detailViewController, animated: false)
     }

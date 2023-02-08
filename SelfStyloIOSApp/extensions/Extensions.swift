@@ -38,13 +38,12 @@ extension String{
     enum Regex: String {
         case name = "^\\w{3,18}$"
         case email = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{1,50}"
-        case phone = "^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]?\\d{3}[\\s.-]?\\d{4}$" //"|^(\\+\\d{1,3}( )?)?(\\d{3}[ ]?)(\\d{2}[ ]?){2}\\d{2}$"
+        case phone = "^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]?\\d{3}[\\s.-]?\\d{4}$"
     }
     
     func isValid(_ validityType: ValidityType) -> Bool{
         let format = "SELF MATCHES %@"
         var regex = ""
-//        let newStr = self.trimmingCharacters(in: .whitespaces)
         let str = self.removingWhitespaces()
         switch validityType{
         case .name:
@@ -79,13 +78,6 @@ extension String{
     }
     
     func imageFromBase64() -> UIImage? {
-<<<<<<< HEAD
-      guard let data = Data(base64Encoded: self) else { return nil }
-      return UIImage(data: data)
-    }
-    func isEqualToString(find: String) -> Bool {
-      return String(format: self) == find
-=======
         guard let data = Data(base64Encoded: self) else { return nil }
         
         return UIImage(data: data)
@@ -93,7 +85,6 @@ extension String{
     
     func isEqualToString(find: String) -> Bool {
         return String(format: self) == find
->>>>>>> 1d86fa1 (add makeup feature like:- Lipstick, Eyeshadow, Blush)
     }
 }
 
@@ -118,22 +109,3 @@ extension UIImageView{
         DownloadedFrom(url: url,contentMode: mode)
     }
 }
-
-enum ImageFormat {
-  case png
-  case jpeg(CGFloat)
-}
-
-extension UIImage {
-  func base64(format: ImageFormat) -> String? {
-    var imageData: Data?
-    switch format {
-    case .png: imageData = self.pngData()
-    case .jpeg(let compression): imageData = self.jpegData(compressionQuality: compression)
-    }
-    return imageData?.base64EncodedString()
-  }
-}
-
-
-
