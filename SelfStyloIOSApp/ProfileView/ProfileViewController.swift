@@ -37,6 +37,7 @@ class ProfileViewController: UIViewController {
 //        seteditprofilecornerRadiusView(toView: editProfile)
         setbuttoncornerRadiusView(toView: settingsCollectionView)
         setbuttoncornerRadiusView(toView: logoutCollectionView)
+        settingsCollectionView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(gotoSettings)))
         getDataFromDB()
     }
     
@@ -45,6 +46,9 @@ class ProfileViewController: UIViewController {
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     
+    @objc func gotoSettings(){
+        self.tabBarController?.selectedIndex = 3
+    }
     
     @IBAction func BackHome(_ sender: UIButton) {
         self.tabBarController?.selectedIndex = 0
@@ -88,7 +92,7 @@ class ProfileViewController: UIViewController {
     
     func setbuttoncornerRadiusView(toView: UIView)
     {
-        toView.layer.cornerRadius = 22
+        toView.layer.cornerRadius = 25
     }
 
 }

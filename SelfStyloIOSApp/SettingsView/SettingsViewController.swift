@@ -32,5 +32,9 @@ class SettingsViewController: UIViewController {
     {
         toView.layer.cornerRadius = 22
     }
+    
+    @IBAction func BackHome(_ sender: UIButton) {
+        self.tabBarController?.selectedIndex = 0
+    }
 
 }

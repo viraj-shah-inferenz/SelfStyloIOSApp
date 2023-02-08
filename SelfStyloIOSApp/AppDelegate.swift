@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
            
            // if user is logged in before
-        if UserDefaults.standard.bool(forKey: APP.IS_LOGIN) {
+        if UserDefaults.standard.object(forKey: APP.IS_LOGIN) != nil {
             let mainTabBarController = storyboard.instantiateViewController(identifier: "CustomTabBarControllerViewController") as! CustomTabBarControllerViewController
             window?.rootViewController = mainTabBarController
             window?.makeKeyAndVisible()
