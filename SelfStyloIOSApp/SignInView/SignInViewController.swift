@@ -54,11 +54,11 @@ class SignInViewController: UIViewController,UITextFieldDelegate {
         
         let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
         print(paths[0])
-        setApiUtils()
         setbtnProceedView(toView: btnProceed!)
         btnProceed?.addTarget(self, action: #selector(btnproceed), for: .touchUpInside)
         setTextFieldEmail()
         setTextFieldPhone()
+        getData()
     }
 //    override func viewWillAppear(_ animated: Bool) {
 //        super.viewWillAppear(animated)
@@ -66,6 +66,11 @@ class SignInViewController: UIViewController,UITextFieldDelegate {
 //        self.tabBarController?.tabBar.isHidden = true
 //        // hide here
 //    }
+    
+    func getData(){
+        apiUtils.getBanner()
+        apiUtils.getFavouriteProductDetail()
+    }
     
     func setTextFieldEmail(){
         self.EmailIdView.isHidden = false
@@ -105,10 +110,7 @@ class SignInViewController: UIViewController,UITextFieldDelegate {
         setTextFieldView(toView: phoneNumberTextField)
     }
     
-    func setApiUtils(){
-        apiUtils.getBanner()
-        apiUtils.getFavouriteProductDetail()
-    }
+    
     
   
     @objc fileprivate func handleEmailTextChange(){

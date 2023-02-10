@@ -78,7 +78,8 @@ class FavouriteProductTableViewCell: UITableViewCell, UICollectionViewDelegate, 
         favouritecell.brand_name.text = favourite_product[indexPath.row].brandName
         let defaultLink = ""
         let completeLink1 = defaultLink + favourite_product[indexPath.row].brandLogoUrl
-        favouritecell.brand_logo.DownloadedFrom(link: completeLink1)
+      //  favouritecell.brand_logo.DownloadedFrom(link: completeLink1)
+        favouritecell.brand_logo.sd_setImage(with: URL(string: completeLink1))
         favouritecell.color_name.text = favourite_product[indexPath.row].colorName
         favouritecell.color_code.backgroundColor = favourite_product[indexPath.row].colorCode.rgbToColor()
         favouritecell.color_code.layer.cornerRadius = 7

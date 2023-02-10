@@ -67,6 +67,7 @@
 		22A4DC5E295F08EB0064D006 /* SelectGenderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22A4DC5C295F08EB0064D006 /* SelectGenderTableViewCell.xib */; };
 		22A4DC61295F0B1F0064D006 /* CompleteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A4DC5F295F0B1F0064D006 /* CompleteTableViewCell.swift */; };
 		22A4DC62295F0B1F0064D006 /* CompleteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22A4DC60295F0B1F0064D006 /* CompleteTableViewCell.xib */; };
+		22A70F5B2994FD4900B4D075 /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A70F5A2994FD4900B4D075 /* Connection.swift */; };
 		22AB9F132965B4DA00CB1ECD /* SignInPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AB9F112965B4DA00CB1ECD /* SignInPhoneViewController.swift */; };
 		22B00B73297E826C0075FB02 /* BlushViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B00B72297E826C0075FB02 /* BlushViewController.swift */; };
 		22B00B75297E84790075FB02 /* EyeshadowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B00B74297E84790075FB02 /* EyeshadowViewController.swift */; };
@@ -83,6 +84,7 @@
 		22BA3AAE29642A36004AD1F3 /* ImageSliderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22BA3AAC29642A36004AD1F3 /* ImageSliderCollectionViewCell.xib */; };
 		22BB026529711E8100F514B0 /* Patron.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BB026429711E8100F514B0 /* Patron.swift */; };
 		22BB02672971231D00F514B0 /* PatronDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BB02662971231D00F514B0 /* PatronDao.swift */; };
+		22C115C629962A390060D9E9 /* FavouriteViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C115C529962A390060D9E9 /* FavouriteViewCell.swift */; };
 		22C8CA4A295EAB5F00336E03 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C8CA49295EAB5F00336E03 /* EditProfileViewController.swift */; };
 		22C8CA4F295EC1FA00336E03 /* SelectPhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C8CA4D295EC1FA00336E03 /* SelectPhotoTableViewCell.swift */; };
 		22C8CA50295EC1FA00336E03 /* SelectPhotoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22C8CA4E295EC1FA00336E03 /* SelectPhotoTableViewCell.xib */; };
@@ -197,6 +199,7 @@
 		22A4DC5C295F08EB0064D006 /* SelectGenderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectGenderTableViewCell.xib; sourceTree = "<group>"; };
 		22A4DC5F295F0B1F0064D006 /* CompleteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteTableViewCell.swift; sourceTree = "<group>"; };
 		22A4DC60295F0B1F0064D006 /* CompleteTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompleteTableViewCell.xib; sourceTree = "<group>"; };
+		22A70F5A2994FD4900B4D075 /* Connection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
 		22AB9F112965B4DA00CB1ECD /* SignInPhoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPhoneViewController.swift; sourceTree = "<group>"; };
 		22B00B72297E826C0075FB02 /* BlushViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlushViewController.swift; sourceTree = "<group>"; };
 		22B00B74297E84790075FB02 /* EyeshadowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyeshadowViewController.swift; sourceTree = "<group>"; };
@@ -213,6 +216,7 @@
 		22BA3AAC29642A36004AD1F3 /* ImageSliderCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageSliderCollectionViewCell.xib; sourceTree = "<group>"; };
 		22BB026429711E8100F514B0 /* Patron.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Patron.swift; sourceTree = "<group>"; };
 		22BB02662971231D00F514B0 /* PatronDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatronDao.swift; sourceTree = "<group>"; };
+		22C115C529962A390060D9E9 /* FavouriteViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteViewCell.swift; sourceTree = "<group>"; };
 		22C8CA49295EAB5F00336E03 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		22C8CA4D295EC1FA00336E03 /* SelectPhotoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPhotoTableViewCell.swift; sourceTree = "<group>"; };
 		22C8CA4E295EC1FA00336E03 /* SelectPhotoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectPhotoTableViewCell.xib; sourceTree = "<group>"; };
@@ -448,6 +452,7 @@
 			isa = PBXGroup;
 			children = (
 				22F858E5295B047800A7D86E /* FavouriteViewController.swift */,
+				22C115C529962A390060D9E9 /* FavouriteViewCell.swift */,
 			);
 			path = FavouriteView;
 			sourceTree = "<group>";
@@ -604,6 +609,7 @@
 				22C8CA53295ED65100336E03 /* ProfileView */,
 				22C8CA4B295EC1B900336E03 /* EditView */,
 				22111AC129630FFB00539540 /* WalkThroughViewController.swift */,
+				22A70F5A2994FD4900B4D075 /* Connection.swift */,
 			);
 			path = SelfStyloIOSApp;
 			sourceTree = "<group>";
@@ -931,6 +937,8 @@
 				2235F36C295C6D5E0008D3FB /* DialogTryOnSelectionViewController.swift in Sources */,
 				22A4DC61295F0B1F0064D006 /* CompleteTableViewCell.swift in Sources */,
 				22A477FF2965B35D00523866 /* SignInEmailViewController.swift in Sources */,
+				22C115C629962A390060D9E9 /* FavouriteViewCell.swift in Sources */,
+				22A70F5B2994FD4900B4D075 /* Connection.swift in Sources */,
 				22C8CA58295EDA1200336E03 /* SelectFullNameTableViewCell.swift in Sources */,
 				22A477F42965A6DF00523866 /* SignInViewController.swift in Sources */,
 				228A8E712963F69B004F8208 /* HomeCardAnnouncementsTableViewCell.swift in Sources */,

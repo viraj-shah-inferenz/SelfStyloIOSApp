@@ -13,6 +13,8 @@ target 'SelfStyloIOSApp' do
    pod 'Firebase/Core'
    pod 'Firebase/Auth'
    pod 'GoogleSignIn'
+   pod 'ReachabilitySwift'
+   pod 'SDWebImage', '~> 5.0'
 
   target 'SelfStyloIOSAppTests' do
     inherit! :search_paths

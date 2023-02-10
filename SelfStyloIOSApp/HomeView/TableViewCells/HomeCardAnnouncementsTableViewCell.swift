@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class HomeCardAnnouncementsTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDelegate,GetUsersDelegate {
     func refreshFavouriteProductsList(favouriteproductList: [FavouriteProducts]) {
@@ -27,8 +28,6 @@ class HomeCardAnnouncementsTableViewCell: UITableViewCell, UICollectionViewDataS
 //    var imgArr = [UIImage(named: "image_1"),UIImage(named: "image_2"),UIImage(named: "image_3")]
     
     var imgArr:[Banner] = []
-
-
     var timer = Timer()
     var counter = 0
     
@@ -37,10 +36,19 @@ class HomeCardAnnouncementsTableViewCell: UITableViewCell, UICollectionViewDataS
         // Initialization code
         self.sliderCollectionView.register(UINib(nibName: "ImageSliderCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ImageSliderCollectionViewCell")
         setCardView(toView: sliderCollectionView)
-        let db = BannerDao()
-        imgArr = db.getAll()
         setDelegates()
         setpageView()
+        setBannerData()
+        
+
+    }
+    
+    func setBannerData() {
+        let db = BannerDao()
+        for banner in db.getAll()
+        {
+            imgArr.append(banner)
+        }
         
     }
     
@@ -56,18 +64,20 @@ class HomeCardAnnouncementsTableViewCell: UITableViewCell, UICollectionViewDataS
     
     @objc func changeImage()
     {
-        if counter < imgArr.count{
-            let index = IndexPath.init(item: counter, section: 0)
-            self.sliderCollectionView.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
-            pageView.currentPage = counter
-            counter += 1
-            
-        }else{
-            counter = 0
-            let index = IndexPath.init(item: counter, section: 0)
-            self.sliderCollectionView.scrollToItem(at: index, at: .centeredHorizontally, animated: false)
-            pageView.currentPage = counter
-            counter = 1
+        if !imgArr.isEmpty && sliderCollectionView.numberOfItems(inSection: 0) == imgArr.count{
+            if counter < imgArr.count{
+                let index = IndexPath.init(item: counter, section: 0)
+                self.sliderCollectionView.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
+                pageView.currentPage = counter
+                counter += 1
+                
+            }else{
+                counter = 0
+                let index = IndexPath.init(item: counter, section: 0)
+                self.sliderCollectionView.scrollToItem(at: index, at: .centeredHorizontally, animated: false)
+                pageView.currentPage = counter
+                counter = 1
+            }
         }
     }
     
@@ -92,6 +102,7 @@ class HomeCardAnnouncementsTableViewCell: UITableViewCell, UICollectionViewDataS
         func setDelegates() {
             self.sliderCollectionView.delegate = self
             self.sliderCollectionView.dataSource = self
+            
         }
     
 
@@ -105,7 +116,9 @@ class HomeCardAnnouncementsTableViewCell: UITableViewCell, UICollectionViewDataS
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageSliderCollectionViewCell", for: indexPath) as! ImageSliderCollectionViewCell
         let defaultLink = "https://dev.selfstylo.com"
         let completeLink1 = defaultLink + imgArr[indexPath.row].upload_image
-        cell.sliderImageView?.DownloadedFrom(link: completeLink1)
+        
+        cell.sliderImageView.sd_setImage(with: URL(string: completeLink1))
+//        cell.sliderImageView?.DownloadedFrom(link: completeLink1)
        return cell
     }
     

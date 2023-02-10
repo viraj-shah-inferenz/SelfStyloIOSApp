@@ -147,17 +147,25 @@ class ApiUtils {
         if let url = url {
             
             let session = URLSession(configuration: .default)
+            session.configuration.timeoutIntervalForRequest = 30
+            session.configuration.timeoutIntervalForResource = 30
             
-            let task = session.dataTask(with: url,completionHandler: {
-                (data, response, error) in
-                if error == nil{
-                    self.parseBannerDataIntoDb(data: data!)
-                }else{
-                    
-                }
-            })
+            DispatchQueue.global(qos: .userInteractive).async {
+                let task = session.dataTask(with: url,completionHandler: {
+                    (data, response, error) in
+                    if error == nil{
+                        DispatchQueue.main.async {
+                            self.parseBannerDataIntoDb(data: data!)
+                        }
+                    }else{
+                        
+                    }
+                })
+                task.resume()
+            }
             
-            task.resume()
+            
+            
         }
     }
     
@@ -181,10 +189,7 @@ class ApiUtils {
                 }
                 
                 print("USERS : ", userList)
-                DispatchQueue.main.async {
-                    self.getUserDelegate?.refreshBannerList(bannerList: userList)
-                    
-                }
+                self.getUserDelegate?.refreshBannerList(bannerList: userList)
             }
             
         }catch{
@@ -200,17 +205,20 @@ class ApiUtils {
         if let url = url {
             
             let session = URLSession(configuration: .default)
-            
-            let task = session.dataTask(with: url,completionHandler: {
-                (data, response, error) in
-                if error == nil{
-                    self.parseFavouriteProductDataIntoDb(data: data!)
-                }else{
-                    
-                }
-            })
-            
-            task.resume()
+            DispatchQueue.global(qos: .userInteractive).async {
+                let task = session.dataTask(with: url,completionHandler: {
+                    (data, response, error) in
+                    if error == nil{
+                        DispatchQueue.main.async {
+                            self.parseFavouriteProductDataIntoDb(data: data!)
+                        }
+                    }else{
+                        
+                    }
+                })
+                
+                task.resume()
+            }
         }
     }
     
@@ -239,10 +247,7 @@ class ApiUtils {
                     db1.insert(userList: user)
                     
                     print("USERS : ", userList)
-                    DispatchQueue.main.async {
-                        self.getUserDelegate?.refreshFavouriteProductsList(favouriteproductList: userList)
-                        
-                    }
+                    self.getUserDelegate?.refreshFavouriteProductsList(favouriteproductList: userList)
                 }
             }
         }
@@ -283,7 +288,6 @@ class ApiUtils {
             userList.append(user)
             //db1.deleteAll()
             db1.insert(userList: user)
-            
             print("USERS : ", userList)
         }
         
@@ -295,6 +299,7 @@ class ApiUtils {
         let serviceUrl = DOMAIN_URL + apiCalls.makeupDetails // + "?uuid=\(10)"
         
         var request = URLRequest(url: URL(string: serviceUrl)!)
+        request.timeoutInterval = 50
         request.httpMethod = "GET"
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let data = data {
