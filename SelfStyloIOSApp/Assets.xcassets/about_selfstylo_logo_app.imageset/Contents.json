@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "about_selfstylo_logo_app.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

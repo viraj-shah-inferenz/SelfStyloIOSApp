@@ -92,6 +92,11 @@
 		22C8CA59295EDA1200336E03 /* SelectFullNameTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22C8CA57295EDA1200336E03 /* SelectFullNameTableViewCell.xib */; };
 		22C8CA5C295F006100336E03 /* SelectEmailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C8CA5A295F006100336E03 /* SelectEmailTableViewCell.swift */; };
 		22C8CA5D295F006100336E03 /* SelectEmailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22C8CA5B295F006100336E03 /* SelectEmailTableViewCell.xib */; };
+		22E222F0299B554F001D554D /* CustomVisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E222EF299B554F001D554D /* CustomVisualEffectView.swift */; };
+		22E222F2299B7D2A001D554D /* FAQViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E222F1299B7D2A001D554D /* FAQViewController.swift */; };
+		22E222F4299B7EE7001D554D /* TermsOfUseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E222F3299B7EE7001D554D /* TermsOfUseViewController.swift */; };
+		22E65502299A43940096D050 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E65501299A43940096D050 /* AboutViewController.swift */; };
+		22E65504299A5CD40096D050 /* PrivacyPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E65503299A5CD40096D050 /* PrivacyPolicyViewController.swift */; };
 		22E6FA2A298D419800361954 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E6FA29298D419800361954 /* NotificationViewController.swift */; };
 		22E7AE9F295D8DE900F95FE0 /* DialogSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E7AE9E295D8DE900F95FE0 /* DialogSelectionViewController.swift */; };
 		22E7AEA1295D9F1A00F95FE0 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E7AEA0295D9F1A00F95FE0 /* ProfileViewController.swift */; };
@@ -224,6 +229,11 @@
 		22C8CA57295EDA1200336E03 /* SelectFullNameTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectFullNameTableViewCell.xib; sourceTree = "<group>"; };
 		22C8CA5A295F006100336E03 /* SelectEmailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectEmailTableViewCell.swift; sourceTree = "<group>"; };
 		22C8CA5B295F006100336E03 /* SelectEmailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectEmailTableViewCell.xib; sourceTree = "<group>"; };
+		22E222EF299B554F001D554D /* CustomVisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomVisualEffectView.swift; sourceTree = "<group>"; };
+		22E222F1299B7D2A001D554D /* FAQViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQViewController.swift; sourceTree = "<group>"; };
+		22E222F3299B7EE7001D554D /* TermsOfUseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfUseViewController.swift; sourceTree = "<group>"; };
+		22E65501299A43940096D050 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		22E65503299A5CD40096D050 /* PrivacyPolicyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyViewController.swift; sourceTree = "<group>"; };
 		22E6FA29298D419800361954 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		22E7AE9E295D8DE900F95FE0 /* DialogSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogSelectionViewController.swift; sourceTree = "<group>"; };
 		22E7AEA0295D9F1A00F95FE0 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -478,9 +488,14 @@
 		22C8CA54295ED66F00336E03 /* DialogView */ = {
 			isa = PBXGroup;
 			children = (
+				22E65501299A43940096D050 /* AboutViewController.swift */,
 				2235F36B295C6D5E0008D3FB /* DialogTryOnSelectionViewController.swift */,
 				2278EEA8295D5AED00D1C703 /* DialogSelfieCamSelectionViewController.swift */,
 				22E7AE9E295D8DE900F95FE0 /* DialogSelectionViewController.swift */,
+				22E65503299A5CD40096D050 /* PrivacyPolicyViewController.swift */,
+				22E222EF299B554F001D554D /* CustomVisualEffectView.swift */,
+				22E222F1299B7D2A001D554D /* FAQViewController.swift */,
+				22E222F3299B7EE7001D554D /* TermsOfUseViewController.swift */,
 			);
 			path = DialogView;
 			sourceTree = "<group>";
@@ -943,11 +958,13 @@
 				22A477F42965A6DF00523866 /* SignInViewController.swift in Sources */,
 				228A8E712963F69B004F8208 /* HomeCardAnnouncementsTableViewCell.swift in Sources */,
 				22111AC229630FFB00539540 /* WalkThroughViewController.swift in Sources */,
+				22E222F2299B7D2A001D554D /* FAQViewController.swift in Sources */,
 				228959A1297A58FA008B72CA /* LipstickViewController.swift in Sources */,
 				227A6E05297FA2A300559A3F /* CombosCollectionViewCell.swift in Sources */,
 				22C8CA5C295F006100336E03 /* SelectEmailTableViewCell.swift in Sources */,
 				22BA3AA929642452004AD1F3 /* SavePresetsCollectionViewCell.swift in Sources */,
 				22A4DC5D295F08EB0064D006 /* SelectGenderTableViewCell.swift in Sources */,
+				22E222F4299B7EE7001D554D /* TermsOfUseViewController.swift in Sources */,
 				22F858B6295AC6A400A7D86E /* HomeViewController.swift in Sources */,
 				22F858B2295AC6A400A7D86E /* AppDelegate.swift in Sources */,
 				22E7AE9F295D8DE900F95FE0 /* DialogSelectionViewController.swift in Sources */,
@@ -964,6 +981,7 @@
 				2289852F2976CEAC002DD2E8 /* BannerDao.swift in Sources */,
 				228A8E6D2963F0CB004F8208 /* SelectLogoAppTableViewCell.swift in Sources */,
 				22B00B75297E84790075FB02 /* EyeshadowViewController.swift in Sources */,
+				22E65502299A43940096D050 /* AboutViewController.swift in Sources */,
 				2289852D2976CDE7002DD2E8 /* Banner.swift in Sources */,
 				22B00B7D297EA0460075FB02 /* EyelinerViewController.swift in Sources */,
 				228959A8297A626C008B72CA /* ColorNameCollectionViewCell.swift in Sources */,
@@ -993,7 +1011,9 @@
 				228959A4297A5942008B72CA /* ColorCodeCollectionViewCell.swift in Sources */,
 				5325AF1D298A5291004F385D /* MakeupLoaderViewController.swift in Sources */,
 				227A6E01297FA05600559A3F /* CombosViewController.swift in Sources */,
+				22E222F0299B554F001D554D /* CustomVisualEffectView.swift in Sources */,
 				22EC1FA62966A615000F86EF /* CardView.swift in Sources */,
+				22E65504299A5CD40096D050 /* PrivacyPolicyViewController.swift in Sources */,
 				22A477DA29654F3600523866 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
