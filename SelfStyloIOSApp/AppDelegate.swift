@@ -36,9 +36,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         FirebaseApp.configure()
+        FirebaseConfiguration.shared.setLoggerLevel(.max)
         return true
     }
-
   
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {

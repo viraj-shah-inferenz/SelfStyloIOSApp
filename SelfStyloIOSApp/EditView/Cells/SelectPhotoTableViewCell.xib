@@ -26,14 +26,11 @@
                         <rect key="frame" x="121.66666666666667" y="12" width="140.66666666666663" height="128"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="140.66666666666663" id="A1N-fB-XRd"/>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="128" id="bmw-Kj-CRA"/>
-                            <constraint firstAttribute="height" constant="128" id="dbd-Ws-tEm"/>
                         </constraints>
                     </imageView>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zPN-ej-Aou">
                         <rect key="frame" x="132" y="16" width="120" height="120"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="120" id="uoX-RL-0q5"/>
                             <constraint firstAttribute="width" constant="120" id="xjg-TH-Rtm"/>
                         </constraints>
                     </imageView>
@@ -41,18 +38,18 @@
                         <rect key="frame" x="175" y="116" width="34" height="34"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wJj-dm-Zrf">
-                                <rect key="frame" x="-7.3333333333333428" y="-1" width="49" height="39"/>
+                                <rect key="frame" x="0.0" y="0.0" width="34" height="34"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="add_profile"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="wJj-dm-Zrf" firstAttribute="top" secondItem="gAN-qG-hbO" secondAttribute="top" constant="-1" id="4fF-tX-sir"/>
-                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="34" id="XRp-8b-dkr"/>
+                            <constraint firstAttribute="bottom" secondItem="wJj-dm-Zrf" secondAttribute="bottom" id="BGy-eg-DC1"/>
+                            <constraint firstItem="wJj-dm-Zrf" firstAttribute="top" secondItem="gAN-qG-hbO" secondAttribute="top" id="V1n-uD-Qnn"/>
+                            <constraint firstAttribute="trailing" secondItem="wJj-dm-Zrf" secondAttribute="trailing" id="eSD-Z2-lj1"/>
                             <constraint firstAttribute="height" constant="34" id="hE3-Qs-2fR"/>
-                            <constraint firstItem="wJj-dm-Zrf" firstAttribute="centerX" secondItem="gAN-qG-hbO" secondAttribute="centerX" id="rTJ-ND-CMw"/>
-                            <constraint firstAttribute="width" constant="34" id="tdL-EK-9lu"/>
+                            <constraint firstItem="wJj-dm-Zrf" firstAttribute="leading" secondItem="gAN-qG-hbO" secondAttribute="leading" id="t2M-I5-9jQ"/>
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add profile picture" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XOU-Re-99A">
