@@ -31,14 +31,23 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        getDataFromDB()
+        setupView()
+        setupTap()
+    }
+    
+    func setupView(){
         setProfileImageView(toView: profileImageView)
 //        seteditprofilecornerRadiusView(toView: editProfile)
         setbuttoncornerRadiusView(toView: settingsCollectionView)
         setbuttoncornerRadiusView(toView: logoutCollectionView)
-        settingsCollectionView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(gotoSettings)))
-        getDataFromDB()
+    }
+    
+    func setupTap()
+    {
+        let settingstouchDown = UILongPressGestureRecognizer(target:self, action: #selector(gotoSettings))
+        settingstouchDown.minimumPressDuration = 0
+        settingsCollectionView.addGestureRecognizer(settingstouchDown)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -46,8 +55,21 @@ class ProfileViewController: UIViewController {
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     
-    @objc func gotoSettings(){
-        self.tabBarController?.selectedIndex = 3
+    @objc func gotoSettings(gesture: UILongPressGestureRecognizer){
+        if gesture.state == .began {
+            settingsCollectionView.backgroundColor = UIColorFromHex(rgbValue: 0x0D0F17,alpha: 0.1)
+            self.tabBarController?.selectedIndex = 3
+        } else if gesture.state == .ended || gesture.state == .cancelled {
+            settingsCollectionView.backgroundColor = .systemBackground
+        }
+    }
+    
+    func UIColorFromHex(rgbValue:UInt32, alpha:Double=1.0)->UIColor {
+        let red = CGFloat((rgbValue & 0xFF0000) >> 16)/256.0
+        let green = CGFloat((rgbValue & 0xFF00) >> 8)/256.0
+        let blue = CGFloat(rgbValue & 0xFF)/256.0
+
+        return UIColor(red:red, green:green, blue:blue, alpha:CGFloat(alpha))
     }
     
     @IBAction func BackHome(_ sender: UIButton) {
