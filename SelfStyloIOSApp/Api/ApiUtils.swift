@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Reachability
 
 struct APP {
     static let IS_LOGIN = "isLogin"
@@ -23,6 +24,7 @@ class ApiUtils {
     
     private let DOMAIN_URL = "https://dev.selfstylo.com/"
     private let MAKEUP_URL = "https://makeup.selfstylo.com/"
+    let reachability = try! Reachability()
     
     init()
     {
@@ -31,81 +33,105 @@ class ApiUtils {
     
     
     func sendEmailOtp(email:String){
-        let serviceUrl = DOMAIN_URL + apiCalls.sendEmailOtp
-        var request = URLRequest(url: URL(string: serviceUrl)!)
-        request.httpMethod = "POST"
-        let postString = "email=\(email)"
-        request.httpBody = postString.data(using: .utf8)
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data, error == nil else {
-                print("error=(error)")
-                return
-            }
-            
-            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
-                print("statusCode should be 200, but is \(httpStatus.statusCode)")
-                print("response = \(String(describing: response))")
+       
+        if reachability.connection == .wifi || reachability.connection == .cellular {
+            let serviceUrl = self.DOMAIN_URL + self.apiCalls.sendEmailOtp
+            var request = URLRequest(url: URL(string: serviceUrl)!)
+            request.httpMethod = "POST"
+            let postString = "email=\(email)"
+            request.httpBody = postString.data(using: .utf8)
+            let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                guard let data = data, error == nil else {
+                    print("error=(error)")
+                    return
+                }
                 
+                if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
+                    print("statusCode should be 200, but is \(httpStatus.statusCode)")
+                    print("response = \(String(describing: response))")
+                    
+                }
+                
+                let responseString = String(data: data, encoding: .utf8)
+                print("responseString = \(String(describing: responseString))")
             }
+            task.resume()
+        }else {
+                print("Not reachable")
             
-            let responseString = String(data: data, encoding: .utf8)
-            print("responseString = \(String(describing: responseString))")
         }
-        task.resume()
+       
+       
+        
+       
     }
     
     func sendVerifyOtp(email:String,otp:String){
-        let serviceUrl = DOMAIN_URL + apiCalls.sendVerifyOtp
-        var request = URLRequest(url: URL(string: serviceUrl)!)
-        request.httpMethod = "POST"
-        let postString = "email=\(email)&otp=\(otp)"
-        request.httpBody = postString.data(using: .utf8)
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data, error == nil else {
-                print("error=(error)")
-                return
+            if reachability.connection == .wifi || reachability.connection == .cellular{
+                let serviceUrl = self.DOMAIN_URL + self.apiCalls.sendVerifyOtp
+                var request = URLRequest(url: URL(string: serviceUrl)!)
+                request.httpMethod = "POST"
+                let postString = "email=\(email)&otp=\(otp)"
+                request.httpBody = postString.data(using: .utf8)
+                let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                    guard let data = data, error == nil else {
+                        print("error=(error)")
+                        return
+                    }
+                    
+                    if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
+                        print("statusCode should be 200, but is \(httpStatus.statusCode)")
+                        print("response = \(String(describing: response))")
+                        
+                    }
+                    let responseString = String(data: data, encoding: .utf8)
+                    print("responseString = \(String(describing: responseString))")
+                }
+                task.resume()
             }
-            
-            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
-                print("statusCode should be 200, but is \(httpStatus.statusCode)")
-                print("response = \(String(describing: response))")
-                
+            else {
+                    print("Not reachable")
             }
-            let responseString = String(data: data, encoding: .utf8)
-            print("responseString = \(String(describing: responseString))")
-        }
-        task.resume()
+        
     }
     
     
     func updateUserDetails(patron:Patron) -> Bool{
-        let serviceUrl = DOMAIN_URL + apiCalls.updateUserData
-        let db1 = PatronDao()
-        db1.deleteAll()
-        var request = URLRequest(url: URL(string: serviceUrl)!)
-        request.httpMethod = "POST"
-        let postString1 = "name=\(patron.name)&email=\(patron.email)&contact_number=\(patron.phoneNumber)&gender=\(patron.gender)"
-        request.httpBody = postString1.data(using: .utf8)
-        let task = URLSession.shared.dataTask(with: request) {
-            data, response, error in
-            guard let data = data, error == nil else {
-                print("error=(error)")
-                return
-            }
-            
-            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
-                print("statusCode should be 200, but is \(httpStatus.statusCode)")
-                print("response = \(String(describing: response))")
+            if reachability.connection == .wifi || reachability.connection == .cellular {
+                let serviceUrl = self.DOMAIN_URL + self.apiCalls.updateUserData
+                let db1 = PatronDao()
+                db1.deleteAll()
+                var request = URLRequest(url: URL(string: serviceUrl)!)
+                request.httpMethod = "POST"
+                let postString1 = "name=\(patron.name)&email=\(patron.email)&contact_number=\(patron.phoneNumber)&gender=\(patron.gender)"
+                request.httpBody = postString1.data(using: .utf8)
+                let task = URLSession.shared.dataTask(with: request) {
+                    data, response, error in
+                    guard let data = data, error == nil else {
+                        print("error=(error)")
+                        return
+                    }
+                    
+                    if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
+                        print("statusCode should be 200, but is \(httpStatus.statusCode)")
+                        print("response = \(String(describing: response))")
+                        
+                    }
+                    
+                    let responseString = String(data: data, encoding: .utf8)
+                    print("responseString = \(String(describing: responseString))")
+                    db1.insert(userList: patron)
+                    self.parseUserDataIntoDb(data: data)
+                }
                 
+                
+                task.resume()
             }
-            
-            let responseString = String(data: data, encoding: .utf8)
-            print("responseString = \(String(describing: responseString))")
-            db1.insert(userList: patron)
-            self.parseUserDataIntoDb(data: data)
-        }
-        
-        task.resume()
+            else {
+                reachability.whenUnreachable = { _ in
+                    print("Not reachable")
+                }
+            }
         return true
         
     }
@@ -115,6 +141,7 @@ class ApiUtils {
         let db1 = PatronDao()
         
         do{
+            
             let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
 
             // if let dictionary = json as? [String: Any]
@@ -141,41 +168,41 @@ class ApiUtils {
     }
     
     func getBanner(){
-        let serviceUrl = DOMAIN_URL + apiCalls.getBanner
-        let url = URL(string: serviceUrl)
-        
-        if let url = url {
-            
-            let session = URLSession(configuration: .default)
-            session.configuration.timeoutIntervalForRequest = 30
-            session.configuration.timeoutIntervalForResource = 30
-            
-            DispatchQueue.global(qos: .userInteractive).async {
-                let task = session.dataTask(with: url,completionHandler: {
-                    (data, response, error) in
-                    if error == nil{
-                        DispatchQueue.main.async {
-                            self.parseBannerDataIntoDb(data: data!)
-                        }
-                    }else{
-                        
+            if reachability.connection == .wifi   ||  reachability.connection == .cellular {
+                let serviceUrl = self.DOMAIN_URL + self.apiCalls.getBanner
+                let url = URL(string: serviceUrl)
+                
+                if let url = url {
+                    
+                    let session = URLSession(configuration: .default)
+                    
+                    DispatchQueue.global(qos: .userInteractive).async {
+                        let task = session.dataTask(with: url,completionHandler: {
+                            (data, response, error) in
+                            if error == nil{
+                                DispatchQueue.main.async {
+                                    self.parseBannerDataIntoDb(data: data!)
+                                }
+                            }else{
+                                
+                            }
+                        })
+                        task.resume()
                     }
-                })
-                task.resume()
+                    
+                }
+            }else {
+                    print("Not reachable")
+                
             }
-            
-            
-            
-        }
+        
     }
     
     func parseBannerDataIntoDb(data: Data) {
         var userList: [Banner] = []
         let db1 = BannerDao()
-        
         do{
             let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
-            
             // if let dictionary = json as? [String: Any]
             if let dictionary = json as? Array<Dictionary<String, Any>>
             {
@@ -199,27 +226,35 @@ class ApiUtils {
     
     
     func getFavouriteProductDetail(){
-        let serviceUrl = DOMAIN_URL + apiCalls.get_favourite_product + "?id=4aa6223c-8439-4ed3-8de0-f6a67b1d36bd"
-        let url = URL(string: serviceUrl)
-        
-        if let url = url {
-            
-            let session = URLSession(configuration: .default)
-            DispatchQueue.global(qos: .userInteractive).async {
-                let task = session.dataTask(with: url,completionHandler: {
-                    (data, response, error) in
-                    if error == nil{
-                        DispatchQueue.main.async {
-                            self.parseFavouriteProductDataIntoDb(data: data!)
-                        }
-                    }else{
-                        
-                    }
-                })
+            if reachability.connection == .wifi || reachability.connection == .cellular
+            {
+                let serviceUrl = self.DOMAIN_URL + self.apiCalls.get_favourite_product + "?id=4aa6223c-8439-4ed3-8de0-f6a67b1d36bd"
+                let url = URL(string: serviceUrl)
                 
-                task.resume()
+                if let url = url {
+                    
+                    let session = URLSession(configuration: .default)
+                    DispatchQueue.global(qos: .userInteractive).async {
+                        let task = session.dataTask(with: url,completionHandler: {
+                            (data, response, error) in
+                            if error == nil{
+                                DispatchQueue.main.async {
+                                    self.parseFavouriteProductDataIntoDb(data: data!)
+                                }
+                            }else{
+                                
+                            }
+                        })
+                        
+                        task.resume()
+                    }
+                }
+            }else
+            {
+               
+                    print("Not reachable")
             }
-        }
+        
     }
     
     func parseFavouriteProductDataIntoDb(data: Data) {
@@ -253,24 +288,32 @@ class ApiUtils {
         }
     }
     func getUserDetail(id:String) -> Bool{
-        let serviceUrl = DOMAIN_URL + apiCalls.existingUserData + "?id=\(id)"
-        let url = URL(string: serviceUrl)
-        
-        if let url = url {
-            
-            let session = URLSession(configuration: .default)
-            
-            let task = session.dataTask(with: url,completionHandler: {
-                (data, response, error) in
-                if error == nil{
-                    self.parseUserDetailIntoDb(data: data!)
-                }else{
+            if reachability.connection == .wifi || reachability.connection == .cellular
+            {
+                let serviceUrl = self.DOMAIN_URL + self.apiCalls.existingUserData + "?id=\(id)"
+                let url = URL(string: serviceUrl)
+                
+                if let url = url {
                     
+                    let session = URLSession(configuration: .default)
+                    
+                    let task = session.dataTask(with: url,completionHandler: {
+                        (data, response, error) in
+                        if error == nil{
+                            self.parseUserDetailIntoDb(data: data!)
+                        }else{
+                            
+                        }
+                    })
+                    
+                    task.resume()
                 }
-            })
-            
-            task.resume()
-        }
+            }else
+            {
+                    print("Not reachable")
+                
+            }
+        
         return true
     }
     
@@ -296,23 +339,29 @@ class ApiUtils {
     }
     
     func fetchMakeupDetails(sc: @escaping (MakeDetails?)->Void) {
-        let serviceUrl = DOMAIN_URL + apiCalls.makeupDetails // + "?uuid=\(10)"
-        
-        var request = URLRequest(url: URL(string: serviceUrl)!)
-        request.timeoutInterval = 50
-        request.httpMethod = "GET"
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            if let data = data {
-                if let makeupDetails = try? JSONDecoder().decode(MakeDetails.self, from: data) {
-                    sc(makeupDetails)
-                    //print(makeupDetails.data?.makeup?[0].makeupName)
-                } else {
-                    print("Invalid Response")
+        if reachability.connection == .wifi || reachability.connection == .cellular
+        {
+            let serviceUrl = DOMAIN_URL + apiCalls.makeupDetails // + "?uuid=\(10)"
+            var request = URLRequest(url: URL(string: serviceUrl)!)
+            request.timeoutInterval = 50
+            request.httpMethod = "GET"
+            URLSession.shared.dataTask(with: request) { data, response, error in
+                if let data = data {
+                    if let makeupDetails = try? JSONDecoder().decode(MakeDetails.self, from: data) {
+                        sc(makeupDetails)
+                        //print(makeupDetails.data?.makeup?[0].makeupName)
+                    } else {
+                        print("Invalid Response")
+                    }
+                } else if let error = error {
+                    print("HTTP Request Failed \(error)")
                 }
-            } else if let error = error {
-                print("HTTP Request Failed \(error)")
-            }
-        }.resume()
-
+            }.resume()
+        }else
+        {
+            print("Not reachable")
+            
+        }
+           
     }
 }

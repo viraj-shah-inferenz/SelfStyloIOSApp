@@ -49,6 +49,7 @@
 		228A8E6E2963F0CB004F8208 /* SelectLogoAppTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 228A8E6C2963F0CB004F8208 /* SelectLogoAppTableViewCell.xib */; };
 		228A8E712963F69B004F8208 /* HomeCardAnnouncementsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228A8E6F2963F69B004F8208 /* HomeCardAnnouncementsTableViewCell.swift */; };
 		228A8E722963F69B004F8208 /* HomeCardAnnouncementsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 228A8E702963F69B004F8208 /* HomeCardAnnouncementsTableViewCell.xib */; };
+		22986723299CE1E200DCC909 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22986722299CE1E200DCC909 /* GoogleService-Info.plist */; };
 		229DE358297EBC77001235A8 /* EyelinerStyleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229DE357297EBC77001235A8 /* EyelinerStyleViewController.swift */; };
 		22A477DA29654F3600523866 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A477D929654F3600523866 /* SettingsViewController.swift */; };
 		22A477DD2965791C00523866 /* SavePresetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A477DC2965791C00523866 /* SavePresetsViewController.swift */; };
@@ -119,7 +120,6 @@
 		53289E552993B5490063EB4D /* CategoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53289E542993B5490063EB4D /* CategoryCollectionViewCell.xib */; };
 		53829454298D2EB4002D7671 /* Js in Resources */ = {isa = PBXBuildFile; fileRef = 53829453298D2EB4002D7671 /* Js */; };
 		5382945A29912FF3002D7671 /* indexMain.html in Resources */ = {isa = PBXBuildFile; fileRef = 5382945929912FF3002D7671 /* indexMain.html */; };
-		53BAC713297FDDAE00FD0BD5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 53BAC712297FDDAE00FD0BD5 /* GoogleService-Info.plist */; };
 		53BD4986298007B200B1D53B /* MakeDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53BD4985298007B200B1D53B /* MakeDetails.swift */; };
 		53BD49882980117C00B1D53B /* APIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53BD49872980117C00B1D53B /* APIHandler.swift */; };
 		80AD48C7E30C54A7922CAC7A /* Pods_SelfStyloIOSApp_SelfStyloIOSAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EB8BF4239B689E9F59CB872 /* Pods_SelfStyloIOSApp_SelfStyloIOSAppUITests.framework */; };
@@ -186,6 +186,7 @@
 		228A8E6C2963F0CB004F8208 /* SelectLogoAppTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectLogoAppTableViewCell.xib; sourceTree = "<group>"; };
 		228A8E6F2963F69B004F8208 /* HomeCardAnnouncementsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCardAnnouncementsTableViewCell.swift; sourceTree = "<group>"; };
 		228A8E702963F69B004F8208 /* HomeCardAnnouncementsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeCardAnnouncementsTableViewCell.xib; sourceTree = "<group>"; };
+		22986722299CE1E200DCC909 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		229DE357297EBC77001235A8 /* EyelinerStyleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyelinerStyleViewController.swift; sourceTree = "<group>"; };
 		22A477D929654F3600523866 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		22A477DC2965791C00523866 /* SavePresetsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavePresetsViewController.swift; sourceTree = "<group>"; };
@@ -261,7 +262,6 @@
 		53289E542993B5490063EB4D /* CategoryCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoryCollectionViewCell.xib; sourceTree = "<group>"; };
 		53829453298D2EB4002D7671 /* Js */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Js; sourceTree = "<group>"; };
 		5382945929912FF3002D7671 /* indexMain.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = indexMain.html; sourceTree = "<group>"; };
-		53BAC712297FDDAE00FD0BD5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		53BD4985298007B200B1D53B /* MakeDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeDetails.swift; sourceTree = "<group>"; };
 		53BD49872980117C00B1D53B /* APIHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHandler.swift; sourceTree = "<group>"; };
 		6CF42408F60C89C480F7B66D /* Pods_SelfStyloIOSAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SelfStyloIOSAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -598,11 +598,11 @@
 		22F858B0295AC6A400A7D86E /* SelfStyloIOSApp */ = {
 			isa = PBXGroup;
 			children = (
+				22986722299CE1E200DCC909 /* GoogleService-Info.plist */,
 				22E6FA28298D416B00361954 /* NotificationView */,
 				530278D5297FF8F70037F46E /* WebContoller */,
 				2287323029795C6000659E80 /* MakeupView */,
 				2289852B2976BDDD002DD2E8 /* SelfStyloIOSApp.entitlements */,
-				53BAC712297FDDAE00FD0BD5 /* GoogleService-Info.plist */,
 				22E8EA002970105D00E5BE59 /* Model */,
 				22E8E9FF2970105200E5BE59 /* Dao */,
 				22E8E9FA29700B7500E5BE59 /* Api */,
@@ -783,6 +783,7 @@
 				22A477E92965878600523866 /* DMSans-BoldItalic.ttf in Resources */,
 				22F858BE295AC6A600A7D86E /* LaunchScreen.storyboard in Resources */,
 				22A477E62965878600523866 /* DMSans-Regular.ttf in Resources */,
+				22986723299CE1E200DCC909 /* GoogleService-Info.plist in Resources */,
 				22F858BB295AC6A600A7D86E /* Assets.xcassets in Resources */,
 				227177962968157F00ABEC31 /* SignInPhoneTableViewCell.xib in Resources */,
 				2271779E296816BB00ABEC31 /* SignInCompleteTableViewCell.xib in Resources */,
@@ -807,7 +808,6 @@
 				22BA3AA6296423CD004AD1F3 /* SavedPresetsTableViewCell.xib in Resources */,
 				5382945A29912FF3002D7671 /* indexMain.html in Resources */,
 				53289E552993B5490063EB4D /* CategoryCollectionViewCell.xib in Resources */,
-				53BAC713297FDDAE00FD0BD5 /* GoogleService-Info.plist in Resources */,
 				2202B3322964013D000CB816 /* HomeCardSelfiecamTableViewCell.xib in Resources */,
 				22A4DC5A295F03D50064D006 /* SelectPhoneTableViewCell.xib in Resources */,
 				22A477E72965878600523866 /* DMSans-Medium.ttf in Resources */,
