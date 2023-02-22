@@ -32,7 +32,7 @@
                         <color key="textColor" red="0.36862745099999999" green="0.3803921569" blue="0.42745098040000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nlw-GL-3UJ" customClass="FPNTextField" customModule="FlagPhoneNumber">
+                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nlw-GL-3UJ" customClass="FPNTextField" customModule="FlagPhoneNumber">
                         <rect key="frame" x="32" y="44" width="326" height="52"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="326" id="iij-g1-XG9"/>

@@ -49,8 +49,9 @@
 		228A8E6E2963F0CB004F8208 /* SelectLogoAppTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 228A8E6C2963F0CB004F8208 /* SelectLogoAppTableViewCell.xib */; };
 		228A8E712963F69B004F8208 /* HomeCardAnnouncementsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228A8E6F2963F69B004F8208 /* HomeCardAnnouncementsTableViewCell.swift */; };
 		228A8E722963F69B004F8208 /* HomeCardAnnouncementsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 228A8E702963F69B004F8208 /* HomeCardAnnouncementsTableViewCell.xib */; };
-		22986723299CE1E200DCC909 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22986722299CE1E200DCC909 /* GoogleService-Info.plist */; };
 		229DE358297EBC77001235A8 /* EyelinerStyleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229DE357297EBC77001235A8 /* EyelinerStyleViewController.swift */; };
+		229F7A9029A61EFF0005DDDB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 229F7A8F29A61EFF0005DDDB /* GoogleService-Info.plist */; };
+		229F7A9229A61F9D0005DDDB /* AppleSignInClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229F7A9129A61F9D0005DDDB /* AppleSignInClient.swift */; };
 		22A477DA29654F3600523866 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A477D929654F3600523866 /* SettingsViewController.swift */; };
 		22A477DD2965791C00523866 /* SavePresetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A477DC2965791C00523866 /* SavePresetsViewController.swift */; };
 		22A477E62965878600523866 /* DMSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 22A477DF2965878600523866 /* DMSans-Regular.ttf */; };
@@ -186,8 +187,9 @@
 		228A8E6C2963F0CB004F8208 /* SelectLogoAppTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectLogoAppTableViewCell.xib; sourceTree = "<group>"; };
 		228A8E6F2963F69B004F8208 /* HomeCardAnnouncementsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCardAnnouncementsTableViewCell.swift; sourceTree = "<group>"; };
 		228A8E702963F69B004F8208 /* HomeCardAnnouncementsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeCardAnnouncementsTableViewCell.xib; sourceTree = "<group>"; };
-		22986722299CE1E200DCC909 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		229DE357297EBC77001235A8 /* EyelinerStyleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyelinerStyleViewController.swift; sourceTree = "<group>"; };
+		229F7A8F29A61EFF0005DDDB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		229F7A9129A61F9D0005DDDB /* AppleSignInClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSignInClient.swift; sourceTree = "<group>"; };
 		22A477D929654F3600523866 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		22A477DC2965791C00523866 /* SavePresetsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavePresetsViewController.swift; sourceTree = "<group>"; };
 		22A477DF2965878600523866 /* DMSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DMSans-Regular.ttf"; sourceTree = "<group>"; };
@@ -413,6 +415,7 @@
 				22AB9F112965B4DA00CB1ECD /* SignInPhoneViewController.swift */,
 				224650E52967EB0B00BFC8DD /* SignInOtpViewController.swift */,
 				227177842968128300ABEC31 /* SignInProfileViewController.swift */,
+				229F7A9129A61F9D0005DDDB /* AppleSignInClient.swift */,
 			);
 			path = SignInView;
 			sourceTree = "<group>";
@@ -598,7 +601,7 @@
 		22F858B0295AC6A400A7D86E /* SelfStyloIOSApp */ = {
 			isa = PBXGroup;
 			children = (
-				22986722299CE1E200DCC909 /* GoogleService-Info.plist */,
+				229F7A8F29A61EFF0005DDDB /* GoogleService-Info.plist */,
 				22E6FA28298D416B00361954 /* NotificationView */,
 				530278D5297FF8F70037F46E /* WebContoller */,
 				2287323029795C6000659E80 /* MakeupView */,
@@ -783,7 +786,7 @@
 				22A477E92965878600523866 /* DMSans-BoldItalic.ttf in Resources */,
 				22F858BE295AC6A600A7D86E /* LaunchScreen.storyboard in Resources */,
 				22A477E62965878600523866 /* DMSans-Regular.ttf in Resources */,
-				22986723299CE1E200DCC909 /* GoogleService-Info.plist in Resources */,
+				229F7A9029A61EFF0005DDDB /* GoogleService-Info.plist in Resources */,
 				22F858BB295AC6A600A7D86E /* Assets.xcassets in Resources */,
 				227177962968157F00ABEC31 /* SignInPhoneTableViewCell.xib in Resources */,
 				2271779E296816BB00ABEC31 /* SignInCompleteTableViewCell.xib in Resources */,
@@ -1010,6 +1013,7 @@
 				2202B3352964122C000CB816 /* FavouriteProductTableViewCell.swift in Sources */,
 				228959A4297A5942008B72CA /* ColorCodeCollectionViewCell.swift in Sources */,
 				5325AF1D298A5291004F385D /* MakeupLoaderViewController.swift in Sources */,
+				229F7A9229A61F9D0005DDDB /* AppleSignInClient.swift in Sources */,
 				227A6E01297FA05600559A3F /* CombosViewController.swift in Sources */,
 				22E222F0299B554F001D554D /* CustomVisualEffectView.swift in Sources */,
 				22EC1FA62966A615000F86EF /* CardView.swift in Sources */,

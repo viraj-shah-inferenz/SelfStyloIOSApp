@@ -2919,7 +2919,7 @@
                                         <color key="textColor" red="0.36862745099999999" green="0.3803921569" blue="0.42745098040000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="k5j-JY-Zn0" customClass="FPNTextField" customModule="FlagPhoneNumber">
+                                    <textField opaque="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="k5j-JY-Zn0" customClass="FPNTextField" customModule="FlagPhoneNumber">
                                         <rect key="frame" x="16" y="46" width="325" height="52"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="52" id="aXl-4c-Nif"/>
@@ -3066,7 +3066,7 @@
                                         </constraints>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RQy-ds-sFO">
-                                        <rect key="frame" x="92" y="13" width="149.33333333333337" height="32"/>
+                                        <rect key="frame" x="92.000000000000014" y="13" width="149.33333333333337" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="32" id="WEz-QS-eIE"/>
                                         </constraints>
@@ -3103,7 +3103,7 @@
                                         </constraints>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="txR-iS-CkB">
-                                        <rect key="frame" x="100" y="13" width="141.66666666666663" height="32"/>
+                                        <rect key="frame" x="99.999999999999986" y="13" width="141.66666666666663" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="32" id="3cl-9s-9Wt"/>
                                         </constraints>
@@ -3177,6 +3177,7 @@
                         <outlet property="lblInvalidEmail" destination="V7x-yS-9HE" id="FXA-oP-MH8"/>
                         <outlet property="lblInvalidPhone" destination="ikO-hO-nHx" id="kXd-cm-acx"/>
                         <outlet property="phoneNumberTextField" destination="k5j-JY-Zn0" id="t3P-06-FeK"/>
+                        <outlet property="signInApple" destination="Xqs-Un-coA" id="zRE-2a-x4e"/>
                         <outlet property="txtEmailAddress" destination="gA6-oO-Lj0" id="iF0-7E-AZ7"/>
                         <outlet property="txtPhoneNumber" destination="k5j-JY-Zn0" id="23t-gy-4UU"/>
                     </connections>
@@ -3208,7 +3209,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="StyloCam" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OXT-hi-K2D">
-                                        <rect key="frame" x="113" y="4" width="161.66666666666663" height="37"/>
+                                        <rect key="frame" x="112.99999999999999" y="4" width="161.66666666666663" height="37"/>
                                         <fontDescription key="fontDescription" name="DMSans-Medium" family="DM Sans" pointSize="35"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -3368,7 +3369,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="StyloCam" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eJo-Bl-pL0">
-                                        <rect key="frame" x="113" y="4" width="161.66666666666663" height="37"/>
+                                        <rect key="frame" x="112.99999999999999" y="4" width="161.66666666666663" height="37"/>
                                         <fontDescription key="fontDescription" name="DMSans-Medium" family="DM Sans" pointSize="35"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>

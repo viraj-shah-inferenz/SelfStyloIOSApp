@@ -35,6 +35,8 @@ class SignInPhoneTableViewCell: UITableViewCell,UITextFieldDelegate {
                txtPhoneNumber.textFieldInputAccessoryView = getCustomTextFieldInputAccessoryView(with: items)
                txtPhoneNumber.placeholder = "Phone Number"
                txtPhoneNumber.setFlag(countryCode: .IN)
+        txtPhoneNumber.rightView = UIView(frame: CGRect(x: 0, y: 0, width:-170, height: (txtPhoneNumber.frame.height)))
+        txtPhoneNumber.rightViewMode = .always
         settxtPhoneView(toView: txtPhoneNumber)
     }
     

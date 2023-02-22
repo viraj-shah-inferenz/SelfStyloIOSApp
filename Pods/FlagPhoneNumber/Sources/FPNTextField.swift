@@ -49,7 +49,7 @@ open class FPNTextField: UITextField {
 	}
 
 	/// Present in the placeholder an example of a phone number according to the selected country code.
-	/// If false, you can set your own placeholder. Set to true by default.
+	/// If false, you can set your own placeholder. Set to true by default. 
 	@objc open var hasPhoneNumberExample: Bool = true {
 		didSet {
 			if hasPhoneNumberExample == false {
@@ -333,11 +333,11 @@ open class FPNTextField: UITextField {
 	@objc private func didEditText() {
 		if let phoneCode = selectedCountry?.phoneCode, let number = text {
 			var cleanedPhoneNumber = clean(string: "\(phoneCode) \(number)")
-
 			if let validPhoneNumber = getValidNumber(phoneNumber: cleanedPhoneNumber) {
 				nbPhoneNumber = validPhoneNumber
 
 				cleanedPhoneNumber = "+\(validPhoneNumber.countryCode.stringValue)\(validPhoneNumber.nationalNumber.stringValue)"
+                
 
 				if let inputString = formatter?.inputString(cleanedPhoneNumber) {
 					text = remove(dialCode: phoneCode, in: inputString)
@@ -377,13 +377,13 @@ open class FPNTextField: UITextField {
 		flagButton.setImage(selectedCountry?.flag, for: .normal)
 
 		if let phoneCode = selectedCountry?.phoneCode {
-			phoneCodeTextField.text = phoneCode
+            phoneCodeTextField.text = phoneCode
 		}
 
 		if hasPhoneNumberExample == true {
-			updatePlaceholder()
+            updatePlaceholder()
 		}
-		didEditText()
+        didEditText()
 	}
 
 	private func clean(string: String) -> String {

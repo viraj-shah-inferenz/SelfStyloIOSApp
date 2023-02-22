@@ -8,8 +8,9 @@
 import UIKit
 import FlagPhoneNumber
 import FirebaseAuth
+import AuthenticationServices
 
-class SignInViewController: UIViewController,UITextFieldDelegate {
+class SignInViewController: UIViewController,UITextFieldDelegate{
     
     
 
@@ -42,11 +43,15 @@ class SignInViewController: UIViewController,UITextFieldDelegate {
     
     @IBOutlet weak var phoneNumberTextField: FPNTextField!
     
+    
+    @IBOutlet weak var signInApple: CardView!
+    
     var listController: FPNCountryListViewController = FPNCountryListViewController(style: .plain)
     var repository: FPNCountryRepository = FPNCountryRepository()
     let padding = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 5)
     
     let userDefault = UserDefaults.standard
+    let appleProvider = AppleSignInClient()
 
     
     override func viewDidLoad() {
@@ -58,6 +63,8 @@ class SignInViewController: UIViewController,UITextFieldDelegate {
         btnProceed?.addTarget(self, action: #selector(btnproceed), for: .touchUpInside)
         setTextFieldEmail()
         setTextFieldPhone()
+        
+        setUpSignInAppleButton()
         getData()
     }
 //    override func viewWillAppear(_ animated: Bool) {
@@ -66,6 +73,28 @@ class SignInViewController: UIViewController,UITextFieldDelegate {
 //        self.tabBarController?.tabBar.isHidden = true
 //        // hide here
 //    }
+    
+    func setUpSignInAppleButton() {
+        signInApple.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleAppleIdRequest)))
+
+    }
+    
+    @objc func handleAppleIdRequest() {
+        appleProvider.handleAppleIdRequest(block: { fullName, email, token in
+                    // receive data in login class.
+            let detailViewController:UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "SignInProfileViewController") as! SignInProfileViewController
+            
+            detailViewController.modalPresentationStyle = .fullScreen
+            self.present(detailViewController, animated: false)
+                    
+                    
+                })
+    }
+    
+  
+    
+  
+ 
     
     func getData(){
         apiUtils.getBanner()
@@ -84,11 +113,10 @@ class SignInViewController: UIViewController,UITextFieldDelegate {
     func setTextFieldPhone(){
         self.PhoneView.isHidden = true
         phoneNumberTextField.addTarget(self, action: #selector(handlePhoneTextChange), for: .editingChanged)
-        
         phoneNumberTextField.displayMode = .list
         phoneNumberTextField.delegate = self
-        
-        
+        txtPhoneNumber.rightView = UIView(frame: CGRect(x: 0, y: 0, width:-170, height: (txtPhoneNumber.frame.height)))
+        txtPhoneNumber.rightViewMode = .always
         listController.setup(repository: phoneNumberTextField.countryRepository)
         
         listController.didSelect = { [weak self] country in
@@ -107,8 +135,11 @@ class SignInViewController: UIViewController,UITextFieldDelegate {
         phoneNumberTextField.textFieldInputAccessoryView = getCustomTextFieldInputAccessoryView(with: items)
         phoneNumberTextField.placeholder = "Phone Number"
         phoneNumberTextField.setFlag(countryCode: .IN)
+        phoneNumberTextField.text! = phoneNumberTextField.text!.replacingOccurrences(of: " ", with: "")
         setTextFieldView(toView: phoneNumberTextField)
     }
+    
+    
     
     
     
@@ -120,7 +151,7 @@ class SignInViewController: UIViewController,UITextFieldDelegate {
             
         }else
         {
-            lblInvalidEmail.text = "Not a Valid \(validityType)"
+            lblInvalidEmail.text = "Invalid Email"
         }
     }
     
@@ -130,7 +161,7 @@ class SignInViewController: UIViewController,UITextFieldDelegate {
             lblInvalidPhone.text = " "
         }else
         {
-            lblInvalidPhone.text = "Not a Valid \(validityType)"
+            lblInvalidPhone.text = "Invalid Phone Number"
         }
     }
   
@@ -158,11 +189,11 @@ class SignInViewController: UIViewController,UITextFieldDelegate {
           let trimmed = patron.email.trimmingCharacters(in: .whitespacesAndNewlines)
               apiUtils.sendEmailOtp(email: trimmed)
               self.userDefault.set(trimmed, forKey: "Email")
-              guard let phoneNumber = phoneNumberTextField.text else {return}
-              Auth.auth().settings?.isAppVerificationDisabledForTesting = false
+              guard let phoneNumber = phoneNumberTextField.text, let phoneNumber11 = phoneNumberTextField.getRawPhoneNumber() else {return}
+              Auth.auth().settings?.isAppVerificationDisabledForTesting = true
               PhoneAuthProvider.provider(auth: Auth.auth())
               self.userDefault.set(phoneNumber, forKey: "Phone")
-              let str  = phoneNumber.components(separatedBy: .whitespaces).joined()
+              var str  = phoneNumber.components(separatedBy: .whitespaces).joined()
               PhoneAuthProvider.provider().verifyPhoneNumber(str, uiDelegate: nil){(verificationId, error) in
                   if error == nil{
                       print(verificationId)
