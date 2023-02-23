@@ -9,7 +9,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.428254982239-9rpf2mhkbv212nvkvu7unn5vbtnts4es</string>
+				<string>com.googleusercontent.apps.428254982239-kvionnh12sq5rvdt52guei2umlv0k757</string>
 			</array>
 		</dict>
 	</array>
@@ -24,7 +24,7 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 		<key>NSAllowsArbitraryLoadsForMedia</key>
-		<false/>
+		<true/>
 	</dict>
 	<key>UIAppFonts</key>
 	<array>

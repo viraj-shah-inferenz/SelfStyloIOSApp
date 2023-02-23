@@ -15,9 +15,6 @@ class BlushViewController: UIViewController {
     
     @IBOutlet weak var btnCheckbox: UIButton!
     
-    var color_image:[String] = ["color_code_circle", "color_code_circle","color_code_circle", "color_code_circle","color_code_circle"]
-    var color_name:[String] =  ["Canny","Caramel"]
-    
     var apiUtils = ApiUtils()
     
     var makeup = MakeDetails()
@@ -26,6 +23,8 @@ class BlushViewController: UIViewController {
     var arrProduct = [Product]()
     
     var backToCategory : (()-> Void)?
+    
+    var strBlushCategory:String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,6 +56,9 @@ class BlushViewController: UIViewController {
                     if let category = makeUp.category {
                         for cat in category {
                             arrCategory.append(cat)
+                        }
+                        if let cat = arrCategory.first?.categoryName {
+                            strBlushCategory = cat
                         }
                     }
                 }
@@ -170,13 +172,16 @@ extension BlushViewController: UICollectionViewDelegate, UICollectionViewDataSou
         
         if collectionView.tag == 0 {
             // product color
-            NotificationCenter.default.post(name: NSNotification.Name("applyBlush"), object: arrProduct[indexPath.item])
-            
-            
-            
+//            NotificationCenter.default.post(name: NSNotification.Name("applyBlush"), object: arrProduct[indexPath.item])
+            if arrCategory.count == 1 {
+                NotificationCenter.default.post(name: NSNotification.Name("applyBlush"), object: arrProduct[indexPath.item], userInfo: ["category_name" : arrCategory[0].categoryName!])
+            } else {
+                NotificationCenter.default.post(name: NSNotification.Name("applyBlush"), object: arrProduct[indexPath.item], userInfo: ["category_name" : strBlushCategory])
+            }
         } else if collectionView.tag == 1 {
             // Category name
             let data = arrCategory[indexPath.item]
+            strBlushCategory = data.categoryName ?? ""
             setCategory(categoryIndex: indexPath.item)
         } else {
         }

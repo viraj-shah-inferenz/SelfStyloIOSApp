@@ -22,5 +22,7 @@ class IApiCalls{
     let getBanner = "api/announcement/"
 
     let makeupDetails = "api/makeup-items-details/"
+    
+    let eyelinerStyle = "api/-style/"
 }
 

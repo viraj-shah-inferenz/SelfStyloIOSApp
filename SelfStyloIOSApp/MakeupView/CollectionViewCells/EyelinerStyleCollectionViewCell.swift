@@ -11,6 +11,7 @@ class EyelinerStyleCollectionViewCell: UICollectionViewCell {
 
     
     @IBOutlet weak var eyelinerImage: UIImageView!
+    @IBOutlet weak var imgEyelinerImage: UIImageView!
     
     @IBOutlet weak var eyelinerName: UILabel!
     override func awakeFromNib() {

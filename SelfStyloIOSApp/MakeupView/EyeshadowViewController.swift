@@ -27,6 +27,8 @@ class EyeshadowViewController: UIViewController {
     
     var backToCategory : (()-> Void)?
     
+    var strEyeshadowCategory: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //        setDelegates()
@@ -57,6 +59,10 @@ class EyeshadowViewController: UIViewController {
                     if let category = makeUp.category {
                         for cat in category {
                             arrCategory.append(cat)
+                        }
+                        
+                        if let cat = arrCategory.first?.categoryName {
+                            strEyeshadowCategory = cat
                         }
                     }
                 }
@@ -167,13 +173,14 @@ extension EyeshadowViewController:UICollectionViewDelegate, UICollectionViewData
         
         if collectionView.tag == 0 {
             // product color
-            NotificationCenter.default.post(name: NSNotification.Name("applyEyeshadow"), object: arrProduct[indexPath.item])
-            
+//            NotificationCenter.default.post(name: NSNotification.Name("applyEyeshadow"), object: arrProduct[indexPath.item])
+            NotificationCenter.default.post(name: NSNotification.Name("applyEyeshadow"), object: arrProduct[indexPath.item], userInfo: ["category_name" : strEyeshadowCategory])
             
             
         } else if collectionView.tag == 1 {
             // Category name
             let data = arrCategory[indexPath.item]
+            strEyeshadowCategory = data.categoryName ?? ""
             setCategory(categoryIndex: indexPath.item)
         } else {
         }

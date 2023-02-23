@@ -29,8 +29,17 @@ class MakeupViewController: UIViewController,UICollectionViewDelegate, UICollect
     
     @IBOutlet weak var makeupView: UIView!
     
+    @IBOutlet weak var btnClearAll: UIButton!
+    @IBOutlet weak var btnCapture: UIButton!
+    @IBOutlet weak var btnStckOfMakeup: UIButton!
+    @IBOutlet weak var btnMakeupVisible: UIButton!
+    
     var category_image = [UIImage(named: "eyeliner"),UIImage(named: "lipstick"),UIImage(named: "blush"),UIImage(named: "eyeshadow"),UIImage(named: "foundation")]
     var category_name:[String] = ["Eyeliner","Lipstick","Blush","Eyeshadow","Foundation"]
+    
+    var apiUtils = ApiUtils()
+    
+    var eyeliner: EyelinerModel!
     
     var lipstickView: LipstickView!
     
@@ -42,6 +51,13 @@ class MakeupViewController: UIViewController,UICollectionViewDelegate, UICollect
     
     var makeupData: Dictionary = [String:Any]()
     
+    var eyelinerData: Dictionary = [String: String]()
+    
+    var selectedMakeup = [Makeup]()
+    
+    var isMakeupVisible = false
+    var tmpMakeup = [String: Any]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupWebview()
@@ -52,14 +68,112 @@ class MakeupViewController: UIViewController,UICollectionViewDelegate, UICollect
         
         print(makeup.data?.makeup)
         eyeshadowVC.makeup = makeup
-        
-        // Do any additional setup after loading the view.
+        setupView()
+    }
+    
+    func setupView() {
         self.categoryCollectionView.register(UINib(nibName: "CategoryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "CategoryCollectionViewCell")
         comboView.target(forAction: #selector(combo), withSender: nil)
         comboView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(combo)))
         
-        makeupData.removeAll()
+        btnClearAll.addTarget(self
+                              , action: #selector(clearAllAppliedMakeup)
+                              , for: .touchUpInside
+        )
+        btnCapture.addTarget(self, action: #selector(captureImage), for: .touchUpInside)
+        btnStckOfMakeup.addTarget(self, action: #selector(makeupStackView), for: .touchUpInside)
+        btnMakeupVisible.addTarget(self, action: #selector(makeupVisible), for: .touchUpInside)
         
+        makeupData.removeAll()
+    }
+    
+    func loadEyelinerStyleImagesJs() {
+        
+        DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + .seconds(1)) {
+            let eyelinerData:[String: String] = UserDefaults.standard.object(forKey: APP.EYELINER_STYLE) as? [String: String] ?? [:]
+            print(eyelinerData.count)
+            
+            var f = ""
+            if let strJson = eyelinerData.jsonStringRepresentaiton {
+                f = "loadEyelinerStyleImages(`\(strJson)`);"
+            }
+            print(f)
+            DispatchQueue.main.async {
+                self.webView.evaluateJavaScript(f) { (response, error) in
+                    if error == nil {
+                        print("----return value : \(response)")
+                    } else {
+                        print("error: " + error.debugDescription)
+                    }
+                }
+            }
+            
+        }
+    }
+    
+    
+    @objc
+    func makeupVisible() {
+        print("Apply some makeup first")
+        
+        if isMakeupVisible {
+            isMakeupVisible = false
+            btnMakeupVisible.backgroundColor = .clear
+            makeupData = tmpMakeup
+        } else {
+            isMakeupVisible = true
+            btnMakeupVisible.backgroundColor = .gray
+            tmpMakeup = makeupData
+            makeupData.removeAll()
+        }
+        
+        
+        let jsonData = try? JSONSerialization.data(withJSONObject: makeupData, options: [])
+        let jsonString = String(data: jsonData!, encoding: .utf8)
+        print(jsonString)
+        
+        if let json = jsonString {
+            updateEffectList(json: json)
+        }
+    }
+    
+    @objc
+    func makeupStackView() {
+        let makeupLayerVC = self.storyboard?.instantiateViewController(withIdentifier: "MakeupLayerViewController") as! MakeupLayerViewController
+        if makeupData.keys.count == 0 {
+            let alert = UIAlertController(title: "StyloCam", message: "There is nothing!, layers are empty.", preferredStyle: .alert)
+            let btnOk = UIAlertAction(title: "Ok", style: .default)
+            alert.addAction(btnOk)
+            present(alert, animated: true)
+        } else {
+            makeupLayerVC.makeupLayerData = makeupData
+            makeupLayerVC.delegate = self
+            self.present(makeupLayerVC, animated: true)
+        }
+        
+    }
+    
+    
+    @objc
+    func captureImage() {
+        guard let image = webView.makeSnapshot() else { return }
+        
+        let alert = UIAlertController(title: "Title", message: "Message", preferredStyle: .alert)
+        let actionCancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        //Add imageview to alert
+        let imgViewTitle = UIImageView(frame: CGRect(x: 8, y: 8, width: 42, height: 44))
+        imgViewTitle.image = image
+        alert.view.addSubview(imgViewTitle)
+        
+        let actionSave = UIAlertAction(title: "Save", style: .default) { action in
+            UIImageWriteToSavedPhotosAlbum(self.webView.makeSnapshot()!, nil, nil, nil)
+            alert.dismiss(animated: true)
+        }
+        
+        alert.addAction(actionCancel)
+        alert.addAction(actionSave)
+        self.present(alert, animated: true, completion: nil)
     }
     
     fileprivate func setObserverforMakeup() {
@@ -72,6 +186,13 @@ class MakeupViewController: UIViewController,UICollectionViewDelegate, UICollect
         
 //       blush observer
         NotificationCenter.default.addObserver(self, selector: #selector(self.applyBlush(notification:)), name: Notification.Name("applyBlush"), object: nil)
+        
+//       eyeliner observer
+        NotificationCenter.default.addObserver(self, selector: #selector(self.applyEyeliner(notification:)), name: Notification.Name("applyEyeliner"), object: nil)
+        
+//        foundation observer
+        NotificationCenter.default.addObserver(self, selector: #selector(self.applyFoundation(notification:)), name: Notification.Name("applyFoundation"), object: nil)
+        
     }
     
     @objc func combo() {
@@ -91,12 +212,82 @@ class MakeupViewController: UIViewController,UICollectionViewDelegate, UICollect
         webView.scrollView.isScrollEnabled = false
         webView.navigationDelegate = self
         webView.uiDelegate = self
-        
+        webView.isUserInteractionEnabled = false
         webView.configuration.preferences.javaScriptEnabled = true
         webView.configuration.allowsInlineMediaPlayback = true
         webView.configuration.allowsAirPlayForMediaPlayback = false
         webView.translatesAutoresizingMaskIntoConstraints = false
         
+    }
+    
+    @objc
+    func clearAllAppliedMakeup() {
+
+        makeupData.removeAll()
+        let jsonData = try? JSONSerialization.data(withJSONObject: makeupData, options: [])
+        let jsonString = String(data: jsonData!, encoding: .utf8)
+        print(jsonString)
+        
+        if let json = jsonString {
+            updateEffectList(json: json)
+        }
+    }
+    
+    @objc
+    func applyFoundation(notification: Notification) {
+        if let product = notification.object as? Product {
+            print(product.colorCode!)
+            guard let color = product.colorCode?.rgbToColor() else { return }
+            let colorComponents = color.rgbComponents
+            let red = colorComponents.red
+            let green = colorComponents.green
+            let blue = colorComponents.blue
+            let alpha = colorComponents.alpha
+            
+            let categoryName = notification.userInfo!["category_name"] as! String
+            
+            
+            makeupData.updateValue(["color":[Int(red * 255), Int(green * 255), Int(blue * 255)], "category_name": categoryName, "colorName": product.colorName!], forKey: "Foundation")
+            
+            let jsonData = try? JSONSerialization.data(withJSONObject: makeupData, options: [])
+            let jsonString = String(data: jsonData!, encoding: .utf8)
+            print(jsonString)
+            
+            if let json = jsonString {
+                updateEffectList(json: json)
+            }
+        }
+    }
+    
+    @objc
+    func applyEyeliner(notification: Notification) {
+        if let product = notification.object as? Product {
+            print(product.colorCode!)
+            guard let color = product.colorCode?.rgbToColor() else { return }
+            let colorComponents = color.rgbComponents
+            let red = colorComponents.red
+            let green = colorComponents.green
+            let blue = colorComponents.blue
+            let alpha = colorComponents.alpha
+            
+            guard let styleId = UserDefaults.standard.object(forKey: APP.EYELINER_STYLE_Id) as? Int else { return }
+            
+            let categoryName = notification.userInfo!["category_name"] as! String
+            
+            if product.productTypeCode == nil || product.productTypeCode == 0 {
+                makeupData.updateValue(["color":[Int(red * 255), Int(green * 255), Int(blue * 255)], "style": styleId, "category_name": categoryName, "colorName": product.colorName!], forKey: "Eyeliner")
+                
+            } else {
+                makeupData.updateValue(["color":[Int(red * 255), Int(green * 255), Int(blue * 255)], "style": styleId, "category_name": categoryName, "colorName": product.colorName!], forKey: "Eyeliner")
+            }
+            let jsonData = try? JSONSerialization.data(withJSONObject: makeupData, options: [])
+            let jsonString = String(data: jsonData!, encoding: .utf8)
+            print(jsonString)
+            
+            if let json = jsonString {
+                updateEffectList(json: json)
+            }
+        }
     }
     
     /// Call JavaScript Function for apply make - up
@@ -115,13 +306,16 @@ class MakeupViewController: UIViewController,UICollectionViewDelegate, UICollect
             let blue = colorComponents.blue
             let alpha = colorComponents.alpha
             
+            let categoryName = notification.userInfo!["category_name"] as! String
+            
             if product.productTypeCode == nil || product.productTypeCode == 0 {
-                makeupData.updateValue(["color":[Int(red * 255), Int(green * 255), Int(blue * 255)], "product_type": 0], forKey: "Lipstick")
+                makeupData.updateValue(["color":[Int(red * 255), Int(green * 255), Int(blue * 255)], "product_type": 0, "category_name": categoryName, "colorName": product.colorName!], forKey: "Lipstick")
             } else {
                 guard let productTypeCode = product.productTypeCode else { return }
-                makeupData.updateValue(["color":[Int(red * 255), Int(green * 255), Int(blue * 255)], "product_type": productTypeCode], forKey: "Lipstick")
+                makeupData.updateValue(["color":[Int(red * 255), Int(green * 255), Int(blue * 255)], "product_type": productTypeCode, "category_name": categoryName, "colorName": product.colorName!], forKey: "Lipstick")
             }
         }
+        
         let jsonData = try? JSONSerialization.data(withJSONObject: makeupData, options: [])
         let jsonString = String(data: jsonData!, encoding: .utf8)
         print(jsonString)
@@ -145,12 +339,13 @@ class MakeupViewController: UIViewController,UICollectionViewDelegate, UICollect
             let blue = colorComponents.blue
             let alpha = colorComponents.alpha
             
+            let categoryName = notification.userInfo!["category_name"] as! String
+            
             if product.productTypeCode == nil || product.productTypeCode == 0 {
-                makeupData.updateValue(["color":[Int(red * 255), Int(green * 255), Int(blue * 255)], "product_type": 0], forKey: "Eyeshadow")
-                
+                makeupData.updateValue(["color":[Int(red * 255), Int(green * 255), Int(blue * 255)], "product_type": 0, "category_name": categoryName, "colorName": product.colorName!], forKey: "Eyeshadow")
             } else {
                 guard let productTypeCode = product.productTypeCode else { return }
-                makeupData.updateValue(["color":[Int(red * 255), Int(green * 255), Int(blue * 255)], "product_type": productTypeCode], forKey: "Eyeshadow")
+                makeupData.updateValue(["color":[Int(red * 255), Int(green * 255), Int(blue * 255)], "product_type": productTypeCode, "category_name": categoryName, "colorName": product.colorName!], forKey: "Eyeshadow")
             }
             let jsonData = try? JSONSerialization.data(withJSONObject: makeupData, options: [])
             let jsonString = String(data: jsonData!, encoding: .utf8)
@@ -171,11 +366,13 @@ class MakeupViewController: UIViewController,UICollectionViewDelegate, UICollect
             let blue = colorComponents.blue
             let alpha = colorComponents.alpha
             
+            let categoryName = notification.userInfo!["category_name"] as! String
+            
             if product.productTypeCode == nil || product.productTypeCode == 0 {
-                makeupData.updateValue(["color":[Int(red * 255), Int(green * 255), Int(blue * 255)], "product_type": 4], forKey: "Blush")
+                makeupData.updateValue(["color":[Int(red * 255), Int(green * 255), Int(blue * 255)], "product_type": 4, "category_name": categoryName, "colorName": product.colorName!], forKey: "Blush")
             } else {
                 guard let productTypeCode = product.productTypeCode else { return }
-                makeupData.updateValue(["color":[Int(red * 255), Int(green * 255), Int(blue * 255)], "product_type": productTypeCode], forKey: "Blush")
+                makeupData.updateValue(["color":[Int(red * 255), Int(green * 255), Int(blue * 255)], "product_type": 4, "category_name": categoryName, "colorName": product.colorName!], forKey: "Blush")
             }
             let jsonData = try? JSONSerialization.data(withJSONObject: makeupData, options: [])
             let jsonString = String(data: jsonData!, encoding: .utf8)
@@ -236,6 +433,7 @@ class MakeupViewController: UIViewController,UICollectionViewDelegate, UICollect
                 }
             }
         }
+        
         if segue.identifier == "comboView" {
             if let comboVC = segue.destination as? CombosViewController {
                 comboVC.backToCategory = {
@@ -338,7 +536,6 @@ extension MakeupViewController: WKScriptMessageHandler, WKNavigationDelegate {
         guard let img3 = UIImage(named: "lipstickGlitter") else { return }
         guard let glitter_lip_base64 = img3.base64(format: .png) else { return }
         let _glitterBase = "\"\(glitter_lip_base64)\""
-//
         guard let imgEyeshadow1 = UIImage(named: "eyeshadowNormal") else { return }
         guard let normal_eyeshadow_base64 = imgEyeshadow1.base64(format: .png) else { return }
         let _eyeshadowBase = "\"\(normal_eyeshadow_base64)\""
@@ -355,11 +552,13 @@ extension MakeupViewController: WKScriptMessageHandler, WKNavigationDelegate {
         guard let nano_eyeshadow_base64 = imgEyeshadow4.base64(format: .png) else { return }
         let _eyeshadowNano = "\"\(nano_eyeshadow_base64)\""
         
-        guard let imgBlush = UIImage(named: "squareFace") else { return }
+        guard let imgBlush = UIImage(named: "longFace") else { return }
         guard let blush_base64 = imgBlush.base64(format: .png) else { return }
         let _blushBase = "\"\(blush_base64)\""
         
         loadImages(_glossBase: _glossBase, _glitterBase: _glitterBase, _metallicBase: _metallicBase, _eyeshadowBase: _eyeshadowBase, _eyeshadowMetallic: _eyeshadowMetallic, _eyeshadowMirco: _eyeshadowMirco, _eyeshadowNano: _eyeshadowNano, _blushBase: _blushBase)
+        
+        loadEyelinerStyleImagesJs()
     }
     
     func webView(_ webView: WKWebView,
@@ -372,7 +571,7 @@ extension MakeupViewController: WKScriptMessageHandler, WKNavigationDelegate {
     
     func setCanvasAttributes() {
         let width = webView.bounds.width  //- 5.0
-        let height = webView.frame.height + 5.0 //- 50.0
+        let height = webView.frame.height //- 50.0
         
         let f = "setCanvasAttributes(\(width), \(height));"
         self.webView.evaluateJavaScript(f) { (response, error) in
@@ -394,7 +593,7 @@ extension MakeupViewController: WKScriptMessageHandler, WKNavigationDelegate {
             } else {
                 print("error: " + error.debugDescription)
             }
-            RunLoop.current.run(mode: .default, before: Date.distantFuture)
+//            RunLoop.current.run(mode: .default, before: Date.distantFuture)
         }
     }
     
@@ -424,6 +623,8 @@ extension MakeupViewController: WKScriptMessageHandler, WKNavigationDelegate {
         }
     }
     
+    
+    
     func applyEyeshadowJs(ra:Int, ga: Int, ba:Int, type: Int) {
         let f = "applyEyeshadow(" + String(ra) + "," + String(ga) + "," + String(ba) + "," + String(type) + ");"
         print(f)
@@ -450,6 +651,24 @@ extension MakeupViewController: WKUIDelegate {
             completionHandler()
         } else {
             completionHandler()
+        }
+    }
+}
+
+extension MakeupViewController: MakeupDelegate {
+    func removeMakeup(data: [String : Any]) {
+        print(data)
+        if data.keys.count == 0 {
+            makeupData.removeAll()
+        } else {
+            makeupData = data
+        }
+        
+        let jsonData = try? JSONSerialization.data(withJSONObject: makeupData, options: [])
+        let jsonString = String(data: jsonData!, encoding: .utf8)
+        print(jsonString)
+        if let json = jsonString {
+            updateEffectList(json: json)
         }
     }
 }

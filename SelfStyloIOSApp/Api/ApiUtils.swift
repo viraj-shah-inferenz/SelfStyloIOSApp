@@ -11,6 +11,8 @@ import Reachability
 
 struct APP {
     static let IS_LOGIN = "isLogin"
+    static let EYELINER_STYLE = "eyelinerStyle"
+    static let EYELINER_STYLE_Id = "eyelinerStyleId"
 }
 
 protocol GetUsersDelegate {
@@ -22,8 +24,8 @@ class ApiUtils {
     var getUserDelegate: GetUsersDelegate?
     var apiCalls = IApiCalls()
     
-    private let DOMAIN_URL = "https://dev.selfstylo.com/"
-    private let MAKEUP_URL = "https://makeup.selfstylo.com/"
+    static let DOMAIN_URL = "https://dev.selfstylo.com/"
+    static let MAKEUP_URL = "https://makeup.selfstylo.com/"
     let reachability = try! Reachability()
     
     init()
@@ -35,7 +37,7 @@ class ApiUtils {
     func sendEmailOtp(email:String){
        
         if reachability.connection == .wifi || reachability.connection == .cellular {
-            let serviceUrl = self.DOMAIN_URL + self.apiCalls.sendEmailOtp
+            let serviceUrl = ApiUtils.DOMAIN_URL + self.apiCalls.sendEmailOtp
             var request = URLRequest(url: URL(string: serviceUrl)!)
             request.httpMethod = "POST"
             let postString = "email=\(email)"
@@ -68,7 +70,7 @@ class ApiUtils {
     
     func sendVerifyOtp(email:String,otp:String){
             if reachability.connection == .wifi || reachability.connection == .cellular{
-                let serviceUrl = self.DOMAIN_URL + self.apiCalls.sendVerifyOtp
+                let serviceUrl = ApiUtils.DOMAIN_URL + self.apiCalls.sendVerifyOtp
                 var request = URLRequest(url: URL(string: serviceUrl)!)
                 request.httpMethod = "POST"
                 let postString = "email=\(email)&otp=\(otp)"
@@ -98,7 +100,7 @@ class ApiUtils {
     
     func updateUserDetails(patron:Patron) -> Bool{
             if reachability.connection == .wifi || reachability.connection == .cellular {
-                let serviceUrl = self.DOMAIN_URL + self.apiCalls.updateUserData
+                let serviceUrl = ApiUtils.DOMAIN_URL + self.apiCalls.updateUserData
                 let db1 = PatronDao()
                 db1.deleteAll()
                 var request = URLRequest(url: URL(string: serviceUrl)!)
@@ -169,7 +171,7 @@ class ApiUtils {
     
     func getBanner(){
             if reachability.connection == .wifi   ||  reachability.connection == .cellular {
-                let serviceUrl = self.DOMAIN_URL + self.apiCalls.getBanner
+                let serviceUrl = ApiUtils.DOMAIN_URL + self.apiCalls.getBanner
                 let url = URL(string: serviceUrl)
                 
                 if let url = url {
@@ -228,7 +230,7 @@ class ApiUtils {
     func getFavouriteProductDetail(){
             if reachability.connection == .wifi || reachability.connection == .cellular
             {
-                let serviceUrl = self.DOMAIN_URL + self.apiCalls.get_favourite_product + "?id=4aa6223c-8439-4ed3-8de0-f6a67b1d36bd"
+                let serviceUrl = ApiUtils.DOMAIN_URL + self.apiCalls.get_favourite_product + "?id=4aa6223c-8439-4ed3-8de0-f6a67b1d36bd"
                 let url = URL(string: serviceUrl)
                 
                 if let url = url {
@@ -290,7 +292,7 @@ class ApiUtils {
     func getUserDetail(id:String) -> Bool{
             if reachability.connection == .wifi || reachability.connection == .cellular
             {
-                let serviceUrl = self.DOMAIN_URL + self.apiCalls.existingUserData + "?id=\(id)"
+                let serviceUrl = ApiUtils.DOMAIN_URL + self.apiCalls.existingUserData + "?id=\(id)"
                 let url = URL(string: serviceUrl)
                 
                 if let url = url {
@@ -341,7 +343,7 @@ class ApiUtils {
     func fetchMakeupDetails(sc: @escaping (MakeDetails?)->Void) {
         if reachability.connection == .wifi || reachability.connection == .cellular
         {
-            let serviceUrl = DOMAIN_URL + apiCalls.makeupDetails // + "?uuid=\(10)"
+            let serviceUrl = ApiUtils.MAKEUP_URL + apiCalls.makeupDetails // + "?uuid=\(10)"
             var request = URLRequest(url: URL(string: serviceUrl)!)
             request.timeoutInterval = 50
             request.httpMethod = "GET"
@@ -363,5 +365,25 @@ class ApiUtils {
             
         }
            
+    }
+    
+    func fetchEyelinerStyles(model: @escaping (EyelinerModel?) -> Void) {
+//        api/eyeliner-style/
+        let serviceUrl = ApiUtils.MAKEUP_URL + apiCalls.eyelinerStyle // + "?uuid=\(10)"
+        
+        var request = URLRequest(url: URL(string: serviceUrl)!)
+        request.httpMethod = "GET"
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let data = data {
+                if let eyelinerModel = try? JSONDecoder().decode(EyelinerModel.self, from: data) {
+//                    print(eyelinerModel.data?[0].eyelinerStyleImage)
+                    model(eyelinerModel)
+                } else {
+                    print("Invalid Response")
+                }
+            } else if let error = error {
+                print("HTTP Request Failed \(error)")
+            }
+        }.resume()
     }
 }

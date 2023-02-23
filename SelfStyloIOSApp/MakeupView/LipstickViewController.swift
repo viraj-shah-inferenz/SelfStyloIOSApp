@@ -23,7 +23,7 @@ class LipstickViewController: UIViewController {
     
     var arrCategory = [Category]()
     var arrProduct = [Product]()
-    
+    var strCategory: String = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -57,41 +57,15 @@ class LipstickViewController: UIViewController {
                         for cat in category {
                             arrCategory.append(cat)
                         }
+                        if let cat = arrCategory.first?.categoryName {
+                            strCategory = cat
+                        }
                     }
                 }
             }
         }
         reloadCollections()
     }
-    
-    func reloadCollectionViewData() {
-        self.productListCollectionView.reloadData()
-        self.colorNameCollectionView.reloadData()
-    }
-    
-    @IBAction func btnBack(_ sender: UIButton) {
-        backToCategory?()
-    }
-    
-    func setDelegates()
-    {
-        productListCollectionView.delegate = self
-        productListCollectionView.dataSource = self
-        
-        colorNameCollectionView.delegate = self
-        colorNameCollectionView.dataSource = self
-    }
-    
-    @IBAction func btnSelectCheckbox(_ sender: UIButton) {
-        if btnCheckbox.isSelected{
-            btnCheckbox.setImage(UIImage.init(named: "favourite_unchecked"), for: .normal)
-        }else
-        {
-            btnCheckbox.setImage(UIImage.init(named: "favourite_checked"), for: .normal)
-        }
-        btnCheckbox.isSelected = !btnCheckbox.isSelected
-    }
-    
     func reloadCollections() {
         arrProduct.removeAll()
         if let product = arrCategory[0].products {
@@ -111,6 +85,33 @@ class LipstickViewController: UIViewController {
             }
         }
         self.productListCollectionView.reloadData()
+    }
+    
+    func reloadCollectionViewData() {
+        self.productListCollectionView.reloadData()
+        self.colorNameCollectionView.reloadData()
+    }
+    
+    @IBAction func btnBack(_ sender: UIButton) {
+        backToCategory?()
+    }
+    
+    func setDelegates() {
+        productListCollectionView.delegate = self
+        productListCollectionView.dataSource = self
+        
+        colorNameCollectionView.delegate = self
+        colorNameCollectionView.dataSource = self
+    }
+    
+    @IBAction func btnSelectCheckbox(_ sender: UIButton) {
+        if btnCheckbox.isSelected{
+            btnCheckbox.setImage(UIImage.init(named: "favourite_unchecked"), for: .normal)
+        }else
+        {
+            btnCheckbox.setImage(UIImage.init(named: "favourite_checked"), for: .normal)
+        }
+        btnCheckbox.isSelected = !btnCheckbox.isSelected
     }
 }
 
@@ -165,11 +166,12 @@ extension LipstickViewController:UICollectionViewDelegate, UICollectionViewDataS
         
         if collectionView.tag == 0 {
             // product color
-            NotificationCenter.default.post(name: NSNotification.Name("applyLipstick"), object: arrProduct[indexPath.item])
+            NotificationCenter.default.post(name: NSNotification.Name("applyLipstick"), object: arrProduct[indexPath.item], userInfo: ["category_name" : strCategory])
             
         } else if collectionView.tag == 1 {
             // Category name
             let data = arrCategory[indexPath.item]
+            strCategory = data.categoryName ?? ""
             setCategory(categoryIndex: indexPath.item)
         } else {
         }
