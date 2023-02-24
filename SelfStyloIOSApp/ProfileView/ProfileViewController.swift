@@ -48,11 +48,30 @@ class ProfileViewController: UIViewController {
         let settingstouchDown = UILongPressGestureRecognizer(target:self, action: #selector(gotoSettings))
         settingstouchDown.minimumPressDuration = 0
         settingsCollectionView.addGestureRecognizer(settingstouchDown)
+        let logOuttouchDown = UILongPressGestureRecognizer(target:self, action: #selector(gotoLogout))
+        logOuttouchDown.minimumPressDuration = 0
+        logoutCollectionView.addGestureRecognizer(logOuttouchDown)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+    }
+    
+    @objc func gotoLogout(gesture: UILongPressGestureRecognizer){
+        UserDefaults.standard.removeObject(forKey: APP.IS_LOGIN)
+        UserDefaults.standard.synchronize()
+        let loginNavController:UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "SignInViewController") as! SignInViewController
+//        let loginNavController = self.storyboard!.instantiateViewController(identifier: "SignInViewController")
+//        navigationController?.pushViewController(loginNavController, animated: true)
+        loginNavController.modalPresentationStyle = .fullScreen
+        loginNavController.modalTransitionStyle = .crossDissolve
+        self.present(loginNavController, animated: false)
+        if gesture.state == .began {
+            logoutCollectionView.backgroundColor = UIColorFromHex(rgbValue: 0x0D0F17,alpha: 0.1)
+        } else if gesture.state == .ended || gesture.state == .cancelled {
+            logoutCollectionView.backgroundColor = .systemBackground
+        }
     }
     
     @objc func gotoSettings(gesture: UILongPressGestureRecognizer){
@@ -91,15 +110,6 @@ class ProfileViewController: UIViewController {
     }
     
     
-    @IBAction func btnlogout(_ sender: UIButton) {
-        UserDefaults.standard.removeObject(forKey: APP.IS_LOGIN)
-        UserDefaults.standard.synchronize()
-        
-        let loginNavController = self.storyboard!.instantiateViewController(identifier: "SignInViewController")
-//        navigationController?.pushViewController(loginNavController, animated: true)
-        loginNavController.modalPresentationStyle = .fullScreen
-        self.present(loginNavController, animated: false)
-    }
     
     func setProfileImageView(toView: UIImageView)
     {

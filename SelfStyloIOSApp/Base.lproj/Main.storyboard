@@ -454,7 +454,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Makeup" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ye5-0x-mt2">
-                                        <rect key="frame" x="156" y="110" width="61.666666666666657" height="20"/>
+                                        <rect key="frame" x="156" y="110" width="63.666666666666657" height="20"/>
                                         <fontDescription key="fontDescription" name="DMSans-Medium" family="DM Sans" pointSize="17"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -595,16 +595,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pNA-X8-D7x">
-                                <rect key="frame" x="58.666666666666657" y="138" width="275.66666666666674" height="69.333333333333314"/>
+                                <rect key="frame" x="56.333333333333343" y="138" width="280.66666666666663" height="69.333333333333314"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FAQ's" translatesAutoresizingMaskIntoConstraints="NO" id="G9s-IM-Gob">
-                                        <rect key="frame" x="15.000000000000007" y="18.666666666666657" width="24" height="32"/>
+                                        <rect key="frame" x="14.999999999999993" y="18.666666666666657" width="24" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="24" id="31q-LZ-cgV"/>
                                         </constraints>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BXK-ga-Bgu">
-                                        <rect key="frame" x="107" y="13.000000000000004" width="86.666666666666686" height="43.333333333333343"/>
+                                        <rect key="frame" x="107" y="13.000000000000004" width="91.666666666666686" height="43.333333333333343"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="FAQs">
                                             <fontDescription key="titleFontDescription" name="DMSans-Medium" family="DM Sans" pointSize="18"/>
@@ -624,16 +624,16 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9X6-US-j9E">
-                                <rect key="frame" x="58.666666666666657" y="233.33333333333334" width="275.66666666666674" height="69.333333333333343"/>
+                                <rect key="frame" x="56.333333333333343" y="233.33333333333334" width="280.66666666666663" height="69.333333333333343"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="about_selfstylo" translatesAutoresizingMaskIntoConstraints="NO" id="R7X-v8-Uwj">
-                                        <rect key="frame" x="15.000000000000007" y="18.666666666666657" width="24" height="32"/>
+                                        <rect key="frame" x="14.999999999999993" y="18.666666666666657" width="24" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="24" id="S7f-20-9Yo"/>
                                         </constraints>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L8X-hb-hEn">
-                                        <rect key="frame" x="86.999999999999986" y="10" width="152.66666666666663" height="42.333333333333336"/>
+                                        <rect key="frame" x="86.999999999999986" y="10" width="157.66666666666663" height="42.333333333333336"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="About SelfStylo">
                                             <fontDescription key="titleFontDescription" name="DMSans-Medium" family="DM Sans" pointSize="18"/>
@@ -653,16 +653,16 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="djj-Ob-mbF">
-                                <rect key="frame" x="58.666666666666657" y="342.66666666666669" width="275.66666666666674" height="69.333333333333314"/>
+                                <rect key="frame" x="56.333333333333343" y="342.66666666666669" width="280.66666666666663" height="69.333333333333314"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="privacy_policy" translatesAutoresizingMaskIntoConstraints="NO" id="PeQ-sq-TGN">
-                                        <rect key="frame" x="15.000000000000007" y="18.666666666666629" width="24" height="32"/>
+                                        <rect key="frame" x="14.999999999999993" y="18.666666666666629" width="24" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="24" id="TH0-ud-KtF"/>
                                         </constraints>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vPn-Uq-xwP">
-                                        <rect key="frame" x="83.999999999999986" y="11.000000000000004" width="136.66666666666663" height="42.333333333333343"/>
+                                        <rect key="frame" x="83.999999999999986" y="11.000000000000004" width="141.66666666666663" height="42.333333333333343"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Privacy Policy">
                                             <fontDescription key="titleFontDescription" name="DMSans-Medium" family="DM Sans" pointSize="18"/>
@@ -682,16 +682,16 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kIU-kf-Clv">
-                                <rect key="frame" x="58.666666666666657" y="451" width="275.66666666666674" height="69.333333333333371"/>
+                                <rect key="frame" x="56.333333333333343" y="451" width="280.66666666666663" height="69.333333333333371"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="terms" translatesAutoresizingMaskIntoConstraints="NO" id="wRV-an-xeb">
-                                        <rect key="frame" x="15.000000000000007" y="18.666666666666686" width="24" height="32"/>
+                                        <rect key="frame" x="14.999999999999993" y="18.666666666666686" width="24" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="24" id="XfP-v3-0Rf"/>
                                         </constraints>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fgo-8q-wz8">
-                                        <rect key="frame" x="89.999999999999986" y="11.000000000000004" width="136.66666666666663" height="42.333333333333343"/>
+                                        <rect key="frame" x="89.999999999999986" y="11.000000000000004" width="141.66666666666663" height="42.333333333333343"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Terms of Use">
                                             <fontDescription key="titleFontDescription" name="DMSans-Medium" family="DM Sans" pointSize="18"/>
@@ -895,20 +895,20 @@
                                 <rect key="frame" x="121.66666666666669" y="104" width="150" height="150"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="StyloCam" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hqa-5l-OsZ">
-                                        <rect key="frame" x="37.333333333333329" y="109" width="79" height="21"/>
+                                        <rect key="frame" x="32.999999999999993" y="109" width="83.333333333333314" height="23.666666666666657"/>
                                         <fontDescription key="fontDescription" name="DMSans-Medium" family="DM Sans" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ellipse_1" translatesAutoresizingMaskIntoConstraints="NO" id="IBE-Rq-o7X">
-                                        <rect key="frame" x="34.999999999999986" y="18" width="83" height="83"/>
+                                        <rect key="frame" x="32.999999999999986" y="18" width="83" height="83"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="83" id="W7H-6v-2lF"/>
                                             <constraint firstAttribute="width" constant="83" id="fEa-20-mVo"/>
                                         </constraints>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stylocam_icon" translatesAutoresizingMaskIntoConstraints="NO" id="XU2-Y9-QpK">
-                                        <rect key="frame" x="40.999999999999986" y="25" width="68" height="68"/>
+                                        <rect key="frame" x="38.999999999999986" y="25" width="68" height="68"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -2484,7 +2484,7 @@
             <objects>
                 <viewController storyboardIdentifier="CombosViewController" id="fYH-8b-0vt" customClass="CombosViewController" customModule="SelfStyloIOSApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lPE-1s-jYy">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="137"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qGf-ue-rsg">
@@ -2659,13 +2659,13 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="StyloCam" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OXT-hi-K2D">
-                                        <rect key="frame" x="121.66666666666666" y="4" width="152.99999999999997" height="37"/>
+                                        <rect key="frame" x="113" y="4" width="161.66666666666663" height="37"/>
                                         <fontDescription key="fontDescription" name="DMSans-Medium" family="DM Sans" pointSize="35"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="about_selfstylo_logo_app" translatesAutoresizingMaskIntoConstraints="NO" id="eWw-6x-9Sj">
-                                        <rect key="frame" x="82.666666666666671" y="4" width="31" height="37"/>
+                                        <rect key="frame" x="74" y="4" width="31" height="37"/>
                                     </imageView>
                                     <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DyC-cn-vvX">
                                         <rect key="frame" x="12" y="68" width="327" height="613"/>
@@ -2739,13 +2739,13 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="StyloCam" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ca3-sW-G4i">
-                                        <rect key="frame" x="121.66666666666666" y="4" width="152.99999999999997" height="37"/>
+                                        <rect key="frame" x="112.99999999999999" y="4" width="161.66666666666663" height="37"/>
                                         <fontDescription key="fontDescription" name="DMSans-Medium" family="DM Sans" pointSize="35"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="about_selfstylo_logo_app" translatesAutoresizingMaskIntoConstraints="NO" id="osQ-54-HWf">
-                                        <rect key="frame" x="82.666666666666671" y="4" width="31" height="37"/>
+                                        <rect key="frame" x="74" y="4" width="31" height="37"/>
                                     </imageView>
                                     <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yvx-g4-9LH">
                                         <rect key="frame" x="12" y="68" width="327" height="613"/>
@@ -3183,7 +3183,7 @@
                                 <rect key="frame" x="9" y="155.66666666666666" width="357" height="142.99999999999997"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4hQ-r3-mDM">
-                                        <rect key="frame" x="16.000000000000004" y="20" width="34.333333333333343" height="18.333333333333329"/>
+                                        <rect key="frame" x="15.999999999999996" y="20" width="35.666666666666657" height="18.333333333333329"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="18.329999999999998" id="QNX-Rs-Wnx"/>
                                         </constraints>
@@ -3227,7 +3227,7 @@
                                 <rect key="frame" x="9" y="155.66666666666666" width="357" height="142.99999999999997"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Phone Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XPH-8z-vne">
-                                        <rect key="frame" x="16" y="20" width="94.666666666666686" height="18.333333333333329"/>
+                                        <rect key="frame" x="15.999999999999993" y="20" width="98.333333333333314" height="18.333333333333329"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="18.329999999999998" id="VK8-Nu-sIL"/>
                                         </constraints>
@@ -3351,7 +3351,7 @@
                                         </constraints>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="otA-n5-QOh">
-                                        <rect key="frame" x="94.666666666666671" y="13" width="146.66666666666663" height="32"/>
+                                        <rect key="frame" x="92.000000000000014" y="13" width="149.33333333333337" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="32" id="n0A-mR-9zM"/>
                                         </constraints>
@@ -3388,7 +3388,7 @@
                                         </constraints>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LhD-RI-ly3">
-                                        <rect key="frame" x="104.33333333333333" y="13" width="137.33333333333337" height="32"/>
+                                        <rect key="frame" x="99.999999999999986" y="13" width="141.66666666666663" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="32" id="s6S-zh-WlZ"/>
                                         </constraints>
@@ -3616,9 +3616,6 @@
                                             <fontDescription key="titleFontDescription" name="DMSans-Medium" family="DM Sans" pointSize="18"/>
                                             <color key="baseForegroundColor" red="0.52549019610000003" green="0.54117647059999996" blue="0.60784313729999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </buttonConfiguration>
-                                        <connections>
-                                            <action selector="btnlogout:" destination="st9-Ii-PMJ" eventType="touchUpInside" id="jrF-Eq-IlO"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
