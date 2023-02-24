@@ -335,9 +335,6 @@ class ApiUtils {
             db1.insert(userList: user)
             print("USERS : ", userList)
         }
-        
-        
-        
     }
     
     func fetchMakeupDetails(sc: @escaping (MakeDetails?)->Void) {
