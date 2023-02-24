@@ -76,9 +76,10 @@ extension SignInProfileViewController: UITableViewDelegate, UITableViewDataSourc
         }
         else if indexPath.row == 3 {
             if let phonecell:SignInPhoneTableViewCell = tableView.dequeueReusableCell(withIdentifier: "SignInPhoneTableViewCell") as? SignInPhoneTableViewCell{
-                    let phone = userDefault.string(forKey: "Phone")
-                    patron.phoneNumber = phone!
-                    phonecell.txtPhoneNumber.text! = patron.phoneNumber
+                let phone = userDefault.string(forKey: "Phone")
+                let result4 = String(phone!.dropFirst(3))
+                patron.phoneNumber = result4
+                phonecell.txtPhoneNumber.text! = patron.phoneNumber
                 phonecell.txtPhoneNumber.tag = indexPath.row
                 phonecell.txtPhoneNumber.delegate = self
                 return phonecell
@@ -158,7 +159,7 @@ extension SignInProfileViewController: UITableViewDelegate, UITableViewDataSourc
                 mobileNumCell.lblInvalidPhone.text = "Please enter valid mobile number"
                 return
             } else {
-                patron.phoneNumber = mobileNo
+                patron.phoneNumber = (mobileNumCell.txtPhoneNumber.selectedCountry?.phoneCode.appending(mobileNo))!
             }
         }
         
@@ -218,7 +219,7 @@ extension SignInProfileViewController: UITableViewDelegate, UITableViewDataSourc
         
         if let mobileNo = mobileNumCell.txtPhoneNumber.text {
             if mobileNo == "" {
-                patron.phoneNumber = mobileNo
+                patron.phoneNumber =  (mobileNumCell.txtPhoneNumber.selectedCountry?.phoneCode.appending(mobileNo))!
             }
         }
         

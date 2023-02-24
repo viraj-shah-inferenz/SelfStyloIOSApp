@@ -14,6 +14,7 @@ class EditProfileViewController: UIViewController,UIImagePickerControllerDelegat
     let db = PatronDao()
    // var patron = Patron()
     var patron:[Patron] = []
+    var dropFirst: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,7 +70,8 @@ extension EditProfileViewController: UITableViewDelegate, UITableViewDataSource,
         } else if indexPath.row == 3 {
             if let phonecell:SelectPhoneTableViewCell = tableView.dequeueReusableCell(withIdentifier: "SelectPhoneTableViewCell") as? SelectPhoneTableViewCell{
                 let phone = userDefault.string(forKey: "Phone")
-                phonecell.txtPhoneNumber.text = phone
+                let result4 = String(phone!.dropFirst(3))
+                phonecell.txtPhoneNumber.text = result4
                 phonecell.txtPhoneNumber.tag = indexPath.row
                 return phonecell
             }
@@ -166,7 +168,7 @@ extension EditProfileViewController: UITableViewDelegate, UITableViewDataSource,
                 mobileNumCell.lblInvalidPhone.text = "Please enter valid mobile number"
                 return
             } else {
-                patron[0].phoneNumber = mobileNo
+                patron[0].phoneNumber = (mobileNumCell.txtPhoneNumber.selectedCountry?.phoneCode.appending(mobileNo))!
             }
         }
         

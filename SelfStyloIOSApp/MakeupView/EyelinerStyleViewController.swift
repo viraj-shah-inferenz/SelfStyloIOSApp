@@ -151,7 +151,6 @@ extension EyelinerStyleViewController:UICollectionViewDelegate, UICollectionView
         if collectionView.tag == 0 {
             if arrProduct.count > 0 {
                 let data = arrProduct[indexPath.item]
-                print(data.colorCode)
                 if data.colorName == strProduct {
                     cell.colorImage.layer.borderColor = UIColor.white.cgColor
                     cell.colorImage.layer.borderWidth = 1.0
@@ -165,12 +164,17 @@ extension EyelinerStyleViewController:UICollectionViewDelegate, UICollectionView
         } else if collectionView.tag == 1 {
             if arrCategory.count > 0 {
                 let data = arrCategory[indexPath.item]
-                if data.categoryName == strCategory {
+                if arrCategory.count == 1 {
                     colornameCell.lblcolor_name.textColor = UIColor.white
                 } else {
-//                    5E616D
-                    colornameCell.lblcolor_name.textColor = UIColor.gray
+                    if data.categoryName == strCategory {
+                        colornameCell.lblcolor_name.textColor = UIColor.white
+                    } else {
+    //                    5E616D
+                        colornameCell.lblcolor_name.textColor = UIColor.gray
+                    }
                 }
+                
                 colornameCell.lblcolor_name.text = data.categoryName
             }
             return colornameCell

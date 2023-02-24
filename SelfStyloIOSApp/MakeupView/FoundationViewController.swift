@@ -24,6 +24,9 @@ class FoundationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        
+        self.foundationColorView.isHidden = true
+        self.foundationView.alpha = 1
     }
     
     func setupView() {

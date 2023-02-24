@@ -15,36 +15,36 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell tag="3" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SignInPhoneTableViewCell" rowHeight="133" id="sET-58-KHn" customClass="SignInPhoneTableViewCell" customModule="SelfStyloIOSApp" customModuleProvider="target">
+        <tableViewCell tag="3" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SignInPhoneTableViewCell" rowHeight="133" id="qBu-Sg-P6Z" customClass="SignInPhoneTableViewCell" customModule="SelfStyloIOSApp" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="390" height="133"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sET-58-KHn" id="BBR-pn-b7u">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qBu-Sg-P6Z" id="re6-dn-Pk6">
                 <rect key="frame" x="0.0" y="0.0" width="390" height="133"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Phone" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mEG-dP-t7m">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Phone" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jay-1K-RTu">
                         <rect key="frame" x="32" y="12" width="60" height="20"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="60" id="GyV-D1-90g"/>
-                            <constraint firstAttribute="height" constant="20" id="l16-zW-2mC"/>
+                            <constraint firstAttribute="height" constant="20" id="GHh-pK-wBI"/>
+                            <constraint firstAttribute="width" constant="60" id="xFQ-bv-D58"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="14"/>
                         <color key="textColor" red="0.36862745099999999" green="0.3803921569" blue="0.42745098040000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nlw-GL-3UJ" customClass="FPNTextField" customModule="FlagPhoneNumber">
+                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WDH-lx-0fv" customClass="FPNTextField" customModule="FlagPhoneNumber">
                         <rect key="frame" x="32" y="44" width="326" height="52"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="326" id="iij-g1-XG9"/>
-                            <constraint firstAttribute="height" constant="52" id="sXg-Qj-rog"/>
+                            <constraint firstAttribute="height" constant="52" id="5DQ-Be-Jxe"/>
+                            <constraint firstAttribute="width" constant="326" id="Ebf-NX-Ype"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="DMSans-Medium" family="DM Sans" pointSize="14"/>
                         <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                         <connections>
-                            <outlet property="delegate" destination="sET-58-KHn" id="fgb-Uf-lMy"/>
+                            <outlet property="delegate" destination="qBu-Sg-P6Z" id="ari-x3-pLr"/>
                         </connections>
                     </textField>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kGn-Kv-JNw">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ug0-a3-PQM">
                         <rect key="frame" x="32" y="101" width="338" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" systemColor="systemRedColor"/>
@@ -52,24 +52,24 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="kGn-Kv-JNw" firstAttribute="trailing" secondItem="BBR-pn-b7u" secondAttribute="trailingMargin" id="Anb-mx-NMa"/>
-                    <constraint firstItem="kGn-Kv-JNw" firstAttribute="bottom" secondItem="BBR-pn-b7u" secondAttribute="bottomMargin" id="EoW-dB-U0q"/>
-                    <constraint firstAttribute="trailing" secondItem="mEG-dP-t7m" secondAttribute="trailing" constant="298" id="HLK-sA-z6m"/>
-                    <constraint firstAttribute="trailing" secondItem="Nlw-GL-3UJ" secondAttribute="trailing" constant="32" id="OZY-Hx-UTi"/>
-                    <constraint firstItem="mEG-dP-t7m" firstAttribute="top" secondItem="BBR-pn-b7u" secondAttribute="top" constant="12" id="ahU-jS-PSQ"/>
-                    <constraint firstItem="Nlw-GL-3UJ" firstAttribute="leading" secondItem="BBR-pn-b7u" secondAttribute="leading" constant="32" id="i2k-yO-XWU"/>
-                    <constraint firstItem="Nlw-GL-3UJ" firstAttribute="top" secondItem="mEG-dP-t7m" secondAttribute="bottom" constant="12" id="kah-od-f2c"/>
-                    <constraint firstItem="kGn-Kv-JNw" firstAttribute="top" secondItem="Nlw-GL-3UJ" secondAttribute="bottom" constant="5" id="knK-dt-8zd"/>
-                    <constraint firstItem="kGn-Kv-JNw" firstAttribute="leading" secondItem="Nlw-GL-3UJ" secondAttribute="leading" id="kqU-eJ-a0W"/>
-                    <constraint firstItem="Nlw-GL-3UJ" firstAttribute="leading" secondItem="mEG-dP-t7m" secondAttribute="leading" id="oaQ-Ka-mym"/>
+                    <constraint firstItem="Ug0-a3-PQM" firstAttribute="trailing" secondItem="re6-dn-Pk6" secondAttribute="trailingMargin" id="27T-Oi-c3B"/>
+                    <constraint firstAttribute="trailing" secondItem="jay-1K-RTu" secondAttribute="trailing" constant="298" id="3Up-HL-Z2S"/>
+                    <constraint firstItem="WDH-lx-0fv" firstAttribute="leading" secondItem="re6-dn-Pk6" secondAttribute="leading" constant="32" id="4Mi-Wq-if0"/>
+                    <constraint firstItem="Ug0-a3-PQM" firstAttribute="bottom" secondItem="re6-dn-Pk6" secondAttribute="bottomMargin" id="ABS-FU-4h0"/>
+                    <constraint firstItem="jay-1K-RTu" firstAttribute="top" secondItem="re6-dn-Pk6" secondAttribute="top" constant="12" id="GT2-vB-vB5"/>
+                    <constraint firstItem="Ug0-a3-PQM" firstAttribute="top" secondItem="WDH-lx-0fv" secondAttribute="bottom" constant="5" id="QF7-Ie-pv6"/>
+                    <constraint firstItem="WDH-lx-0fv" firstAttribute="top" secondItem="jay-1K-RTu" secondAttribute="bottom" constant="12" id="hA8-3a-y6A"/>
+                    <constraint firstAttribute="trailing" secondItem="WDH-lx-0fv" secondAttribute="trailing" constant="32" id="ljy-Ku-oko"/>
+                    <constraint firstItem="Ug0-a3-PQM" firstAttribute="leading" secondItem="WDH-lx-0fv" secondAttribute="leading" id="nz2-b5-VdT"/>
+                    <constraint firstItem="WDH-lx-0fv" firstAttribute="leading" secondItem="jay-1K-RTu" secondAttribute="leading" id="qP4-Pe-ISm"/>
                 </constraints>
             </tableViewCellContentView>
-            <viewLayoutGuide key="safeArea" id="fln-bC-x0y"/>
+            <viewLayoutGuide key="safeArea" id="NMX-4p-ENc"/>
             <color key="backgroundColor" red="0.92549019610000005" green="0.93333333330000001" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <connections>
-                <outlet property="lblInvalidPhone" destination="kGn-Kv-JNw" id="FZV-2v-py2"/>
-                <outlet property="lblPhone" destination="mEG-dP-t7m" id="7Qf-YS-0FK"/>
-                <outlet property="txtPhoneNumber" destination="Nlw-GL-3UJ" id="eEM-MM-yxc"/>
+                <outlet property="lblInvalidPhone" destination="Ug0-a3-PQM" id="2hx-yF-Mhs"/>
+                <outlet property="lblPhone" destination="jay-1K-RTu" id="uJ4-3m-dCR"/>
+                <outlet property="txtPhoneNumber" destination="WDH-lx-0fv" id="Va3-JT-3bE"/>
             </connections>
             <point key="canvasLocation" x="61.068702290076331" y="51.056338028169016"/>
         </tableViewCell>

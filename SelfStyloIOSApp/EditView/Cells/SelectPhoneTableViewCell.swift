@@ -6,10 +6,13 @@
 //
 
 import UIKit
+import FlagPhoneNumber
 
 class SelectPhoneTableViewCell: UITableViewCell, UITextFieldDelegate {
 
-    @IBOutlet weak var txtPhoneNumber: UITextField!
+    @IBOutlet weak var txtPhoneNumber: FPNTextField!
+    var listController: FPNCountryListViewController = FPNCountryListViewController(style: .grouped)
+    var repository: FPNCountryRepository = FPNCountryRepository()
     @IBOutlet weak var lblPhone: UILabel!
     
     @IBOutlet weak var lblInvalidPhone: UILabel!
@@ -19,11 +22,37 @@ class SelectPhoneTableViewCell: UITableViewCell, UITextFieldDelegate {
         super.awakeFromNib()
         // Initialization code
         settxtPhoneView(toView: txtPhoneNumber)
-        txtPhoneNumber.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: txtPhoneNumber.frame.height))
-        txtPhoneNumber.leftViewMode = .always
+        
+        setUpFlagPhoneNumber()
+    }
+    
+    func setUpFlagPhoneNumber()
+    {
         txtPhoneNumber.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         txtPhoneNumber.delegate = self
+        
+        txtPhoneNumber.displayMode = .picker
+        txtPhoneNumber.delegate = self
+        
+                let items = [
+               UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.save, target: self, action: nil),
+               UIBarButtonItem(title: "Item 1", style: .plain, target: self, action: nil),
+               UIBarButtonItem(title: "Item 2", style: .plain, target: self, action: nil)
+           ]
+               txtPhoneNumber.textFieldInputAccessoryView = getCustomTextFieldInputAccessoryView(with: items)
+               txtPhoneNumber.placeholder = "Phone Number"
+               txtPhoneNumber.setFlag(countryCode: .IN)
     }
+    
+    private func getCustomTextFieldInputAccessoryView(with items: [UIBarButtonItem]) -> UIToolbar {
+            let toolbar: UIToolbar = UIToolbar()
+
+            toolbar.barStyle = UIBarStyle.default
+            toolbar.items = items
+            toolbar.sizeToFit()
+
+            return toolbar
+        }
 
     @objc fileprivate func handleTextChange(){
         guard let phone = txtPhoneNumber.text else { return }

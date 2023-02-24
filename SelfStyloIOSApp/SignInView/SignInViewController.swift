@@ -9,8 +9,9 @@ import UIKit
 import FlagPhoneNumber
 import FirebaseAuth
 import AuthenticationServices
+import SafariServices
 
-class SignInViewController: UIViewController,UITextFieldDelegate{
+class SignInViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate{
     
     
 
@@ -23,6 +24,9 @@ class SignInViewController: UIViewController,UITextFieldDelegate{
     @IBOutlet weak var btnCheckbox: UIButton!
     
     @IBOutlet weak var btnProceed: UIButton?
+    
+    
+    @IBOutlet weak var txtView: UITextView!
     
     var apiUtils = ApiUtils()
     
@@ -48,10 +52,14 @@ class SignInViewController: UIViewController,UITextFieldDelegate{
     
     var listController: FPNCountryListViewController = FPNCountryListViewController(style: .plain)
     var repository: FPNCountryRepository = FPNCountryRepository()
-    let padding = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 5)
+    
     
     let userDefault = UserDefaults.standard
     let appleProvider = AppleSignInClient()
+    
+
+    let termsAndConditionsURL = "https://selfstylo.com/terms-and-conditions/";
+    let privacyURL            = "https://selfstylo.com/privacy-policy/";
 
     
     override func viewDidLoad() {
@@ -66,13 +74,32 @@ class SignInViewController: UIViewController,UITextFieldDelegate{
         
         setUpSignInAppleButton()
         getData()
+        setUpTextView()
     }
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        self.navigationController?.isNavigationBarHidden = true
-//        self.tabBarController?.tabBar.isHidden = true
-//        // hide here
-//    }
+    
+    func setUpTextView()
+    {
+        txtView.isUserInteractionEnabled = true
+        self.txtView.delegate = self
+        
+        
+        let linkAttributes: [NSAttributedString.Key : Any] = [
+            NSAttributedString.Key.foregroundColor: UIColor.black,
+            NSAttributedString.Key.underlineColor: UIColor.black,
+            NSAttributedString.Key.font : UIFont(name: "DMSans-Medium", size: 12.0),
+            NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue
+        ]
+        
+        let str = "I agree to StyloCam's Terms of Use and Privacy Policy"
+        let attributedString = NSMutableAttributedString(string: str,attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray])
+        var foundRange = attributedString.mutableString.range(of: "Terms of Use")
+        //mention the parts of the attributed text you want to tap and get an custom action
+        attributedString.addAttribute(NSAttributedString.Key.link, value: termsAndConditionsURL, range: foundRange)
+        foundRange = attributedString.mutableString.range(of: "Privacy Policy")
+        attributedString.addAttribute(NSAttributedString.Key.link, value: privacyURL, range: foundRange)
+        txtView.linkTextAttributes = linkAttributes
+        txtView.attributedText = attributedString
+    }
     
     func setUpSignInAppleButton() {
         signInApple.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleAppleIdRequest)))
@@ -93,7 +120,16 @@ class SignInViewController: UIViewController,UITextFieldDelegate{
     
   
     
-  
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
+        let safariVC = SFSafariViewController(url: URL)
+         safariVC.delegate = self
+            if (URL.absoluteString == termsAndConditionsURL) {
+                 present(safariVC, animated: true, completion: nil)
+            } else if (URL.absoluteString == privacyURL) {
+                present(safariVC, animated: true, completion: nil)
+            }
+            return false
+        }
  
     
     func getData(){
@@ -102,7 +138,7 @@ class SignInViewController: UIViewController,UITextFieldDelegate{
     }
     
     func setTextFieldEmail(){
-        self.EmailIdView.isHidden = false
+        self.EmailIdView.isHidden = true
         txtEmailAddress.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: (txtEmailAddress.frame.height)))
         txtEmailAddress.leftViewMode = .always
         txtEmailAddress.addTarget(self, action: #selector(handleEmailTextChange), for: .editingChanged)
@@ -111,12 +147,10 @@ class SignInViewController: UIViewController,UITextFieldDelegate{
     }
     
     func setTextFieldPhone(){
-        self.PhoneView.isHidden = true
+        self.PhoneView.isHidden = false
         phoneNumberTextField.addTarget(self, action: #selector(handlePhoneTextChange), for: .editingChanged)
         phoneNumberTextField.displayMode = .list
         phoneNumberTextField.delegate = self
-        txtPhoneNumber.rightView = UIView(frame: CGRect(x: 0, y: 0, width:-170, height: (txtPhoneNumber.frame.height)))
-        txtPhoneNumber.rightViewMode = .always
         listController.setup(repository: phoneNumberTextField.countryRepository)
         
         listController.didSelect = { [weak self] country in
@@ -135,7 +169,6 @@ class SignInViewController: UIViewController,UITextFieldDelegate{
         phoneNumberTextField.textFieldInputAccessoryView = getCustomTextFieldInputAccessoryView(with: items)
         phoneNumberTextField.placeholder = "Phone Number"
         phoneNumberTextField.setFlag(countryCode: .IN)
-        phoneNumberTextField.text! = phoneNumberTextField.text!.replacingOccurrences(of: " ", with: "")
         setTextFieldView(toView: phoneNumberTextField)
     }
     
@@ -189,11 +222,11 @@ class SignInViewController: UIViewController,UITextFieldDelegate{
           let trimmed = patron.email.trimmingCharacters(in: .whitespacesAndNewlines)
               apiUtils.sendEmailOtp(email: trimmed)
               self.userDefault.set(trimmed, forKey: "Email")
-              guard let phoneNumber = phoneNumberTextField.text, let phoneNumber11 = phoneNumberTextField.getRawPhoneNumber() else {return}
+              guard let phoneNumber = phoneNumberTextField.text else {return}
               Auth.auth().settings?.isAppVerificationDisabledForTesting = true
               PhoneAuthProvider.provider(auth: Auth.auth())
-              self.userDefault.set(phoneNumber, forKey: "Phone")
-              var str  = phoneNumber.components(separatedBy: .whitespaces).joined()
+              self.userDefault.set(phoneNumberTextField.selectedCountry?.phoneCode.appending(phoneNumber), forKey: "Phone")
+              let str  = phoneNumber.components(separatedBy: .whitespaces).joined()
               PhoneAuthProvider.provider().verifyPhoneNumber(str, uiDelegate: nil){(verificationId, error) in
                   if error == nil{
                       print(verificationId)
@@ -217,12 +250,12 @@ class SignInViewController: UIViewController,UITextFieldDelegate{
     
     @IBAction func switchViewAction(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0{
-            self.EmailIdView.isHidden = false
-            self.PhoneView.isHidden = true
-        }else
-        {
             self.EmailIdView.isHidden = true
             self.PhoneView.isHidden = false
+        }else
+        {
+            self.EmailIdView.isHidden = false
+            self.PhoneView.isHidden = true
         }
     }
     
@@ -308,7 +341,7 @@ class SignInViewController: UIViewController,UITextFieldDelegate{
 }
 
 
-extension SignInViewController: FPNTextFieldDelegate {
+extension SignInViewController: FPNTextFieldDelegate,SFSafariViewControllerDelegate {
     
     func fpnDisplayCountryList() {
         let navigationViewController = UINavigationController(rootViewController: listController)
@@ -319,11 +352,19 @@ extension SignInViewController: FPNTextFieldDelegate {
     }
     
     func fpnDidValidatePhoneNumber(textField: FPNTextField, isValid: Bool) {
-        textField.rightViewMode = .always
+        
     }
     
     func fpnDidSelectCountry(name: String, dialCode: String, code: String) {
        // print(name, dialCode, code)
+        
     }
+    
+    func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+            controller.dismiss(animated: true, completion: nil)
+        }
+    
+    
+    
     
 }
