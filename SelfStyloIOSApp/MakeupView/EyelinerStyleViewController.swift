@@ -25,6 +25,9 @@ class EyelinerStyleViewController: UIViewController {
     var arrCategory = [Category]()
     var arrProduct = [Product]()
     
+    var strCategory: String = ""
+    var strProduct: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegates()
@@ -149,12 +152,25 @@ extension EyelinerStyleViewController:UICollectionViewDelegate, UICollectionView
             if arrProduct.count > 0 {
                 let data = arrProduct[indexPath.item]
                 print(data.colorCode)
+                if data.colorName == strProduct {
+                    cell.colorImage.layer.borderColor = UIColor.white.cgColor
+                    cell.colorImage.layer.borderWidth = 1.0
+                } else {
+                    cell.colorImage.layer.borderColor = UIColor.clear.cgColor
+                    cell.colorImage.layer.borderWidth = 0.0
+                }
                 cell.colorImage.backgroundColor = data.colorCode?.rgbToColor()
             }
             return cell
         } else if collectionView.tag == 1 {
             if arrCategory.count > 0 {
                 let data = arrCategory[indexPath.item]
+                if data.categoryName == strCategory {
+                    colornameCell.lblcolor_name.textColor = UIColor.white
+                } else {
+//                    5E616D
+                    colornameCell.lblcolor_name.textColor = UIColor.gray
+                }
                 colornameCell.lblcolor_name.text = data.categoryName
             }
             return colornameCell
@@ -173,11 +189,15 @@ extension EyelinerStyleViewController:UICollectionViewDelegate, UICollectionView
             } else {
                 NotificationCenter.default.post(name: NSNotification.Name("applyEyeliner"), object: arrProduct[indexPath.item], userInfo: ["category_name" : arrCategory[indexPath.item].categoryName!])
             }
-            
+            let data = arrProduct[indexPath.item]
+            strProduct = data.colorName ?? ""
+            collectionView.reloadData()
         } else if collectionView.tag == 1 {
             // Category name
             let data = arrCategory[indexPath.item]
+            strCategory = data.categoryName ?? ""
             setCategory(categoryIndex: indexPath.item)
+            collectionView.reloadData()
         } else {
         }
     }

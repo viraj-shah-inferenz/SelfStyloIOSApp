@@ -59,10 +59,6 @@ class EyelinerViewController: UIViewController,UICollectionViewDelegate,UICollec
         self.eyelinerCollectionView.reloadData()
     }
     
-    func loadEyelinerStyleImagesJs(strJson: String) {
-        
-    }
-    
     
     /*func fetchingImage() {
         for data in arrEyelinerData {
