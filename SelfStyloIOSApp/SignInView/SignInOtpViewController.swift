@@ -10,6 +10,8 @@ import OTPFieldView
 import FirebaseAuth
 import GoogleSignIn
 
+import Toast_Swift
+
 class SignInOtpViewController: UIViewController {
 
     @IBOutlet var otpTextFieldView: OTPFieldView!
@@ -116,24 +118,39 @@ class SignInOtpViewController: UIViewController {
             }
         }
         
-        UserDefaults.standard.set("true", forKey: APP.IS_LOGIN)
-        UserDefaults.standard.synchronize()
         
-        guard let verificationId = userDefault.string(forKey: "verificationId") else {return}
+        
+        guard let verificationId = UserDefaults.standard.string(forKey: "authVerificationID") else {return}
+        print(verificationId)
+        
         let credential = PhoneAuthProvider.provider().credential(withVerificationID: verificationId, verificationCode: otpString)
+        
         Auth.auth().signIn(with: credential){ (success, error) in
             if error == nil{
                 print(success)
-                print("User Signed In...")
-            }else
-            {
-                print("Something went wrong...\(error?.localizedDescription)")
+                
+                UserDefaults.standard.set("true", forKey: APP.IS_LOGIN)
+                UserDefaults.standard.synchronize()
+//                self.performSegue(withIdentifier: "goToCompleteProfile", sender: self)
+                
+                
+                
+                self.view.makeToast("Sign in successfully...", duration: 3.0, position: .bottom)
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4)) {
+                    let profileVC = self.storyboard?.instantiateViewController(withIdentifier: "SignInProfileViewController") as! SignInProfileViewController
+                    self.navigationController?.pushViewController(profileVC, animated: true)
+                }
+                
+            } else {
+                self.view.makeToast("Something went wrong...\(error?.localizedDescription)", duration: 3.0, position: .bottom)
+            
             }
         }
         
     }
     var countdownTimer: Timer!
-        var totalTime = 30
+        var totalTime = 60
     
     
     
@@ -145,7 +162,6 @@ class SignInOtpViewController: UIViewController {
               resendBtn.isHidden = false
               countdownTimer.invalidate()
               resendOTPBtn.isEnabled = true
-
           }
 
         }

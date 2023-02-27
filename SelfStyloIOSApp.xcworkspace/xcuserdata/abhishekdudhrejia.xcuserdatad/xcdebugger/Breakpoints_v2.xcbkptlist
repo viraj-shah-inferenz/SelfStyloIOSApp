@@ -3,4 +3,70 @@
    uuid = "505BB0B1-171D-4BF5-9AE0-B19428A59F12"
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CE400138-18D3-4702-98BC-33BF0F80BFC1"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SelfStyloIOSApp/SignInView/SignInProfileViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "221"
+            endingLineNumber = "221"
+            landmarkName = "skip(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "68D1A164-A36C-4ED1-B3F1-CC2E0BDC3E33"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SelfStyloIOSApp/SignInView/SignInProfileViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "220"
+            endingLineNumber = "220"
+            landmarkName = "skip(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "68D1A164-A36C-4ED1-B3F1-CC2E0BDC3E33 - e0da375d36ab746f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "function signature specialization &lt;Arg[0] = Dead&gt; of SelfStyloIOSApp.SignInProfileViewController.skip(__C.UIButton) -&gt; ()"
+                  moduleName = "SelfStyloIOSApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abhishekdudhrejia/Xcode/GithubCode/SelfStyloIOSApp/SignInView/SignInProfileViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "220"
+                  endingLineNumber = "220"
+                  offsetFromSymbolStart = "1460">
+               </Location>
+               <Location
+                  uuid = "68D1A164-A36C-4ED1-B3F1-CC2E0BDC3E33 - e0da375d36ab746f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "function signature specialization &lt;Arg[0] = Dead&gt; of SelfStyloIOSApp.SignInProfileViewController.skip(__C.UIButton) -&gt; ()"
+                  moduleName = "SelfStyloIOSApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abhishekdudhrejia/Xcode/GithubCode/SelfStyloIOSApp/SignInView/SignInProfileViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "220"
+                  endingLineNumber = "220"
+                  offsetFromSymbolStart = "1500">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

@@ -112,6 +112,7 @@ PODS:
   - SQLite.swift (0.11.6):
     - SQLite.swift/standard (= 0.11.6)
   - SQLite.swift/standard (0.11.6)
+  - Toast-Swift (5.0.1)
 
 DEPENDENCIES:
   - Firebase/Auth
@@ -123,6 +124,7 @@ DEPENDENCIES:
   - ReachabilitySwift
   - SDWebImage (~> 5.0)
   - SQLite.swift (~> 0.11.6)
+  - Toast-Swift
 
 SPEC REPOS:
   trunk:
@@ -146,6 +148,7 @@ SPEC REPOS:
     - ReachabilitySwift
     - SDWebImage
     - SQLite.swift
+    - Toast-Swift
 
 SPEC CHECKSUMS:
   AppAuth: 8fca6b5563a5baef2c04bee27538025e4ceb2add
@@ -168,7 +171,8 @@ SPEC CHECKSUMS:
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   SDWebImage: 8ab87d4b3e5cc4927bd47f78db6ceb0b94442577
   SQLite.swift: 46d890be8601964454bd3392527f863d1b802d45
+  Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
 
-PODFILE CHECKSUM: 53a04309a1169a84cb6d222dfd6d427868b003a7
+PODFILE CHECKSUM: a19e93f1aefe5c4b5820e9aad51f3acf97feb3f9
 
 COCOAPODS: 1.11.3

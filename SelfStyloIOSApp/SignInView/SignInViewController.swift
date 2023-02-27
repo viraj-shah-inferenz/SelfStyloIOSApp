@@ -11,6 +11,8 @@ import FirebaseAuth
 import AuthenticationServices
 import SafariServices
 
+import Toast_Swift
+
 class SignInViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate{
     
     
@@ -222,26 +224,37 @@ class SignInViewController: UIViewController,UITextFieldDelegate,UITextViewDeleg
           let trimmed = patron.email.trimmingCharacters(in: .whitespacesAndNewlines)
               apiUtils.sendEmailOtp(email: trimmed)
               self.userDefault.set(trimmed, forKey: "Email")
+              
               guard let phoneNumber = phoneNumberTextField.text else {return}
-              Auth.auth().settings?.isAppVerificationDisabledForTesting = true
+              print(phoneNumber)
+              
+              Auth.auth().settings?.isAppVerificationDisabledForTesting = false
               PhoneAuthProvider.provider(auth: Auth.auth())
+              
               self.userDefault.set(phoneNumberTextField.selectedCountry?.phoneCode.appending(phoneNumber), forKey: "Phone")
+              self.userDefault.synchronize()
               let str  = phoneNumber.components(separatedBy: .whitespaces).joined()
-              PhoneAuthProvider.provider().verifyPhoneNumber(str, uiDelegate: nil){(verificationId, error) in
-                  if error == nil{
-                      print(verificationId)
-                      guard let verifyId = verificationId else {return}
-                      self.userDefault.set(verifyId, forKey: "verificationId")
-                      self.userDefault.synchronize()
-                  }else
-                  {
-                      print("Unable to get Secret Varification Code from firebase",error?.localizedDescription)
+              if let mobileNo = phoneNumberTextField.selectedCountry?.phoneCode.appending(" " + str) {
+                  print(mobileNo)
+                  
+                  PhoneAuthProvider.provider().verifyPhoneNumber(mobileNo, uiDelegate: nil) { verificationId, error in
+                      if let error = error {
+                          print(error.localizedDescription)
+                          return
+                      } else {
+                          print(verificationId)
+                          UserDefaults.standard.set(verificationId, forKey: "authVerificationID")
+                          UserDefaults.standard.synchronize()
+                          self.view.makeToast("Enter Otp...", duration: 3.0, position: .bottom)
+                          
+                          
+                          DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4)) {
+                              self.performSegue(withIdentifier: "moveToOtp", sender: self)
+                          }
+                      }
+
                   }
-
               }
-
-              performSegue(withIdentifier: "moveToOtp", sender: self)
-
           }
      
         

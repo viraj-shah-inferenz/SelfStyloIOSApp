@@ -15,6 +15,7 @@ target 'SelfStyloIOSApp' do
    pod 'GoogleSignIn'
    pod 'ReachabilitySwift'
    pod 'SDWebImage', '~> 5.0'
+   pod 'Toast-Swift'
 
   target 'SelfStyloIOSAppTests' do
     inherit! :search_paths
