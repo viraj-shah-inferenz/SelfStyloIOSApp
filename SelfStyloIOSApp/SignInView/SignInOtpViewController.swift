@@ -145,7 +145,12 @@ class SignInOtpViewController: UIViewController {
                 
             } else {
                 if let err = error {
-                    self.view.makeToast("\(err.localizedDescription)", duration: 3.0, position: .bottom)
+//                    self.view.makeToast("\(err.localizedDescription)", duration: 3.0, position: .bottom)
+                    let alert = UIAlertController(title: "Error", message: "Invalid OTP, please provide the correct OTP", preferredStyle: .alert)
+                    let btnOk = UIAlertAction(title: "Okay", style: .default)
+                    alert.addAction(btnOk)
+                    self.present(alert, animated: true)
+                    
                 }
                 
             

@@ -256,8 +256,6 @@ class SignInViewController: UIViewController,UITextFieldDelegate,UITextViewDeleg
                   }
               }
           }
-     
-        
     }
     
     

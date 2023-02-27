@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -21,19 +22,21 @@
                 <rect key="frame" x="0.0" y="0.0" width="392" height="235"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ufg-n7-Fr9">
-                        <rect key="frame" x="312" y="40" width="56" height="20"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ufg-n7-Fr9">
+                        <rect key="frame" x="298" y="34" width="70" height="28"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="28" id="GKl-ak-WUt"/>
+                            <constraint firstAttribute="width" constant="70" id="ukx-4G-7TQ"/>
+                        </constraints>
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="gray" title="View all" cornerStyle="capsule">
-                            <fontDescription key="titleFontDescription" name="DMSans-Medium" family="DM Sans" pointSize="8"/>
+                            <fontDescription key="titleFontDescription" name="DMSans-Medium" family="DM Sans" pointSize="12"/>
                             <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <color key="baseBackgroundColor" red="0.52549019610000003" green="0.54117647059999996" blue="0.60784313729999995" alpha="0.8980392157" colorSpace="calibratedRGB"/>
                         </buttonConfiguration>
                     </button>
-                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="uaD-H7-1He">
-                        <rect key="frame" x="16" y="79" width="352" height="138"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="uaD-H7-1He">
+                        <rect key="frame" x="16" y="79" width="360" height="138"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" sectionInsetReference="safeArea" id="0if-7f-PhO">
                             <size key="itemSize" width="155" height="128"/>
@@ -43,15 +46,27 @@
                         </collectionViewFlowLayout>
                         <cells/>
                     </collectionView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Favourite products" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hkG-wp-Zk3">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Favourite products" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hkG-wp-Zk3">
                         <rect key="frame" x="16" y="40" width="143" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="143" id="PKT-IY-kh0"/>
+                        </constraints>
                         <fontDescription key="fontDescription" name="DMSans-Medium" family="DM Sans" pointSize="16"/>
                         <color key="textColor" red="0.36862745099999999" green="0.3803921569" blue="0.42745098040000001" alpha="0.8980392157" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <color key="backgroundColor" red="0.92549019610000005" green="0.93333333330000001" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <constraints>
+                    <constraint firstItem="hkG-wp-Zk3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="40" id="QM2-QE-9FS"/>
+                    <constraint firstAttribute="trailing" secondItem="ufg-n7-Fr9" secondAttribute="trailing" constant="24" id="RRa-Bp-SSu"/>
+                    <constraint firstItem="uaD-H7-1He" firstAttribute="top" secondItem="hkG-wp-Zk3" secondAttribute="bottom" constant="18" id="SCq-RB-zVw"/>
+                    <constraint firstAttribute="trailing" secondItem="uaD-H7-1He" secondAttribute="trailing" constant="16" id="by2-Re-4CP"/>
+                    <constraint firstItem="uaD-H7-1He" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="ezh-ld-BPp"/>
+                    <constraint firstItem="ufg-n7-Fr9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="34" id="nhK-Tm-tog"/>
+                    <constraint firstItem="hkG-wp-Zk3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="rTg-MN-zM8"/>
+                    <constraint firstAttribute="bottom" secondItem="uaD-H7-1He" secondAttribute="bottom" constant="18" id="x3l-sH-oR9"/>
+                </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>

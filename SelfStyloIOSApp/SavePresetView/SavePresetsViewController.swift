@@ -50,8 +50,6 @@ extension SavePresetsViewController: UICollectionViewDelegate, UICollectionViewD
         
         return cell
     }
-
-
 }
 
 
