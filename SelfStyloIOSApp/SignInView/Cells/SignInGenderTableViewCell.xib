@@ -27,7 +27,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Gender" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7W8-Zr-Urs">
-                        <rect key="frame" x="32" y="12" width="330" height="20"/>
+                        <rect key="frame" x="32" y="12" width="338" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="CXT-8t-kqr"/>
                         </constraints>
@@ -98,7 +98,7 @@
                     <constraint firstItem="nyb-Pb-apN" firstAttribute="top" secondItem="pD0-Bb-NxR" secondAttribute="bottom" constant="18" id="5f0-Rz-EUU"/>
                     <constraint firstItem="kFC-kz-AR1" firstAttribute="leading" secondItem="VWd-Sp-4Cq" secondAttribute="trailing" constant="8" id="HtF-mV-2xK"/>
                     <constraint firstItem="7W8-Zr-Urs" firstAttribute="leading" secondItem="Tvq-fW-YX0" secondAttribute="leading" constant="32" id="QUv-ig-ssS"/>
-                    <constraint firstAttribute="trailing" secondItem="7W8-Zr-Urs" secondAttribute="trailing" constant="28" id="cCN-ip-DGk"/>
+                    <constraint firstAttribute="trailing" secondItem="7W8-Zr-Urs" secondAttribute="trailing" constant="20" id="cCN-ip-DGk"/>
                     <constraint firstItem="VWd-Sp-4Cq" firstAttribute="leading" secondItem="pD0-Bb-NxR" secondAttribute="trailing" constant="12" id="dfq-H7-fyO"/>
                     <constraint firstItem="7W8-Zr-Urs" firstAttribute="top" secondItem="Tvq-fW-YX0" secondAttribute="top" constant="12" id="duI-hV-2sj"/>
                     <constraint firstAttribute="trailingMargin" secondItem="nyb-Pb-apN" secondAttribute="trailing" constant="-8" id="gJL-lQ-auI"/>

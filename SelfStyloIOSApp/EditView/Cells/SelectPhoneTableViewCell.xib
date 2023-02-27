@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -22,10 +23,10 @@
                 <rect key="frame" x="0.0" y="0.0" width="390" height="133"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Phone" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sFR-Br-g0L">
-                        <rect key="frame" x="32" y="12" width="60" height="20"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Phone Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sFR-Br-g0L">
+                        <rect key="frame" x="32" y="12" width="326" height="20"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="60" id="7qq-0F-tPG"/>
+                            <constraint firstAttribute="width" constant="326" id="7qq-0F-tPG"/>
                             <constraint firstAttribute="height" constant="20" id="dfX-xj-SYU"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="14"/>
@@ -58,7 +59,7 @@
                     <constraint firstItem="bQn-su-EQe" firstAttribute="leading" secondItem="sFR-Br-g0L" secondAttribute="leading" id="VC7-WS-Qr6"/>
                     <constraint firstItem="sFR-Br-g0L" firstAttribute="top" secondItem="PWX-tV-jY3" secondAttribute="top" constant="12" id="YiZ-yE-hdH"/>
                     <constraint firstItem="bQn-su-EQe" firstAttribute="leading" secondItem="PWX-tV-jY3" secondAttribute="leading" constant="32" id="ayN-cn-dIa"/>
-                    <constraint firstAttribute="trailing" secondItem="sFR-Br-g0L" secondAttribute="trailing" constant="298" id="vIU-uO-E9D"/>
+                    <constraint firstAttribute="trailing" secondItem="sFR-Br-g0L" secondAttribute="trailing" constant="32" id="vIU-uO-E9D"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="ywo-dV-m0R"/>

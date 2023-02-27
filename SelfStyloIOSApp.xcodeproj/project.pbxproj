@@ -18,18 +18,6 @@
 		224650E62967EB0B00BFC8DD /* SignInOtpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224650E52967EB0B00BFC8DD /* SignInOtpViewController.swift */; };
 		226A3E68296D63BC00990849 /* TryOnTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226A3E67296D63BC00990849 /* TryOnTabBarViewController.swift */; };
 		227177852968128300ABEC31 /* SignInProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227177842968128300ABEC31 /* SignInProfileViewController.swift */; };
-		227177892968138E00ABEC31 /* SignInPhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227177872968138E00ABEC31 /* SignInPhotoTableViewCell.swift */; };
-		2271778A2968138E00ABEC31 /* SignInPhotoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 227177882968138E00ABEC31 /* SignInPhotoTableViewCell.xib */; };
-		2271778D2968141C00ABEC31 /* SignInFullNameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2271778B2968141C00ABEC31 /* SignInFullNameTableViewCell.swift */; };
-		2271778E2968141C00ABEC31 /* SignInFullNameTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2271778C2968141C00ABEC31 /* SignInFullNameTableViewCell.xib */; };
-		22717791296814A500ABEC31 /* SignInEmailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2271778F296814A500ABEC31 /* SignInEmailTableViewCell.swift */; };
-		22717792296814A500ABEC31 /* SignInEmailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22717790296814A500ABEC31 /* SignInEmailTableViewCell.xib */; };
-		227177952968157F00ABEC31 /* SignInPhoneTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227177932968157F00ABEC31 /* SignInPhoneTableViewCell.swift */; };
-		227177962968157F00ABEC31 /* SignInPhoneTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 227177942968157F00ABEC31 /* SignInPhoneTableViewCell.xib */; };
-		227177992968162E00ABEC31 /* SignInGenderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227177972968162E00ABEC31 /* SignInGenderTableViewCell.swift */; };
-		2271779A2968162E00ABEC31 /* SignInGenderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 227177982968162E00ABEC31 /* SignInGenderTableViewCell.xib */; };
-		2271779D296816BB00ABEC31 /* SignInCompleteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2271779B296816BB00ABEC31 /* SignInCompleteTableViewCell.swift */; };
-		2271779E296816BB00ABEC31 /* SignInCompleteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2271779C296816BB00ABEC31 /* SignInCompleteTableViewCell.xib */; };
 		2273A7732989116A007FE6F3 /* TryOnViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2273A7722989116A007FE6F3 /* TryOnViewController.swift */; };
 		2273A77529891618007FE6F3 /* LipstickView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2273A77429891618007FE6F3 /* LipstickView.swift */; };
 		2273A77729891640007FE6F3 /* LipstickView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2273A77629891640007FE6F3 /* LipstickView.xib */; };
@@ -103,6 +91,18 @@
 		22E8E9FE29700C4300E5BE59 /* ApiUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E8E9FD29700C4300E5BE59 /* ApiUtils.swift */; };
 		22E8EA022970109400E5BE59 /* FavouriteProductDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E8EA012970109400E5BE59 /* FavouriteProductDao.swift */; };
 		22E8EA042970114200E5BE59 /* FavouriteProducts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E8EA032970114200E5BE59 /* FavouriteProducts.swift */; };
+		22E9836A29ACA2C4001AA264 /* SignInGenderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E9835E29ACA2C4001AA264 /* SignInGenderTableViewCell.swift */; };
+		22E9836B29ACA2C4001AA264 /* SignInPhotoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22E9835F29ACA2C4001AA264 /* SignInPhotoTableViewCell.xib */; };
+		22E9836C29ACA2C4001AA264 /* SignInFullNameTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22E9836029ACA2C4001AA264 /* SignInFullNameTableViewCell.xib */; };
+		22E9836D29ACA2C4001AA264 /* SignInPhoneTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E9836129ACA2C4001AA264 /* SignInPhoneTableViewCell.swift */; };
+		22E9836E29ACA2C4001AA264 /* SignInCompleteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E9836229ACA2C4001AA264 /* SignInCompleteTableViewCell.swift */; };
+		22E9836F29ACA2C4001AA264 /* SignInPhoneTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22E9836329ACA2C4001AA264 /* SignInPhoneTableViewCell.xib */; };
+		22E9837029ACA2C4001AA264 /* SignInPhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E9836429ACA2C4001AA264 /* SignInPhotoTableViewCell.swift */; };
+		22E9837129ACA2C4001AA264 /* SignInEmailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E9836529ACA2C4001AA264 /* SignInEmailTableViewCell.swift */; };
+		22E9837229ACA2C4001AA264 /* SignInFullNameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E9836629ACA2C4001AA264 /* SignInFullNameTableViewCell.swift */; };
+		22E9837329ACA2C4001AA264 /* SignInGenderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22E9836729ACA2C4001AA264 /* SignInGenderTableViewCell.xib */; };
+		22E9837429ACA2C4001AA264 /* SignInEmailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22E9836829ACA2C4001AA264 /* SignInEmailTableViewCell.xib */; };
+		22E9837529ACA2C4001AA264 /* SignInCompleteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22E9836929ACA2C4001AA264 /* SignInCompleteTableViewCell.xib */; };
 		22EC1FA62966A615000F86EF /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EC1FA52966A615000F86EF /* CardView.swift */; };
 		22F858B2295AC6A400A7D86E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F858B1295AC6A400A7D86E /* AppDelegate.swift */; };
 		22F858B6295AC6A400A7D86E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F858B5295AC6A400A7D86E /* HomeViewController.swift */; };
@@ -158,18 +158,6 @@
 		224650E52967EB0B00BFC8DD /* SignInOtpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInOtpViewController.swift; sourceTree = "<group>"; };
 		226A3E67296D63BC00990849 /* TryOnTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TryOnTabBarViewController.swift; sourceTree = "<group>"; };
 		227177842968128300ABEC31 /* SignInProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInProfileViewController.swift; sourceTree = "<group>"; };
-		227177872968138E00ABEC31 /* SignInPhotoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPhotoTableViewCell.swift; sourceTree = "<group>"; };
-		227177882968138E00ABEC31 /* SignInPhotoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignInPhotoTableViewCell.xib; sourceTree = "<group>"; };
-		2271778B2968141C00ABEC31 /* SignInFullNameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInFullNameTableViewCell.swift; sourceTree = "<group>"; };
-		2271778C2968141C00ABEC31 /* SignInFullNameTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignInFullNameTableViewCell.xib; sourceTree = "<group>"; };
-		2271778F296814A500ABEC31 /* SignInEmailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInEmailTableViewCell.swift; sourceTree = "<group>"; };
-		22717790296814A500ABEC31 /* SignInEmailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignInEmailTableViewCell.xib; sourceTree = "<group>"; };
-		227177932968157F00ABEC31 /* SignInPhoneTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPhoneTableViewCell.swift; sourceTree = "<group>"; };
-		227177942968157F00ABEC31 /* SignInPhoneTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignInPhoneTableViewCell.xib; sourceTree = "<group>"; };
-		227177972968162E00ABEC31 /* SignInGenderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInGenderTableViewCell.swift; sourceTree = "<group>"; };
-		227177982968162E00ABEC31 /* SignInGenderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignInGenderTableViewCell.xib; sourceTree = "<group>"; };
-		2271779B296816BB00ABEC31 /* SignInCompleteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInCompleteTableViewCell.swift; sourceTree = "<group>"; };
-		2271779C296816BB00ABEC31 /* SignInCompleteTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignInCompleteTableViewCell.xib; sourceTree = "<group>"; };
 		2273A7722989116A007FE6F3 /* TryOnViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TryOnViewController.swift; sourceTree = "<group>"; };
 		2273A77429891618007FE6F3 /* LipstickView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LipstickView.swift; sourceTree = "<group>"; };
 		2273A77629891640007FE6F3 /* LipstickView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LipstickView.xib; sourceTree = "<group>"; };
@@ -244,6 +232,18 @@
 		22E8E9FD29700C4300E5BE59 /* ApiUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiUtils.swift; sourceTree = "<group>"; };
 		22E8EA012970109400E5BE59 /* FavouriteProductDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteProductDao.swift; sourceTree = "<group>"; };
 		22E8EA032970114200E5BE59 /* FavouriteProducts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteProducts.swift; sourceTree = "<group>"; };
+		22E9835E29ACA2C4001AA264 /* SignInGenderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInGenderTableViewCell.swift; sourceTree = "<group>"; };
+		22E9835F29ACA2C4001AA264 /* SignInPhotoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignInPhotoTableViewCell.xib; sourceTree = "<group>"; };
+		22E9836029ACA2C4001AA264 /* SignInFullNameTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignInFullNameTableViewCell.xib; sourceTree = "<group>"; };
+		22E9836129ACA2C4001AA264 /* SignInPhoneTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInPhoneTableViewCell.swift; sourceTree = "<group>"; };
+		22E9836229ACA2C4001AA264 /* SignInCompleteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInCompleteTableViewCell.swift; sourceTree = "<group>"; };
+		22E9836329ACA2C4001AA264 /* SignInPhoneTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignInPhoneTableViewCell.xib; sourceTree = "<group>"; };
+		22E9836429ACA2C4001AA264 /* SignInPhotoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInPhotoTableViewCell.swift; sourceTree = "<group>"; };
+		22E9836529ACA2C4001AA264 /* SignInEmailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInEmailTableViewCell.swift; sourceTree = "<group>"; };
+		22E9836629ACA2C4001AA264 /* SignInFullNameTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInFullNameTableViewCell.swift; sourceTree = "<group>"; };
+		22E9836729ACA2C4001AA264 /* SignInGenderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignInGenderTableViewCell.xib; sourceTree = "<group>"; };
+		22E9836829ACA2C4001AA264 /* SignInEmailTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignInEmailTableViewCell.xib; sourceTree = "<group>"; };
+		22E9836929ACA2C4001AA264 /* SignInCompleteTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignInCompleteTableViewCell.xib; sourceTree = "<group>"; };
 		22EC1FA52966A615000F86EF /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		22F858AE295AC6A400A7D86E /* SelfStyloIOSApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SelfStyloIOSApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22F858B1295AC6A400A7D86E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -328,25 +328,6 @@
 			path = extensions;
 			sourceTree = "<group>";
 		};
-		227177862968132200ABEC31 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				227177872968138E00ABEC31 /* SignInPhotoTableViewCell.swift */,
-				227177882968138E00ABEC31 /* SignInPhotoTableViewCell.xib */,
-				2271778B2968141C00ABEC31 /* SignInFullNameTableViewCell.swift */,
-				2271778C2968141C00ABEC31 /* SignInFullNameTableViewCell.xib */,
-				2271778F296814A500ABEC31 /* SignInEmailTableViewCell.swift */,
-				22717790296814A500ABEC31 /* SignInEmailTableViewCell.xib */,
-				227177932968157F00ABEC31 /* SignInPhoneTableViewCell.swift */,
-				227177942968157F00ABEC31 /* SignInPhoneTableViewCell.xib */,
-				227177972968162E00ABEC31 /* SignInGenderTableViewCell.swift */,
-				227177982968162E00ABEC31 /* SignInGenderTableViewCell.xib */,
-				2271779B296816BB00ABEC31 /* SignInCompleteTableViewCell.swift */,
-				2271779C296816BB00ABEC31 /* SignInCompleteTableViewCell.xib */,
-			);
-			path = Cells;
-			sourceTree = "<group>";
-		};
 		2287323029795C6000659E80 /* MakeupView */ = {
 			isa = PBXGroup;
 			children = (
@@ -418,7 +399,7 @@
 		22A477ED2965A47000523866 /* SignInView */ = {
 			isa = PBXGroup;
 			children = (
-				227177862968132200ABEC31 /* Cells */,
+				22E9835D29ACA2C4001AA264 /* Cells */,
 				22A477F32965A6DF00523866 /* SignInViewController.swift */,
 				22A477FD2965B35D00523866 /* SignInEmailViewController.swift */,
 				22AB9F112965B4DA00CB1ECD /* SignInPhoneViewController.swift */,
@@ -574,6 +555,25 @@
 				534CAF2029A62E8D00E64AD1 /* EyelinerStyle.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		22E9835D29ACA2C4001AA264 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				22E9835E29ACA2C4001AA264 /* SignInGenderTableViewCell.swift */,
+				22E9836729ACA2C4001AA264 /* SignInGenderTableViewCell.xib */,
+				22E9836129ACA2C4001AA264 /* SignInPhoneTableViewCell.swift */,
+				22E9836329ACA2C4001AA264 /* SignInPhoneTableViewCell.xib */,
+				22E9836629ACA2C4001AA264 /* SignInFullNameTableViewCell.swift */,
+				22E9836029ACA2C4001AA264 /* SignInFullNameTableViewCell.xib */,
+				22E9836229ACA2C4001AA264 /* SignInCompleteTableViewCell.swift */,
+				22E9836929ACA2C4001AA264 /* SignInCompleteTableViewCell.xib */,
+				22E9836429ACA2C4001AA264 /* SignInPhotoTableViewCell.swift */,
+				22E9835F29ACA2C4001AA264 /* SignInPhotoTableViewCell.xib */,
+				22E9836529ACA2C4001AA264 /* SignInEmailTableViewCell.swift */,
+				22E9836829ACA2C4001AA264 /* SignInEmailTableViewCell.xib */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		22EC1FA42966A5E2000F86EF /* utils */ = {
@@ -797,15 +797,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2271779A2968162E00ABEC31 /* SignInGenderTableViewCell.xib in Resources */,
+				22E9836B29ACA2C4001AA264 /* SignInPhotoTableViewCell.xib in Resources */,
 				22A4DC62295F0B1F0064D006 /* CompleteTableViewCell.xib in Resources */,
 				22C8CA5D295F006100336E03 /* SelectEmailTableViewCell.xib in Resources */,
 				22A477E92965878600523866 /* DMSans-BoldItalic.ttf in Resources */,
 				22F858BE295AC6A600A7D86E /* LaunchScreen.storyboard in Resources */,
+				22E9837429ACA2C4001AA264 /* SignInEmailTableViewCell.xib in Resources */,
 				22A477E62965878600523866 /* DMSans-Regular.ttf in Resources */,
 				22F858BB295AC6A600A7D86E /* Assets.xcassets in Resources */,
-				227177962968157F00ABEC31 /* SignInPhoneTableViewCell.xib in Resources */,
-				2271779E296816BB00ABEC31 /* SignInCompleteTableViewCell.xib in Resources */,
 				2273A77D2989367F007FE6F3 /* ColorNameCollectionViewCell.xib in Resources */,
 				537A7E0C29A619AE00A97AFF /* GoogleService-Info.plist in Resources */,
 				22BA3AA129642105004AD1F3 /* FavouriteCollectionViewCell.xib in Resources */,
@@ -816,25 +815,26 @@
 				534CAF2829A6317D00E64AD1 /* MakeupLayerTableViewCell.xib in Resources */,
 				2273A77B298932DF007FE6F3 /* ColorCodeCollectionViewCell.xib in Resources */,
 				2273A77729891640007FE6F3 /* LipstickView.xib in Resources */,
-				2271778E2968141C00ABEC31 /* SignInFullNameTableViewCell.xib in Resources */,
+				22E9837529ACA2C4001AA264 /* SignInCompleteTableViewCell.xib in Resources */,
 				22F858B9295AC6A400A7D86E /* Main.storyboard in Resources */,
 				22A477EA2965878600523866 /* OFL.txt in Resources */,
 				22A477EB2965878600523866 /* DMSans-MediumItalic.ttf in Resources */,
 				22A477E82965878600523866 /* DMSans-Bold.ttf in Resources */,
 				53829454298D2EB4002D7671 /* Js in Resources */,
 				22A4DC5E295F08EB0064D006 /* SelectGenderTableViewCell.xib in Resources */,
+				22E9836C29ACA2C4001AA264 /* SignInFullNameTableViewCell.xib in Resources */,
 				22BA3AAA29642452004AD1F3 /* SavePresetsCollectionViewCell.xib in Resources */,
 				228A8E6E2963F0CB004F8208 /* SelectLogoAppTableViewCell.xib in Resources */,
-				2271778A2968138E00ABEC31 /* SignInPhotoTableViewCell.xib in Resources */,
 				22BA3AA6296423CD004AD1F3 /* SavedPresetsTableViewCell.xib in Resources */,
 				53289E552993B5490063EB4D /* CategoryCollectionViewCell.xib in Resources */,
 				2202B3322964013D000CB816 /* HomeCardSelfiecamTableViewCell.xib in Resources */,
 				22A4DC5A295F03D50064D006 /* SelectPhoneTableViewCell.xib in Resources */,
+				22E9837329ACA2C4001AA264 /* SignInGenderTableViewCell.xib in Resources */,
 				22A477E72965878600523866 /* DMSans-Medium.ttf in Resources */,
 				22A477EC2965878600523866 /* DMSans-Italic.ttf in Resources */,
-				22717792296814A500ABEC31 /* SignInEmailTableViewCell.xib in Resources */,
 				53DBAE4A29A650F1008EE51F /* indexMain.html in Resources */,
 				2202B3362964122C000CB816 /* FavouriteProductTableViewCell.xib in Resources */,
+				22E9836F29ACA2C4001AA264 /* SignInPhoneTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -962,10 +962,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22717791296814A500ABEC31 /* SignInEmailTableViewCell.swift in Sources */,
-				227177992968162E00ABEC31 /* SignInGenderTableViewCell.swift in Sources */,
 				22A4DC59295F03D50064D006 /* SelectPhoneTableViewCell.swift in Sources */,
-				2271778D2968141C00ABEC31 /* SignInFullNameTableViewCell.swift in Sources */,
 				229DE358297EBC77001235A8 /* EyelinerStyleViewController.swift in Sources */,
 				222E1A26296457510094FA0A /* Extensions.swift in Sources */,
 				2202B3312964013D000CB816 /* HomeCardSelfiecamTableViewCell.swift in Sources */,
@@ -975,6 +972,7 @@
 				2212DCFA29A8900500018E5D /* FoundationColorViewController.swift in Sources */,
 				22A477FF2965B35D00523866 /* SignInEmailViewController.swift in Sources */,
 				22C115C629962A390060D9E9 /* FavouriteViewCell.swift in Sources */,
+				22E9837229ACA2C4001AA264 /* SignInFullNameTableViewCell.swift in Sources */,
 				22A70F5B2994FD4900B4D075 /* Connection.swift in Sources */,
 				22C8CA58295EDA1200336E03 /* SelectFullNameTableViewCell.swift in Sources */,
 				22A477F42965A6DF00523866 /* SignInViewController.swift in Sources */,
@@ -985,22 +983,23 @@
 				227A6E05297FA2A300559A3F /* CombosCollectionViewCell.swift in Sources */,
 				22C8CA5C295F006100336E03 /* SelectEmailTableViewCell.swift in Sources */,
 				22BA3AA929642452004AD1F3 /* SavePresetsCollectionViewCell.swift in Sources */,
+				22E9837129ACA2C4001AA264 /* SignInEmailTableViewCell.swift in Sources */,
 				22A4DC5D295F08EB0064D006 /* SelectGenderTableViewCell.swift in Sources */,
 				22E222F4299B7EE7001D554D /* TermsOfUseViewController.swift in Sources */,
 				22F858B6295AC6A400A7D86E /* HomeViewController.swift in Sources */,
 				22F858B2295AC6A400A7D86E /* AppDelegate.swift in Sources */,
 				22E8E9FC29700B9D00E5BE59 /* IApiCalls.swift in Sources */,
 				22E8E9FE29700C4300E5BE59 /* ApiUtils.swift in Sources */,
-				227177952968157F00ABEC31 /* SignInPhoneTableViewCell.swift in Sources */,
 				534CAF2229A62E8D00E64AD1 /* EyelinerStyle.swift in Sources */,
 				226A3E68296D63BC00990849 /* TryOnTabBarViewController.swift in Sources */,
+				22E9836E29ACA2C4001AA264 /* SignInCompleteTableViewCell.swift in Sources */,
 				22AB9F132965B4DA00CB1ECD /* SignInPhoneViewController.swift in Sources */,
 				2287323429795D8100659E80 /* CategoryCollectionViewCell.swift in Sources */,
 				22F858E6295B047800A7D86E /* FavouriteViewController.swift in Sources */,
-				2271779D296816BB00ABEC31 /* SignInCompleteTableViewCell.swift in Sources */,
 				2273A77529891618007FE6F3 /* LipstickView.swift in Sources */,
 				22B00B7A297E9EAB0075FB02 /* EyelinerStyleCollectionViewCell.swift in Sources */,
 				53D0567C29A62CCA0064EDF4 /* MakeupLayerViewController.swift in Sources */,
+				22E9836A29ACA2C4001AA264 /* SignInGenderTableViewCell.swift in Sources */,
 				2289852F2976CEAC002DD2E8 /* BannerDao.swift in Sources */,
 				228A8E6D2963F0CB004F8208 /* SelectLogoAppTableViewCell.swift in Sources */,
 				22B00B75297E84790075FB02 /* EyeshadowViewController.swift in Sources */,
@@ -1010,6 +1009,7 @@
 				228959A8297A626C008B72CA /* ColorNameCollectionViewCell.swift in Sources */,
 				224650E62967EB0B00BFC8DD /* SignInOtpViewController.swift in Sources */,
 				22A477DD2965791C00523866 /* SavePresetsViewController.swift in Sources */,
+				22E9837029ACA2C4001AA264 /* SignInPhotoTableViewCell.swift in Sources */,
 				2287323729795FF800659E80 /* MakeupViewController.swift in Sources */,
 				22BA3AAD29642A36004AD1F3 /* ImageSliderCollectionViewCell.swift in Sources */,
 				227177852968128300ABEC31 /* SignInProfileViewController.swift in Sources */,
@@ -1026,9 +1026,9 @@
 				53BD49882980117C00B1D53B /* APIHandler.swift in Sources */,
 				22C8CA4A295EAB5F00336E03 /* EditProfileViewController.swift in Sources */,
 				22E8EA022970109400E5BE59 /* FavouriteProductDao.swift in Sources */,
+				22E9836D29ACA2C4001AA264 /* SignInPhoneTableViewCell.swift in Sources */,
 				22E6FA2A298D419800361954 /* NotificationViewController.swift in Sources */,
 				22BB02672971231D00F514B0 /* PatronDao.swift in Sources */,
-				227177892968138E00ABEC31 /* SignInPhotoTableViewCell.swift in Sources */,
 				22E8EA042970114200E5BE59 /* FavouriteProducts.swift in Sources */,
 				2202B3352964122C000CB816 /* FavouriteProductTableViewCell.swift in Sources */,
 				228959A4297A5942008B72CA /* ColorCodeCollectionViewCell.swift in Sources */,

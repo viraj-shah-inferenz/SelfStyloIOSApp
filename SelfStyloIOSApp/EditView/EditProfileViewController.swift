@@ -70,7 +70,8 @@ extension EditProfileViewController: UITableViewDelegate, UITableViewDataSource,
         } else if indexPath.row == 3 {
             if let phonecell:SelectPhoneTableViewCell = tableView.dequeueReusableCell(withIdentifier: "SelectPhoneTableViewCell") as? SelectPhoneTableViewCell{
                 let phone = userDefault.string(forKey: "Phone")
-                phonecell.txtPhoneNumber.text = phone
+                let result4 = String(phone!.dropFirst(3))
+                phonecell.txtPhoneNumber.text = result4
                 phonecell.txtPhoneNumber.tag = indexPath.row
                 return phonecell
             }

@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -23,10 +24,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="upm-k2-gfi">
-                        <rect key="frame" x="32" y="12" width="60" height="20"/>
+                        <rect key="frame" x="32" y="12" width="326" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="5r6-9i-erJ"/>
-                            <constraint firstAttribute="width" constant="60" id="fcx-fO-3sG"/>
+                            <constraint firstAttribute="width" constant="326" id="fcx-fO-3sG"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="DMSans-Medium" family="DM Sans" pointSize="14"/>
                         <color key="textColor" red="0.36862745099999999" green="0.3803921569" blue="0.42745098040000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -54,7 +55,7 @@
                     <constraint firstItem="upm-k2-gfi" firstAttribute="top" secondItem="wpB-da-dEw" secondAttribute="top" constant="12" id="BDy-11-6Hj"/>
                     <constraint firstAttribute="trailing" secondItem="J9r-Vg-zkS" secondAttribute="trailing" constant="32" id="i5c-28-SC2"/>
                     <constraint firstItem="J9r-Vg-zkS" firstAttribute="top" secondItem="upm-k2-gfi" secondAttribute="bottom" constant="12" id="mBf-Mr-Dgo"/>
-                    <constraint firstAttribute="trailing" secondItem="upm-k2-gfi" secondAttribute="trailing" constant="298" id="rh1-m6-spd"/>
+                    <constraint firstAttribute="trailing" secondItem="upm-k2-gfi" secondAttribute="trailing" constant="32" id="rh1-m6-spd"/>
                     <constraint firstItem="J9r-Vg-zkS" firstAttribute="leading" secondItem="upm-k2-gfi" secondAttribute="leading" id="u3F-lz-MAG"/>
                 </constraints>
             </tableViewCellContentView>
