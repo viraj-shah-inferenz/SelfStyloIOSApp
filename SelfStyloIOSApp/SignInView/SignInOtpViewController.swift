@@ -126,6 +126,7 @@ class SignInOtpViewController: UIViewController {
         let credential = PhoneAuthProvider.provider().credential(withVerificationID: verificationId, verificationCode: otpString)
         
         Auth.auth().signIn(with: credential){ (success, error) in
+            
             if error == nil{
                 print(success)
                 
@@ -143,9 +144,14 @@ class SignInOtpViewController: UIViewController {
                 }
                 
             } else {
-                self.view.makeToast("Something went wrong...\(error?.localizedDescription)", duration: 3.0, position: .bottom)
+                if let err = error {
+                    self.view.makeToast("\(err.localizedDescription)", duration: 3.0, position: .bottom)
+                }
+                
             
             }
+            
+            
         }
         
     }
