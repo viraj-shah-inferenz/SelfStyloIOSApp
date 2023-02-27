@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -23,7 +24,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Full Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sOg-Ps-TWs">
-                        <rect key="frame" x="28" y="12" width="66" height="20"/>
+                        <rect key="frame" x="28" y="12" width="334" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="jwN-Fn-qIR"/>
                         </constraints>
@@ -40,7 +41,7 @@
                         <textInputTraits key="textInputTraits" keyboardType="namePhonePad"/>
                     </textField>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PZa-2R-poW">
-                        <rect key="frame" x="32" y="101" width="350" height="21"/>
+                        <rect key="frame" x="28" y="101" width="334" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="pOW-7T-lgP"/>
                         </constraints>
@@ -53,12 +54,12 @@
                 <constraints>
                     <constraint firstItem="sOg-Ps-TWs" firstAttribute="leading" secondItem="Pka-vi-kn3" secondAttribute="leading" constant="28" id="3n1-It-B4v"/>
                     <constraint firstItem="sOg-Ps-TWs" firstAttribute="top" secondItem="Pka-vi-kn3" secondAttribute="top" constant="12" id="5KA-T2-r9B"/>
-                    <constraint firstAttribute="trailing" secondItem="sOg-Ps-TWs" secondAttribute="trailing" constant="296" id="Aew-I9-vvv"/>
+                    <constraint firstAttribute="trailing" secondItem="sOg-Ps-TWs" secondAttribute="trailing" constant="28" id="Aew-I9-vvv"/>
                     <constraint firstItem="uYS-qd-Ql5" firstAttribute="leading" secondItem="Pka-vi-kn3" secondAttribute="leading" constant="28" id="Gv8-pW-iwn"/>
                     <constraint firstAttribute="trailing" secondItem="uYS-qd-Ql5" secondAttribute="trailing" constant="28" id="Tmw-Uu-jsk"/>
                     <constraint firstItem="uYS-qd-Ql5" firstAttribute="top" secondItem="sOg-Ps-TWs" secondAttribute="bottom" constant="12" id="YAP-8M-jtb"/>
-                    <constraint firstItem="PZa-2R-poW" firstAttribute="trailing" secondItem="Pka-vi-kn3" secondAttribute="trailingMargin" constant="12" id="c8k-of-gZe"/>
-                    <constraint firstItem="PZa-2R-poW" firstAttribute="leading" secondItem="Pka-vi-kn3" secondAttribute="leadingMargin" constant="12" id="eEc-Hq-hl7"/>
+                    <constraint firstItem="PZa-2R-poW" firstAttribute="trailing" secondItem="Pka-vi-kn3" secondAttribute="trailingMargin" constant="-8" id="c8k-of-gZe"/>
+                    <constraint firstItem="PZa-2R-poW" firstAttribute="leading" secondItem="Pka-vi-kn3" secondAttribute="leadingMargin" constant="8" id="eEc-Hq-hl7"/>
                     <constraint firstItem="PZa-2R-poW" firstAttribute="top" secondItem="uYS-qd-Ql5" secondAttribute="bottom" constant="5" id="g3d-Jg-QxV"/>
                 </constraints>
             </tableViewCellContentView>

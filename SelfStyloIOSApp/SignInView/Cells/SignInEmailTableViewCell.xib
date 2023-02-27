@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -23,42 +24,42 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A0c-6a-Orz">
-                        <rect key="frame" x="32" y="12" width="60" height="20"/>
+                        <rect key="frame" x="28" y="12" width="334" height="20"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="20" id="Myz-2B-gNo"/>
-                            <constraint firstAttribute="width" constant="60" id="Uxh-WT-78W"/>
+                            <constraint firstAttribute="height" constant="20" id="i1t-sL-K0N"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="DMSans-Medium" family="DM Sans" pointSize="14"/>
                         <color key="textColor" red="0.36862745099999999" green="0.3803921569" blue="0.42745098040000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="II1-5j-xRN">
-                        <rect key="frame" x="32" y="44" width="326" height="52"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="52" id="RvK-Lg-qgG"/>
-                            <constraint firstAttribute="width" constant="326" id="zOW-q4-4Mv"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
-                    </textField>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qau-Es-lsb">
-                        <rect key="frame" x="32" y="101" width="338" height="21"/>
+                        <rect key="frame" x="32" y="101" width="326" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="RF5-X2-2sJ"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" systemColor="systemRedColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="II1-5j-xRN">
+                        <rect key="frame" x="28" y="44" width="334" height="52"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="52" id="WHm-Mm-2WA"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                    </textField>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="Qau-Es-lsb" firstAttribute="top" secondItem="II1-5j-xRN" secondAttribute="bottom" constant="5" id="9kw-9q-GTq"/>
-                    <constraint firstItem="Qau-Es-lsb" firstAttribute="bottom" secondItem="UMK-UK-xjG" secondAttribute="bottomMargin" id="Dcj-wT-IpL"/>
-                    <constraint firstItem="A0c-6a-Orz" firstAttribute="top" secondItem="UMK-UK-xjG" secondAttribute="top" constant="12" id="IMe-8x-oya"/>
-                    <constraint firstItem="II1-5j-xRN" firstAttribute="leading" secondItem="A0c-6a-Orz" secondAttribute="leading" id="UXI-VV-UI1"/>
-                    <constraint firstItem="II1-5j-xRN" firstAttribute="top" secondItem="A0c-6a-Orz" secondAttribute="bottom" constant="12" id="UiW-Qm-ncr"/>
-                    <constraint firstItem="Qau-Es-lsb" firstAttribute="trailing" secondItem="UMK-UK-xjG" secondAttribute="trailingMargin" id="aEw-YV-Yi4"/>
-                    <constraint firstAttribute="trailing" secondItem="II1-5j-xRN" secondAttribute="trailing" constant="32" id="dhP-mS-8uV"/>
-                    <constraint firstAttribute="trailing" secondItem="A0c-6a-Orz" secondAttribute="trailing" constant="298" id="iue-wF-dyI"/>
-                    <constraint firstItem="II1-5j-xRN" firstAttribute="leading" secondItem="UMK-UK-xjG" secondAttribute="leading" constant="32" id="jJn-NG-LXT"/>
-                    <constraint firstItem="Qau-Es-lsb" firstAttribute="leading" secondItem="II1-5j-xRN" secondAttribute="leading" id="pYm-uG-099"/>
+                    <constraint firstItem="Qau-Es-lsb" firstAttribute="top" secondItem="II1-5j-xRN" secondAttribute="bottom" constant="5" id="L8U-Lg-jkZ"/>
+                    <constraint firstItem="A0c-6a-Orz" firstAttribute="leading" secondItem="UMK-UK-xjG" secondAttribute="leading" constant="28" id="Nlw-Vg-avZ"/>
+                    <constraint firstAttribute="trailing" secondItem="II1-5j-xRN" secondAttribute="trailing" constant="28" id="bl6-BK-F2d"/>
+                    <constraint firstItem="A0c-6a-Orz" firstAttribute="top" secondItem="UMK-UK-xjG" secondAttribute="top" constant="12" id="eAC-5a-t7g"/>
+                    <constraint firstAttribute="trailing" secondItem="A0c-6a-Orz" secondAttribute="trailing" constant="28" id="edL-iD-EOn"/>
+                    <constraint firstItem="II1-5j-xRN" firstAttribute="leading" secondItem="UMK-UK-xjG" secondAttribute="leading" constant="28" id="j1J-dL-dqb"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Qau-Es-lsb" secondAttribute="trailing" constant="12" id="nhE-4D-0ej"/>
+                    <constraint firstItem="II1-5j-xRN" firstAttribute="top" secondItem="A0c-6a-Orz" secondAttribute="bottom" constant="12" id="oh6-Ib-lqU"/>
+                    <constraint firstItem="Qau-Es-lsb" firstAttribute="leading" secondItem="UMK-UK-xjG" secondAttribute="leadingMargin" constant="12" id="yOw-fZ-kek"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="FeX-u6-KvE"/>

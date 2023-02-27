@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -23,20 +24,18 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Phone" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jay-1K-RTu">
-                        <rect key="frame" x="32" y="12" width="60" height="20"/>
+                        <rect key="frame" x="28" y="12" width="334" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="GHh-pK-wBI"/>
-                            <constraint firstAttribute="width" constant="60" id="xFQ-bv-D58"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="14"/>
                         <color key="textColor" red="0.36862745099999999" green="0.3803921569" blue="0.42745098040000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WDH-lx-0fv" customClass="FPNTextField" customModule="FlagPhoneNumber">
-                        <rect key="frame" x="32" y="44" width="326" height="52"/>
+                        <rect key="frame" x="28" y="44" width="334" height="52"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="52" id="5DQ-Be-Jxe"/>
-                            <constraint firstAttribute="width" constant="326" id="Ebf-NX-Ype"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="DMSans-Medium" family="DM Sans" pointSize="14"/>
                         <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
@@ -45,23 +44,26 @@
                         </connections>
                     </textField>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ug0-a3-PQM">
-                        <rect key="frame" x="32" y="101" width="338" height="21"/>
+                        <rect key="frame" x="24" y="101" width="350" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="Jkj-ml-iYm"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" systemColor="systemRedColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="Ug0-a3-PQM" firstAttribute="trailing" secondItem="re6-dn-Pk6" secondAttribute="trailingMargin" id="27T-Oi-c3B"/>
-                    <constraint firstAttribute="trailing" secondItem="jay-1K-RTu" secondAttribute="trailing" constant="298" id="3Up-HL-Z2S"/>
-                    <constraint firstItem="WDH-lx-0fv" firstAttribute="leading" secondItem="re6-dn-Pk6" secondAttribute="leading" constant="32" id="4Mi-Wq-if0"/>
-                    <constraint firstItem="Ug0-a3-PQM" firstAttribute="bottom" secondItem="re6-dn-Pk6" secondAttribute="bottomMargin" id="ABS-FU-4h0"/>
+                    <constraint firstAttribute="trailing" secondItem="jay-1K-RTu" secondAttribute="trailing" constant="28" id="3Up-HL-Z2S"/>
+                    <constraint firstItem="Ug0-a3-PQM" firstAttribute="trailing" secondItem="re6-dn-Pk6" secondAttribute="trailingMargin" constant="4" id="3iu-Ii-hGW"/>
+                    <constraint firstItem="jay-1K-RTu" firstAttribute="leading" secondItem="re6-dn-Pk6" secondAttribute="leading" constant="28" id="7E1-bg-YVJ"/>
                     <constraint firstItem="jay-1K-RTu" firstAttribute="top" secondItem="re6-dn-Pk6" secondAttribute="top" constant="12" id="GT2-vB-vB5"/>
-                    <constraint firstItem="Ug0-a3-PQM" firstAttribute="top" secondItem="WDH-lx-0fv" secondAttribute="bottom" constant="5" id="QF7-Ie-pv6"/>
+                    <constraint firstItem="Ug0-a3-PQM" firstAttribute="top" secondItem="WDH-lx-0fv" secondAttribute="bottom" constant="5" id="N4Y-sn-JMU"/>
+                    <constraint firstItem="WDH-lx-0fv" firstAttribute="top" secondItem="re6-dn-Pk6" secondAttribute="top" constant="44" id="OFL-xH-trQ"/>
                     <constraint firstItem="WDH-lx-0fv" firstAttribute="top" secondItem="jay-1K-RTu" secondAttribute="bottom" constant="12" id="hA8-3a-y6A"/>
-                    <constraint firstAttribute="trailing" secondItem="WDH-lx-0fv" secondAttribute="trailing" constant="32" id="ljy-Ku-oko"/>
-                    <constraint firstItem="Ug0-a3-PQM" firstAttribute="leading" secondItem="WDH-lx-0fv" secondAttribute="leading" id="nz2-b5-VdT"/>
+                    <constraint firstAttribute="trailing" secondItem="WDH-lx-0fv" secondAttribute="trailing" constant="28" id="ljy-Ku-oko"/>
                     <constraint firstItem="WDH-lx-0fv" firstAttribute="leading" secondItem="jay-1K-RTu" secondAttribute="leading" id="qP4-Pe-ISm"/>
+                    <constraint firstItem="Ug0-a3-PQM" firstAttribute="leading" secondItem="re6-dn-Pk6" secondAttribute="leadingMargin" constant="4" id="uSR-PT-fKb"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="NMX-4p-ENc"/>

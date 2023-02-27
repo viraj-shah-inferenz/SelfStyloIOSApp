@@ -1218,7 +1218,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = TK8CD8QS5B;
+				DEVELOPMENT_TEAM = 5SUP3JL947;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SelfStyloIOSApp/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app needs camera permision for makeup try-on";
@@ -1255,7 +1255,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = TK8CD8QS5B;
+				DEVELOPMENT_TEAM = 5SUP3JL947;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SelfStyloIOSApp/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app needs camera permision for makeup try-on";
