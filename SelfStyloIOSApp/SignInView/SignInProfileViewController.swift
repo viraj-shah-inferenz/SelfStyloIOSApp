@@ -219,6 +219,9 @@ extension SignInProfileViewController: UITableViewDelegate, UITableViewDataSourc
         
         if let mobileNo = mobileNumCell.txtPhoneNumber.text {
             if mobileNo == "" {
+               return
+            }else
+            {
                 patron.phoneNumber =  (mobileNumCell.txtPhoneNumber.selectedCountry?.phoneCode.appending(mobileNo))!
             }
         }
