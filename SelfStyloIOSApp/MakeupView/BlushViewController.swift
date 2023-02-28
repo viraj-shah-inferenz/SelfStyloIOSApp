@@ -13,6 +13,8 @@ class BlushViewController: UIViewController {
     
     @IBOutlet weak var colorNameCollectionView: UICollectionView!
     
+    @IBOutlet weak var btnClear: UIButton!
+    
     @IBOutlet weak var btnCheckbox: UIButton!
     
     var apiUtils = ApiUtils()
@@ -117,6 +119,18 @@ class BlushViewController: UIViewController {
         }
         self.productListCollectionView.reloadData()
     }
+    
+    @IBAction func clearMakeupAction(_ sender: UIButton) {
+        btnClear.setImage(UIImage(named: "clear_makeup_select"), for: .normal)
+        strBlushCategory = ""
+        strBlushProduct = ""
+        colorNameCollectionView.reloadData()
+        productListCollectionView.reloadData()
+        
+        NotificationCenter.default.post(name: NSNotification.Name("clear_makeup"), object: nil, userInfo: ["makeupName" : "Blush"])
+        
+    }
+    
 }
 
 extension BlushViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -191,6 +205,7 @@ extension BlushViewController: UICollectionViewDelegate, UICollectionViewDataSou
         if collectionView.tag == 0 {
             // product color
 //            NotificationCenter.default.post(name: NSNotification.Name("applyBlush"), object: arrProduct[indexPath.item])
+            btnClear.setImage(UIImage(named: "clear_makeup"), for: .normal)
             if arrCategory.count == 1 {
                 NotificationCenter.default.post(name: NSNotification.Name("applyBlush"), object: arrProduct[indexPath.item], userInfo: ["category_name" : arrCategory[0].categoryName!])
             } else {

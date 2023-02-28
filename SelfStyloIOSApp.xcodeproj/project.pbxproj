@@ -122,6 +122,7 @@
 		534CAF2929A6317D00E64AD1 /* MakeupLayerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534CAF2729A6317D00E64AD1 /* MakeupLayerTableViewCell.swift */; };
 		537A7E0C29A619AE00A97AFF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 537A7E0B29A619AE00A97AFF /* GoogleService-Info.plist */; };
 		53829454298D2EB4002D7671 /* Js in Resources */ = {isa = PBXBuildFile; fileRef = 53829453298D2EB4002D7671 /* Js */; };
+		5398872629ADDF8500E65C20 /* CaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5398872529ADDF8500E65C20 /* CaptureViewController.swift */; };
 		53BD4986298007B200B1D53B /* MakeDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53BD4985298007B200B1D53B /* MakeDetails.swift */; };
 		53BD49882980117C00B1D53B /* APIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53BD49872980117C00B1D53B /* APIHandler.swift */; };
 		53D0567C29A62CCA0064EDF4 /* MakeupLayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D0567B29A62CCA0064EDF4 /* MakeupLayerViewController.swift */; };
@@ -268,6 +269,7 @@
 		534CAF2729A6317D00E64AD1 /* MakeupLayerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakeupLayerTableViewCell.swift; sourceTree = "<group>"; };
 		537A7E0B29A619AE00A97AFF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		53829453298D2EB4002D7671 /* Js */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Js; sourceTree = "<group>"; };
+		5398872529ADDF8500E65C20 /* CaptureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureViewController.swift; sourceTree = "<group>"; };
 		53BD4985298007B200B1D53B /* MakeDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeDetails.swift; sourceTree = "<group>"; };
 		53BD49872980117C00B1D53B /* APIHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHandler.swift; sourceTree = "<group>"; };
 		53D0567B29A62CCA0064EDF4 /* MakeupLayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakeupLayerViewController.swift; sourceTree = "<group>"; };
@@ -345,6 +347,7 @@
 				227A6E00297FA05600559A3F /* CombosViewController.swift */,
 				2273A7722989116A007FE6F3 /* TryOnViewController.swift */,
 				5325AF1C298A5291004F385D /* MakeupLoaderViewController.swift */,
+				5398872529ADDF8500E65C20 /* CaptureViewController.swift */,
 			);
 			path = MakeupView;
 			sourceTree = "<group>";
@@ -1035,6 +1038,7 @@
 				5325AF1D298A5291004F385D /* MakeupLoaderViewController.swift in Sources */,
 				229F7A9229A61F9D0005DDDB /* AppleSignInClient.swift in Sources */,
 				227A6E01297FA05600559A3F /* CombosViewController.swift in Sources */,
+				5398872629ADDF8500E65C20 /* CaptureViewController.swift in Sources */,
 				22E222F0299B554F001D554D /* CustomVisualEffectView.swift in Sources */,
 				22EC1FA62966A615000F86EF /* CardView.swift in Sources */,
 				22E65504299A5CD40096D050 /* PrivacyPolicyViewController.swift in Sources */,

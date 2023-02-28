@@ -156,24 +156,30 @@ class MakeupViewController: UIViewController,UICollectionViewDelegate, UICollect
     
     @objc
     func captureImage() {
-        guard let image = webView.makeSnapshot() else { return }
         
-        let alert = UIAlertController(title: "Title", message: "Message", preferredStyle: .alert)
-        let actionCancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let captureVC = self.storyboard?.instantiateViewController(withIdentifier: "CaptureViewController") as! CaptureViewController
+        captureVC.modalPresentationStyle = .fullScreen
+        captureVC.capturedImage = self.webView.makeSnapshot()!
+        self.present(captureVC, animated: true)
         
-        //Add imageview to alert
-        let imgViewTitle = UIImageView(frame: CGRect(x: 8, y: 8, width: 42, height: 44))
-        imgViewTitle.image = image
-        alert.view.addSubview(imgViewTitle)
-        
-        let actionSave = UIAlertAction(title: "Save", style: .default) { action in
-            UIImageWriteToSavedPhotosAlbum(self.webView.makeSnapshot()!, nil, nil, nil)
-            alert.dismiss(animated: true)
-        }
-        
-        alert.addAction(actionCancel)
-        alert.addAction(actionSave)
-        self.present(alert, animated: true, completion: nil)
+//        guard let image = webView.makeSnapshot() else { return }
+//        
+//        let alert = UIAlertController(title: "Title", message: "Message", preferredStyle: .alert)
+//        let actionCancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+//        
+//        //Add imageview to alert
+//        let imgViewTitle = UIImageView(frame: CGRect(x: 8, y: 8, width: 42, height: 44))
+//        imgViewTitle.image = image
+//        alert.view.addSubview(imgViewTitle)
+//        
+//        let actionSave = UIAlertAction(title: "Save", style: .default) { action in
+//            UIImageWriteToSavedPhotosAlbum(self.webView.makeSnapshot()!, nil, nil, nil)
+//            alert.dismiss(animated: true)
+//        }
+//        
+//        alert.addAction(actionCancel)
+//        alert.addAction(actionSave)
+//        self.present(alert, animated: true, completion: nil)
     }
     
     fileprivate func setObserverforMakeup() {
@@ -193,6 +199,8 @@ class MakeupViewController: UIViewController,UICollectionViewDelegate, UICollect
 //        foundation observer
         NotificationCenter.default.addObserver(self, selector: #selector(self.applyFoundation(notification:)), name: Notification.Name("applyFoundation"), object: nil)
         
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.clearParticularMakeup(notification:)), name: Notification.Name("clear_makeup"), object: nil)
     }
     
     @objc func combo() {
@@ -206,6 +214,8 @@ class MakeupViewController: UIViewController,UICollectionViewDelegate, UICollect
         categoryCollectionView.dataSource = self
     }
     
+    
+    
     func setupWebview() {
         webView.sizeToFit()
         webView.scrollView.bounces = false
@@ -218,6 +228,23 @@ class MakeupViewController: UIViewController,UICollectionViewDelegate, UICollect
         webView.configuration.allowsAirPlayForMediaPlayback = false
         webView.translatesAutoresizingMaskIntoConstraints = false
         
+    }
+    
+    @objc
+    func clearParticularMakeup(notification: Notification) {
+        print(notification.userInfo!["makeupName"])
+        
+        if let makeupName = notification.userInfo?["makeupName"] as? String {
+            makeupData.removeValue(forKey: makeupName)
+            
+            let jsonData = try? JSONSerialization.data(withJSONObject: makeupData, options: [])
+            let jsonString = String(data: jsonData!, encoding: .utf8)
+            print(jsonString)
+            
+            if let json = jsonString {
+                updateEffectList(json: json)
+            }
+        }
     }
     
     @objc

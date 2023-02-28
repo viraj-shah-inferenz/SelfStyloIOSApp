@@ -15,6 +15,8 @@ class EyelinerStyleViewController: UIViewController {
     
     @IBOutlet weak var btnCheckbox: UIButton!
     
+    @IBOutlet weak var btnClear: UIButton!
+    
     var backToCategory : (()-> Void)?
     var backToEyeliner : (()-> Void)?
     
@@ -46,6 +48,21 @@ class EyelinerStyleViewController: UIViewController {
                 }
             }
         }
+        
+        
+        
+    }
+    
+    
+    @IBAction func clearMakeup(_ sender: UIButton) {
+        btnClear.setImage(UIImage(named: "clear_makeup_select"), for: .normal)
+        
+        strCategory = ""
+        strProduct = ""
+        colorNameCollectionView.reloadData()
+        productListCollectionView.reloadData()
+        
+        NotificationCenter.default.post(name: NSNotification.Name("clear_makeup"), object: nil, userInfo: ["makeupName" : "Eyeliner"])
     }
     
     func setEyelinerColorData() {
@@ -189,6 +206,7 @@ extension EyelinerStyleViewController:UICollectionViewDelegate, UICollectionView
             // product color
 //            NotificationCenter.default.post(name: NSNotification.Name("applyEyeliner"), object: arrProduct[indexPath.item])
             if arrCategory.count == 1 {
+                btnClear.setImage(UIImage(named: "clear_makeup"), for: .normal)
                 NotificationCenter.default.post(name: NSNotification.Name("applyEyeliner"), object: arrProduct[indexPath.item], userInfo: ["category_name" : arrCategory[0].categoryName!])
             } else {
                 NotificationCenter.default.post(name: NSNotification.Name("applyEyeliner"), object: arrProduct[indexPath.item], userInfo: ["category_name" : arrCategory[indexPath.item].categoryName!])

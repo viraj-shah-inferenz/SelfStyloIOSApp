@@ -37,7 +37,7 @@ class ApiUtils {
     func sendEmailOtp(email:String){
        
         if reachability.connection == .wifi || reachability.connection == .cellular {
-            let serviceUrl = ApiUtils.DOMAIN_URL + self.apiCalls.sendEmailOtp
+            let serviceUrl = ApiUtils.MAKEUP_URL + self.apiCalls.sendEmailOtp
             var request = URLRequest(url: URL(string: serviceUrl)!)
             request.httpMethod = "POST"
             let postString = "email=\(email)"
@@ -62,15 +62,11 @@ class ApiUtils {
                 print("Not reachable")
             
         }
-       
-       
-        
-       
     }
     
     func sendVerifyOtp(email:String,otp:String){
             if reachability.connection == .wifi || reachability.connection == .cellular{
-                let serviceUrl = ApiUtils.DOMAIN_URL + self.apiCalls.sendVerifyOtp
+                let serviceUrl = ApiUtils.MAKEUP_URL + self.apiCalls.sendVerifyOtp
                 var request = URLRequest(url: URL(string: serviceUrl)!)
                 request.httpMethod = "POST"
                 let postString = "email=\(email)&otp=\(otp)"
@@ -240,6 +236,16 @@ class ApiUtils {
                         let task = session.dataTask(with: url,completionHandler: {
                             (data, response, error) in
                             if error == nil{
+                                if let httpResponse = response as? HTTPURLResponse{
+                                    if httpResponse.statusCode == 404{
+                                        print("There is some problem with server connection, please try again")
+                                        return
+                                    } else if httpResponse.statusCode == 500 {
+                                        print("Internal Server Error, please try again")
+                                        return
+                                    }
+                                }
+                                
                                 DispatchQueue.main.async {
                                     self.parseFavouriteProductDataIntoDb(data: data!)
                                 }

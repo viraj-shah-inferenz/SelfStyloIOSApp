@@ -14,6 +14,9 @@ class LipstickViewController: UIViewController {
     
     @IBOutlet weak var colorNameCollectionView: UICollectionView!
     
+    @IBOutlet weak var btnClear: UIButton!
+    
+    
     @IBOutlet weak var btnCheckbox: UIButton!
     var backToCategory : (()-> Void)?
 
@@ -106,6 +109,17 @@ class LipstickViewController: UIViewController {
         colorNameCollectionView.dataSource = self
     }
     
+    
+    @IBAction func clearMakeupAction(_ sender: UIButton) {
+        btnClear.setImage(UIImage(named: "clear_makeup_select"), for: .normal)
+        strCategory = ""
+        strProduct = ""
+        colorNameCollectionView.reloadData()
+        productListCollectionView.reloadData()
+        
+        NotificationCenter.default.post(name: NSNotification.Name("clear_makeup"), object: nil, userInfo: ["makeupName" : "Lipstick"])
+    }
+    
     @IBAction func btnSelectCheckbox(_ sender: UIButton) {
         if btnCheckbox.isSelected{
             btnCheckbox.setImage(UIImage.init(named: "favourite_unchecked"), for: .normal)
@@ -183,6 +197,7 @@ extension LipstickViewController:UICollectionViewDelegate, UICollectionViewDataS
         
         if collectionView.tag == 0 {
             // product color
+            btnClear.setImage(UIImage(named: "clear_makeup"), for: .normal)
             NotificationCenter.default.post(name: NSNotification.Name("applyLipstick"), object: arrProduct[indexPath.item], userInfo: ["category_name" : strCategory])
             
             let product = arrProduct[indexPath.item]

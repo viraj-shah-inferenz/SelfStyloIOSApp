@@ -20,9 +20,14 @@ class FoundationColorViewController: UIViewController {
     
     @IBOutlet weak var productListCollectionView: UICollectionView!
     
+    @IBOutlet weak var btnClear: UIButton!
+    
     @IBOutlet weak var btnCheckbox: UIButton!
     var backToFoundation : (()-> Void)?
+    
     var strFoundationCategory: String = ""
+    var strFoundationProduct: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         DispatchQueue.global(qos: .background).async {
@@ -107,6 +112,16 @@ class FoundationColorViewController: UIViewController {
         }
         btnCheckbox.isSelected = !btnCheckbox.isSelected
     }
+    
+    @IBAction func clearMakeupAction(_ sender: UIButton) {
+        btnClear.setImage(UIImage(named: "clear_makeup_select"), for: .normal)
+        strFoundationCategory = ""
+        strFoundationProduct = ""
+        colorNameCollectionView.reloadData()
+        productListCollectionView.reloadData()
+        NotificationCenter.default.post(name: NSNotification.Name("clear_makeup"), object: nil, userInfo: ["makeupName" : "Foundation"])
+    }
+    
 }
 
 extension FoundationColorViewController:UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -143,6 +158,13 @@ extension FoundationColorViewController:UICollectionViewDelegate, UICollectionVi
                 let data = arrProduct[indexPath.item]
                 print(data.colorCode)
                 cell.colorImage.backgroundColor = data.colorCode?.rgbToColor()
+                if data.colorName == strFoundationProduct {
+                    cell.colorImage.layer.borderColor = UIColor.white.cgColor
+                    cell.colorImage.layer.borderWidth = 1.0
+                } else {
+                    cell.colorImage.layer.borderColor = UIColor.clear.cgColor
+                    cell.colorImage.layer.borderWidth = 0.0
+                }
             }
             return cell
         } else if collectionView.tag == 1 {
@@ -153,6 +175,13 @@ extension FoundationColorViewController:UICollectionViewDelegate, UICollectionVi
                 if arrCategory.count == 1 {
                     colornameCell.lblcolor_name.textColor = .white
                 }
+                if data.categoryName == strFoundationCategory {
+                    colornameCell.lblcolor_name.textColor = UIColor.white
+                } else {
+//                    5E616D
+                    colornameCell.lblcolor_name.textColor = UIColor.gray
+                }
+                
             }
             return colornameCell
         } else {
@@ -165,17 +194,23 @@ extension FoundationColorViewController:UICollectionViewDelegate, UICollectionVi
         if collectionView.tag == 0 {
             // product color
 //            NotificationCenter.default.post(name: NSNotification.Name("applyFoundation"), object: arrProduct[indexPath.item])
+            btnClear.setImage(UIImage(named: "clear_makeup"), for: .normal)
             if arrCategory.count == 1 {
                 NotificationCenter.default.post(name: NSNotification.Name("applyFoundation"), object: arrProduct[indexPath.item], userInfo: ["category_name" : arrCategory[0].categoryName!])
             } else {
                 NotificationCenter.default.post(name: NSNotification.Name("applyFoundation"), object: arrProduct[indexPath.item], userInfo: ["category_name" : strFoundationCategory])
             }
             
+            let product = arrProduct[indexPath.item]
+            strFoundationProduct = product.colorName ?? ""
+            collectionView.reloadData()
+            
         } else if collectionView.tag == 1 {
             // Category name
             let data = arrCategory[indexPath.item]
             strFoundationCategory = data.categoryName ?? ""
             setCategory(categoryIndex: indexPath.item)
+            collectionView.reloadData()
         } else {
         }
     }

@@ -15,7 +15,9 @@ class EyeshadowViewController: UIViewController {
     
     @IBOutlet weak var btnCheckbox: UIButton!
     
-//    var color_image:[String] = ["color_code_circle", "color_code_circle","color_code_circle", "color_code_circle","color_code_circle"]
+    @IBOutlet weak var btnClear: UIButton!
+    
+    //    var color_image:[String] = ["color_code_circle", "color_code_circle","color_code_circle", "color_code_circle","color_code_circle"]
 //    var color_name:[String] =  ["Mulberry","Pecan","Sandstone","Pecan Micro","Sandstone Metallic"]
     
     var makeup = MakeDetails()
@@ -120,6 +122,17 @@ class EyeshadowViewController: UIViewController {
         }
         btnCheckbox.isSelected = !btnCheckbox.isSelected
     }
+    
+    @IBAction func clearMakeupAction(_ sender: UIButton) {
+        btnClear.setImage(UIImage(named: "clear_makeup_select"), for: .normal)
+        strEyeshadowCategory = ""
+        strEyeshadowProduct = ""
+        colorNameCollectionView.reloadData()
+        productListCollectionView.reloadData()
+        
+        NotificationCenter.default.post(name: NSNotification.Name("clear_makeup"), object: nil, userInfo: ["makeupName" : "Eyeshadow"])
+    }
+    
 }
 
 extension EyeshadowViewController:UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -187,6 +200,8 @@ extension EyeshadowViewController:UICollectionViewDelegate, UICollectionViewData
         if collectionView.tag == 0 {
             // product color
             //            NotificationCenter.default.post(name: NSNotification.Name("applyEyeshadow"), object: arrProduct[indexPath.item])
+            
+            btnClear.setImage(UIImage(named: "clear_makeup"), for: .normal)
             NotificationCenter.default.post(name: NSNotification.Name("applyEyeshadow"), object: arrProduct[indexPath.item], userInfo: ["category_name" : strEyeshadowCategory])
             
             let data = arrProduct[indexPath.row]
