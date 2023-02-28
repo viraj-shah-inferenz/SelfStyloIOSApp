@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -28,13 +29,13 @@
                         </buttonConfiguration>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BqT-eA-4cR">
-                        <rect key="frame" x="129" y="80" width="132" height="24"/>
+                        <rect key="frame" x="43" y="80" width="304" height="33"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="132" id="XK2-HC-wpa"/>
+                            <constraint firstAttribute="width" constant="304" id="XK2-HC-wpa"/>
                         </constraints>
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="plain" title="Skip for now">
-                            <fontDescription key="titleFontDescription" name="DMSans-Medium" family="DM Sans" pointSize="17"/>
+                            <fontDescription key="titleFontDescription" name="DMSans-Medium" family="DM Sans" pointSize="20"/>
                             <color key="baseForegroundColor" red="0.36862745099999999" green="0.3803921569" blue="0.42745098040000001" alpha="1" colorSpace="calibratedRGB"/>
                         </buttonConfiguration>
                     </button>
@@ -45,9 +46,9 @@
                     <constraint firstItem="BqT-eA-4cR" firstAttribute="top" secondItem="JMc-Km-vGx" secondAttribute="bottom" constant="8" id="G1k-n9-ama"/>
                     <constraint firstItem="JMc-Km-vGx" firstAttribute="centerX" secondItem="ANm-FL-ThZ" secondAttribute="centerX" id="Tbt-H7-abG"/>
                     <constraint firstItem="JMc-Km-vGx" firstAttribute="leading" secondItem="ANm-FL-ThZ" secondAttribute="leading" constant="43" id="Z3z-rM-f6P"/>
-                    <constraint firstItem="BqT-eA-4cR" firstAttribute="leading" secondItem="ANm-FL-ThZ" secondAttribute="leading" constant="129" id="b1G-tU-TSH"/>
+                    <constraint firstItem="BqT-eA-4cR" firstAttribute="leading" secondItem="ANm-FL-ThZ" secondAttribute="leading" constant="43" id="b1G-tU-TSH"/>
                     <constraint firstAttribute="trailing" secondItem="JMc-Km-vGx" secondAttribute="trailing" constant="43" id="sc6-3l-n41"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="BqT-eA-4cR" secondAttribute="bottom" constant="18" id="yvW-KF-VM2"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="BqT-eA-4cR" secondAttribute="bottom" constant="9" id="yvW-KF-VM2"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="O0M-kk-x5f"/>
