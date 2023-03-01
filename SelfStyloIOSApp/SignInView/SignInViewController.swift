@@ -216,23 +216,24 @@ class SignInViewController: UIViewController,UITextFieldDelegate,UITextViewDeleg
     }
     
     @objc func btnproceed(){
-            if txtEmailAddress.text == "" && phoneNumberTextField.text == "" {
-                lblInvalidEmail.text = "Please enter valid email address"
+        
+        if PhoneView.isHidden == false {
+            if  phoneNumberTextField.text == "" {
                 lblInvalidPhone.text = "Please enter valid phone number"
+                lblInvalidEmail.text = ""
           } else {
-              let patron = Patron(email: txtEmailAddress.text!)
-          let trimmed = patron.email.trimmingCharacters(in: .whitespacesAndNewlines)
-              apiUtils.sendEmailOtp(email: trimmed)
-              self.userDefault.set(trimmed, forKey: "Email")
               
               guard let phoneNumber = phoneNumberTextField.text else {return}
               print(phoneNumber)
               
+              
+              
               Auth.auth().settings?.isAppVerificationDisabledForTesting = false
               PhoneAuthProvider.provider(auth: Auth.auth())
               
-              self.userDefault.set(phoneNumberTextField.selectedCountry?.phoneCode.appending(phoneNumber), forKey: "Phone")
-              self.userDefault.synchronize()
+              UserDefaults.standard.removeObject(forKey: "Email")
+              UserDefaults.standard.set(phoneNumberTextField.selectedCountry?.phoneCode.appending(phoneNumber), forKey: "Phone")
+              UserDefaults.standard.synchronize()
               let str  = phoneNumber.components(separatedBy: .whitespaces).joined()
               if let mobileNo = phoneNumberTextField.selectedCountry?.phoneCode.appending(" " + str) {
                   print(mobileNo)
@@ -256,6 +257,30 @@ class SignInViewController: UIViewController,UITextFieldDelegate,UITextViewDeleg
                   }
               }
           }
+        } else {
+            // email
+            if txtEmailAddress.text == "" {
+                lblInvalidEmail.text = "Please enter valid email address"
+                lblInvalidPhone.text = ""
+            }else {
+                txtPhoneNumber.text = ""
+                
+                let patron = Patron(email: txtEmailAddress.text!)
+                let trimmed = patron.email.trimmingCharacters(in: .whitespacesAndNewlines)
+                apiUtils.sendEmailOtp(email: trimmed)
+                
+                UserDefaults.standard.removeObject(forKey: "Phone")
+                UserDefaults.standard.set(trimmed, forKey: "Email")
+                UserDefaults.standard.synchronize()
+                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4)) {
+                    self.performSegue(withIdentifier: "moveToOtp", sender: self)
+                }
+            }
+        }
+        
+        
+        
+            
     }
     
     

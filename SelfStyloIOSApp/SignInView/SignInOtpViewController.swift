@@ -49,10 +49,27 @@ class SignInOtpViewController: UIViewController {
       
     }
     func getUserData(){
-        let email = userDefault.string(forKey: "Email")
-        LblEmail.text = email
-        let phone = userDefault.string(forKey: "Phone")
-        LblPhone.text = phone
+        if let email = userDefault.string(forKey: "Email")
+        {
+            if email == ""
+            {
+                LblEmail.text = ""
+            }else
+            {
+                LblEmail.text = email
+            }
+        }
+           
+        if let phone = userDefault.string(forKey: "Phone")
+        {
+            if phone == ""
+            {
+                LblPhone.text = ""
+            }else
+            {
+                LblPhone.text = phone
+            }
+        }
     }
     
     
@@ -105,6 +122,8 @@ class SignInOtpViewController: UIViewController {
     }
     
     @IBAction func resendOTPBtnClicked(_ sender: UIButton) {
+        UserDefaults.standard.set("true", forKey: APP.IS_LOGIN)
+        UserDefaults.standard.synchronize()
         if let email = emailVC.txtEmailAddress?.text {
             if email != "" {
                 let patron = Patron(email: emailVC.txtEmailAddress.text!)
@@ -118,7 +137,7 @@ class SignInOtpViewController: UIViewController {
             }
         }
         
-        
+      
         
         guard let verificationId = UserDefaults.standard.string(forKey: "authVerificationID") else {return}
         print(verificationId)
@@ -129,12 +148,6 @@ class SignInOtpViewController: UIViewController {
             
             if error == nil{
                 print(success)
-                
-                UserDefaults.standard.set("true", forKey: APP.IS_LOGIN)
-                UserDefaults.standard.synchronize()
-//                self.performSegue(withIdentifier: "goToCompleteProfile", sender: self)
-                
-                
                 
                 self.view.makeToast("Sign in successfully...", duration: 3.0, position: .bottom)
                 

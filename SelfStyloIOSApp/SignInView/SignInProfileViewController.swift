@@ -131,23 +131,22 @@ class SignInProfileViewController: UIViewController {
         
         // Empty check
         if let name = nameCell.txtFullName.text {
-            if name == "" {
+            if !name.isEmpty{
                 patron.name = name.trimmingCharacters(in: .whitespacesAndNewlines)
             }
         }
         
         if let email = emailCell.txtEmailAddress.text {
-            if email == "" {
+            if !email.isEmpty{
                 patron.email = email.trimmingCharacters(in: .whitespacesAndNewlines)
             }
         }
         
         if let mobileNo = mobileNumCell.txtPhoneNumber.text {
-            print(mobileNo)
-            if mobileNo == "" {
-                return
-            }else {
+            if !mobileNo.isEmpty
+            {
                 patron.phoneNumber =  (mobileNumCell.txtPhoneNumber.selectedCountry?.phoneCode.appending(mobileNo))!
+            }
             }
             
             if genderCell.gender.isEmpty {
@@ -176,7 +175,6 @@ class SignInProfileViewController: UIViewController {
             
         }
     }
-}
 
 
 
@@ -203,9 +201,16 @@ extension SignInProfileViewController: UITableViewDelegate, UITableViewDataSourc
         else if indexPath.row == 2 {
             //Gender
             if let emailcell:SignInEmailTableViewCell = tableView.dequeueReusableCell(withIdentifier: "SignInEmailTableViewCell") as? SignInEmailTableViewCell{
-                let email = userDefault.string(forKey: "Email")
-                patron.email = email!
-                emailcell.txtEmailAddress.text! = patron.email
+                if let email = userDefault.string(forKey: "Email")
+                {
+                    if email == ""{
+                        emailcell.txtEmailAddress.text! = ""
+                    }else
+                    {
+                        patron.email = email
+                        emailcell.txtEmailAddress.text! = patron.email
+                    }
+                }
                 emailcell.txtEmailAddress.tag = indexPath.row
                 emailcell.txtEmailAddress.delegate = self
                 return emailcell
@@ -213,10 +218,20 @@ extension SignInProfileViewController: UITableViewDelegate, UITableViewDataSourc
         }
         else if indexPath.row == 3 {
             if let phonecell:SignInPhoneTableViewCell = tableView.dequeueReusableCell(withIdentifier: "SignInPhoneTableViewCell") as? SignInPhoneTableViewCell{
-                let phone = userDefault.string(forKey: "Phone")
-                let result4 = String(phone!.dropFirst(3))
-                patron.phoneNumber = result4
-                phonecell.txtPhoneNumber.text! = patron.phoneNumber
+                
+                if let phone = userDefault.string(forKey: "Phone")
+                {
+                    if phone == ""
+                    {
+                        phonecell.txtPhoneNumber.text! = ""
+                    
+                    }else
+                    {
+                        let result4 = String(phone.dropFirst(3))
+                        patron.phoneNumber = result4
+                        phonecell.txtPhoneNumber.text! = patron.phoneNumber
+                    }
+                }
                 phonecell.txtPhoneNumber.tag = indexPath.row
                 phonecell.txtPhoneNumber.delegate = self
                 return phonecell
