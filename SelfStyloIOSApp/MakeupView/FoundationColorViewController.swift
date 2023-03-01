@@ -22,6 +22,8 @@ class FoundationColorViewController: UIViewController {
     
     @IBOutlet weak var btnClear: UIButton!
     
+    @IBOutlet weak var lblShadeName: UILabel!
+    
     @IBOutlet weak var btnCheckbox: UIButton!
     var backToFoundation : (()-> Void)?
     
@@ -203,6 +205,7 @@ extension FoundationColorViewController:UICollectionViewDelegate, UICollectionVi
             
             let product = arrProduct[indexPath.item]
             strFoundationProduct = product.colorName ?? ""
+            lblShadeName.text = product.colorName
             collectionView.reloadData()
             
         } else if collectionView.tag == 1 {

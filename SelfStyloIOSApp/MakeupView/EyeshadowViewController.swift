@@ -17,6 +17,8 @@ class EyeshadowViewController: UIViewController {
     
     @IBOutlet weak var btnClear: UIButton!
     
+    @IBOutlet weak var lblShadeName: UILabel!
+    
     //    var color_image:[String] = ["color_code_circle", "color_code_circle","color_code_circle", "color_code_circle","color_code_circle"]
 //    var color_name:[String] =  ["Mulberry","Pecan","Sandstone","Pecan Micro","Sandstone Metallic"]
     
@@ -206,6 +208,7 @@ extension EyeshadowViewController:UICollectionViewDelegate, UICollectionViewData
             
             let data = arrProduct[indexPath.row]
             strEyeshadowProduct = data.colorName ?? ""
+            lblShadeName.text = data.colorName
             collectionView.reloadData()
         } else if collectionView.tag == 1 {
             // Category name

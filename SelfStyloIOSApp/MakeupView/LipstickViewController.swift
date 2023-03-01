@@ -18,6 +18,9 @@ class LipstickViewController: UIViewController {
     
     
     @IBOutlet weak var btnCheckbox: UIButton!
+    
+    @IBOutlet weak var lblShadeName: UILabel!
+    
     var backToCategory : (()-> Void)?
 
     var apiUtils = ApiUtils()
@@ -202,6 +205,7 @@ extension LipstickViewController:UICollectionViewDelegate, UICollectionViewDataS
             
             let product = arrProduct[indexPath.item]
             strProduct = product.colorName ?? ""
+            lblShadeName.text = product.colorName
             collectionView.reloadData()
         } else if collectionView.tag == 1 {
             // Category name

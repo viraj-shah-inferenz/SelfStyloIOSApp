@@ -16,6 +16,7 @@ class BlushViewController: UIViewController {
     @IBOutlet weak var btnClear: UIButton!
     
     @IBOutlet weak var btnCheckbox: UIButton!
+    @IBOutlet weak var lblShadeName: UILabel!
     
     var apiUtils = ApiUtils()
     
@@ -213,6 +214,7 @@ extension BlushViewController: UICollectionViewDelegate, UICollectionViewDataSou
             }
             let data = arrProduct[indexPath.item]
             strBlushProduct = data.colorName ?? ""
+            lblShadeName.text = data.colorName
             collectionView.reloadData()
         } else if collectionView.tag == 1 {
             // Category name

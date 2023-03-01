@@ -17,6 +17,8 @@ class EyelinerStyleViewController: UIViewController {
     
     @IBOutlet weak var btnClear: UIButton!
     
+    @IBOutlet weak var lblShadeName: UILabel!
+    
     var backToCategory : (()-> Void)?
     var backToEyeliner : (()-> Void)?
     
@@ -168,6 +170,7 @@ extension EyelinerStyleViewController:UICollectionViewDelegate, UICollectionView
         if collectionView.tag == 0 {
             if arrProduct.count > 0 {
                 let data = arrProduct[indexPath.item]
+                
                 if data.colorName == strProduct {
                     cell.colorImage.layer.borderColor = UIColor.white.cgColor
                     cell.colorImage.layer.borderWidth = 1.0
@@ -213,6 +216,7 @@ extension EyelinerStyleViewController:UICollectionViewDelegate, UICollectionView
             }
             let data = arrProduct[indexPath.item]
             strProduct = data.colorName ?? ""
+            lblShadeName.text = data.colorName
             collectionView.reloadData()
         } else if collectionView.tag == 1 {
             // Category name
@@ -225,13 +229,39 @@ extension EyelinerStyleViewController:UICollectionViewDelegate, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
+
         let bounds = collectionView.bounds
         return CGSize(width: bounds.width/2 - 25, height: bounds.height)
+        
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        if collectionView.tag == 0 {
+            return 25.0
+        } else {
+            return 0
+        }
+        
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 25.0
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        
+        
+        if collectionView.tag == 1 {
+            let totalCellWidth = 124 * collectionView.numberOfItems(inSection: 0)
+            let totalSpacingWidth = 0 * (collectionView.numberOfItems(inSection: 0) - 1)
+            
+
+            let leftInset = (collectionView.layer.frame.size.width - CGFloat(totalCellWidth + totalSpacingWidth)) / 2
+            let rightInset = leftInset
+
+            print(leftInset)
+            
+
+            return UIEdgeInsets(top: 0, left: leftInset - 24, bottom: 0, right: 0)
+        } else {
+            return UIEdgeInsets.zero
+        }
     }
 }
 
