@@ -116,6 +116,7 @@
 		22F858E6295B047800A7D86E /* FavouriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F858E5295B047800A7D86E /* FavouriteViewController.swift */; };
 		5325AF1D298A5291004F385D /* MakeupLoaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5325AF1C298A5291004F385D /* MakeupLoaderViewController.swift */; };
 		53289E552993B5490063EB4D /* CategoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53289E542993B5490063EB4D /* CategoryCollectionViewCell.xib */; };
+		534C2B7629B09E96004A9A24 /* indexMain.html in Resources */ = {isa = PBXBuildFile; fileRef = 534C2B7529B09E96004A9A24 /* indexMain.html */; };
 		534CAF2129A62E8D00E64AD1 /* EyelinerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534CAF1F29A62E8D00E64AD1 /* EyelinerData.swift */; };
 		534CAF2229A62E8D00E64AD1 /* EyelinerStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534CAF2029A62E8D00E64AD1 /* EyelinerStyle.swift */; };
 		534CAF2829A6317D00E64AD1 /* MakeupLayerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 534CAF2629A6317D00E64AD1 /* MakeupLayerTableViewCell.xib */; };
@@ -126,7 +127,6 @@
 		53BD4986298007B200B1D53B /* MakeDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53BD4985298007B200B1D53B /* MakeDetails.swift */; };
 		53BD49882980117C00B1D53B /* APIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53BD49872980117C00B1D53B /* APIHandler.swift */; };
 		53D0567C29A62CCA0064EDF4 /* MakeupLayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D0567B29A62CCA0064EDF4 /* MakeupLayerViewController.swift */; };
-		53DBAE4A29A650F1008EE51F /* indexMain.html in Resources */ = {isa = PBXBuildFile; fileRef = 53DBAE4929A650F1008EE51F /* indexMain.html */; };
 		80AD48C7E30C54A7922CAC7A /* Pods_SelfStyloIOSApp_SelfStyloIOSAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EB8BF4239B689E9F59CB872 /* Pods_SelfStyloIOSApp_SelfStyloIOSAppUITests.framework */; };
 		8748E9F3D8DC157277F122FB /* Pods_SelfStyloIOSAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CF42408F60C89C480F7B66D /* Pods_SelfStyloIOSAppTests.framework */; };
 /* End PBXBuildFile section */
@@ -263,6 +263,7 @@
 		418746D84A8963A42DA91AAA /* Pods-SelfStyloIOSApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SelfStyloIOSApp.release.xcconfig"; path = "Target Support Files/Pods-SelfStyloIOSApp/Pods-SelfStyloIOSApp.release.xcconfig"; sourceTree = "<group>"; };
 		5325AF1C298A5291004F385D /* MakeupLoaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeupLoaderViewController.swift; sourceTree = "<group>"; };
 		53289E542993B5490063EB4D /* CategoryCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoryCollectionViewCell.xib; sourceTree = "<group>"; };
+		534C2B7529B09E96004A9A24 /* indexMain.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = indexMain.html; sourceTree = "<group>"; };
 		534CAF1F29A62E8D00E64AD1 /* EyelinerData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EyelinerData.swift; sourceTree = "<group>"; };
 		534CAF2029A62E8D00E64AD1 /* EyelinerStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EyelinerStyle.swift; sourceTree = "<group>"; };
 		534CAF2629A6317D00E64AD1 /* MakeupLayerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MakeupLayerTableViewCell.xib; sourceTree = "<group>"; };
@@ -273,7 +274,6 @@
 		53BD4985298007B200B1D53B /* MakeDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeDetails.swift; sourceTree = "<group>"; };
 		53BD49872980117C00B1D53B /* APIHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHandler.swift; sourceTree = "<group>"; };
 		53D0567B29A62CCA0064EDF4 /* MakeupLayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakeupLayerViewController.swift; sourceTree = "<group>"; };
-		53DBAE4929A650F1008EE51F /* indexMain.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = indexMain.html; sourceTree = "<group>"; };
 		6CF42408F60C89C480F7B66D /* Pods_SelfStyloIOSAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SelfStyloIOSAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E11A198EA9A4448BF33D815 /* Pods-SelfStyloIOSAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SelfStyloIOSAppTests.debug.xcconfig"; path = "Target Support Files/Pods-SelfStyloIOSAppTests/Pods-SelfStyloIOSAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		77151C2A2365BE1AF0F2F82F /* Pods-SelfStyloIOSApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SelfStyloIOSApp.debug.xcconfig"; path = "Target Support Files/Pods-SelfStyloIOSApp/Pods-SelfStyloIOSApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -663,7 +663,7 @@
 		530278D5297FF8F70037F46E /* WebContoller */ = {
 			isa = PBXGroup;
 			children = (
-				53DBAE4929A650F1008EE51F /* indexMain.html */,
+				534C2B7529B09E96004A9A24 /* indexMain.html */,
 				53829453298D2EB4002D7671 /* Js */,
 			);
 			path = WebContoller;
@@ -835,8 +835,8 @@
 				22E9837329ACA2C4001AA264 /* SignInGenderTableViewCell.xib in Resources */,
 				22A477E72965878600523866 /* DMSans-Medium.ttf in Resources */,
 				22A477EC2965878600523866 /* DMSans-Italic.ttf in Resources */,
-				53DBAE4A29A650F1008EE51F /* indexMain.html in Resources */,
 				2202B3362964122C000CB816 /* FavouriteProductTableViewCell.xib in Resources */,
+				534C2B7629B09E96004A9A24 /* indexMain.html in Resources */,
 				22E9836F29ACA2C4001AA264 /* SignInPhoneTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -2545,7 +2545,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SgU-lw-0Ve">
-                                                    <rect key="frame" x="32.666666666666664" y="6.6666666666666661" width="36.999999999999993" height="18.666666666666671"/>
+                                                    <rect key="frame" x="34" y="6.6666666666666661" width="34.333333333333343" height="18.666666666666671"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="18.5" id="XuX-Op-aZx"/>
                                                     </constraints>
@@ -2779,7 +2779,7 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Combos" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YR6-12-p2y">
-                                                <rect key="frame" x="8" y="6.9999999999999982" width="287" height="18.333333333333329"/>
+                                                <rect key="frame" x="8" y="7" width="287" height="16.333333333333332"/>
                                                 <fontDescription key="fontDescription" name="DMSans-Bold" family="DM Sans" pointSize="14"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>

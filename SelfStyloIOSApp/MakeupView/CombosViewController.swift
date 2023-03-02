@@ -62,7 +62,6 @@ class CombosViewController: UIViewController,UICollectionViewDelegate,UICollecti
         cell.comboName.text = combo_name[indexPath.row]
 
         return cell
-
     }
 
 
@@ -76,7 +75,4 @@ class CombosViewController: UIViewController,UICollectionViewDelegate,UICollecti
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
             return 25.0
     }
-    
-
-
 }

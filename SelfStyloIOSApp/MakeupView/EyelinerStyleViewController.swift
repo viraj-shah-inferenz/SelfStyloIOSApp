@@ -59,8 +59,13 @@ class EyelinerStyleViewController: UIViewController {
     @IBAction func clearMakeup(_ sender: UIButton) {
         btnClear.setImage(UIImage(named: "clear_makeup_select"), for: .normal)
         
-        strCategory = ""
+//        strCategory = ""
         strProduct = ""
+        
+        if let cat = arrCategory[0].categoryName {
+            strCategory = cat
+        }
+        setCategory(categoryIndex: 0)
         colorNameCollectionView.reloadData()
         productListCollectionView.reloadData()
         

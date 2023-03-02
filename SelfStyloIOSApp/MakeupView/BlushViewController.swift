@@ -123,8 +123,13 @@ class BlushViewController: UIViewController {
     
     @IBAction func clearMakeupAction(_ sender: UIButton) {
         btnClear.setImage(UIImage(named: "clear_makeup_select"), for: .normal)
-        strBlushCategory = ""
+//        strBlushCategory = ""
         strBlushProduct = ""
+        
+        if let cat = arrCategory[0].categoryName {
+            strBlushCategory = cat
+        }
+        setCategory(categoryIndex: 0)
         colorNameCollectionView.reloadData()
         productListCollectionView.reloadData()
         

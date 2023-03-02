@@ -129,6 +129,10 @@ class EyeshadowViewController: UIViewController {
         btnClear.setImage(UIImage(named: "clear_makeup_select"), for: .normal)
         strEyeshadowCategory = ""
         strEyeshadowProduct = ""
+        if let cat = arrCategory[0].categoryName {
+            strEyeshadowCategory = cat
+        }
+        setCategory(categoryIndex: 0)
         colorNameCollectionView.reloadData()
         productListCollectionView.reloadData()
         

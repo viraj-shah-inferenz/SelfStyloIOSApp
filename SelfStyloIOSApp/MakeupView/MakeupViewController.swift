@@ -9,7 +9,7 @@ import UIKit
 import WebKit
 import JavaScriptCore
 
-class MakeupViewController: UIViewController,UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
+class MakeupViewController: UIViewController {
     
     @IBOutlet weak var webView: WKWebView!
     
@@ -58,6 +58,13 @@ class MakeupViewController: UIViewController,UICollectionViewDelegate, UICollect
     var isMakeupVisible = false
     var tmpMakeup = [String: Any]()
     
+    
+    var ProductListViewController: LipstickViewController {
+        let st = UIStoryboard(name: "Main", bundle: nil)
+        let vc = st.instantiateViewController(withIdentifier: "ProductListViewController") as! LipstickViewController
+        return vc
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupWebview()
@@ -80,6 +87,7 @@ class MakeupViewController: UIViewController,UICollectionViewDelegate, UICollect
                               , action: #selector(clearAllAppliedMakeup)
                               , for: .touchUpInside
         )
+        
         btnCapture.addTarget(self, action: #selector(captureImage), for: .touchUpInside)
         btnStckOfMakeup.addTarget(self, action: #selector(makeupStackView), for: .touchUpInside)
         btnMakeupVisible.addTarget(self, action: #selector(makeupVisible), for: .touchUpInside)
@@ -110,7 +118,6 @@ class MakeupViewController: UIViewController,UICollectionViewDelegate, UICollect
             
         }
     }
-    
     
     @objc
     func makeupVisible() {
@@ -486,7 +493,9 @@ class MakeupViewController: UIViewController,UICollectionViewDelegate, UICollect
         detailViewController.modalPresentationStyle = .fullScreen
         self.present(detailViewController, animated: false)
     }
-    
+}
+
+extension MakeupViewController: UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return category_name.count
     }
@@ -499,14 +508,6 @@ class MakeupViewController: UIViewController,UICollectionViewDelegate, UICollect
         categorycell.contentView.layer.cornerRadius = 10
         return categorycell
     }
-    
-    
-    var ProductListViewController: LipstickViewController {
-        let st = UIStoryboard(name: "Main", bundle: nil)
-        let vc = st.instantiateViewController(withIdentifier: "ProductListViewController") as! LipstickViewController
-        return vc
-    }
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.item == 0{
             eyelinerCV.isHidden = false
@@ -530,13 +531,15 @@ class MakeupViewController: UIViewController,UICollectionViewDelegate, UICollect
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let bounds = collectionView.bounds
-        return CGSize(width: bounds.width/3 - 25, height: bounds.height)
+        return CGSize(width: bounds.width/2 - 25, height: bounds.height)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 25.0
+        return 32.0
     }
-    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 24)
+    }
 }
 
 extension MakeupViewController: WKScriptMessageHandler, WKNavigationDelegate {
@@ -552,6 +555,11 @@ extension MakeupViewController: WKScriptMessageHandler, WKNavigationDelegate {
         print("HTML Script loaded")
         
 //        setCanvasAttributes()
+//
+        guard let img0 = UIImage(named: "LipstickBase") else { return }
+        guard let lip_base64 = img0.base64(format: .png) else { return }
+        let _lipstickBase = "\"\(lip_base64)\""
+        
         guard let img1 = UIImage(named: "lipstickGloss") else { return }
         guard let gloss_lip_base64 = img1.base64(format: .png) else { return }
         let _glossBase = "\"\(gloss_lip_base64)\""
@@ -583,7 +591,7 @@ extension MakeupViewController: WKScriptMessageHandler, WKNavigationDelegate {
         guard let blush_base64 = imgBlush.base64(format: .png) else { return }
         let _blushBase = "\"\(blush_base64)\""
         
-        loadImages(_glossBase: _glossBase, _glitterBase: _glitterBase, _metallicBase: _metallicBase, _eyeshadowBase: _eyeshadowBase, _eyeshadowMetallic: _eyeshadowMetallic, _eyeshadowMirco: _eyeshadowMirco, _eyeshadowNano: _eyeshadowNano, _blushBase: _blushBase)
+        loadImages(_lipBase: _lipstickBase, _glossBase: _glossBase, _glitterBase: _glitterBase, _metallicBase: _metallicBase, _eyeshadowBase: _eyeshadowBase, _eyeshadowMetallic: _eyeshadowMetallic, _eyeshadowMirco: _eyeshadowMirco, _eyeshadowNano: _eyeshadowNano, _blushBase: _blushBase)
         
         loadEyelinerStyleImagesJs()
     }
@@ -611,9 +619,9 @@ extension MakeupViewController: WKScriptMessageHandler, WKNavigationDelegate {
         }
     }
     
-    func loadImages(_glossBase: String, _glitterBase: String, _metallicBase: String, _eyeshadowBase: String, _eyeshadowMetallic: String, _eyeshadowMirco: String, _eyeshadowNano: String, _blushBase: String) {
+    func loadImages(_lipBase: String, _glossBase: String, _glitterBase: String, _metallicBase: String, _eyeshadowBase: String, _eyeshadowMetallic: String, _eyeshadowMirco: String, _eyeshadowNano: String, _blushBase: String) {
         
-        let f = "loadImages(\(_glossBase), \(_glitterBase), \(_metallicBase), \(_eyeshadowBase), \(_eyeshadowMetallic), \(_eyeshadowMirco), \(_eyeshadowNano), \(_blushBase));"
+        let f = "loadImages(\(_lipBase), \(_glossBase), \(_glitterBase), \(_metallicBase), \(_eyeshadowBase), \(_eyeshadowMetallic), \(_eyeshadowMirco), \(_eyeshadowNano), \(_blushBase));"
         self.webView.evaluateJavaScript(f) { (response, error) in
             if error == nil {
                 print("----return value : \(response)")

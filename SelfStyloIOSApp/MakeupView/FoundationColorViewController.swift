@@ -117,8 +117,12 @@ class FoundationColorViewController: UIViewController {
     
     @IBAction func clearMakeupAction(_ sender: UIButton) {
         btnClear.setImage(UIImage(named: "clear_makeup_select"), for: .normal)
-        strFoundationCategory = ""
+//        strFoundationCategory = ""
         strFoundationProduct = ""
+        if let cat = arrCategory[0].categoryName {
+            strFoundationCategory = cat
+        }
+        setCategory(categoryIndex: 0)
         colorNameCollectionView.reloadData()
         productListCollectionView.reloadData()
         NotificationCenter.default.post(name: NSNotification.Name("clear_makeup"), object: nil, userInfo: ["makeupName" : "Foundation"])
@@ -226,5 +230,9 @@ extension FoundationColorViewController:UICollectionViewDelegate, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 25.0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 18, bottom: 0, right: 16)
     }
 }

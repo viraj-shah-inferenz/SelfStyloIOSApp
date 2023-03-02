@@ -115,8 +115,13 @@ class LipstickViewController: UIViewController {
     
     @IBAction func clearMakeupAction(_ sender: UIButton) {
         btnClear.setImage(UIImage(named: "clear_makeup_select"), for: .normal)
-        strCategory = ""
+//        strCategory = ""
         strProduct = ""
+        
+        if let cat = arrCategory[0].categoryName {
+            strCategory = cat
+        }
+        setCategory(categoryIndex: 0)
         colorNameCollectionView.reloadData()
         productListCollectionView.reloadData()
         
@@ -166,7 +171,9 @@ extension LipstickViewController:UICollectionViewDelegate, UICollectionViewDataS
         if collectionView.tag == 0 {
             if arrProduct.count > 0 {
                 let data = arrProduct[indexPath.item]
-                print(data.colorCode)
+//                print(data.colorCode)
+                
+                cell.colorImage.backgroundColor = data.colorCode?.rgbToColor()
                 
                 if data.colorName == strProduct {
                     cell.colorImage.layer.borderColor = UIColor.white.cgColor
@@ -175,7 +182,8 @@ extension LipstickViewController:UICollectionViewDelegate, UICollectionViewDataS
                     cell.colorImage.layer.borderColor = UIColor.clear.cgColor
                     cell.colorImage.layer.borderWidth = 0.0
                 }
-                cell.colorImage.backgroundColor = data.colorCode?.rgbToColor()
+                
+                
             }
             return cell
         } else if collectionView.tag == 1 {
@@ -225,5 +233,8 @@ extension LipstickViewController:UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 25.0
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 18, bottom: 0, right: 16)
     }
 }
