@@ -216,7 +216,6 @@ class SignInViewController: UIViewController,UITextFieldDelegate,UITextViewDeleg
     }
     
     @objc func btnproceed(){
-        
         if PhoneView.isHidden == false {
             if  phoneNumberTextField.text == "" {
                 lblInvalidPhone.text = "Please enter valid phone number"
@@ -267,14 +266,30 @@ class SignInViewController: UIViewController,UITextFieldDelegate,UITextViewDeleg
                 
                 let patron = Patron(email: txtEmailAddress.text!)
                 let trimmed = patron.email.trimmingCharacters(in: .whitespacesAndNewlines)
-                apiUtils.sendEmailOtp(email: trimmed)
                 
-                UserDefaults.standard.removeObject(forKey: "Phone")
-                UserDefaults.standard.set(trimmed, forKey: "Email")
-                UserDefaults.standard.synchronize()
-                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4)) {
-                    self.performSegue(withIdentifier: "moveToOtp", sender: self)
-                }
+                apiUtils.sendEmailOtp(email: trimmed, success: { (data, response, error) in
+                    DispatchQueue.main.async{
+                        if let json = (try? JSONSerialization.jsonObject(with: data!)) as? [String:Any]{
+                                           let result = json["status"] as? String
+                                           if (result == "Success") {
+                                               let passValue = json
+                                               UserDefaults.standard.removeObject(forKey: "Phone")
+                                               UserDefaults.standard.set(trimmed, forKey: "Email")
+                                               UserDefaults.standard.synchronize()
+                                               DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4)) {
+                                                   self.performSegue(withIdentifier: "moveToOtp", sender: self)
+                                               }
+                                        
+                                           } else{
+                                               let alert = UIAlertController(title: "", message: "Invalid Email Address", preferredStyle: .alert)
+                                               let btnOk = UIAlertAction(title: "Okay", style: .default)
+                                               alert.addAction(btnOk)
+                                               self.present(alert, animated: true)
+                                           }
+                                       }
+                                   }
+                })
+                
             }
         }
         

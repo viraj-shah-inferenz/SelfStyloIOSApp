@@ -77,12 +77,13 @@ class SignInOtpViewController: UIViewController {
         let email = userDefault.string(forKey: "Email")
         if email == "" {
             let patron = Patron(email: email!)
-            apiUtils.sendEmailOtp(email: patron.email)
-            timerLabel.text = ""
-            totalTime = 31
-            resendOTPBtn.isEnabled = false
-            resendBtn.isHidden = true
-            sendOTPCode()
+            apiUtils.sendEmailOtp(email: patron.email, success: {(data, response, error) in
+                self.timerLabel.text = ""
+                self.totalTime = 31
+                self.resendOTPBtn.isEnabled = false
+                self.resendBtn.isHidden = true
+                self.sendOTPCode()
+            })
         }
         
     }
@@ -122,54 +123,57 @@ class SignInOtpViewController: UIViewController {
     }
     
     @IBAction func resendOTPBtnClicked(_ sender: UIButton) {
-        UserDefaults.standard.set("true", forKey: APP.IS_LOGIN)
-        UserDefaults.standard.synchronize()
-        if let email = emailVC.txtEmailAddress?.text {
+        if let email = userDefault.string(forKey: "Email") {
             if email != "" {
-                let patron = Patron(email: emailVC.txtEmailAddress.text!)
+                let patron = Patron(email:email)
                 apiUtils.sendVerifyOtp(email: patron.email,otp: otpString)
                 timerLabel.text = ""
                 totalTime = 31
+                print(email)
                 resendOTPBtn.isEnabled = false
                 sendOTPCode()
-            }else{
-                print("Please enter valid OTP")
-            }
-        }
-        
-      
-        
-        guard let verificationId = UserDefaults.standard.string(forKey: "authVerificationID") else {return}
-        print(verificationId)
-        
-        let credential = PhoneAuthProvider.provider().credential(withVerificationID: verificationId, verificationCode: otpString)
-        
-        Auth.auth().signIn(with: credential){ (success, error) in
-            
-            if error == nil{
-                print(success)
-                
-                self.view.makeToast("Sign in successfully...", duration: 3.0, position: .bottom)
-                
+                UserDefaults.standard.set("true", forKey: APP.IS_LOGIN)
+                UserDefaults.standard.synchronize()
                 DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4)) {
                     let profileVC = self.storyboard?.instantiateViewController(withIdentifier: "SignInProfileViewController") as! SignInProfileViewController
                     self.navigationController?.pushViewController(profileVC, animated: true)
                 }
-                
-            } else {
-                if let err = error {
-//                    self.view.makeToast("\(err.localizedDescription)", duration: 3.0, position: .bottom)
-                    let alert = UIAlertController(title: "Error", message: "Invalid OTP, please provide the correct OTP", preferredStyle: .alert)
-                    let btnOk = UIAlertAction(title: "Okay", style: .default)
-                    alert.addAction(btnOk)
-                    self.present(alert, animated: true)
-                    
-                }
-                
-            
             }
-            
-            
+        }
+        
+        else if let verificationId = UserDefaults.standard.string(forKey: "authVerificationID") {
+            print(verificationId)
+
+            let credential = PhoneAuthProvider.provider().credential(withVerificationID: verificationId, verificationCode: otpString)
+
+            Auth.auth().signIn(with: credential){ (success, error) in
+
+                if error == nil{
+                    print(success)
+
+                    self.view.makeToast("Sign in successfully...", duration: 3.0, position: .bottom)
+                    UserDefaults.standard.set("true", forKey: APP.IS_LOGIN)
+                    UserDefaults.standard.synchronize()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4)) {
+                        let profileVC = self.storyboard?.instantiateViewController(withIdentifier: "SignInProfileViewController") as! SignInProfileViewController
+                        self.navigationController?.pushViewController(profileVC, animated: true)
+                    }
+
+                } else {
+                    if let err = error {
+    //                    self.view.makeToast("\(err.localizedDescription)", duration: 3.0, position: .bottom)
+                        let alert = UIAlertController(title: "Error", message: "Invalid OTP, please provide the correct OTP", preferredStyle: .alert)
+                        let btnOk = UIAlertAction(title: "Okay", style: .default)
+                        alert.addAction(btnOk)
+                        self.present(alert, animated: true)
+
+                    }
+
+
+                }
+
+
+            }
         }
         
     }

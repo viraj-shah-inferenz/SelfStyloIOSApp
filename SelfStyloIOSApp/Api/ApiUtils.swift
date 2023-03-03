@@ -34,7 +34,7 @@ class ApiUtils {
     }
     
     
-    func sendEmailOtp(email:String){
+    func sendEmailOtp(email:String,success:@escaping ( Data? ,HTTPURLResponse?  , NSError? ) -> Void){
        
         if reachability.connection == .wifi || reachability.connection == .cellular {
             let serviceUrl = ApiUtils.MAKEUP_URL + self.apiCalls.sendEmailOtp
@@ -48,6 +48,7 @@ class ApiUtils {
                     return
                 }
                 
+                
                 if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
                     print("statusCode should be 200, but is \(httpStatus.statusCode)")
                     print("response = \(String(describing: response))")
@@ -56,12 +57,15 @@ class ApiUtils {
                 
                 let responseString = String(data: data, encoding: .utf8)
                 print("responseString = \(String(describing: responseString))")
+                
+                success(data,response as? HTTPURLResponse,error as NSError?)
             }
             task.resume()
         }else {
                 print("Not reachable")
             
         }
+
     }
     
     func sendVerifyOtp(email:String,otp:String){
