@@ -10,7 +10,7 @@ import FlagPhoneNumber
 import FirebaseAuth
 import AuthenticationServices
 import SafariServices
-
+import GoogleSignIn
 import Toast_Swift
 
 class SignInViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate{
@@ -40,6 +40,7 @@ class SignInViewController: UIViewController,UITextFieldDelegate,UITextViewDeleg
     
     let validityType: String.ValidityType = .email
    
+    @IBOutlet weak var signInGoogle: CardView!
     
     @IBOutlet weak var txtPhoneNumber: UITextField!
     @IBOutlet weak var lblPhone: UILabel!
@@ -75,9 +76,12 @@ class SignInViewController: UIViewController,UITextFieldDelegate,UITextViewDeleg
         setTextFieldPhone()
         
         setUpSignInAppleButton()
+        setUpSignInGoogleButton()
         getData()
         setUpTextView()
     }
+    
+    
     
     func setUpTextView()
     {
@@ -118,6 +122,57 @@ class SignInViewController: UIViewController,UITextFieldDelegate,UITextViewDeleg
                     
                     
                 })
+    }
+    
+    func setUpSignInGoogleButton()
+    {
+        signInGoogle.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleGoogleIdRequest)))
+    }
+    
+    @objc func handleGoogleIdRequest() {
+        // Start the sign in flow!
+        GIDSignIn.sharedInstance.signIn(withPresenting: self) { [unowned self] result, error in
+          guard error == nil else {
+            // ...
+              return
+          }
+
+          guard let user = result?.user,let idToken = user.idToken?.tokenString else {return}
+           
+
+          let credential = GoogleAuthProvider.credential(withIDToken: idToken,
+                                                         accessToken: user.accessToken.tokenString)
+            Auth.auth().signIn(with: credential) { result, error in
+                if let error = error{
+                    print("Error because \(error.localizedDescription)")
+                    return
+                }else{
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4)) {
+                        let profileVC = self.storyboard?.instantiateViewController(withIdentifier: "SignInProfileViewController") as! SignInProfileViewController
+                        profileVC.modalPresentationStyle = .fullScreen
+                        self.present(profileVC, animated: false)
+                    }
+                    if let imgUrl: URL = user.profile?.imageURL(withDimension: 100) as? URL {
+                        print(imgUrl)
+                        UserDefaults.standard.set(imgUrl, forKey: "ProfileImageUrl")
+                        UserDefaults.standard.synchronize()
+                    }
+                    
+                    let name = user.profile?.name
+                    UserDefaults.standard.set(name, forKey: "FullName")
+                    UserDefaults.standard.synchronize()
+                    let email = user.profile?.email
+                    UserDefaults.standard.set(email, forKey: "Email")
+                    UserDefaults.standard.synchronize()
+                    self.view.makeToast("Sign in successfully...", duration: 3.0, position: .bottom)
+                    UserDefaults.standard.set("true", forKey: APP.IS_LOGIN)
+                    UserDefaults.standard.synchronize()
+                   
+                }
+                        // At this point, our user is signed in
+            }
+          // ...
+        }
     }
     
   
@@ -297,6 +352,7 @@ class SignInViewController: UIViewController,UITextFieldDelegate,UITextViewDeleg
         
             
     }
+    
     
     
     @IBAction func switchViewAction(_ sender: UISegmentedControl) {

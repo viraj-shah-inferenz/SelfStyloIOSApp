@@ -43,8 +43,9 @@ extension EditProfileViewController: UITableViewDelegate, UITableViewDataSource,
 
         if indexPath.row == 0 {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "SelectPhotoTableViewCell") as? SelectPhotoTableViewCell {
-                let image = userDefault.string(forKey: "ProfileImage")
+                let image = userDefault.string(forKey: "ProfileImageUrl")
                 cell.profileImageView.image = image?.imageFromBase64()
+                cell.profileImageView.sd_setImage(with: URL(string: image!), completed: .none)
                 cell.edtProfile.addTarget(self, action: #selector(editProfile), for: .touchUpInside)
                 return cell
             }

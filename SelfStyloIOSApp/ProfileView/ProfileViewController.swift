@@ -61,6 +61,14 @@ class ProfileViewController: UIViewController {
     @objc func gotoLogout(gesture: UILongPressGestureRecognizer){
         UserDefaults.standard.removeObject(forKey: APP.IS_LOGIN)
         UserDefaults.standard.synchronize()
+        UserDefaults.standard.removeObject(forKey: "ProfileImageUrl")
+        UserDefaults.standard.synchronize()
+        UserDefaults.standard.removeObject(forKey: "FullName")
+        UserDefaults.standard.synchronize()
+        UserDefaults.standard.removeObject(forKey: "Email")
+        UserDefaults.standard.synchronize()
+        UserDefaults.standard.removeObject(forKey: "Phone")
+        UserDefaults.standard.synchronize()
         let loginNavController:UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "SignInViewController") as! SignInViewController
 //        let loginNavController = self.storyboard!.instantiateViewController(identifier: "SignInViewController")
 //        navigationController?.pushViewController(loginNavController, animated: true)
@@ -98,7 +106,8 @@ class ProfileViewController: UIViewController {
     func getDataFromDB() {
         for patron in db.getAll(){
             profileImageView.image = patron.profileImage.imageFromBase64()
-            self.userDefault.set(patron.profileImage, forKey: "ProfileImage")
+            profileImageView.sd_setImage(with: URL(string: patron.profileImage), completed: .none)
+            self.userDefault.set(patron.profileImage, forKey: "ProfileImageUrl")
             lblName.text = patron.name
             self.userDefault.set(patron.name, forKey: "Name")
             lblEmail.text = patron.email

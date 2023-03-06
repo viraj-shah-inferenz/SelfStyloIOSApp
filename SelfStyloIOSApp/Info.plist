@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>To save photo</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -11,7 +9,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.428254982239-9rpf2mhkbv212nvkvu7unn5vbtnts4es</string>
+				<string>com.googleusercontent.apps.723871272445-do7mcopdr1mbvufontj3ec51bn9imdrb</string>
 			</array>
 		</dict>
 	</array>

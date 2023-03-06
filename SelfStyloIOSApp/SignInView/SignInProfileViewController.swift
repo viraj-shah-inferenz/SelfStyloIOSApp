@@ -14,11 +14,8 @@ class SignInProfileViewController: UIViewController {
     var apiUtils = ApiUtils()
     var patron = Patron()
    
-    let userDefault = UserDefaults.standard
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-
         setDelegates()
         // Do any additional setup after loading the view.
         self.tblView.register(UINib(nibName: "SignInPhotoTableViewCell", bundle: nil), forCellReuseIdentifier: "SignInPhotoTableViewCell")
@@ -187,12 +184,28 @@ extension SignInProfileViewController: UITableViewDelegate, UITableViewDataSourc
         
         if indexPath.row == 0 {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "SignInPhotoTableViewCell") as? SignInPhotoTableViewCell {
+                
+                if let profileImageUrl = UserDefaults.standard.url(forKey: "ProfileImageUrl") {
+                    patron.profileImage = profileImageUrl.absoluteString
+                    cell.profileImageView.sd_setImage(with: URL(string: patron.profileImage), completed: .none)
+                }
                 cell.edtProfile.addTarget(self, action: #selector(editProfile), for: .touchUpInside)
                 return cell
             }
         }
         else if indexPath.row == 1{
             if let namecell:SignInFullNameTableViewCell = tableView.dequeueReusableCell(withIdentifier: "SignInFullNameTableViewCell",for: indexPath) as? SignInFullNameTableViewCell{
+                if let name = UserDefaults.standard.string(forKey: "FullName")
+                {
+                    if name == ""
+                    {
+                        namecell.txtFullName.text! = ""
+                    }else
+                    {
+                        patron.name = name
+                        namecell.txtFullName.text! = patron.name
+                    }
+                }
                 namecell.txtFullName.tag = indexPath.row
                 namecell.txtFullName.delegate = self
                 return namecell
@@ -201,7 +214,7 @@ extension SignInProfileViewController: UITableViewDelegate, UITableViewDataSourc
         else if indexPath.row == 2 {
             //Gender
             if let emailcell:SignInEmailTableViewCell = tableView.dequeueReusableCell(withIdentifier: "SignInEmailTableViewCell") as? SignInEmailTableViewCell{
-                if let email = userDefault.string(forKey: "Email")
+                if let email = UserDefaults.standard.string(forKey: "Email")
                 {
                     if email == ""{
                         emailcell.txtEmailAddress.text! = ""
@@ -219,7 +232,7 @@ extension SignInProfileViewController: UITableViewDelegate, UITableViewDataSourc
         else if indexPath.row == 3 {
             if let phonecell:SignInPhoneTableViewCell = tableView.dequeueReusableCell(withIdentifier: "SignInPhoneTableViewCell") as? SignInPhoneTableViewCell{
                 
-                if let phone = userDefault.string(forKey: "Phone")
+                if let phone = UserDefaults.standard.string(forKey: "Phone")
                 {
                     if phone == ""
                     {

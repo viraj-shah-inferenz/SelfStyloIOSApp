@@ -9,6 +9,7 @@ import UIKit
 import IQKeyboardManager
 import FirebaseCore
 import FirebaseAuth
+import GoogleSignIn
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -37,6 +38,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseApp.configure()
         FirebaseConfiguration.shared.setLoggerLevel(.max)
+        let clientID = FirebaseApp.app()?.options.clientID
+
+        // Create Google Sign In configuration object.
+        let config = GIDConfiguration(clientID: clientID!)
+        GIDSignIn.sharedInstance.configuration = config
         return true
     }
   
@@ -61,6 +67,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
       }
       // URL not auth related; it should be handled separately.
+        if GIDSignIn.sharedInstance.handle(url)
+        {
+            return true
+        }
         return true
     }
 
