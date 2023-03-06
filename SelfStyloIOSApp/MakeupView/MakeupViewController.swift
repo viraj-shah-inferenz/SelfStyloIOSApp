@@ -8,6 +8,7 @@
 import UIKit
 import WebKit
 import JavaScriptCore
+import Toast_Swift
 
 class MakeupViewController: UIViewController {
     
@@ -148,10 +149,9 @@ class MakeupViewController: UIViewController {
     func makeupStackView() {
         let makeupLayerVC = self.storyboard?.instantiateViewController(withIdentifier: "MakeupLayerViewController") as! MakeupLayerViewController
         if makeupData.keys.count == 0 {
-            let alert = UIAlertController(title: "StyloCam", message: "There is nothing!, layers are empty.", preferredStyle: .alert)
-            let btnOk = UIAlertAction(title: "Ok", style: .default)
-            alert.addAction(btnOk)
-            present(alert, animated: true)
+            
+            self.view.makeToast("Nothing is applied, layers are empty!", duration: 4.0, position: .bottom)
+            
         } else {
             makeupLayerVC.makeupLayerData = makeupData
             makeupLayerVC.delegate = self

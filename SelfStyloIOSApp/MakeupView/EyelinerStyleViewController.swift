@@ -66,6 +66,7 @@ class EyelinerStyleViewController: UIViewController {
             strCategory = cat
         }
         setCategory(categoryIndex: 0)
+        lblShadeName.text = "select a shade"
         colorNameCollectionView.reloadData()
         productListCollectionView.reloadData()
         

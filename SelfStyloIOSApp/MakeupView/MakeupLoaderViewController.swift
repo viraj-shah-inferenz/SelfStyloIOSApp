@@ -9,6 +9,7 @@ import UIKit
 
 class MakeupLoaderViewController: UIViewController {
 
+    @IBOutlet weak var lblLoading: UILabel!
     var apiUtils = ApiUtils()
     
     var makeup = MakeDetails()
@@ -20,7 +21,7 @@ class MakeupLoaderViewController: UIViewController {
     var numOfDownload = 0
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        lblLoading.isHidden = false
         fetchEyelinerStyle()
     }
     
@@ -96,10 +97,10 @@ class MakeupLoaderViewController: UIViewController {
                     if let mkup = makeupDetails {
                         self.makeup = mkup
                         if self.makeup.data?.makeup?.count ?? 0 > 0 {
-//                            print(self.makeup.data?.makeup?[0].makeupName!)
                             let makeupVC = self.storyboard?.instantiateViewController(withIdentifier: "MakeupViewController") as! MakeupViewController
 //                            makeupVC.makeup = mkup
                             self.eyeshadowVC.makeup = self.makeup
+                            self.lblLoading.isHidden = true
                             makeupVC.modalPresentationStyle = .fullScreen
                             self.present(makeupVC, animated: true)
                         } else {

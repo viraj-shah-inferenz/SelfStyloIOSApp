@@ -121,6 +121,8 @@
 		534CAF2229A62E8D00E64AD1 /* EyelinerStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534CAF2029A62E8D00E64AD1 /* EyelinerStyle.swift */; };
 		534CAF2829A6317D00E64AD1 /* MakeupLayerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 534CAF2629A6317D00E64AD1 /* MakeupLayerTableViewCell.xib */; };
 		534CAF2929A6317D00E64AD1 /* MakeupLayerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534CAF2729A6317D00E64AD1 /* MakeupLayerTableViewCell.swift */; };
+		53675B2629B2024900901979 /* FoundationAnalyzeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53675B2529B2024900901979 /* FoundationAnalyzeViewController.swift */; };
+		536AE08429B1CBC6008C7C8F /* FoundationShadesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536AE08329B1CBC6008C7C8F /* FoundationShadesViewController.swift */; };
 		537A7E0C29A619AE00A97AFF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 537A7E0B29A619AE00A97AFF /* GoogleService-Info.plist */; };
 		53829454298D2EB4002D7671 /* Js in Resources */ = {isa = PBXBuildFile; fileRef = 53829453298D2EB4002D7671 /* Js */; };
 		5398872629ADDF8500E65C20 /* CaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5398872529ADDF8500E65C20 /* CaptureViewController.swift */; };
@@ -268,6 +270,8 @@
 		534CAF2029A62E8D00E64AD1 /* EyelinerStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EyelinerStyle.swift; sourceTree = "<group>"; };
 		534CAF2629A6317D00E64AD1 /* MakeupLayerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MakeupLayerTableViewCell.xib; sourceTree = "<group>"; };
 		534CAF2729A6317D00E64AD1 /* MakeupLayerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakeupLayerTableViewCell.swift; sourceTree = "<group>"; };
+		53675B2529B2024900901979 /* FoundationAnalyzeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationAnalyzeViewController.swift; sourceTree = "<group>"; };
+		536AE08329B1CBC6008C7C8F /* FoundationShadesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationShadesViewController.swift; sourceTree = "<group>"; };
 		537A7E0B29A619AE00A97AFF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		53829453298D2EB4002D7671 /* Js */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Js; sourceTree = "<group>"; };
 		5398872529ADDF8500E65C20 /* CaptureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureViewController.swift; sourceTree = "<group>"; };
@@ -348,6 +352,8 @@
 				2273A7722989116A007FE6F3 /* TryOnViewController.swift */,
 				5325AF1C298A5291004F385D /* MakeupLoaderViewController.swift */,
 				5398872529ADDF8500E65C20 /* CaptureViewController.swift */,
+				536AE08329B1CBC6008C7C8F /* FoundationShadesViewController.swift */,
+				53675B2529B2024900901979 /* FoundationAnalyzeViewController.swift */,
 			);
 			path = MakeupView;
 			sourceTree = "<group>";
@@ -1010,6 +1016,7 @@
 				2289852D2976CDE7002DD2E8 /* Banner.swift in Sources */,
 				22B00B7D297EA0460075FB02 /* EyelinerViewController.swift in Sources */,
 				228959A8297A626C008B72CA /* ColorNameCollectionViewCell.swift in Sources */,
+				536AE08429B1CBC6008C7C8F /* FoundationShadesViewController.swift in Sources */,
 				224650E62967EB0B00BFC8DD /* SignInOtpViewController.swift in Sources */,
 				22A477DD2965791C00523866 /* SavePresetsViewController.swift in Sources */,
 				22E9837029ACA2C4001AA264 /* SignInPhotoTableViewCell.swift in Sources */,
@@ -1022,6 +1029,7 @@
 				2273A7732989116A007FE6F3 /* TryOnViewController.swift in Sources */,
 				22F858E4295B012E00A7D86E /* CustomTabBarControllerViewController.swift in Sources */,
 				22B00B73297E826C0075FB02 /* BlushViewController.swift in Sources */,
+				53675B2629B2024900901979 /* FoundationAnalyzeViewController.swift in Sources */,
 				53BD4986298007B200B1D53B /* MakeDetails.swift in Sources */,
 				22BB026529711E8100F514B0 /* Patron.swift in Sources */,
 				22C8CA4F295EC1FA00336E03 /* SelectPhotoTableViewCell.swift in Sources */,
@@ -1226,12 +1234,13 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SelfStyloIOSApp/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app needs camera permision for makeup try-on";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "To save photo";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1263,12 +1272,13 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SelfStyloIOSApp/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app needs camera permision for makeup try-on";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "To save photo";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (

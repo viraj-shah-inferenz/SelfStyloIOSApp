@@ -123,6 +123,7 @@ class FoundationColorViewController: UIViewController {
             strFoundationCategory = cat
         }
         setCategory(categoryIndex: 0)
+        lblShadeName.text = "select a shade"
         colorNameCollectionView.reloadData()
         productListCollectionView.reloadData()
         NotificationCenter.default.post(name: NSNotification.Name("clear_makeup"), object: nil, userInfo: ["makeupName" : "Foundation"])

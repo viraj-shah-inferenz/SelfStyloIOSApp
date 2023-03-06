@@ -51,12 +51,16 @@ class FoundationViewController: UIViewController {
     
     @objc
     func shadeFondationAction() {
-        
+        let foundationShadesVC = self.storyboard?.instantiateViewController(withIdentifier: "FoundationShadesViewController") as! FoundationShadesViewController
+//        foundationShadesVC.modalPresentationStyle = .fullScreen
+        present(foundationShadesVC, animated: true)
     }
     
     @objc
     func analyzeFondationAction() {
-        
+        let foundationAnalyzeVC = self.storyboard?.instantiateViewController(withIdentifier: "FoundationAnalyzeViewController") as! FoundationAnalyzeViewController
+//        foundationAnalyzeVC.modalPresentationStyle = .fullScreen
+        present(foundationAnalyzeVC, animated: true)
     }
 
     @IBAction func btnBack(_ sender: UIButton) {

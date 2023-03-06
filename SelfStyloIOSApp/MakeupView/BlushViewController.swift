@@ -130,6 +130,7 @@ class BlushViewController: UIViewController {
             strBlushCategory = cat
         }
         setCategory(categoryIndex: 0)
+        lblShadeName.text = "select a shade"
         colorNameCollectionView.reloadData()
         productListCollectionView.reloadData()
         
