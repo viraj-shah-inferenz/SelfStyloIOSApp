@@ -14,6 +14,8 @@ class FoundationShadesViewController: UIViewController {
     @IBOutlet weak var btnBack: UIButton!
     
     
+    @IBOutlet weak var foundationColorView: UIView!
+    @IBOutlet weak var undertoneSkintoneShadeView: UIView!
     
     @IBOutlet weak var btnUndertone1: UIButton!
     @IBOutlet weak var btnUndertone2: UIButton!
@@ -25,6 +27,7 @@ class FoundationShadesViewController: UIViewController {
     @IBOutlet weak var btnSkintone4: UIButton!
     @IBOutlet weak var btnSkintone5: UIButton!
     
+    
     var apiCalls = IApiCalls()
     
     override func viewDidLoad() {
@@ -35,78 +38,33 @@ class FoundationShadesViewController: UIViewController {
         
         btnNext.addTarget(self, action: #selector(nextAction(sender: )), for: .touchUpInside)
         
+        foundationColorView.isHidden = true
+        undertoneSkintoneShadeView.alpha = 1.0
+        
     }
     
     @objc func nextAction(sender: UIButton) {
-        self.dismiss(animated: true)
+//        foundationShade
+//        self.dismiss(animated: true)
+        
+        foundationColorView.isHidden = false
+        undertoneSkintoneShadeView.alpha = 0.0
+        foundationColorView.backgroundColor = UIColor.darkGray
     }
-    
-    /*func getUndertoneSkintone() {
-        let appUtils =  ApiUtils()
-        
-        let serviceUrl = ApiUtils.MAKEUP_URL + apiCalls.get_undertone_skintone
-        
-        appUtils.getUndertoneSkintone(fronUrl: serviceUrl) { Result in
-            switch Result {
-            case .success(let data):
-                do {
-                    let skintoneUndertone = try JSONDecoder().decode(SkintoneUndertone.self, from: data)
-                    print("skintones: \(skintoneUndertone.data?.skintones)")
-                    if let skintone = skintoneUndertone.data?.skintones {
-                        
-                        for i in 0..<skintone.count {
-                            if i == 0 {
-                                let skinData = skintone[i]
-                                self.btnSkintone1.backgroundColor = skinData.code?.rgbToColor()
-                            } else if i == 1 {
-                                let skinData = skintone[i]
-                                self.btnSkintone2.backgroundColor = skinData.code?.rgbToColor()
-                            } else if i == 2 {
-                                let skinData = skintone[i]
-                                self.btnSkintone3.backgroundColor = skinData.code?.rgbToColor()
-                            } else if i == 3 {
-                                let skinData = skintone[i]
-                                self.btnSkintone4.backgroundColor = skinData.code?.rgbToColor()
-                            } else if i == 4 {
-                                let skinData = skintone[i]
-                                self.btnSkintone5.backgroundColor = skinData.code?.rgbToColor()
-                            }
-                        }
-                    }
-                    
-                    if let undertone = skintoneUndertone.data?.undertones {
-                        for i in 0..<undertone.count {
-                            if i == 0 {
-                                let skinData = undertone[i]
-                                self.btnUndertone1.backgroundColor = skinData.code?.rgbToColor()
-                            } else if i == 1 {
-                                let skinData = undertone[i]
-                                self.btnUndertone2.backgroundColor = skinData.code?.rgbToColor()
-                            } else if i == 2 {
-                                let skinData = undertone[i]
-                                self.btnUndertone3.backgroundColor = skinData.code?.rgbToColor()
-                            }
-                        }
-                    }
-                } catch let err {
-                    print(err.localizedDescription)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "foundationShade" {
+            if let foundationColorVC = segue.destination as? FoundationColorViewController {
+                foundationColorVC.backToFoundationShade = {
+                    self.foundationColorView.isHidden = true
+                    self.undertoneSkintoneShadeView.alpha = 1.0
                 }
-                break
-            case .failure(let error):
-                print(error.localizedDescription)
-                break
             }
         }
-        
-        
-    }*/
-    
+    }
     
     @IBAction func backAction(_ sender: UIButton) {
         dismiss(animated: true)
     }
-    
-    
     
     @IBAction func undertoneShadeAction(_ sender: UIButton) {
         print("undertones \(sender.tag)")

@@ -96,22 +96,9 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     fileprivate func openCamera() {
-//        let detailViewController:UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "DialogSelfieCamSelectionViewController") as! DialogSelfieCamSelectionViewController
-//        let smallId = UISheetPresentationController.Detent.Identifier("small")
-//        let smallDetent = UISheetPresentationController.Detent.custom(identifier: smallId) { context in
-//            return 250
-//        }
-//        if let sheet = detailViewController.sheetPresentationController {
-//            sheet.detents = [smallDetent,.medium()]
-//            sheet.largestUndimmedDetentIdentifier = .medium
-//           sheet.prefersScrollingExpandsWhenScrolledToEdge = false
-//           sheet.prefersEdgeAttachedInCompactHeight = true
-//           sheet.widthFollowsPreferredContentSizeWhenEdgeAttached = true
-//        }
-//
-//        self.present(detailViewController, animated: true,completion: nil)
+
         let detailViewController:MakeupLoaderViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MakeupLoaderViewController") as! MakeupLoaderViewController
-//        detailViewController.strOpenView = "firstTime"
+        
         detailViewController.modalPresentationStyle = .fullScreen
         self.present(detailViewController, animated: false)
     }

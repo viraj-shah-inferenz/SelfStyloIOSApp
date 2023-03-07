@@ -27,6 +27,8 @@ class FoundationColorViewController: UIViewController {
     @IBOutlet weak var btnCheckbox: UIButton!
     var backToFoundation : (()-> Void)?
     
+    var backToFoundationShade : (()-> Void)?
+    
     var strFoundationCategory: String = ""
     var strFoundationProduct: String = ""
     
@@ -95,6 +97,7 @@ class FoundationColorViewController: UIViewController {
     
     @IBAction func btnBack(_ sender: UIButton) {
         backToFoundation?()
+        backToFoundationShade?()
     }
     
     func setDelegates() {

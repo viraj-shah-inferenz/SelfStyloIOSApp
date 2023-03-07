@@ -241,4 +241,25 @@ extension BlushViewController: UICollectionViewDelegate, UICollectionViewDataSou
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 25.0
     }
+    
+    /*func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        
+        
+        if collectionView.tag == 1 {
+            let totalCellWidth = 124 * collectionView.numberOfItems(inSection: 0)
+            let totalSpacingWidth = 0 * (collectionView.numberOfItems(inSection: 0) - 2)
+            
+
+            let leftInset = (collectionView.layer.frame.size.width - CGFloat(totalCellWidth + totalSpacingWidth)) / 2
+            let rightInset = leftInset
+
+            print(leftInset)
+            
+
+            return UIEdgeInsets(top: 0, left: leftInset - 24, bottom: 0, right: 0)
+        } else {
+            return UIEdgeInsets.zero
+        }
+    }*/
+    
 }

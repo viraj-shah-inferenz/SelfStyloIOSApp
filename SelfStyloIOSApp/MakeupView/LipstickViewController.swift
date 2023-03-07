@@ -25,6 +25,8 @@ class LipstickViewController: UIViewController {
 
     var apiUtils = ApiUtils()
     
+    
+    
     var makeup = MakeDetails()
     
     var arrCategory = [Category]()
@@ -32,6 +34,7 @@ class LipstickViewController: UIViewController {
     
     var strCategory: String = ""
     var strProduct: String = ""
+    var strProductId: String = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -135,6 +138,27 @@ class LipstickViewController: UIViewController {
         }else
         {
             btnCheckbox.setImage(UIImage.init(named: "favourite_checked"), for: .normal)
+            
+            let api = IApiCalls()
+            let uuid = UUID().uuidString
+            let apiUrl = ApiUtils.MAKEUP_URL + api.like_product + "?id=\(uuid)&product_id=\(strProductId)"
+            print(apiUrl)
+            if strProduct == "" {
+                print("Select make-up")
+            } else {
+                apiUtils.likeProduct(fronUrl: apiUrl) { Result in
+                    switch Result {
+                        
+                    case .success(let data):
+                        let res = String(data: data, encoding: .utf8)
+                        print(res)
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                    }
+                    
+                }
+            }
+            
         }
         btnCheckbox.isSelected = !btnCheckbox.isSelected
     }
@@ -176,6 +200,13 @@ extension LipstickViewController:UICollectionViewDelegate, UICollectionViewDataS
                 
                 cell.colorImage.backgroundColor = data.colorCode?.rgbToColor()
                 
+                if data.productLiked == true {
+                    cell.colorImage.layer.borderColor = UIColor.red.cgColor
+                    cell.colorImage.layer.borderWidth = 1.0
+                } else {
+                    cell.colorImage.layer.borderColor = UIColor.clear.cgColor
+                    cell.colorImage.layer.borderWidth = 0.0
+                }
                 if data.colorName == strProduct {
                     cell.colorImage.layer.borderColor = UIColor.white.cgColor
                     cell.colorImage.layer.borderWidth = 1.0
@@ -212,14 +243,22 @@ extension LipstickViewController:UICollectionViewDelegate, UICollectionViewDataS
             
             let product = arrProduct[indexPath.item]
             strProduct = product.colorName ?? ""
+            if let pID = product.id {
+                strProductId = String(pID)
+            } else {
+                print("product id is empty")
+            }
+            
             lblShadeName.text = product.colorName
             collectionView.reloadData()
+            
         } else if collectionView.tag == 1 {
             // Category name
             let data = arrCategory[indexPath.item]
             strCategory = data.categoryName ?? ""
             setCategory(categoryIndex: indexPath.item)
             collectionView.reloadData()
+            
         } else {
         }
     }

@@ -796,7 +796,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="StyloCam" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IWI-l7-BbX">
-                                        <rect key="frame" x="114.99999999999999" y="110" width="161.66666666666663" height="36"/>
+                                        <rect key="frame" x="115" y="110" width="161.66666666666663" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="MXA-PE-zbq"/>
                                         </constraints>
@@ -1081,7 +1081,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Please enter the verification code we’ve sent you at " translatesAutoresizingMaskIntoConstraints="NO" id="Vrm-bZ-OEA">
-                                <rect key="frame" x="20" y="111.00000000000001" width="335" height="46.666666666666671"/>
+                                <rect key="frame" x="20" y="111" width="335" height="46.666666666666657"/>
                                 <color key="textColor" red="0.36862745099999999" green="0.3803921569" blue="0.42745098040000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="DMSans-Medium" family="DM Sans" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -1342,10 +1342,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="8h5-Rh-GX0">
-                                <rect key="frame" x="57" y="28" width="318" height="40"/>
+                                <rect key="frame" x="57" y="24" width="318" height="44"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="fJz-zZ-qdS"/>
+                                    <constraint firstAttribute="height" constant="44" id="fJz-zZ-qdS"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="28" id="Orz-Ra-3gZ">
                                     <size key="itemSize" width="56" height="34"/>
@@ -1355,7 +1355,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ColorCodeCollectionViewCell" id="AIS-Ji-WWT" customClass="ColorCodeCollectionViewCell" customModule="SelfStyloIOSApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="3" width="34" height="34"/>
+                                        <rect key="frame" x="0.0" y="5" width="34" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="a6o-lM-Cdf">
                                             <rect key="frame" x="0.0" y="0.0" width="34" height="34"/>
@@ -1559,10 +1559,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ilt-GX-ciO">
-                                <rect key="frame" x="57" y="23" width="318" height="40"/>
+                                <rect key="frame" x="57" y="19" width="318" height="44"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="CBZ-gK-3yz"/>
+                                    <constraint firstAttribute="height" constant="44" id="CBZ-gK-3yz"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="28" id="Jgx-el-cQ6">
                                     <size key="itemSize" width="56" height="34"/>
@@ -1572,7 +1572,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ColorCodeCollectionViewCell" id="xzd-0g-cWh" customClass="ColorCodeCollectionViewCell" customModule="SelfStyloIOSApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="3" width="34" height="34"/>
+                                        <rect key="frame" x="0.0" y="5" width="34" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="DnS-rF-xTV">
                                             <rect key="frame" x="0.0" y="0.0" width="34" height="34"/>
@@ -2466,6 +2466,8 @@ Bad lighting</string>
                         <outlet property="btnUndertone1" destination="xTu-B9-ufp" id="OOj-oW-PHU"/>
                         <outlet property="btnUndertone2" destination="6Hd-xE-Mjx" id="rYo-6B-sQ2"/>
                         <outlet property="btnUndertone3" destination="2rM-JB-faT" id="Ung-H5-RHb"/>
+                        <outlet property="foundationColorView" destination="bOw-qN-FpP" id="j4p-qa-5Qi"/>
+                        <outlet property="undertoneSkintoneShadeView" destination="kKQ-QF-OvT" id="Obr-5l-FKT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RN6-Hy-fwv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2481,10 +2483,10 @@ Bad lighting</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Jiv-l9-HJS">
-                                <rect key="frame" x="56" y="20" width="319" height="40"/>
+                                <rect key="frame" x="56" y="20" width="319" height="44"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="PMc-P4-cV8"/>
+                                    <constraint firstAttribute="height" constant="44" id="PMc-P4-cV8"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="28" id="Lqv-tC-V43">
                                     <size key="itemSize" width="56" height="34"/>
@@ -2494,7 +2496,7 @@ Bad lighting</string>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ColorCodeCollectionViewCell" id="TIZ-hL-fBr" customClass="ColorCodeCollectionViewCell" customModule="SelfStyloIOSApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="3" width="34" height="34"/>
+                                        <rect key="frame" x="0.0" y="5" width="34" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="OiS-GI-PJF">
                                             <rect key="frame" x="0.0" y="0.0" width="34" height="34"/>
@@ -2526,7 +2528,7 @@ Bad lighting</string>
                                 </connections>
                             </collectionView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="aVH-y1-KeQ">
-                                <rect key="frame" x="0.0" y="62" width="375" height="34"/>
+                                <rect key="frame" x="0.0" y="66" width="375" height="34"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="IZC-bx-w5E"/>
@@ -2574,10 +2576,10 @@ Bad lighting</string>
                                 </connections>
                             </collectionView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b3p-mx-z3J" customClass="CardView" customModule="SelfStyloIOSApp" customModuleProvider="target">
-                                <rect key="frame" x="15" y="97" width="345" height="38.333333333333343"/>
+                                <rect key="frame" x="15" y="101" width="345" height="34.333333333333343"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Eyeshadow" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WYY-9s-wIG">
-                                        <rect key="frame" x="122.66666666666666" y="9.9999999999999982" width="100" height="18.333333333333329"/>
+                                        <rect key="frame" x="122.66666666666666" y="7.9999999999999982" width="100" height="18.333333333333329"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="J5f-I1-USI"/>
                                             <constraint firstAttribute="height" constant="18.329999999999998" id="dRw-Y2-Dx3"/>
@@ -2587,7 +2589,7 @@ Bad lighting</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lqc-lR-m8p">
-                                        <rect key="frame" x="313" y="11.333333333333329" width="24" height="16"/>
+                                        <rect key="frame" x="313" y="9.3333333333333286" width="24" height="16"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="24" id="4PO-9i-dfV"/>
                                             <constraint firstAttribute="height" constant="16" id="9RI-5u-nc5"/>
@@ -2600,7 +2602,7 @@ Bad lighting</string>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rPJ-Cj-5LV">
-                                        <rect key="frame" x="8" y="6.6666666666666714" width="52" height="25"/>
+                                        <rect key="frame" x="8" y="4.6666666666666714" width="52" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="7v3-2I-eQH"/>
                                             <constraint firstAttribute="width" constant="52" id="Lpc-Ht-Hrp"/>
@@ -2842,7 +2844,7 @@ Bad lighting</string>
                                 </constraints>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" id="HLF-Z5-e2t">
-                                <rect key="frame" x="1" y="-2" width="373" height="139"/>
+                                <rect key="frame" x="-1" y="-3" width="374" height="139"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
                                     <segue destination="Qg7-Ni-M3l" kind="embed" identifier="foundationView" id="ael-Cu-1ON"/>
@@ -3036,11 +3038,10 @@ Bad lighting</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="0kw-pc-UDU">
-                                <rect key="frame" x="57" y="24" width="318" height="40"/>
+                                <rect key="frame" x="57" y="24" width="318" height="44"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="5Zf-9P-CWH"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="IYX-VQ-lTn"/>
+                                    <constraint firstAttribute="height" constant="44" id="5Zf-9P-CWH"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="28" id="3EI-9C-AHH">
                                     <size key="itemSize" width="56" height="34"/>
@@ -3050,7 +3051,7 @@ Bad lighting</string>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ColorCodeCollectionViewCell" id="jfE-cQ-OAK" customClass="ColorCodeCollectionViewCell" customModule="SelfStyloIOSApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="3" width="34" height="34"/>
+                                        <rect key="frame" x="0.0" y="5" width="34" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Nbz-lE-dFa">
                                             <rect key="frame" x="0.0" y="0.0" width="34" height="34"/>
@@ -3082,7 +3083,7 @@ Bad lighting</string>
                                 </connections>
                             </collectionView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="df3-zm-fLQ">
-                                <rect key="frame" x="0.0" y="66" width="375" height="34"/>
+                                <rect key="frame" x="0.0" y="70" width="375" height="34"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="A41-bP-amo"/>
@@ -3128,7 +3129,7 @@ Bad lighting</string>
                                 </connections>
                             </collectionView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vyL-Eh-8Og" customClass="CardView" customModule="SelfStyloIOSApp" customModuleProvider="target">
-                                <rect key="frame" x="16" y="101" width="345" height="33.333333333333343"/>
+                                <rect key="frame" x="16" y="105" width="345" height="33.333333333333343"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zxB-xO-DPO">
                                         <rect key="frame" x="313" y="9" width="24" height="16"/>
@@ -3189,7 +3190,7 @@ Bad lighting</string>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gzA-z9-LsJ">
-                                <rect key="frame" x="8" y="28" width="32" height="32"/>
+                                <rect key="frame" x="8" y="30" width="32" height="32"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="Ccb-ne-3GN"/>
@@ -3721,11 +3722,11 @@ Bad lighting</string>
                                 </cells>
                             </collectionView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="pn1-EU-Jrx">
-                                <rect key="frame" x="57" y="23.666666666666671" width="318" height="40"/>
+                                <rect key="frame" x="57" y="19.666666666666671" width="318" height="44"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="318" id="XA5-9h-D6d"/>
-                                    <constraint firstAttribute="height" constant="40" id="oUS-Ed-mk9"/>
+                                    <constraint firstAttribute="height" constant="44" id="oUS-Ed-mk9"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="28" id="ll6-gc-Dyk">
                                     <size key="itemSize" width="56" height="34"/>
@@ -3735,7 +3736,7 @@ Bad lighting</string>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ColorCodeCollectionViewCell" id="iLg-sm-SZL" customClass="ColorCodeCollectionViewCell" customModule="SelfStyloIOSApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="3" width="34" height="34"/>
+                                        <rect key="frame" x="0.0" y="5" width="34" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="HTi-rC-gxB">
                                             <rect key="frame" x="0.0" y="0.0" width="34" height="34"/>

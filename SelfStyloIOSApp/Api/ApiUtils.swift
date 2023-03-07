@@ -351,7 +351,8 @@ class ApiUtils {
     func fetchMakeupDetails(sc: @escaping (MakeDetails?)->Void) {
         if reachability.connection == .wifi || reachability.connection == .cellular
         {
-            let serviceUrl = ApiUtils.MAKEUP_URL + apiCalls.makeupDetails // + "?uuid=\(10)"
+            let uuid = UUID().uuidString
+            let serviceUrl = ApiUtils.MAKEUP_URL + apiCalls.makeupDetails + "?uuid=\(uuid)"
             var request = URLRequest(url: URL(string: serviceUrl)!)
             request.timeoutInterval = 50
             request.httpMethod = "GET"
@@ -397,6 +398,31 @@ class ApiUtils {
     
 //    SkintoneUndertone
     func getUndertoneSkintone(fronUrl urlStr: String, completionHandler: @escaping (Result<Data, Error>) -> Void ) {
+        if reachability.connection == .wifi || reachability.connection == .cellular {
+            let session = URLSession(configuration: .default)
+            guard let url = URL(string: urlStr) else { return }
+            var request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 300.0)
+            request.httpMethod = "GET"
+            let dataTask = session.dataTask(with: request) { data, response, error in
+                if let err = error {
+                    completionHandler( .failure(err.localizedDescription as! Error))
+                } else {
+                    if let dt = data {
+                        completionHandler( .success(dt))
+                    } else {
+                        completionHandler( .failure("Error in parsing data" as! Error))
+                    }
+                }
+            }
+            dataTask.resume()
+        } else {
+            
+            completionHandler(.failure("No internet" as! Error))
+        }
+        
+    }
+    
+    func likeProduct(fronUrl urlStr: String, completionHandler: @escaping (Result<Data, Error>) -> Void ) {
         if reachability.connection == .wifi || reachability.connection == .cellular {
             let session = URLSession(configuration: .default)
             guard let url = URL(string: urlStr) else { return }

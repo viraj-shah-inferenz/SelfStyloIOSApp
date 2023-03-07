@@ -26,5 +26,7 @@ class IApiCalls{
     let eyelinerStyle = "api/-style/"
     
     let get_undertone_skintone = "api/get_skintone_undertone"
+    
+    let like_product = "/info/like"
 }
 
