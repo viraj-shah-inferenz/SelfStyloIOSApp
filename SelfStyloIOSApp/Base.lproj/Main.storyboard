@@ -2830,7 +2830,7 @@ Bad lighting</string>
                                 </constraints>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" id="HLF-Z5-e2t">
-                                <rect key="frame" x="-18" y="-15" width="373" height="139"/>
+                                <rect key="frame" x="-19" y="-16" width="372" height="139"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
                                     <segue destination="Qg7-Ni-M3l" kind="embed" identifier="foundationView" id="ael-Cu-1ON"/>
@@ -3661,11 +3661,11 @@ Bad lighting</string>
             <objects>
                 <viewController storyboardIdentifier="FoundationColorViewController" id="Qg7-Ni-M3l" customClass="FoundationColorViewController" customModule="SelfStyloIOSApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9bW-aM-OVg">
-                        <rect key="frame" x="0.0" y="0.0" width="373" height="139"/>
+                        <rect key="frame" x="0.0" y="0.0" width="372" height="139"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="v7h-h4-WNZ">
-                                <rect key="frame" x="0.0" y="65.666666666666671" width="373" height="34"/>
+                                <rect key="frame" x="0.0" y="65.666666666666671" width="372" height="34"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="1CS-6g-9k0"/>
@@ -3709,7 +3709,7 @@ Bad lighting</string>
                                 </cells>
                             </collectionView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="pn1-EU-Jrx">
-                                <rect key="frame" x="55" y="23.666666666666671" width="318" height="40"/>
+                                <rect key="frame" x="54" y="23.666666666666671" width="318" height="40"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="318" id="XA5-9h-D6d"/>
@@ -3751,7 +3751,7 @@ Bad lighting</string>
                                 </cells>
                             </collectionView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qAr-2F-V3S" customClass="CardView" customModule="SelfStyloIOSApp" customModuleProvider="target">
-                                <rect key="frame" x="28" y="101.66666666666667" width="317" height="34.000000000000014"/>
+                                <rect key="frame" x="28" y="101.66666666666667" width="316" height="34.000000000000014"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KIy-bu-MIJ">
                                         <rect key="frame" x="8" y="4.3333333333333286" width="49" height="25"/>
@@ -3767,7 +3767,7 @@ Bad lighting</string>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Foundation" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n09-lt-Cey">
-                                        <rect key="frame" x="102.66666666666666" y="7.6666666666666554" width="112" height="18.333333333333329"/>
+                                        <rect key="frame" x="102" y="7.6666666666666554" width="112" height="18.333333333333329"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="112" id="m04-O3-QUo"/>
                                             <constraint firstAttribute="height" constant="18.329999999999998" id="tjZ-7B-tgY"/>
@@ -3777,7 +3777,7 @@ Bad lighting</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MhB-Ha-yDB">
-                                        <rect key="frame" x="281" y="7" width="28" height="20"/>
+                                        <rect key="frame" x="280" y="7" width="28" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="ef2-DX-H3X"/>
                                             <constraint firstAttribute="width" constant="28" id="f1S-t2-xEQ"/>
@@ -3819,7 +3819,7 @@ Bad lighting</string>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select a shade" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lp5-5C-S2D">
-                                <rect key="frame" x="8" y="3" width="357" height="16"/>
+                                <rect key="frame" x="8" y="3" width="356" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="16" id="jJx-Vg-k4o"/>
                                 </constraints>
@@ -4268,6 +4268,7 @@ Bad lighting</string>
                         <outlet property="lblInvalidPhone" destination="rTr-2c-fJ5" id="20E-39-bQu"/>
                         <outlet property="phoneNumberTextField" destination="V4U-BO-MXM" id="Vou-PC-XSe"/>
                         <outlet property="signInApple" destination="Seu-Ck-nLt" id="qvF-EQ-jaX"/>
+                        <outlet property="signInGoogle" destination="0De-MP-ylD" id="w5W-wv-r1R"/>
                         <outlet property="txtEmailAddress" destination="E63-Kg-uue" id="ggZ-ki-h2z"/>
                         <outlet property="txtPhoneNumber" destination="V4U-BO-MXM" id="KZe-WA-jc5"/>
                         <outlet property="txtView" destination="94b-cx-oPd" id="QGw-BL-ata"/>

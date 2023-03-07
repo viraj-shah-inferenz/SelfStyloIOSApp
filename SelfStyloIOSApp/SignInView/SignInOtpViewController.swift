@@ -9,6 +9,7 @@ import UIKit
 import OTPFieldView
 import FirebaseAuth
 import GoogleSignIn
+import JGProgressHUD
 
 import Toast_Swift
 
@@ -25,6 +26,7 @@ class SignInOtpViewController: UIViewController {
     var phoneVC = SignInPhoneViewController()
     var otpString:String = ""
     
+    
     @IBOutlet weak var timerLabel: UILabel!
     
     
@@ -37,7 +39,7 @@ class SignInOtpViewController: UIViewController {
     
     let userDefault = UserDefaults.standard
     var patron = Patron()
-
+    let hud = JGProgressHUD()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -123,58 +125,65 @@ class SignInOtpViewController: UIViewController {
     }
     
     @IBAction func resendOTPBtnClicked(_ sender: UIButton) {
-        if let email = userDefault.string(forKey: "Email") {
-            if email != "" {
-                let patron = Patron(email:email)
-                apiUtils.sendVerifyOtp(email: patron.email,otp: otpString)
-                timerLabel.text = ""
-                totalTime = 31
-                print(email)
-                resendOTPBtn.isEnabled = false
-                sendOTPCode()
-                UserDefaults.standard.set("true", forKey: APP.IS_LOGIN)
-                UserDefaults.standard.synchronize()
-                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4)) {
-                    let profileVC = self.storyboard?.instantiateViewController(withIdentifier: "SignInProfileViewController") as! SignInProfileViewController
-                    self.navigationController?.pushViewController(profileVC, animated: true)
-                }
-            }
-        }
-        
-        else if let verificationId = UserDefaults.standard.string(forKey: "authVerificationID") {
-            print(verificationId)
-
-            let credential = PhoneAuthProvider.provider().credential(withVerificationID: verificationId, verificationCode: otpString)
-
-            Auth.auth().signIn(with: credential){ (success, error) in
-
-                if error == nil{
-                    print(success)
-
-                    self.view.makeToast("Sign in successfully...", duration: 3.0, position: .bottom)
+            if let email = userDefault.string(forKey: "Email") {
+                if email != "" {
+                    let patron = Patron(email:email)
+                    apiUtils.sendVerifyOtp(email: patron.email,otp: otpString)
+                    timerLabel.text = ""
+                    totalTime = 31
+                    print(email)
+                    resendOTPBtn.isEnabled = false
+                    sendOTPCode()
                     UserDefaults.standard.set("true", forKey: APP.IS_LOGIN)
                     UserDefaults.standard.synchronize()
+                    hud.indicatorView = JGProgressHUDImageIndicatorView(image: UIImage(named: "about_selfstylo_logo_app")!)
+                    hud.progress = 3.0
+                    hud.show(in: self.view)
+                    hud.dismiss(afterDelay: 3.0)
                     DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4)) {
                         let profileVC = self.storyboard?.instantiateViewController(withIdentifier: "SignInProfileViewController") as! SignInProfileViewController
                         self.navigationController?.pushViewController(profileVC, animated: true)
                     }
-
-                } else {
-                    if let err = error {
-    //                    self.view.makeToast("\(err.localizedDescription)", duration: 3.0, position: .bottom)
-                        let alert = UIAlertController(title: "Error", message: "Invalid OTP, please provide the correct OTP", preferredStyle: .alert)
-                        let btnOk = UIAlertAction(title: "Okay", style: .default)
-                        alert.addAction(btnOk)
-                        self.present(alert, animated: true)
-
-                    }
-
-
                 }
-
-
             }
-        }
+            
+            else if let verificationId = UserDefaults.standard.string(forKey: "authVerificationID") {
+                print(verificationId)
+                
+                let credential = PhoneAuthProvider.provider().credential(withVerificationID: verificationId, verificationCode: otpString)
+                
+                Auth.auth().signIn(with: credential){ (success, error) in
+                    
+                    if error == nil{
+                        print(success)
+                        self.hud.indicatorView = JGProgressHUDImageIndicatorView(image: UIImage(named: "about_selfstylo_logo_app")!)
+                        self.hud.progress = 3.0
+                        self.hud.show(in: self.view)
+                        self.hud.dismiss(afterDelay: 3.0)
+                      //  self.view.makeToast("Sign in successfully...", duration: 3.0, position: .bottom)
+                        UserDefaults.standard.set("true", forKey: APP.IS_LOGIN)
+                        UserDefaults.standard.synchronize()
+                        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4)) {
+                            let profileVC = self.storyboard?.instantiateViewController(withIdentifier: "SignInProfileViewController") as! SignInProfileViewController
+                            self.navigationController?.pushViewController(profileVC, animated: true)
+                        }
+                        
+                    } else {
+                        if let err = error {
+                            //                    self.view.makeToast("\(err.localizedDescription)", duration: 3.0, position: .bottom)
+                            let alert = UIAlertController(title: "Error", message: "Invalid OTP, please provide the correct OTP", preferredStyle: .alert)
+                            let btnOk = UIAlertAction(title: "Okay", style: .default)
+                            alert.addAction(btnOk)
+                            self.present(alert, animated: true)
+                            
+                        }
+                        
+                        
+                    }
+                    
+                    
+                }
+            }
         
     }
     var countdownTimer: Timer!

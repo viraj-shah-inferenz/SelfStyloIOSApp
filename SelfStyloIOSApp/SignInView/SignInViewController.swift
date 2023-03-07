@@ -12,6 +12,7 @@ import AuthenticationServices
 import SafariServices
 import GoogleSignIn
 import Toast_Swift
+import JGProgressHUD
 
 class SignInViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate{
     
@@ -63,6 +64,8 @@ class SignInViewController: UIViewController,UITextFieldDelegate,UITextViewDeleg
 
     let termsAndConditionsURL = "https://selfstylo.com/terms-and-conditions/";
     let privacyURL            = "https://selfstylo.com/privacy-policy/";
+    
+    let hud = JGProgressHUD()
 
     
     override func viewDidLoad() {
@@ -130,48 +133,52 @@ class SignInViewController: UIViewController,UITextFieldDelegate,UITextViewDeleg
     }
     
     @objc func handleGoogleIdRequest() {
-        // Start the sign in flow!
-        GIDSignIn.sharedInstance.signIn(withPresenting: self) { [unowned self] result, error in
-          guard error == nil else {
-            // ...
-              return
-          }
-
-          guard let user = result?.user,let idToken = user.idToken?.tokenString else {return}
-           
-
-          let credential = GoogleAuthProvider.credential(withIDToken: idToken,
-                                                         accessToken: user.accessToken.tokenString)
-            Auth.auth().signIn(with: credential) { result, error in
-                if let error = error{
-                    print("Error because \(error.localizedDescription)")
+            GIDSignIn.sharedInstance.signIn(withPresenting: self) { [unowned self] result, error in
+                guard error == nil else {
+                    // ...
                     return
-                }else{
-                    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4)) {
-                        let profileVC = self.storyboard?.instantiateViewController(withIdentifier: "SignInProfileViewController") as! SignInProfileViewController
-                        profileVC.modalPresentationStyle = .fullScreen
-                        self.present(profileVC, animated: false)
-                    }
-                    if let imgUrl: URL = user.profile?.imageURL(withDimension: 100) as? URL {
-                        print(imgUrl)
-                        UserDefaults.standard.set(imgUrl, forKey: "ProfileImageUrl")
-                        UserDefaults.standard.synchronize()
-                    }
-                    
-                    let name = user.profile?.name
-                    UserDefaults.standard.set(name, forKey: "FullName")
-                    UserDefaults.standard.synchronize()
-                    let email = user.profile?.email
-                    UserDefaults.standard.set(email, forKey: "Email")
-                    UserDefaults.standard.synchronize()
-                    self.view.makeToast("Sign in successfully...", duration: 3.0, position: .bottom)
-                    UserDefaults.standard.set("true", forKey: APP.IS_LOGIN)
-                    UserDefaults.standard.synchronize()
-                   
                 }
-                        // At this point, our user is signed in
-            }
-          // ...
+                
+                guard let user = result?.user,let idToken = user.idToken?.tokenString else {return}
+                
+                
+                let credential = GoogleAuthProvider.credential(withIDToken: idToken,
+                                                               accessToken: user.accessToken.tokenString)
+                Auth.auth().signIn(with: credential) { result, error in
+                    if let error = error{
+                        print("Error because \(error.localizedDescription)")
+                        return
+                    }else{
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4)) {
+                            let profileVC = self.storyboard?.instantiateViewController(withIdentifier: "SignInProfileViewController") as! SignInProfileViewController
+                            profileVC.modalPresentationStyle = .fullScreen
+                            self.present(profileVC, animated: false)
+                        }
+                        if let imgUrl: URL = user.profile?.imageURL(withDimension: 100) as? URL {
+                            print(imgUrl)
+                            UserDefaults.standard.set(imgUrl, forKey: "ProfileImageUrl")
+                            UserDefaults.standard.synchronize()
+                        }
+                        
+                        let name = user.profile?.name
+                        UserDefaults.standard.set(name, forKey: "FullName")
+                        UserDefaults.standard.synchronize()
+                        let email = user.profile?.email
+                        UserDefaults.standard.set(email, forKey: "Email")
+                        UserDefaults.standard.synchronize()
+//                        self.view.makeToast("Sign in successfully...", duration: 3.0, position: .bottom)
+                        self.hud.indicatorView = JGProgressHUDImageIndicatorView(image: UIImage(named: "about_selfstylo_logo_app")!)
+                        self.hud.progress = 3.0
+                        self.hud.show(in: self.view)
+                        self.hud.dismiss(afterDelay: 3.0)
+                        UserDefaults.standard.set("true", forKey: APP.IS_LOGIN)
+                        UserDefaults.standard.synchronize()
+                        
+                    }
+                    // At this point, our user is signed in
+                }
+                // ...
         }
     }
     
@@ -271,84 +278,92 @@ class SignInViewController: UIViewController,UITextFieldDelegate,UITextViewDeleg
     }
     
     @objc func btnproceed(){
-        if PhoneView.isHidden == false {
-            if  phoneNumberTextField.text == "" {
-                lblInvalidPhone.text = "Please enter valid phone number"
-                lblInvalidEmail.text = ""
-          } else {
-              
-              guard let phoneNumber = phoneNumberTextField.text else {return}
-              print(phoneNumber)
-              
-              
-              
-              Auth.auth().settings?.isAppVerificationDisabledForTesting = false
-              PhoneAuthProvider.provider(auth: Auth.auth())
-              
-              UserDefaults.standard.removeObject(forKey: "Email")
-              UserDefaults.standard.set(phoneNumberTextField.selectedCountry?.phoneCode.appending(phoneNumber), forKey: "Phone")
-              UserDefaults.standard.synchronize()
-              let str  = phoneNumber.components(separatedBy: .whitespaces).joined()
-              if let mobileNo = phoneNumberTextField.selectedCountry?.phoneCode.appending(" " + str) {
-                  print(mobileNo)
-                  
-                  PhoneAuthProvider.provider().verifyPhoneNumber(mobileNo, uiDelegate: nil) { verificationId, error in
-                      if let error = error {
-                          print(error.localizedDescription)
-                          return
-                      } else {
-                          print(verificationId)
-                          UserDefaults.standard.set(verificationId, forKey: "authVerificationID")
-                          UserDefaults.standard.synchronize()
-                          self.view.makeToast("Enter Otp...", duration: 3.0, position: .bottom)
-                          
-                          
-                          DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4)) {
-                              self.performSegue(withIdentifier: "moveToOtp", sender: self)
-                          }
-                      }
-
-                  }
-              }
-          }
-        } else {
-            // email
-            if txtEmailAddress.text == "" {
-                lblInvalidEmail.text = "Please enter valid email address"
-                lblInvalidPhone.text = ""
-            }else {
-                txtPhoneNumber.text = ""
-                
-                let patron = Patron(email: txtEmailAddress.text!)
-                let trimmed = patron.email.trimmingCharacters(in: .whitespacesAndNewlines)
-                
-                apiUtils.sendEmailOtp(email: trimmed, success: { (data, response, error) in
-                    DispatchQueue.main.async{
-                        if let json = (try? JSONSerialization.jsonObject(with: data!)) as? [String:Any]{
-                                           let result = json["status"] as? String
-                                           if (result == "Success") {
-                                               let passValue = json
-                                               UserDefaults.standard.removeObject(forKey: "Phone")
-                                               UserDefaults.standard.set(trimmed, forKey: "Email")
-                                               UserDefaults.standard.synchronize()
-                                               DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4)) {
-                                                   self.performSegue(withIdentifier: "moveToOtp", sender: self)
-                                               }
-                                        
-                                           } else{
-                                               let alert = UIAlertController(title: "", message: "Invalid Email Address", preferredStyle: .alert)
-                                               let btnOk = UIAlertAction(title: "Okay", style: .default)
-                                               alert.addAction(btnOk)
-                                               self.present(alert, animated: true)
-                                           }
-                                       }
-                                   }
-                })
-                
+      
+            if PhoneView.isHidden == false {
+                if  phoneNumberTextField.text == "" {
+                    lblInvalidPhone.text = "Please enter valid phone number"
+                    lblInvalidEmail.text = ""
+                } else {
+                    
+                    guard let phoneNumber = phoneNumberTextField.text else {return}
+                    print(phoneNumber)
+                    
+                    
+                    
+                    Auth.auth().settings?.isAppVerificationDisabledForTesting = false
+                    PhoneAuthProvider.provider(auth: Auth.auth())
+                    
+                    UserDefaults.standard.removeObject(forKey: "Email")
+                    UserDefaults.standard.set(phoneNumberTextField.selectedCountry?.phoneCode.appending(phoneNumber), forKey: "Phone")
+                    UserDefaults.standard.synchronize()
+                    let str  = phoneNumber.components(separatedBy: .whitespaces).joined()
+                    if let mobileNo = phoneNumberTextField.selectedCountry?.phoneCode.appending(" " + str) {
+                        print(mobileNo)
+                        
+                        PhoneAuthProvider.provider().verifyPhoneNumber(mobileNo, uiDelegate: nil) { verificationId, error in
+                            if let error = error {
+                                print(error.localizedDescription)
+                                return
+                            } else {
+                                print(verificationId)
+                                UserDefaults.standard.set(verificationId, forKey: "authVerificationID")
+                                UserDefaults.standard.synchronize()
+//                                self.view.makeToast("Enter Otp...", duration: 3.0, position: .bottom)
+                                
+                                self.hud.indicatorView = JGProgressHUDImageIndicatorView(image: UIImage(named: "about_selfstylo_logo_app")!)
+                                self.hud.progress = 3.0
+                                self.hud.show(in: self.view)
+                                self.hud.dismiss(afterDelay: 3.0)
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4)) {
+                                        self.performSegue(withIdentifier: "moveToOtp", sender: self)
+                                    }
+                              
+                                
+                            }
+                            
+                        }
+                    }
+                }
+            } else {
+                // email
+                if txtEmailAddress.text == "" {
+                    lblInvalidEmail.text = "Please enter valid email address"
+                    lblInvalidPhone.text = ""
+                }else {
+                    txtPhoneNumber.text = ""
+                    
+                    let patron = Patron(email: txtEmailAddress.text!)
+                    let trimmed = patron.email.trimmingCharacters(in: .whitespacesAndNewlines)
+                    
+                    apiUtils.sendEmailOtp(email: trimmed, success: { (data, response, error) in
+                        DispatchQueue.main.async{
+                            if let json = (try? JSONSerialization.jsonObject(with: data!)) as? [String:Any]{
+                                let result = json["status"] as? String
+                                if (result == "Success") {
+                                    let passValue = json
+                                    UserDefaults.standard.removeObject(forKey: "Phone")
+                                    UserDefaults.standard.set(trimmed, forKey: "Email")
+                                    UserDefaults.standard.synchronize()
+                                    self.hud.indicatorView = JGProgressHUDImageIndicatorView(image: UIImage(named: "about_selfstylo_logo_app")!)
+                                    self.hud.progress = 3.0
+                                    self.hud.show(in: self.view)
+                                    self.hud.dismiss(afterDelay: 3.0)
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4)) {
+                                        self.performSegue(withIdentifier: "moveToOtp", sender: self)
+                                    }
+                                    
+                                } else{
+                                    let alert = UIAlertController(title: "", message: "Invalid Email Address", preferredStyle: .alert)
+                                    let btnOk = UIAlertAction(title: "Okay", style: .default)
+                                    alert.addAction(btnOk)
+                                    self.present(alert, animated: true)
+                                }
+                            }
+                        }
+                    })
+                    
+                }
             }
-        }
-        
-        
         
             
     }
