@@ -12,6 +12,7 @@
 		2202B3322964013D000CB816 /* HomeCardSelfiecamTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2202B3302964013D000CB816 /* HomeCardSelfiecamTableViewCell.xib */; };
 		2202B3352964122C000CB816 /* FavouriteProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2202B3332964122C000CB816 /* FavouriteProductTableViewCell.swift */; };
 		2202B3362964122C000CB816 /* FavouriteProductTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2202B3342964122C000CB816 /* FavouriteProductTableViewCell.xib */; };
+		220D646829B70CF80022D3FB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 220D646729B70CF80022D3FB /* GoogleService-Info.plist */; };
 		22111AC229630FFB00539540 /* WalkThroughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22111AC129630FFB00539540 /* WalkThroughViewController.swift */; };
 		2212DCFA29A8900500018E5D /* FoundationColorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2212DCF929A8900500018E5D /* FoundationColorViewController.swift */; };
 		222E1A26296457510094FA0A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222E1A25296457510094FA0A /* Extensions.swift */; };
@@ -124,7 +125,6 @@
 		534CAF2929A6317D00E64AD1 /* MakeupLayerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534CAF2729A6317D00E64AD1 /* MakeupLayerTableViewCell.swift */; };
 		53675B2629B2024900901979 /* FoundationAnalyzeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53675B2529B2024900901979 /* FoundationAnalyzeViewController.swift */; };
 		536AE08429B1CBC6008C7C8F /* FoundationShadesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536AE08329B1CBC6008C7C8F /* FoundationShadesViewController.swift */; };
-		537A7E0C29A619AE00A97AFF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 537A7E0B29A619AE00A97AFF /* GoogleService-Info.plist */; };
 		53829454298D2EB4002D7671 /* Js in Resources */ = {isa = PBXBuildFile; fileRef = 53829453298D2EB4002D7671 /* Js */; };
 		5398872629ADDF8500E65C20 /* CaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5398872529ADDF8500E65C20 /* CaptureViewController.swift */; };
 		53BD4986298007B200B1D53B /* MakeDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53BD4985298007B200B1D53B /* MakeDetails.swift */; };
@@ -156,6 +156,7 @@
 		2202B3302964013D000CB816 /* HomeCardSelfiecamTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeCardSelfiecamTableViewCell.xib; sourceTree = "<group>"; };
 		2202B3332964122C000CB816 /* FavouriteProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteProductTableViewCell.swift; sourceTree = "<group>"; };
 		2202B3342964122C000CB816 /* FavouriteProductTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavouriteProductTableViewCell.xib; sourceTree = "<group>"; };
+		220D646729B70CF80022D3FB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		22111AC129630FFB00539540 /* WalkThroughViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkThroughViewController.swift; sourceTree = "<group>"; };
 		2212DCF929A8900500018E5D /* FoundationColorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoundationColorViewController.swift; sourceTree = "<group>"; };
 		222E1A25296457510094FA0A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -274,7 +275,6 @@
 		534CAF2729A6317D00E64AD1 /* MakeupLayerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakeupLayerTableViewCell.swift; sourceTree = "<group>"; };
 		53675B2529B2024900901979 /* FoundationAnalyzeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationAnalyzeViewController.swift; sourceTree = "<group>"; };
 		536AE08329B1CBC6008C7C8F /* FoundationShadesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationShadesViewController.swift; sourceTree = "<group>"; };
-		537A7E0B29A619AE00A97AFF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		53829453298D2EB4002D7671 /* Js */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Js; sourceTree = "<group>"; };
 		5398872529ADDF8500E65C20 /* CaptureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureViewController.swift; sourceTree = "<group>"; };
 		53BD4985298007B200B1D53B /* MakeDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeDetails.swift; sourceTree = "<group>"; };
@@ -621,7 +621,7 @@
 		22F858B0295AC6A400A7D86E /* SelfStyloIOSApp */ = {
 			isa = PBXGroup;
 			children = (
-				537A7E0B29A619AE00A97AFF /* GoogleService-Info.plist */,
+				220D646729B70CF80022D3FB /* GoogleService-Info.plist */,
 				22E6FA28298D416B00361954 /* NotificationView */,
 				530278D5297FF8F70037F46E /* WebContoller */,
 				2287323029795C6000659E80 /* MakeupView */,
@@ -818,9 +818,9 @@
 				22A477E62965878600523866 /* DMSans-Regular.ttf in Resources */,
 				22F858BB295AC6A600A7D86E /* Assets.xcassets in Resources */,
 				2273A77D2989367F007FE6F3 /* ColorNameCollectionViewCell.xib in Resources */,
-				537A7E0C29A619AE00A97AFF /* GoogleService-Info.plist in Resources */,
 				22BA3AA129642105004AD1F3 /* FavouriteCollectionViewCell.xib in Resources */,
 				22BA3AAE29642A36004AD1F3 /* ImageSliderCollectionViewCell.xib in Resources */,
+				220D646829B70CF80022D3FB /* GoogleService-Info.plist in Resources */,
 				22C8CA59295EDA1200336E03 /* SelectFullNameTableViewCell.xib in Resources */,
 				22C8CA50295EC1FA00336E03 /* SelectPhotoTableViewCell.xib in Resources */,
 				228A8E722963F69B004F8208 /* HomeCardAnnouncementsTableViewCell.xib in Resources */,

@@ -10,6 +10,7 @@ import IQKeyboardManager
 import FirebaseCore
 import FirebaseAuth
 import GoogleSignIn
+import FirebaseAnalytics
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -35,6 +36,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window?.rootViewController = loginNavController
             window?.makeKeyAndVisible()
         }
+        
+        Analytics.setAnalyticsCollectionEnabled(true)
         
         FirebaseApp.configure()
         FirebaseConfiguration.shared.setLoggerLevel(.max)

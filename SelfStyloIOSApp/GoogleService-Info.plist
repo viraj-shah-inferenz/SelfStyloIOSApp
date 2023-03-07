@@ -3,21 +3,23 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>723871272445-do7mcopdr1mbvufontj3ec51bn9imdrb.apps.googleusercontent.com</string>
+	<string>547371970732-c9me8fpoup44894h723op4c7j5bs61u1.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.723871272445-do7mcopdr1mbvufontj3ec51bn9imdrb</string>
+	<string>com.googleusercontent.apps.547371970732-c9me8fpoup44894h723op4c7j5bs61u1</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>547371970732-2l6gqsvkpujiptn6l1ia2gd34d1gig42.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBJ0quoHE82OWrCReeDo5n0ctbsqSq7pSE</string>
+	<string>AIzaSyC79rDs_ytW3efIqm61LCf4XYiABD4MJ6w</string>
 	<key>GCM_SENDER_ID</key>
-	<string>723871272445</string>
+	<string>547371970732</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.inferenz.SelfStyloApp</string>
 	<key>PROJECT_ID</key>
-	<string>stylocamiosapp-f546c</string>
+	<string>project-selfstylo</string>
 	<key>STORAGE_BUCKET</key>
-	<string>stylocamiosapp-f546c.appspot.com</string>
+	<string>project-selfstylo.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:723871272445:ios:b37e242c8aa0459c1ddd94</string>
+	<string>1:547371970732:ios:319a751abda88eae126f09</string>
 </dict>
 </plist>

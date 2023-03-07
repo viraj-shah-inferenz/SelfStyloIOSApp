@@ -353,6 +353,7 @@ class SignInViewController: UIViewController,UITextFieldDelegate,UITextViewDeleg
                                     }
                                     
                                 } else{
+                                    print(error?.localizedDescription)
                                     let alert = UIAlertController(title: "", message: "Invalid Email Address", preferredStyle: .alert)
                                     let btnOk = UIAlertAction(title: "Okay", style: .default)
                                     alert.addAction(btnOk)
