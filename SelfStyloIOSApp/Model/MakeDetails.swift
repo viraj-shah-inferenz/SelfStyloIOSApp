@@ -17,8 +17,8 @@ struct MakeDetails: Codable {
 struct DataClass: Codable {
     var makeup: [Makeup]?
     var makeupCombos: [MakeupCombo]?
-    var skintones: [Skintone]?
-    var undertones: [Undertone]?
+    var skintones: [MakeupSkintone]?
+    var undertones: [MakeupUndertone]?
     var skintonecolors: [Skintonecolor]?
     var undertonecolors: [Undertonecolor]?
 
@@ -106,7 +106,7 @@ struct Skintonecolor: Codable {
 }
 
 // MARK: - Skintone
-struct Skintone: Codable {
+struct MakeupSkintone: Codable {
     var id: Int?
     var skintone, code: String?
 }
@@ -118,7 +118,7 @@ struct Undertonecolor: Codable {
 }
 
 // MARK: - Undertone
-struct Undertone: Codable {
+struct MakeupUndertone: Codable {
     var id: Int?
     var undertone, code: String?
 }

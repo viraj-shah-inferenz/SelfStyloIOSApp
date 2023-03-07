@@ -35,11 +35,11 @@
     <script src="./Js/coordinates.js"></script>
     <script src="./Js/b-spline.js"></script>
     <style>
-      .containerMain {
-        object-fit: contain;
-      }
       body {
         margin: auto;
+      }
+      .containerMain {
+        object-fit: contain;
       }
     </style>
   </head>
@@ -222,7 +222,8 @@
         _eyeshadowBase,
         _eyeshadowMetallic,
         _eyeshadowMirco,
-        _eyeshadowNano
+        _eyeshadowNano,
+        _blushSquareFaceTexture
       ) {
         lipstickBaseTexture.setAttribute("src", "data:image/png;base64," + _lipBase);
         lipstickGlossTexture.setAttribute("src", "data:image/png;base64," + _glossBase);
@@ -249,6 +250,10 @@
         eyeshadowNanoTexture.setAttribute(
           "src",
           "data:image/png;base64," + _eyeshadowNano
+        );
+        blushSquareFaceTexture.setAttribute(
+          "src",
+          "data:image/png;base64," + _blushSquareFaceTexture
         );
       };
 

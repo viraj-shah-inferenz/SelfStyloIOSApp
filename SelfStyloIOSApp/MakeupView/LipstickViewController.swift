@@ -183,8 +183,6 @@ extension LipstickViewController:UICollectionViewDelegate, UICollectionViewDataS
                     cell.colorImage.layer.borderColor = UIColor.clear.cgColor
                     cell.colorImage.layer.borderWidth = 0.0
                 }
-                
-                
             }
             return cell
         } else if collectionView.tag == 1 {

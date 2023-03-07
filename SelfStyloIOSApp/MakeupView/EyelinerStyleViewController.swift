@@ -81,8 +81,10 @@ class EyelinerStyleViewController: UIViewController {
             for makeUp in makeup {
                 if makeUp.makeupName == "Eyeliner" {
                     if let category = makeUp.category {
-                        for cat in category {
-                            arrCategory.append(cat)
+                        if category.count > 0 {
+                            for cat in category {
+                                arrCategory.append(cat)
+                            }
                         }
                     }
                 }

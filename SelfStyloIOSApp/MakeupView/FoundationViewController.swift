@@ -21,12 +21,15 @@ class FoundationViewController: UIViewController {
     
     @IBOutlet weak var foundationColorView: UIView!
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         
         self.foundationColorView.isHidden = true
         self.foundationView.alpha = 1
+        
     }
     
     func setupView() {
@@ -66,6 +69,11 @@ class FoundationViewController: UIViewController {
     @IBAction func btnBack(_ sender: UIButton) {
         backToCategory?()
     }
+    
+    
+    
+    
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "foundationView" {

@@ -114,9 +114,10 @@
 		22F858D5295AC6A600A7D86E /* SelfStyloIOSAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F858D4295AC6A600A7D86E /* SelfStyloIOSAppUITestsLaunchTests.swift */; };
 		22F858E4295B012E00A7D86E /* CustomTabBarControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F858E3295B012E00A7D86E /* CustomTabBarControllerViewController.swift */; };
 		22F858E6295B047800A7D86E /* FavouriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F858E5295B047800A7D86E /* FavouriteViewController.swift */; };
+		531302F929B5BAFA00A35921 /* SkintoneUndertone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531302F829B5BAFA00A35921 /* SkintoneUndertone.swift */; };
+		531302FB29B6055300A35921 /* indexMain.html in Resources */ = {isa = PBXBuildFile; fileRef = 531302FA29B6055200A35921 /* indexMain.html */; };
 		5325AF1D298A5291004F385D /* MakeupLoaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5325AF1C298A5291004F385D /* MakeupLoaderViewController.swift */; };
 		53289E552993B5490063EB4D /* CategoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53289E542993B5490063EB4D /* CategoryCollectionViewCell.xib */; };
-		534C2B7629B09E96004A9A24 /* indexMain.html in Resources */ = {isa = PBXBuildFile; fileRef = 534C2B7529B09E96004A9A24 /* indexMain.html */; };
 		534CAF2129A62E8D00E64AD1 /* EyelinerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534CAF1F29A62E8D00E64AD1 /* EyelinerData.swift */; };
 		534CAF2229A62E8D00E64AD1 /* EyelinerStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534CAF2029A62E8D00E64AD1 /* EyelinerStyle.swift */; };
 		534CAF2829A6317D00E64AD1 /* MakeupLayerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 534CAF2629A6317D00E64AD1 /* MakeupLayerTableViewCell.xib */; };
@@ -263,9 +264,10 @@
 		22F858E3295B012E00A7D86E /* CustomTabBarControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarControllerViewController.swift; sourceTree = "<group>"; };
 		22F858E5295B047800A7D86E /* FavouriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteViewController.swift; sourceTree = "<group>"; };
 		418746D84A8963A42DA91AAA /* Pods-SelfStyloIOSApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SelfStyloIOSApp.release.xcconfig"; path = "Target Support Files/Pods-SelfStyloIOSApp/Pods-SelfStyloIOSApp.release.xcconfig"; sourceTree = "<group>"; };
+		531302F829B5BAFA00A35921 /* SkintoneUndertone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkintoneUndertone.swift; sourceTree = "<group>"; };
+		531302FA29B6055200A35921 /* indexMain.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = indexMain.html; sourceTree = "<group>"; };
 		5325AF1C298A5291004F385D /* MakeupLoaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeupLoaderViewController.swift; sourceTree = "<group>"; };
 		53289E542993B5490063EB4D /* CategoryCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoryCollectionViewCell.xib; sourceTree = "<group>"; };
-		534C2B7529B09E96004A9A24 /* indexMain.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = indexMain.html; sourceTree = "<group>"; };
 		534CAF1F29A62E8D00E64AD1 /* EyelinerData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EyelinerData.swift; sourceTree = "<group>"; };
 		534CAF2029A62E8D00E64AD1 /* EyelinerStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EyelinerStyle.swift; sourceTree = "<group>"; };
 		534CAF2629A6317D00E64AD1 /* MakeupLayerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MakeupLayerTableViewCell.xib; sourceTree = "<group>"; };
@@ -562,6 +564,7 @@
 				53BD4985298007B200B1D53B /* MakeDetails.swift */,
 				534CAF1F29A62E8D00E64AD1 /* EyelinerData.swift */,
 				534CAF2029A62E8D00E64AD1 /* EyelinerStyle.swift */,
+				531302F829B5BAFA00A35921 /* SkintoneUndertone.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -669,7 +672,7 @@
 		530278D5297FF8F70037F46E /* WebContoller */ = {
 			isa = PBXGroup;
 			children = (
-				534C2B7529B09E96004A9A24 /* indexMain.html */,
+				531302FA29B6055200A35921 /* indexMain.html */,
 				53829453298D2EB4002D7671 /* Js */,
 			);
 			path = WebContoller;
@@ -842,7 +845,7 @@
 				22A477E72965878600523866 /* DMSans-Medium.ttf in Resources */,
 				22A477EC2965878600523866 /* DMSans-Italic.ttf in Resources */,
 				2202B3362964122C000CB816 /* FavouriteProductTableViewCell.xib in Resources */,
-				534C2B7629B09E96004A9A24 /* indexMain.html in Resources */,
+				531302FB29B6055300A35921 /* indexMain.html in Resources */,
 				22E9836F29ACA2C4001AA264 /* SignInPhoneTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1033,6 +1036,7 @@
 				53BD4986298007B200B1D53B /* MakeDetails.swift in Sources */,
 				22BB026529711E8100F514B0 /* Patron.swift in Sources */,
 				22C8CA4F295EC1FA00336E03 /* SelectPhotoTableViewCell.swift in Sources */,
+				531302F929B5BAFA00A35921 /* SkintoneUndertone.swift in Sources */,
 				22BA3AA5296423CD004AD1F3 /* SavedPresetsTableViewCell.swift in Sources */,
 				53BD49882980117C00B1D53B /* APIHandler.swift in Sources */,
 				22C8CA4A295EAB5F00336E03 /* EditProfileViewController.swift in Sources */,

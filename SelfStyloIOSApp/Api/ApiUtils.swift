@@ -26,6 +26,7 @@ class ApiUtils {
     
     static let DOMAIN_URL = "https://dev.selfstylo.com/"
     static let MAKEUP_URL = "https://makeup.selfstylo.com/"
+    static let RECODE_URL = "https://recode.selfstylo.com/"
     let reachability = try! Reachability()
     
     init()
@@ -392,5 +393,31 @@ class ApiUtils {
                 print("HTTP Request Failed \(error)")
             }
         }.resume()
+    }
+    
+//    SkintoneUndertone
+    func getUndertoneSkintone(fronUrl urlStr: String, completionHandler: @escaping (Result<Data, Error>) -> Void ) {
+        if reachability.connection == .wifi || reachability.connection == .cellular {
+            let session = URLSession(configuration: .default)
+            guard let url = URL(string: urlStr) else { return }
+            var request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 300.0)
+            request.httpMethod = "GET"
+            let dataTask = session.dataTask(with: request) { data, response, error in
+                if let err = error {
+                    completionHandler( .failure(err.localizedDescription as! Error))
+                } else {
+                    if let dt = data {
+                        completionHandler( .success(dt))
+                    } else {
+                        completionHandler( .failure("Error in parsing data" as! Error))
+                    }
+                }
+            }
+            dataTask.resume()
+        } else {
+            
+            completionHandler(.failure("No internet" as! Error))
+        }
+        
     }
 }
