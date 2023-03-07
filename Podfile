@@ -16,6 +16,7 @@ target 'SelfStyloIOSApp' do
    pod 'ReachabilitySwift'
    pod 'SDWebImage', '~> 5.0'
    pod 'Toast-Swift'
+   pod 'JGProgressHUD'
 
   target 'SelfStyloIOSAppTests' do
     inherit! :search_paths
