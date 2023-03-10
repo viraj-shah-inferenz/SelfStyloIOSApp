@@ -28,5 +28,7 @@ class IApiCalls{
     let get_undertone_skintone = "api/get_skintone_undertone"
     
     let like_product = "/info/like"
+    
+    let product_like = "/api/product-liked"
 }
 

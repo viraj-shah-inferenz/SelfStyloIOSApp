@@ -35,13 +35,23 @@ class LipstickViewController: UIViewController {
     var strCategory: String = ""
     var strProduct: String = ""
     var strProductId: String = ""
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.productListCollectionView.register(UINib(nibName: "ColorCodeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ColorCodeCollectionViewCell")
+
+        self.colorNameCollectionView.register(UINib(nibName: "ColorNameCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ColorNameCollectionViewCell")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        reloadCollectionViewData()
+        
         btnCheckbox.setImage(UIImage.init(named: "favourite_unchecked"), for: .normal)
-
-       
+        
+        
+        
+//        reloadCollectionViewData()
       
         DispatchQueue.global(qos: .background).async {
             self.apiUtils.fetchMakeupDetails { makeupDetails in
@@ -140,13 +150,13 @@ class LipstickViewController: UIViewController {
             btnCheckbox.setImage(UIImage.init(named: "favourite_checked"), for: .normal)
             
             let api = IApiCalls()
-            let uuid = UUID().uuidString
+            let uuid = "4aa6223c-8439-4ed3-8de0-f6a67b1d36bd"  //UUID().uuidString
             let apiUrl = ApiUtils.MAKEUP_URL + api.like_product + "?id=\(uuid)&product_id=\(strProductId)"
             print(apiUrl)
             if strProduct == "" {
                 print("Select make-up")
             } else {
-                apiUtils.likeProduct(fronUrl: apiUrl) { Result in
+                apiUtils.makeRequest(fronUrl: apiUrl) { Result in
                     switch Result {
                         
                     case .success(let data):
@@ -186,14 +196,12 @@ extension LipstickViewController:UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = productListCollectionView.dequeueReusableCell(withReuseIdentifier: "ColorCodeCollectionViewCell", for: indexPath) as! ColorCodeCollectionViewCell
-        
-        cell.colorImage.clipsToBounds = true
-        cell.colorImage.layer.cornerRadius = cell.colorImage.frame.width / 2
-        
-        let colornameCell = colorNameCollectionView.dequeueReusableCell(withReuseIdentifier: "ColorNameCollectionViewCell", for: indexPath) as! ColorNameCollectionViewCell
-        
         if collectionView.tag == 0 {
+            let cell: ColorCodeCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ColorCodeCollectionViewCell", for: indexPath) as! ColorCodeCollectionViewCell
+            
+            cell.colorImage.clipsToBounds = true
+            cell.colorImage.layer.cornerRadius = cell.colorImage.frame.width / 2
+            
             if arrProduct.count > 0 {
                 let data = arrProduct[indexPath.item]
 //                print(data.colorCode)
@@ -217,6 +225,7 @@ extension LipstickViewController:UICollectionViewDelegate, UICollectionViewDataS
             }
             return cell
         } else if collectionView.tag == 1 {
+            let colornameCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ColorNameCollectionViewCell", for: indexPath) as! ColorNameCollectionViewCell
             if arrCategory.count > 0 {
                 let data = arrCategory[indexPath.item]
                 if data.categoryName == strCategory {
@@ -229,9 +238,8 @@ extension LipstickViewController:UICollectionViewDelegate, UICollectionViewDataS
                 
             }
             return colornameCell
-        } else {
-            return UICollectionViewCell()
         }
+        return UICollectionViewCell()
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -259,19 +267,19 @@ extension LipstickViewController:UICollectionViewDelegate, UICollectionViewDataS
             setCategory(categoryIndex: indexPath.item)
             collectionView.reloadData()
             
-        } else {
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        let bounds = collectionView.bounds
-        return CGSize(width: bounds.width/2 - 25, height: bounds.height)
-    }
-    
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//
+//        let bounds = collectionView.bounds
+//        return CGSize(width: bounds.width/2 - 25, height: bounds.height)
+//    }
+//
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 25.0
     }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 18, bottom: 0, right: 16)
     }

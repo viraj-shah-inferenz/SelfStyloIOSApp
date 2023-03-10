@@ -11,30 +11,64 @@ import UIKit
 class FavouriteViewController: UIViewController,GetUsersDelegate {
     func refreshFavouriteProductsList(favouriteproductList: [FavouriteProducts]) {
         self.favourite_product = favouriteproductList
-        self.FavouriteCollectionView.reloadData()
+        self.favouriteCollectionView.reloadData()
     }
     
     func refreshBannerList(bannerList: [Banner]) {
         
     }
     
-
     
-
+    
+    
     @IBOutlet weak var btnHomeView: UIButton!
-    @IBOutlet weak var FavouriteCollectionView: UICollectionView!
-
+    @IBOutlet weak var favouriteCollectionView: UICollectionView!
+    
     
     var favourite_product : [FavouriteProducts] = []
+    
+    var favouriteProductData = [FavouriteProductData]()
+    
+    var apiUtils = ApiUtils()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadFavouriteProducts()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         btnHomeView.addTarget(self, action: #selector(BackHome(sender: )), for: .touchUpInside)
-        let db = FavouriteProductDao()
-      //  favourite_product = db.getAll()
-        for products in db.getAll() {
-            favourite_product.append(products)
+        
+        
+    }
+    
+    func loadFavouriteProducts() {
+        let api = IApiCalls()
+        let uuid = "4aa6223c-8439-4ed3-8de0-f6a67b1d36bd"  //UUID().uuidString
+        let apiUrl = ApiUtils.MAKEUP_URL + api.product_like + "?id=\(uuid)"
+        apiUtils.makeRequest(fronUrl: apiUrl) { Result in
+            switch Result {
+                
+            case .success(let data):
+                do {
+                    let list = try? JSONDecoder().decode(FavouriteProducts.self, from: data)
+                    if let list = list?.data {
+                        self.favouriteProductData = list
+                        DispatchQueue.main.async {
+                            self.favouriteCollectionView.reloadData()
+                        }
+                    }
+                } catch let error {
+                    self.view.makeToast(error.localizedDescription, duration: 3.0, position: .bottom)
+                }
+                
+                
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+            
         }
     }
     
@@ -42,63 +76,72 @@ class FavouriteViewController: UIViewController,GetUsersDelegate {
         self.tabBarController?.selectedIndex = 0
     }
     
-    func setDelegates() {
-        self.FavouriteCollectionView.delegate = self
-        self.FavouriteCollectionView.dataSource = self
+    @objc
+    func loadFavouriteData(notification: Notification) {
+        favouriteProductData = notification.object as! [FavouriteProductData]
+        favouriteCollectionView.reloadData()
     }
     
-    
+    func setDelegates() {
+        self.favouriteCollectionView.delegate = self
+        self.favouriteCollectionView.dataSource = self
+    }
 }
 
 
-extension FavouriteViewController: UICollectionViewDelegate, UICollectionViewDataSource{
+extension FavouriteViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return favourite_product.count
+        return favouriteProductData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let favouritecell = collectionView.dequeueReusableCell(withReuseIdentifier: "FavouriteViewCell", for: indexPath) as! FavouriteViewCell
-
-        favouritecell.category_name.text = favourite_product[indexPath.row].categoryName
-        favouritecell.brand_name.text = favourite_product[indexPath.row].brandName
-        let defaultLink = ""
-        let completeLink1 = defaultLink + favourite_product[indexPath.row].brandLogoUrl
-       // favouritecell.brand_logo.DownloadedFrom(link: completeLink1)
-        favouritecell.brand_logo.sd_setImage(with: URL(string: completeLink1))
-        favouritecell.color_name.text = favourite_product[indexPath.row].colorName
-        favouritecell.color_code.backgroundColor = favourite_product[indexPath.row].colorCode.rgbToColor()
-        favouritecell.color_code.layer.cornerRadius = 7
-        favouritecell.color_code.layer.masksToBounds = false
-        favouritecell.color_code.clipsToBounds = true
-        favouritecell.sub_category_name.text = favourite_product[indexPath.row].subCategoryName
-           favouritecell.contentView.layer.cornerRadius = 24
-           favouritecell.contentView.layer.borderColor = UIColorFromHex(rgbValue: 0xDDDFEC, alpha: 0.7).cgColor
-           favouritecell.contentView.layer.borderWidth = 1
-           return favouritecell
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FavouriteViewCell", for: indexPath) as! FavouriteViewCell
+        let data = favouriteProductData[indexPath.item]
+        
+        cell.category_name.text = data.category
+        cell.brand_name.text = data.companyName
+        cell.color_name.text = data.colorName
+        cell.sub_category_name.text = data.subcategory
+        cell.color_code.backgroundColor = data.colorCode?.rgbToColor()
+        
+        cell.brand_logo.isHidden = true
+        
+        cell.color_code.layer.cornerRadius = cell.color_code.layer.bounds.height / 2
+        cell.color_code.clipsToBounds = true
+        
+        cell.contentView.layer.cornerRadius = 12.0
+        cell.contentView.clipsToBounds = true
+        
+        if let category = data.category {
+            if category == "Foundation" {
+                cell.category_logo.image = UIImage(named: "foundation")
+            } else if category == "Lipstick" {
+                cell.category_logo.image = UIImage(named: "lipstick_icon")
+            } else if category == "Blush" {
+                cell.category_logo.image = UIImage(named: "blush")
+            } else if category == "Eyeliner" {
+                cell.category_logo.image = UIImage(named: "eyeliner")
+            } else if category == "Eyeshadow" {
+                cell.category_logo.image = UIImage(named: "eyeshadow")
+            } else {
+                cell.category_logo.image = UIImage(named: "lipstick_icon")
+            }
+        }
+        
+        return cell
     }
     
-    func UIColorFromHex(rgbValue:UInt32, alpha:Double=1.0)->UIColor {
-        let red = CGFloat((rgbValue & 0xFF0000) >> 16)/256.0
-        let green = CGFloat((rgbValue & 0xFF00) >> 8)/256.0
-        let blue = CGFloat(rgbValue & 0xFF)/256.0
-
-        return UIColor(red:red, green:green, blue:blue, alpha:CGFloat(alpha))
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 20.0
     }
-    
-    
-
 }
 
-
-
-
-
-
 extension FavouriteViewController: UICollectionViewDelegateFlowLayout{
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let bounds = FavouriteCollectionView.bounds
+        let bounds = favouriteCollectionView.bounds
         return CGSize(width: bounds.width/2 - 20, height: bounds.height/4)
     }
-
+    
 }

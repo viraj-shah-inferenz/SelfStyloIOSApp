@@ -6,7 +6,9 @@
 //
 
 import UIKit
-
+protocol MakeupLoaderDelegate {
+    func didLoadMakeup(vc: UIViewController)
+}
 class MakeupLoaderViewController: UIViewController {
 
     @IBOutlet weak var lblLoading: UILabel!
@@ -17,8 +19,13 @@ class MakeupLoaderViewController: UIViewController {
     
     var eyeliner: EyelinerModel!
     
+    var delegate: MakeupLoaderDelegate?
+    
     var eyelinerData: Dictionary = [String: String]()
     var numOfDownload = 0
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         lblLoading.isHidden = false
@@ -78,13 +85,6 @@ class MakeupLoaderViewController: UIViewController {
                 
                 self.fetchData()
             }
-//            do {
-//                let jsonData = try JSONSerialization.data(withJSONObject: self.eyelinerData, options: .prettyPrinted)
-//                guard let jsonString = String(data: jsonData, encoding: .utf8) else { return }
-//
-//            } catch let err {
-//                print(err.localizedDescription)
-//            }
         }
     }
     
@@ -97,12 +97,7 @@ class MakeupLoaderViewController: UIViewController {
                     if let mkup = makeupDetails {
                         self.makeup = mkup
                         if self.makeup.data?.makeup?.count ?? 0 > 0 {
-                            let makeupVC = self.storyboard?.instantiateViewController(withIdentifier: "MakeupViewController") as! MakeupViewController
-//                            makeupVC.makeup = mkup
-                            self.eyeshadowVC.makeup = self.makeup
-                            self.lblLoading.isHidden = true
-                            makeupVC.modalPresentationStyle = .fullScreen
-                            self.present(makeupVC, animated: true)
+                            self.delegate?.didLoadMakeup(vc: self)
                         } else {
                             
                         }
@@ -111,17 +106,6 @@ class MakeupLoaderViewController: UIViewController {
             }
         }
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 

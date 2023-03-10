@@ -32,10 +32,17 @@ class EyelinerStyleViewController: UIViewController {
     var strCategory: String = ""
     var strProduct: String = ""
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.productListCollectionView.register(UINib(nibName: "ColorCodeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ColorCodeCollectionViewCell")
+
+        self.colorNameCollectionView.register(UINib(nibName: "ColorNameCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ColorNameCollectionViewCell")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegates()
-        reloadCollectionViewData()
+//        reloadCollectionViewData()
         btnCheckbox.setImage(UIImage.init(named: "favourite_unchecked"), for: .normal)
         
         DispatchQueue.global(qos: .background).async {
@@ -161,21 +168,19 @@ extension EyelinerStyleViewController:UICollectionViewDelegate, UICollectionView
             } else {
                 return 0
             }
-        } else {
-            return 0
         }
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = productListCollectionView.dequeueReusableCell(withReuseIdentifier: "ColorCodeCollectionViewCell", for: indexPath) as! ColorCodeCollectionViewCell
-        
-        cell.colorImage.clipsToBounds = true
-        cell.colorImage.layer.cornerRadius = cell.colorImage.frame.width / 2
-        
-        let colornameCell = colorNameCollectionView.dequeueReusableCell(withReuseIdentifier: "ColorNameCollectionViewCell", for: indexPath) as! ColorNameCollectionViewCell
-        
         if collectionView.tag == 0 {
+            
+            let cell: ColorCodeCollectionViewCell = productListCollectionView.dequeueReusableCell(withReuseIdentifier: "ColorCodeCollectionViewCell", for: indexPath) as! ColorCodeCollectionViewCell
+            
+            cell.colorImage.clipsToBounds = true
+            cell.colorImage.layer.cornerRadius = cell.colorImage.frame.width / 2
+            
             if arrProduct.count > 0 {
                 let data = arrProduct[indexPath.item]
                 
@@ -190,6 +195,9 @@ extension EyelinerStyleViewController:UICollectionViewDelegate, UICollectionView
             }
             return cell
         } else if collectionView.tag == 1 {
+            
+            let colornameCell: ColorNameCollectionViewCell = colorNameCollectionView.dequeueReusableCell(withReuseIdentifier: "ColorNameCollectionViewCell", for: indexPath) as! ColorNameCollectionViewCell
+            
             if arrCategory.count > 0 {
                 let data = arrCategory[indexPath.item]
                 if arrCategory.count == 1 {
@@ -206,9 +214,8 @@ extension EyelinerStyleViewController:UICollectionViewDelegate, UICollectionView
                 colornameCell.lblcolor_name.text = data.categoryName
             }
             return colornameCell
-        } else {
-            return UICollectionViewCell()
         }
+        return UICollectionViewCell()
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -232,7 +239,6 @@ extension EyelinerStyleViewController:UICollectionViewDelegate, UICollectionView
             strCategory = data.categoryName ?? ""
             setCategory(categoryIndex: indexPath.item)
             collectionView.reloadData()
-        } else {
         }
     }
     
@@ -266,7 +272,7 @@ extension EyelinerStyleViewController:UICollectionViewDelegate, UICollectionView
             print(leftInset)
             
 
-            return UIEdgeInsets(top: 0, left: leftInset - 24, bottom: 0, right: 0)
+            return UIEdgeInsets(top: 0, left: leftInset + 32, bottom: 0, right: 0)
         } else {
             return UIEdgeInsets.zero
         }

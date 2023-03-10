@@ -34,9 +34,16 @@ class EyeshadowViewController: UIViewController {
     var strEyeshadowCategory: String = ""
     var strEyeshadowProduct: String = ""
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.productListCollectionView.register(UINib(nibName: "ColorCodeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ColorCodeCollectionViewCell")
+
+        self.colorNameCollectionView.register(UINib(nibName: "ColorNameCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ColorNameCollectionViewCell")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        reloadCollectionViewData()
+//        reloadCollectionViewData()
         btnCheckbox.setImage(UIImage.init(named: "favourite_unchecked"), for: .normal)
         DispatchQueue.global(qos: .background).async {
             self.apiUtils.fetchMakeupDetails { makeupDetails in
@@ -156,21 +163,19 @@ extension EyeshadowViewController:UICollectionViewDelegate, UICollectionViewData
             } else {
                 return 0
             }
-        } else {
-            return 0
         }
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = productListCollectionView.dequeueReusableCell(withReuseIdentifier: "ColorCodeCollectionViewCell", for: indexPath) as! ColorCodeCollectionViewCell
-        
-        cell.colorImage.clipsToBounds = true
-        cell.colorImage.layer.cornerRadius = cell.colorImage.frame.width / 2
-        
-        let colornameCell = colorNameCollectionView.dequeueReusableCell(withReuseIdentifier: "ColorNameCollectionViewCell", for: indexPath) as! ColorNameCollectionViewCell
         
         if collectionView.tag == 0 {
+            let cell: ColorCodeCollectionViewCell = productListCollectionView.dequeueReusableCell(withReuseIdentifier: "ColorCodeCollectionViewCell", for: indexPath) as! ColorCodeCollectionViewCell
+            
+            cell.colorImage.clipsToBounds = true
+            cell.colorImage.layer.cornerRadius = cell.colorImage.frame.width / 2
+            
             if arrProduct.count > 0 {
                 let data = arrProduct[indexPath.item]
                 if data.colorName == strEyeshadowProduct {
@@ -184,6 +189,8 @@ extension EyeshadowViewController:UICollectionViewDelegate, UICollectionViewData
             }
             return cell
         } else if collectionView.tag == 1 {
+            let colornameCell: ColorNameCollectionViewCell = colorNameCollectionView.dequeueReusableCell(withReuseIdentifier: "ColorNameCollectionViewCell", for: indexPath) as! ColorNameCollectionViewCell
+            
             if arrCategory.count > 0 {
                 let data = arrCategory[indexPath.item]
                 
@@ -196,9 +203,8 @@ extension EyeshadowViewController:UICollectionViewDelegate, UICollectionViewData
                 colornameCell.lblcolor_name.text = data.categoryName
             }
             return colornameCell
-        } else {
-            return UICollectionViewCell()
         }
+        return UICollectionViewCell()
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -220,7 +226,6 @@ extension EyeshadowViewController:UICollectionViewDelegate, UICollectionViewData
             strEyeshadowCategory = data.categoryName ?? ""
             setCategory(categoryIndex: indexPath.item)
             collectionView.reloadData()
-        } else {
         }
     }
     

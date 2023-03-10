@@ -8,8 +8,7 @@
 import Foundation
 import SQLite3
   
-class FavouriteProductDao
-{
+/*class FavouriteProductDao{
     init()
     {
         db = openDatabase()
@@ -143,4 +142,4 @@ class FavouriteProductDao
         sqlite3_finalize(deleteStatement)
     }
       
-}
+}*/

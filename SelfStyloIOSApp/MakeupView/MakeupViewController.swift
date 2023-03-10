@@ -488,10 +488,7 @@ class MakeupViewController: UIViewController {
     }
     
     @IBAction func backHome(_ sender: UIButton) {
-        let detailViewController:UIViewController = self.storyboard!.instantiateViewController(withIdentifier: "CustomTabBarControllerViewController") as! CustomTabBarControllerViewController
-        
-        detailViewController.modalPresentationStyle = .fullScreen
-        self.present(detailViewController, animated: false)
+        self.dismiss(animated: true)
     }
 }
 

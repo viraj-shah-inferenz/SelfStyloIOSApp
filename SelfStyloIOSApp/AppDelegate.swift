@@ -29,11 +29,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
            // if user is logged in before
         if UserDefaults.standard.object(forKey: APP.IS_LOGIN) != nil {
             let mainTabBarController = storyboard.instantiateViewController(identifier: "CustomTabBarControllerViewController") as! CustomTabBarControllerViewController
-            window?.rootViewController = mainTabBarController
+            let navVC = UINavigationController(rootViewController: mainTabBarController)
+            window?.rootViewController = navVC
             window?.makeKeyAndVisible()
         } else  {
-            let loginNavController = storyboard.instantiateViewController(identifier: "SignInViewController")
-            window?.rootViewController = loginNavController
+            let loginNavController = storyboard.instantiateViewController(identifier: "SignInViewController") as! SignInViewController
+            let navVC = UINavigationController(rootViewController: loginNavController)
+            window?.rootViewController = navVC
             window?.makeKeyAndVisible()
         }
         

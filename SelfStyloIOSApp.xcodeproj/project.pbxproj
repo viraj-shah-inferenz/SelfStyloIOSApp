@@ -91,7 +91,6 @@
 		22E8E9FC29700B9D00E5BE59 /* IApiCalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E8E9FB29700B9D00E5BE59 /* IApiCalls.swift */; };
 		22E8E9FE29700C4300E5BE59 /* ApiUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E8E9FD29700C4300E5BE59 /* ApiUtils.swift */; };
 		22E8EA022970109400E5BE59 /* FavouriteProductDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E8EA012970109400E5BE59 /* FavouriteProductDao.swift */; };
-		22E8EA042970114200E5BE59 /* FavouriteProducts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E8EA032970114200E5BE59 /* FavouriteProducts.swift */; };
 		22E9836A29ACA2C4001AA264 /* SignInGenderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E9835E29ACA2C4001AA264 /* SignInGenderTableViewCell.swift */; };
 		22E9836B29ACA2C4001AA264 /* SignInPhotoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22E9835F29ACA2C4001AA264 /* SignInPhotoTableViewCell.xib */; };
 		22E9836C29ACA2C4001AA264 /* SignInFullNameTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22E9836029ACA2C4001AA264 /* SignInFullNameTableViewCell.xib */; };
@@ -125,6 +124,7 @@
 		534CAF2929A6317D00E64AD1 /* MakeupLayerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534CAF2729A6317D00E64AD1 /* MakeupLayerTableViewCell.swift */; };
 		53675B2629B2024900901979 /* FoundationAnalyzeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53675B2529B2024900901979 /* FoundationAnalyzeViewController.swift */; };
 		536AE08429B1CBC6008C7C8F /* FoundationShadesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536AE08329B1CBC6008C7C8F /* FoundationShadesViewController.swift */; };
+		5373859029BA0CFC0068AD4F /* FavouriteProducts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5373858F29BA0CFC0068AD4F /* FavouriteProducts.swift */; };
 		53829454298D2EB4002D7671 /* Js in Resources */ = {isa = PBXBuildFile; fileRef = 53829453298D2EB4002D7671 /* Js */; };
 		5398872629ADDF8500E65C20 /* CaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5398872529ADDF8500E65C20 /* CaptureViewController.swift */; };
 		53BD4986298007B200B1D53B /* MakeDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53BD4985298007B200B1D53B /* MakeDetails.swift */; };
@@ -236,7 +236,6 @@
 		22E8E9FB29700B9D00E5BE59 /* IApiCalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IApiCalls.swift; sourceTree = "<group>"; };
 		22E8E9FD29700C4300E5BE59 /* ApiUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiUtils.swift; sourceTree = "<group>"; };
 		22E8EA012970109400E5BE59 /* FavouriteProductDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteProductDao.swift; sourceTree = "<group>"; };
-		22E8EA032970114200E5BE59 /* FavouriteProducts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteProducts.swift; sourceTree = "<group>"; };
 		22E9835E29ACA2C4001AA264 /* SignInGenderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInGenderTableViewCell.swift; sourceTree = "<group>"; };
 		22E9835F29ACA2C4001AA264 /* SignInPhotoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignInPhotoTableViewCell.xib; sourceTree = "<group>"; };
 		22E9836029ACA2C4001AA264 /* SignInFullNameTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignInFullNameTableViewCell.xib; sourceTree = "<group>"; };
@@ -275,6 +274,7 @@
 		534CAF2729A6317D00E64AD1 /* MakeupLayerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakeupLayerTableViewCell.swift; sourceTree = "<group>"; };
 		53675B2529B2024900901979 /* FoundationAnalyzeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationAnalyzeViewController.swift; sourceTree = "<group>"; };
 		536AE08329B1CBC6008C7C8F /* FoundationShadesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationShadesViewController.swift; sourceTree = "<group>"; };
+		5373858F29BA0CFC0068AD4F /* FavouriteProducts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteProducts.swift; sourceTree = "<group>"; };
 		53829453298D2EB4002D7671 /* Js */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Js; sourceTree = "<group>"; };
 		5398872529ADDF8500E65C20 /* CaptureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureViewController.swift; sourceTree = "<group>"; };
 		53BD4985298007B200B1D53B /* MakeDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeDetails.swift; sourceTree = "<group>"; };
@@ -558,13 +558,13 @@
 		22E8EA002970105D00E5BE59 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				22E8EA032970114200E5BE59 /* FavouriteProducts.swift */,
 				22BB026429711E8100F514B0 /* Patron.swift */,
 				2289852C2976CDE7002DD2E8 /* Banner.swift */,
 				53BD4985298007B200B1D53B /* MakeDetails.swift */,
 				534CAF1F29A62E8D00E64AD1 /* EyelinerData.swift */,
 				534CAF2029A62E8D00E64AD1 /* EyelinerStyle.swift */,
 				531302F829B5BAFA00A35921 /* SkintoneUndertone.swift */,
+				5373858F29BA0CFC0068AD4F /* FavouriteProducts.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1012,6 +1012,7 @@
 				22B00B7A297E9EAB0075FB02 /* EyelinerStyleCollectionViewCell.swift in Sources */,
 				53D0567C29A62CCA0064EDF4 /* MakeupLayerViewController.swift in Sources */,
 				22E9836A29ACA2C4001AA264 /* SignInGenderTableViewCell.swift in Sources */,
+				5373859029BA0CFC0068AD4F /* FavouriteProducts.swift in Sources */,
 				2289852F2976CEAC002DD2E8 /* BannerDao.swift in Sources */,
 				228A8E6D2963F0CB004F8208 /* SelectLogoAppTableViewCell.swift in Sources */,
 				22B00B75297E84790075FB02 /* EyeshadowViewController.swift in Sources */,
@@ -1044,7 +1045,6 @@
 				22E9836D29ACA2C4001AA264 /* SignInPhoneTableViewCell.swift in Sources */,
 				22E6FA2A298D419800361954 /* NotificationViewController.swift in Sources */,
 				22BB02672971231D00F514B0 /* PatronDao.swift in Sources */,
-				22E8EA042970114200E5BE59 /* FavouriteProducts.swift in Sources */,
 				2202B3352964122C000CB816 /* FavouriteProductTableViewCell.swift in Sources */,
 				228959A4297A5942008B72CA /* ColorCodeCollectionViewCell.swift in Sources */,
 				5325AF1D298A5291004F385D /* MakeupLoaderViewController.swift in Sources */,

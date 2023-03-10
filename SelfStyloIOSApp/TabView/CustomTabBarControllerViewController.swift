@@ -9,13 +9,15 @@ import UIKit
 
 class CustomTabBarControllerViewController: UITabBarController, UITabBarControllerDelegate {
 
-    
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = true
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegates()
         setupMiddleButton()
-    
     }
     
     func setDelegates() {
@@ -36,28 +38,29 @@ class CustomTabBarControllerViewController: UITabBarController, UITabBarControll
            menuButton.addTarget(self, action: #selector(menuButtonAction(sender:)), for: .touchUpInside)
 
            view.layoutIfNeeded()
-       }
+    }
     
     @objc private func menuButtonAction(sender: UIButton) {
-
-//        let detailViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DialogSelectionViewController")
-//        let smallId = UISheetPresentationController.Detent.Identifier("small")
-//        let smallDetent = UISheetPresentationController.Detent.custom(identifier: smallId) { context in
-//            return 250
-//        }
-//        if let sheet = detailViewController.sheetPresentationController {
-//            sheet.detents = [smallDetent,.medium()]
-//           sheet.prefersScrollingExpandsWhenScrolledToEdge = true
-//           sheet.prefersEdgeAttachedInCompactHeight = true
-//           sheet.widthFollowsPreferredContentSizeWhenEdgeAttached = true
-//        }
-//        self.present(detailViewController, animated: true, completion: nil)
+        
+        
         let detailViewController:MakeupLoaderViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MakeupLoaderViewController") as! MakeupLoaderViewController
-//        detailViewController.strOpenView = "firstTime"
-
         detailViewController.modalPresentationStyle = .fullScreen
-        self.present(detailViewController, animated: false)
-       }
+        detailViewController.delegate = self
+        
+        self.navigationController?.present(detailViewController, animated: true)
+    }
+    
 
+}
 
+extension CustomTabBarControllerViewController: MakeupLoaderDelegate {
+    func didLoadMakeup(vc: UIViewController) {
+        vc.dismiss(animated: true)
+        
+        let makeupVC = self.storyboard?.instantiateViewController(withIdentifier: "MakeupViewController") as! MakeupViewController
+        makeupVC.modalPresentationStyle = .fullScreen
+        self.present(makeupVC, animated: true)
+    }
+    
+    
 }

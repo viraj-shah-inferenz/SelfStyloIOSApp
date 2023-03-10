@@ -29,11 +29,20 @@ class BlushViewController: UIViewController {
     
     var strBlushCategory:String = ""
     var strBlushProduct:String = ""
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.productListCollectionView.register(UINib(nibName: "ColorCodeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ColorCodeCollectionViewCell")
+
+        self.colorNameCollectionView.register(UINib(nibName: "ColorNameCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ColorNameCollectionViewCell")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegates()
         
-        reloadCollectionViewData()
+//        reloadCollectionViewData()
+        
         btnCheckbox.setImage(UIImage.init(named: "favourite_unchecked"), for: .normal)
         DispatchQueue.global(qos: .background).async {
             self.apiUtils.fetchMakeupDetails { makeupDetails in
@@ -155,21 +164,18 @@ extension BlushViewController: UICollectionViewDelegate, UICollectionViewDataSou
             } else {
                 return 0
             }
-        } else {
-            return 0
         }
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = productListCollectionView.dequeueReusableCell(withReuseIdentifier: "ColorCodeCollectionViewCell", for: indexPath) as! ColorCodeCollectionViewCell
-        
-        cell.colorImage.clipsToBounds = true
-        cell.colorImage.layer.cornerRadius = cell.colorImage.frame.width / 2
-        
-        let colornameCell = colorNameCollectionView.dequeueReusableCell(withReuseIdentifier: "ColorNameCollectionViewCell", for: indexPath) as! ColorNameCollectionViewCell
-        
         if collectionView.tag == 0 {
+            let cell:ColorCodeCollectionViewCell = productListCollectionView.dequeueReusableCell(withReuseIdentifier: "ColorCodeCollectionViewCell", for: indexPath) as! ColorCodeCollectionViewCell
+            
+            cell.colorImage.clipsToBounds = true
+            cell.colorImage.layer.cornerRadius = cell.colorImage.frame.width / 2
+            
             if arrProduct.count > 0 {
                 let data = arrProduct[indexPath.item]
                 print(data.colorCode)
@@ -186,6 +192,9 @@ extension BlushViewController: UICollectionViewDelegate, UICollectionViewDataSou
             }
             return cell
         } else if collectionView.tag == 1 {
+            
+            let colornameCell = colorNameCollectionView.dequeueReusableCell(withReuseIdentifier: "ColorNameCollectionViewCell", for: indexPath) as! ColorNameCollectionViewCell
+            
             if arrCategory.count > 0 {
                 let data = arrCategory[indexPath.item]
                 
@@ -197,12 +206,12 @@ extension BlushViewController: UICollectionViewDelegate, UICollectionViewDataSou
                 }
                 
                 colornameCell.lblcolor_name.text = data.categoryName
-
             }
             return colornameCell
-        } else {
-            return UICollectionViewCell()
         }
+        
+        return UICollectionViewCell()
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -228,16 +237,15 @@ extension BlushViewController: UICollectionViewDelegate, UICollectionViewDataSou
             strBlushCategory = data.categoryName ?? ""
             setCategory(categoryIndex: indexPath.item)
             collectionView.reloadData()
-        } else {
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        let bounds = collectionView.bounds
-        return CGSize(width: bounds.width/2 - 25, height: bounds.height)
-    }
-    
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//
+//        let bounds = collectionView.bounds
+//        return CGSize(width: bounds.width/2 - 25, height: bounds.height)
+//    }
+//
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 25.0
     }

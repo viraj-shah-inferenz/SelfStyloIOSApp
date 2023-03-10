@@ -16,7 +16,7 @@ struct APP {
 }
 
 protocol GetUsersDelegate {
-    func refreshFavouriteProductsList(favouriteproductList: [FavouriteProducts])
+//    func refreshFavouriteProductsList(favouriteproductList: [FavouriteProducts])
     func refreshBannerList(bannerList: [Banner])
 }
 
@@ -228,7 +228,7 @@ class ApiUtils {
     }
     
     
-    func getFavouriteProductDetail(){
+    /*func getFavouriteProductDetail(){
             if reachability.connection == .wifi || reachability.connection == .cellular
             {
                 let serviceUrl = ApiUtils.DOMAIN_URL + self.apiCalls.get_favourite_product + "?id=4aa6223c-8439-4ed3-8de0-f6a67b1d36bd"
@@ -268,9 +268,9 @@ class ApiUtils {
                     print("Not reachable")
             }
         
-    }
+    }*/
     
-    func parseFavouriteProductDataIntoDb(data: Data) {
+    /*func parseFavouriteProductDataIntoDb(data: Data) {
         var userList: [FavouriteProducts] = []
         let db1 = FavouriteProductDao()
         
@@ -299,7 +299,8 @@ class ApiUtils {
                 }
             }
         }
-    }
+    }*/
+    
     func getUserDetail(id:String) -> Bool{
             if reachability.connection == .wifi || reachability.connection == .cellular
             {
@@ -351,7 +352,7 @@ class ApiUtils {
     func fetchMakeupDetails(sc: @escaping (MakeDetails?)->Void) {
         if reachability.connection == .wifi || reachability.connection == .cellular
         {
-            let uuid = UUID().uuidString
+            let uuid = "4aa6223c-8439-4ed3-8de0-f6a67b1d36bd" //UUID().uuidString
             let serviceUrl = ApiUtils.MAKEUP_URL + apiCalls.makeupDetails + "?uuid=\(uuid)"
             var request = URLRequest(url: URL(string: serviceUrl)!)
             request.timeoutInterval = 50
@@ -422,7 +423,7 @@ class ApiUtils {
         
     }
     
-    func likeProduct(fronUrl urlStr: String, completionHandler: @escaping (Result<Data, Error>) -> Void ) {
+    func makeRequest(fronUrl urlStr: String, completionHandler: @escaping (Result<Data, Error>) -> Void ) {
         if reachability.connection == .wifi || reachability.connection == .cellular {
             let session = URLSession(configuration: .default)
             guard let url = URL(string: urlStr) else { return }

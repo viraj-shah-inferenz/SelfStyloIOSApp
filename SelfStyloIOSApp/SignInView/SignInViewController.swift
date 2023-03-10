@@ -14,6 +14,12 @@ import GoogleSignIn
 import Toast_Swift
 import JGProgressHUD
 
+
+
+protocol FavouriteDataDelegate {
+    func refreshData(data: [FavouriteProductData])
+}
+
 class SignInViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate{
     
     
@@ -66,6 +72,8 @@ class SignInViewController: UIViewController,UITextFieldDelegate,UITextViewDeleg
     let privacyURL            = "https://selfstylo.com/privacy-policy/";
     
     let hud = JGProgressHUD()
+    
+    var delegate: FavouriteDataDelegate?
 
     
     override func viewDidLoad() {
@@ -83,8 +91,6 @@ class SignInViewController: UIViewController,UITextFieldDelegate,UITextViewDeleg
         getData()
         setUpTextView()
     }
-    
-    
     
     func setUpTextView()
     {
@@ -198,8 +204,9 @@ class SignInViewController: UIViewController,UITextFieldDelegate,UITextViewDeleg
     
     func getData(){
         apiUtils.getBanner()
-        apiUtils.getFavouriteProductDetail()
     }
+    
+    
     
     func setTextFieldEmail(){
         self.EmailIdView.isHidden = true

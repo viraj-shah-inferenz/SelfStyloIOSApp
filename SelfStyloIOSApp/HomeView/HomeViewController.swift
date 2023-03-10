@@ -6,10 +6,16 @@
 //
 
 import UIKit
+import Toast_Swift
+
 
 class HomeViewController: UIViewController {
 
     @IBOutlet weak var tblView: UITableView!
+    
+    var apiUtils = ApiUtils()
+    var favouriteProductData = [FavouriteProductData]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,19 +29,47 @@ class HomeViewController: UIViewController {
         let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
         print(paths[0])
         
+        print(self.tabBarController?.tabBar.selectedItem?.tag)
         
-
+        loadFavouriteProducts()
     }
     
+    func loadFavouriteProducts() {
+        let api = IApiCalls()
+        let uuid = "4aa6223c-8439-4ed3-8de0-f6a67b1d36bd"  //UUID().uuidString
+        let apiUrl = ApiUtils.MAKEUP_URL + api.product_like + "?id=\(uuid)"
+        apiUtils.makeRequest(fronUrl: apiUrl) { Result in
+            switch Result {
+                
+            case .success(let data):
+                do {
+                    let list = try? JSONDecoder().decode(FavouriteProducts.self, from: data)
+                    print(list?.data?[0].colorName)
+                    if let list = list?.data {
+                        DispatchQueue.main.async {
+                            NotificationCenter.default.post(name: NSNotification.Name("loadFavouriteItem"), object: list)
+                        }
+                    }
+                } catch let error {
+                    self.view.makeToast(error.localizedDescription, duration: 3.0, position: .bottom)
+                }
+                
+                
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+            
+        }
+    }
     
     func setDelegates() {
         self.tblView.delegate = self
         self.tblView.dataSource = self
     }
-    
 }
 
-extension HomeViewController: UITableViewDelegate, UITableViewDataSource{
+extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 5
     }
@@ -55,7 +89,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource{
                 return cell
             }
         }else if indexPath.row == 3{
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "FavouriteProductTableViewCell") as? FavouriteProductTableViewCell{
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "FavouriteProductTableViewCell") as? FavouriteProductTableViewCell {
                 cell.btnFavouriteDetails.addTarget(self, action: #selector(favouriteviewall), for: .touchUpInside)
                 return cell
             }
@@ -96,11 +130,11 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     fileprivate func openCamera() {
-
         let detailViewController:MakeupLoaderViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MakeupLoaderViewController") as! MakeupLoaderViewController
-        
         detailViewController.modalPresentationStyle = .fullScreen
-        self.present(detailViewController, animated: false)
+        detailViewController.delegate = self
+        
+        self.navigationController?.present(detailViewController, animated: true)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -125,3 +159,13 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource{
 }
 
 
+extension HomeViewController: MakeupLoaderDelegate {
+    func didLoadMakeup(vc: UIViewController) {
+        
+        vc.dismiss(animated: true)
+        
+        let makeupVC = self.storyboard?.instantiateViewController(withIdentifier: "MakeupViewController") as! MakeupViewController
+        makeupVC.modalPresentationStyle = .fullScreen
+        self.present(makeupVC, animated: true)
+    }
+}

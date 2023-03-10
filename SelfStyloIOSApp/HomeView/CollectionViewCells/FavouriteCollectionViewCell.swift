@@ -12,6 +12,7 @@ class FavouriteCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var category_name: UILabel!
     
     @IBOutlet weak var brand_logo: UIImageView!
+    @IBOutlet weak var category_logo: UIImageView!
     @IBOutlet weak var brand_name: UILabel!
     
     
