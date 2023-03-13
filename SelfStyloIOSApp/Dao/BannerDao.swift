@@ -39,7 +39,7 @@ class BannerDao
     }
       
     func createTable() {
-            let createTableString = "CREATE TABLE IF NOT EXISTS banner(id INTEGER NOT NULL,upload_image TEXT,is_active BOOLEAN,PRIMARY KEY(id));"
+            let createTableString = "CREATE TABLE IF NOT EXISTS banner(id INTEGER NOT NULL,upload_image TEXT,is_active BOOLEAN,company_id INTEGER NOT NULL,PRIMARY KEY(id));"
             var createTableStatement: OpaquePointer? = nil
             if sqlite3_prepare_v2(db, createTableString, -1, &createTableStatement, nil) == SQLITE_OK
             {
@@ -60,16 +60,16 @@ class BannerDao
       
     func insert(userList: Banner)
     {
-        let insertStatementString = "INSERT INTO banner(id,upload_image,is_active) VALUES (?,?,?);"
+        let insertStatementString = "INSERT INTO banner(id,upload_image,is_active,company_id) VALUES (?,?,?,?);"
         var insertStatement: OpaquePointer? = nil
         if sqlite3_prepare_v2(db, insertStatementString, -1, &insertStatement, nil) == SQLITE_OK {
             sqlite3_bind_int(insertStatement, 1, Int32(userList.id))
-            sqlite3_bind_text(insertStatement, 2, (userList.upload_image as NSString).utf8String, -1, nil)
+            sqlite3_bind_text(insertStatement, 2, (userList.uploadImage as NSString).utf8String, -1, nil)
             var is_active: Int    //FIXME: Vars are trouble
-            if userList.is_active { is_active = 1 }
+            if userList.isActive { is_active = 1 }
                 else { is_active = 0 }
             sqlite3_bind_int(insertStatement, 3, Int32(is_active))
-              
+            sqlite3_bind_int(insertStatement, 4, Int32(userList.companyID))
             if sqlite3_step(insertStatement) == SQLITE_DONE {
                 print("Successfully inserted row.")
             } else {
@@ -90,7 +90,8 @@ class BannerDao
                    let id = sqlite3_column_int(queryStatement, 0)
                    let upload_image = String(describing: String(cString: sqlite3_column_text(queryStatement, 1)))
                    let is_active = sqlite3_column_int(queryStatement, 2)
-                   banner.append(Banner(id: Int(id), upload_image: upload_image, is_active: (is_active != 0)))
+                   let company_id = sqlite3_column_int(queryStatement, 3)
+                   banner.append(Banner(id: Int(id), uploadImage: upload_image, isActive: (is_active != 0), companyID: Int(company_id)))
                    
                }
            } else {

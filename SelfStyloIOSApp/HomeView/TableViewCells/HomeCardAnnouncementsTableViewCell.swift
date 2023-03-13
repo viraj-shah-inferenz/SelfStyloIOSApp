@@ -8,17 +8,9 @@
 import UIKit
 import SDWebImage
 
-class HomeCardAnnouncementsTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDelegate,GetUsersDelegate {
-    func refreshFavouriteProductsList(favouriteproductList: [FavouriteProducts]) {
-        
-    }
-    
-    func refreshBannerList(bannerList: [Banner]) {
-        self.imgArr = bannerList
-        self.sliderCollectionView.reloadData()
-    }
-    
-    
+class HomeCardAnnouncementsTableViewCell: UITableViewCell{
+   
+
     
     @IBOutlet weak var sliderCollectionView: UICollectionView!
     
@@ -108,6 +100,18 @@ class HomeCardAnnouncementsTableViewCell: UITableViewCell, UICollectionViewDataS
 
     
     
+  
+    
+}
+
+extension HomeCardAnnouncementsTableViewCell:GetUsersDelegate{
+    func refreshBannerList(bannerList: [Banner]) {
+        self.imgArr = bannerList
+        self.sliderCollectionView.reloadData()
+    }
+}
+
+extension HomeCardAnnouncementsTableViewCell:UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return imgArr.count
     }
@@ -115,16 +119,13 @@ class HomeCardAnnouncementsTableViewCell: UITableViewCell, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageSliderCollectionViewCell", for: indexPath) as! ImageSliderCollectionViewCell
         let defaultLink = "https://dev.selfstylo.com"
-        let completeLink1 = defaultLink + imgArr[indexPath.row].upload_image
+        let completeLink1 = defaultLink + imgArr[indexPath.row].uploadImage
         
         cell.sliderImageView.sd_setImage(with: URL(string: completeLink1))
 //        cell.sliderImageView?.DownloadedFrom(link: completeLink1)
        return cell
     }
     
-}
-
-extension HomeCardAnnouncementsTableViewCell: UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
             return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }

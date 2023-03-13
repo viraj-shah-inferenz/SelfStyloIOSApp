@@ -172,28 +172,47 @@ class ApiUtils {
     
     func getBanner(){
             if reachability.connection == .wifi   ||  reachability.connection == .cellular {
-                let serviceUrl = ApiUtils.DOMAIN_URL + self.apiCalls.getBanner
-                let url = URL(string: serviceUrl)
-                
-                if let url = url {
-                    
-                    let session = URLSession(configuration: .default)
-                    
-                    DispatchQueue.global(qos: .userInteractive).async {
-                        let task = session.dataTask(with: url,completionHandler: {
-                            (data, response, error) in
-                            if error == nil{
-                                DispatchQueue.main.async {
-                                    self.parseBannerDataIntoDb(data: data!)
-                                }
-                            }else{
-                                
-                            }
-                        })
-                        task.resume()
+                let serviceUrl = ApiUtils.MAKEUP_URL + self.apiCalls.getBanner
+                let db1 = BannerDao()
+                var request = URLRequest(url: URL(string: serviceUrl)!)
+                request.timeoutInterval = 50
+                request.httpMethod = "GET"
+                URLSession.shared.dataTask(with: request) { data, response, error in
+                    if let data = data {
+                        if let bannerDetails = try? JSONDecoder().decode(Banner.self, from: data) {
+                          //  sc(bannerDetails)
+                            db1.insert(userList: bannerDetails)
+                            //print(makeupDetails.data?.makeup?[0].makeupName)
+                        } else {
+                            print("Invalid Response")
+                        }
+                    } else if let error = error {
+                        print("HTTP Request Failed \(error)")
                     }
-                    
-                }
+                }.resume()
+//                let url = URL(string: serviceUrl)
+//
+//                if let url = url {
+//
+//                    let session = URLSession(configuration: .default)
+//
+//                    DispatchQueue.global(qos: .userInteractive).async {
+//                        let task = session.dataTask(with: url,completionHandler: {
+//                            (data, response, error) in
+//                            if let error = error{
+//                                print("HTTP Request Failed \(error)")
+//                            }
+//
+//                            if let data = data{
+//                                DispatchQueue.main.async {
+//                                    self.parseBannerDataIntoDb(data: data)
+//                                }
+//                            }
+//                        })
+//                        task.resume()
+//                    }
+//
+//                }
             }else {
                     print("Not reachable")
                 
@@ -201,31 +220,32 @@ class ApiUtils {
         
     }
     
-    func parseBannerDataIntoDb(data: Data) {
-        var userList: [Banner] = []
-        let db1 = BannerDao()
-        do{
-            let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
-            // if let dictionary = json as? [String: Any]
-            if let dictionary = json as? Array<Dictionary<String, Any>>
-            {
-                for i in dictionary {
-                    let user = Banner()
-                    user.id = i["id"] as! Int
-                    user.upload_image = i["upload_image"] as! String
-                    user.is_active = i["is_active"] as! Bool
-                    userList.append(user)
-                    db1.insert(userList: user)
-                }
-                
-                print("USERS : ", userList)
-                self.getUserDelegate?.refreshBannerList(bannerList: userList)
-            }
-            
-        }catch{
-            print("Error : ", error.localizedDescription)
-        }
-    }
+//    func parseBannerDataIntoDb(data: Data) {
+//        var userList: [Banner] = []
+//   //     let db1 = BannerDao()
+//        do{
+//            let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+//            // if let dictionary = json as? [String: Any]
+//            if let dictionary = json as? Array<Dictionary<String, Any>>
+//            {
+//                for i in dictionary {
+//                    let user = Banner()
+//                    user.id = i["id"] as! Int
+//                    user.upload_image = i["upload_image"] as! String
+//                    user.is_active = i["is_active"] as! Bool
+//                    user.company_id = i["company_id"] as! Int
+//                    userList.append(user)
+//     //               db1.insert(userList: user)
+//                }
+//
+//                print("USERS : ", userList)
+//                self.getUserDelegate?.refreshBannerList(bannerList: userList)
+//            }
+//
+//        }catch{
+//            print("Error : ", error.localizedDescription)
+//        }
+//    }
     
     
     /*func getFavouriteProductDetail(){

@@ -6,21 +6,27 @@
 //
 
 import Foundation
-class Banner:Decodable{
-       var id: Int = 0
-       var upload_image: String = ""
-       var is_active: Bool = true
-    
-    init(){
-        
+class Banner: Codable {
+    let id: Int
+    let uploadImage: String
+    let isActive: Bool
+    let companyID: Int
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case uploadImage = "upload_image"
+        case isActive = "is_active"
+        case companyID = "company_id"
     }
     
-    init(id:Int, upload_image:String,is_active:Bool)
-    {
+    init?(){
+        return nil
+    }
+
+    init(id: Int, uploadImage: String, isActive: Bool, companyID: Int) {
         self.id = id
-        self.upload_image = upload_image
-        self.is_active = is_active
+        self.uploadImage = uploadImage
+        self.isActive = isActive
+        self.companyID = companyID
     }
-    
-    
 }
